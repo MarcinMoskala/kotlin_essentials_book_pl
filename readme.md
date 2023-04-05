@@ -33,3 +33,5 @@ Instrukcje dla korektorów:
 * **Rozdzielaj PRy** - jeśli nie masz pewności że pewna zmiana zostanie przyjęta dobrze, zrób to w osobnych PRach. Nie musisz czekać na zatwierdzenie PRa, aby zrobić kolejny. Nie pozwól na to, aby gromadziło się zbyt dużo zmian na twoim lokalnym branchu, by uniknąć konfliktów.
 
 By upewnić się, że każdy rozdział uzyska odpwiednią liczbę korektorów, proszę o przypisanie się do konkretnego rozdziału w zakładce [Issues](). Każdy z rozdziałów musi zostać przekorektowany przez co najmniej pięciu korektorów.
+
+Kod spushowany do brancha `master` jest automatycznie publikowany na LeanPub, a więc zmiany są widoczne przez wszystkich czytelników. Recenzenci powinni dostać dostęp do książki na LeanPub, aby móc zawsze sprawdzić, jak wygląda książka w formacie ebook.
