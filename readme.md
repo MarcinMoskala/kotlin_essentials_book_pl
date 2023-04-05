@@ -31,6 +31,8 @@ Instrukcje dla korektorów:
 * **Nie bój się** - jeśli widzisz błąd, zgłoś go, nawet jeśli jest mały.
 * **Nie ograniczaj się do konkretnego rozdziału** - jeśli widzisz błąd w jednym miejscu, sprawdź, czy nie występuje on również w innych miejscach.
 * **Rozdzielaj PRy** - jeśli nie masz pewności że pewna zmiana zostanie przyjęta dobrze, zrób to w osobnych PRach. Nie musisz czekać na zatwierdzenie PRa, aby zrobić kolejny. Nie pozwól na to, aby gromadziło się zbyt dużo zmian na twoim lokalnym branchu, by uniknąć konfliktów.
+* **Nie bój się wprowadzać odważne zmiany językowe** - nie ograniczaj się do poprawiania literówek. Jeśli widzisz, że jakiś fragment jest niejasny, spróbuj go przetłumaczyć na inny sposób. Jeśli widzisz, że jakiś fragment jest niejasny, spróbuj go przetłumaczyć na inny sposób. 
+* **Książka powinna być spójna z orginałem** - nie wprowadzaj zmian w kodzie oraz nie zmieniaj struktury książki. Jeśli widzisz coś istotnego do poprawy, otwórz issue i przypisz do niego Marcina Moskałę. 
 
 By upewnić się, że każdy rozdział uzyska odpwiednią liczbę korektorów, proszę o przypisanie się do konkretnego rozdziału w zakładce [Issues](). Każdy z rozdziałów musi zostać przekorektowany przez co najmniej pięciu korektorów.
 
