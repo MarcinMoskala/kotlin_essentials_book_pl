@@ -1,31 +1,31 @@
 ## Wprowadzenie
 
-Kotlin to potężny język, głównie dzięki swojej wyrazistej składni, intuicyjnemu i bezpiecznemu dla wartości null systemowi typów oraz świetnemu wsparciu narzędzi. Nic dziwnego, że Kotlin jest najpopularniejszym językiem do tworzenia aplikacji na Androida i popularną alternatywą dla Javy w przypadku aplikacji backendowych. Jest również używany w naukach danych oraz w programowaniu wieloplatformowych aplikacji na iOS, komputery stacjonarne i sieciowe. W tej książce nauczysz się najważniejszych funkcji Kotlin, które pozwolą Ci właściwie rozpocząć swoją przygodę z Kotlinem.
+Kotlin to niesamowity język, głównie dzięki swojej czytelnej składni, intuicyjnemu i bezpiecznemu dla wartości null systemowi typów oraz świetnemu wsparciu narzędzi. Nic dziwnego, że Kotlin jest najpopularniejszym językiem do tworzenia aplikacji na Androida i popularną alternatywą dla Javy w przypadku aplikacji backendowych. Jest również używany przy przetwarzaniu i analizie danych oraz w programowaniu wieloplatformowych aplikacji na iOS, komputery stacjonarne i strony internetowe. W tej książce nauczysz się najważniejszych funkcji języka Kotlin, które pozwolą Ci właściwie rozpocząć twoją przygodę z Kotlinem.
 
 ### Dla kogo jest napisana ta książka?
 
-Ta książka jest dedykowana programistom. Zakładam, że wszyscy programiści wiedzą, czym są funkcje, instrukcje warunkowe if czy ciągi znaków. Niemniej jednak staram się wyjaśnić (przynajmniej w skrócie) wszystkie tematy, które mogą nie być jasne dla wszystkich rodzajów programistów, takie jak klasy, enumy czy listy. Dlatego zakładam, że tę książkę mogą czytać programiści używający C, JavaScript czy Matlaba.
+Ta książka jest dedykowana programistom. Zakładam, że wszyscy programiści wiedzą, czym są funkcje, instrukcje warunkowe if czy ciągi znaków. Niemniej jednak staram się wyjaśnić (przynajmniej w skrócie) wszystkie rzeczy, które mogą nie być jasne dla wszystkich programistów, takie jak klasy, enumy czy listy. Dlatego zakładam, że tę książkę mogą czytać programiści używający C, JavaScript czy Matlaba.
 
-Kotlin to język wieloplatformowy, ale głównie używany jest na JVM. Ponadto większość programistów Kotlin ma doświadczenie w Javie. Dlatego czasami odnoszę się do Javy i jej platformy, a czasami przedstawiam elementy specyficzne dla JVM. Za każdym razem, gdy to robię, wyraźnie to zaznaczam. Zakładam, że niektórzy czytelnicy mogą być głównie zainteresowani używaniem Kotlin/JS lub Kotlin/Native, więc wszystko, co nie jest opisane jako specyficzne dla Javy, powinno być dla nich użyteczne.
+Kotlin to język wieloplatformowy, ale głównie używany jest na JVM, a większość programistów Kotlin ma doświadczenie w Javie. Dlatego czasami odnoszę się do Javy i jej platformy, a czasami przedstawiam elementy specyficzne dla JVM. Za każdym razem, gdy to robię, staram się wyraźnie to zaznaczyć. Zakładam, że niektórzy czytelnicy mogą być głównie zainteresowani używaniem Kotlin/JS lub Kotlin/Native, więc wszystko, co nie jest opisane jako specyficzne dla Javy, powinno być dla nich użyteczne.
 
 ### Co zostanie omówione?
 
-W tej książce omawiam te tematy, które uważam za niezbędne do programowania w Kotlin, w tym:
+W tej książce omawiam te tematy, które uważam za niezbędne do programowania w języku Kotlin, w tym:
 
 * zmienne, wartości i typy,
 * instrukcje warunkowe i pętle,
-* wsparcie dla nullability,
+* wsparcie dla wartości nullowalnych,
 * klasy, interfejsy i dziedziczenie,
 * wyrażenia i deklaracje obiektów,
-* klasy danych, szczelne, wyliczeniowe i adnotacji,
-* wyjątki,
-* funkcje rozszerzeń,
+* klasy typu data, enum i sealed,
+* anotacje i wyjątki,
+* funkcje rozszerzające,
 * kolekcje,
 * przeciążanie operatorów,
 * system typów,
 * generyki.
 
-Ta książka nie omawia funkcjonalnych cech Kotlin, takich jak wyrażenia lambda czy typy funkcji. Wszystkie funkcjonalne cechy są omówione w kontynuacji tej książki: *Functional Kotlin*.
+Ta książka nie omawia funkcyjnych cech Kotlin, takich jak wyrażenia lambda czy typy funkcyjne. Te tematy są omówione w kontynuacji tej książki: *Functional Kotlin*.
 
 ### Seria Kotlin dla programistów
 
@@ -38,16 +38,7 @@ Ta książka oraz moje dwie inne książki, *Kotlin Korutyny* i *Efektywny Kotli
 
 ### Moja historia
 
-Moja historia z Kotline zaczęła się w 2015 roku, gdy pracowałem jako programista Java na Androida. Byłem dość sfrustrowany całą masą kodu szablonowego, takiego jak gettery i settery dla każdego pola, oraz niemal identycznymi metodami `equals`, `toString` i `hashCode`, które często powtarzają się w wielu klasach. Wtedy znalazłem podgląd Kotlin na stronie JetBrains i tak mnie zafascynowało, że każdą wolną chwilę poświęcałem na eksplorację tego języka. Wkrótce potem dostałem pracę jako programista Kotlin i zatopiłem się w społeczności. Teraz już od ponad siedmiu lat zawodowo używam Kotlin, w trakcie których opublikowałem setki artykułów o Kotlin i kilka książek oraz przeprowadziłem ponad sto warsztatów na temat Kotlin. Stałem się oficjalnym partnerem JetBrains w nauczaniu Kotlin oraz Google Developer Expert w Kotlin. Podczas tych wszystkich doświadczeń zgromadziłem dużo wiedzy, więc postanowiłem wyrazić ją w postaci serii książek, którą nazywam *Kotlin dla programistów*.
-
-### Konwencje
-
-Kiedy mam na myśli konkretny element kodu, używam czcionki kodu. Aby nazwać pojęcie, używam wielkiej litery. Aby odnieść się do dowolnego elementu danego typu, używam małej litery. Na przykład:
-- `List` to typ lub interfejs, więc jest wydrukowany czcionką kodu (jak w "Funkcja musi zwrócić `List`"),
-- List reprezentuje pojęcie, więc zaczyna się od wielkiej litery (jak w "To wyjaśnia istotną różnicę między List a Set"),
-- lista to instancja, dlatego jest pisane małą literą (jak w "zmienna `list` przechowuje listę").
-
-W tej książce postanowiłem użyć myślnika między „if”, „when”, „try”, „while” i „for” oraz słowem je opisującym, jak „condition”, „loop”, „statement” czy „expression”. Robię to, aby poprawić czytelność. Tak więc napiszę „if-condition” zamiast „if condition” czy "while-loop" zamiast "while loop". „if” i „when” to warunki, „while” i „for” to pętle. Wszystkie z nich mogą być używane jako instrukcje, podczas gdy „if”, „when” i „try” mogą być również używane jako wyrażenia. Zdecydowałem się również nie używać myślnika po „if-else”, „if-else-if” czy "try-catch" i ich deskryptorze, jak w „if-else statement”.
+Moja historia z Kotline zaczęła się w 2015 roku, gdy pracowałem jako programista Android w Javie. Byłem dość sfrustrowany całym tym powtarzalnym kodem, takim jak gettery i settery dla każdego pola, oraz niemal identycznymi metodami `equals`, `toString` i `hashCode`, które często powtarzają się w wielu klasach. Wtedy znalazłem Kotlin na stronie JetBrains i tak mnie zafascynował ten język, że każdą wolną chwilę poświęcałem na jego eksplorację. Wkrótce potem dostałem pracę jako programista Kotlin i zatopiłem się w społeczności. Teraz już od ponad siedmiu lat zawodowo używam Kotlin, w trakcie których opublikowałem setki artykułów o tym języku i na powiązane tematy. Opublikowałem też kilka książek oraz przeprowadziłem ponad sto warsztatów. Stałem się oficjalnym partnerem JetBrains w nauczaniu Kotlin oraz Google Developer Expert w Kotlin. Podczas tych wszystkich doświadczeń zgromadziłem dużo wiedzy, więc postanowiłem wyrazić ją w postaci serii książek, którą nazywam *Kotlin dla programistów*.
 
 ### Konwencje kodu
 

@@ -11,7 +11,7 @@ Te opisy mogą być teraz niejasne, ale zobaczysz je wszystkie w praktyce w trak
 
 ### Platformy Kotlin
 
-Kotlin to język programowania kompilowany. Oznacza to, że możesz napisać jakiś kod w Kotlin, a następnie użyć kompilatora Kotlin, aby wygenerować kod w języku niższego poziomu. Obecnie Kotlin może być kompilowany do bajtkodu JVM (Kotlin/JVM), JavaScript (Kotlin/JS) lub kodu maszynowego (Kotlin/Native).
+Kotlin to kompilowany język programowania. Oznacza to, że możesz napisać jakiś kod w Kotlin, a następnie użyć kompilatora Kotlin, aby wygenerować kod w języku niższego poziomu. Obecnie Kotlin może być kompilowany do bajtkodu JVM (Kotlin/JVM), JavaScript (Kotlin/JS) lub kodu maszynowego (Kotlin/Native).
 
 {width: 100%}
 ![](kotlin_compile_results.png)
@@ -22,17 +22,17 @@ Kotlin/JVM to technologia służąca do kompilowania kodu Kotlin do bajtkodu JVM
 
 ![](Kotlin_Java_compile.png)
 
-Kotlin/JVM i Java są w pełni interoperacyjne. Każdy kod napisany w Javie może być używany w Kotlin/JVM. Każda biblioteka Java, w tym te oparte na przetwarzaniu adnotacji, może być używana w Kotlin/JVM. Kotlin/JVM może korzystać z klas Java, modułów, bibliotek i biblioteki standardowej Java. Każdy kod Kotlin/JVM może być używany w Javie (z wyjątkiem funkcji zawieszających, które są wsparciem dla Kotlin Coroutines).
+Kotlin/JVM i Java są w pełni interoperacyjne. Każdy kod napisany w Javie może być używany w Kotlin/JVM. Każda biblioteka w Javie, w tym te oparte na przetwarzaniu adnotacji, może być używana w Kotlin/JVM. Kotlin/JVM może korzystać z klas Java, modułów, bibliotek i biblioteki standardowej Java. Każdy kod Kotlin/JVM może być używany w Javie (z wyjątkiem funkcji zawieszających, które są wsparciem dla Kotlin Coroutines).
 
 ![](Java_interoperability.png)
 
-Kotlin i Java mogą być łączone w jednym projekcie. Typowym scenariuszem jest taki, że projekt był początkowo opracowywany w Javie, ale potem jego twórcy zdecydowali się zacząć używać Kotlina. Zamiast migrować cały projekt, ci programiści postanowili dodać do niego Kotlin. W związku z tym, za każdym razem, gdy dodadzą nowy plik, będzie to plik Kotlin; ponadto, gdy zrefaktoryzują stary kod Java, zmigrują go do Kotlin. Z biegiem czasu kod Kotlin staje się coraz bardziej rozpowszechniony, aż w końcu całkowicie wyklucza Javę.
+Kotlin i Java mogą być łączone w jednym projekcie. Typowym scenariuszem jest taki, że projekt był początkowo napisany w Javie, ale potem jego twórcy zdecydowali się zacząć używać Kotlina. Zamiast migrować cały projekt, ci programiści postanowili dodać do projektu Kotlin. W związku z tym, za każdym razem, gdy dodadzą nowy plik, będzie to plik Kotlin; ponadto, gdy zrefaktoryzują stary kod Java, zmigrują go do Kotlin. Z biegiem czasu kod Kotlin staje się coraz bardziej rozpowszechniony, aż w końcu całkowicie wyklucza Javę.
 
 ![](mix_Kotlin_Java.png)
 
 Jednym z przykładów takiego projektu jest sam kompilator Kotlin. Początkowo został napisany w Javie, ale coraz więcej plików było migrowanych do Kotlin, gdy stał się wystarczająco stabilny. Ten proces trwa już od lat; w chwili pisania tej książki, projekt kompilatora Kotlin wciąż zawiera około 10% kodu Java.
 
-Teraz, gdy zrozumieliśmy związek między Kotlina a Javą, czas obalić pewne nieporozumienia. Wielu widzi Kotlin jako warstwę cukru składniowego na wierzchu Javy, ale to nieprawda. Kotlin to inny język niż Java. Ma swoje własne konwencje i praktyki oraz funkcje, których Java nie posiada, jak możliwości wieloplatformowe i korutyny. Nie musisz znać Javy, aby zrozumieć Kotlin. Moim zdaniem Kotlin to lepszy pierwszy język niż Java. Juniorzy Kotlin nie muszą znać metody `equals` ani wiedzieć, jak ją nadpisywać. Wystarczy, że znają domyślną równość klas i klas danych[^01_4]. Nie muszą uczyć się pisać getterów i setterów ani implementować wzorca singletonu czy buildera. Kotlin ma niższy próg wejścia niż Java i nie potrzebuje platformy JVM.
+Teraz, gdy zrozumieliśmy związek między Kotlinem a Javą, czas obalić pewne nieporozumienia. Wielu widzi Kotlin jako warstwę cukru składniowego na wierzchu Javy, ale to nieprawda. Kotlin to inny język niż Java. Ma swoje własne konwencje, praktyki oraz funkcjonalności, których Java nie posiada, jak możliwości wieloplatformowe i korutyny. Nie musisz znać Javy, aby zrozumieć Kotlin. Moim zdaniem Kotlin to lepszy pierwszy język niż Java. Juniorzy Kotlin nie muszą znać metody `equals` ani wiedzieć, jak ją nadpisywać. Wystarczy, że znają rozumieją równość klas i klas danych[^01_4]. Nie muszą uczyć się pisać getterów i setterów ani implementować wzorca singletonu czy buildera. Kotlin ma niższy próg wejścia niż Java i nie potrzebuje platformy JVM.
 
 ### Środowisko IDE dla Kotlin
 
@@ -44,17 +44,17 @@ Kotlin może być stosowany jako alternatywa dla Java, JavaScript, C++, Objectiv
 
 Kotlin stał się dość popularny w rozwoju aplikacji backendowych. Najczęściej widzę go stosowanego z frameworkiem Spring, ale niektóre projekty korzystają z Kotlin w połączeniu z innymi frameworkami backendowymi, takimi jak Vert.x, Ktor, Micronaut, http4k czy Javalin.
 
-Kotlin stał się również praktycznie standardowym językiem dla rozwoju aplikacji na Androida. Google oficjalnie zaleca, aby wszystkie aplikacje na Androida były tworzone w Kotlin[^01_1] i ogłosiło, że wszystkie ich API będą projektowane przede wszystkim z myślą o Kotlin[^01_2].
+Kotlin stał się również praktycznie standardowym językiem dla rozwoju aplikacji na Androida. Google oficjalnie zaleca, aby wszystkie aplikacje na Androida były tworzone w Kotlin[^01_1] i ogłosiło, że wszystkie ich API będą projektowane przede wszystkim z myślą o języku Kotlin[^01_2].
 
 Coraz więcej projektów wykorzystuje fakt, że Kotlin może być kompilowany dla kilku różnych platform, ponieważ pozwala to zespołom na tworzenie kodu, który działa zarówno na Androidzie, jak i iOS, czy zarówno na backendzie, jak i frontendzie. Co więcej, ta wieloplatformowość pozwala twórcom bibliotek na tworzenie jednej biblioteki dla wielu platform jednocześnie. Wieloplatformowe możliwości Kotlin są już wykorzystywane w wielu firmach i stają się coraz bardziej popularne.
 
-Warto również wspomnieć o Jetpack Compose, który jest zestawem narzędzi do budowania natywnych interfejsów użytkownika w Kotlin. Został początkowo opracowany dla Androida, ale wykorzystuje możliwości wieloplatformowe Kotliny i może być również używany do tworzenia widoków dla stron internetowych, aplikacji na komputery stacjonarne, aplikacji na iOS i innych celów[^01_3].
+Warto również wspomnieć o Jetpack Compose, który jest zestawem narzędzi do budowania natywnych interfejsów użytkownika w Kotlin. Został początkowo opracowany dla Androida, ale wykorzystuje możliwości wieloplatformowe Kotlina i może być również używany do tworzenia stron internetowych, aplikacji na komputery stacjonarne, aplikacji na iOS i innych celów[^01_3].
 
-Wielu programistów używa Kotliny do tworzenia front-endu, głównie z wykorzystaniem React, a także rośnie społeczność naukowców danych korzystających z Kotliny.
+Wielu programistów używa Kotliny do tworzenia front-endu, głównie z wykorzystaniem React, a także rośnie społeczność naukowców danych korzystających z Kotlina.
 
-Jak widać, już teraz można zrobić wiele rzeczy w Kotlin, a z każdym rokiem pojawia się coraz więcej możliwości. Jestem pewien, że znajdziesz dobre sposoby na zastosowanie swojej nowej wiedzy po przeczytaniu tej książki.
+Jak widać, już teraz można zrobić wiele rzeczy w języku Kotlin, a z każdym rokiem pojawia się coraz więcej możliwości. Jestem pewien, że znajdziesz dobre sposoby na zastosowanie swojej nowej wiedzy po przeczytaniu tej książki.
 
 [^01_1]: Źródło: https://techcrunch.com/2022/08/18/five-years-later-google-is-still-all-in-on-kotlin/
 [^01_2]: Źródło: https://developer.android.com/kotlin/first
 [^01_3]: W chwili obecnej dojrzałość tych celów różni się.
-[^01_4]: Zostanie to wyjaśnione w rozdziale *Data classes*.
+[^01_4]: Zostanie to wyjaśnione w rozdziale *Klasy danych*.
