@@ -1,0 +1,98 @@
+## Wprowadzenie
+
+Kotlin to potężny język, głównie dzięki swojej wyrazistej składni, intuicyjnemu i bezpiecznemu dla wartości null systemowi typów oraz świetnemu wsparciu narzędzi. Nic dziwnego, że Kotlin jest najpopularniejszym językiem do tworzenia aplikacji na Androida i popularną alternatywą dla Javy w przypadku aplikacji backendowych. Jest również używany w naukach danych oraz w programowaniu wieloplatformowych aplikacji na iOS, komputery stacjonarne i sieciowe. W tej książce nauczysz się najważniejszych funkcji Kotlin, które pozwolą Ci właściwie rozpocząć swoją przygodę z Kotlinem.
+
+### Dla kogo jest napisana ta książka?
+
+Ta książka jest dedykowana programistom. Zakładam, że wszyscy programiści wiedzą, czym są funkcje, instrukcje warunkowe if czy ciągi znaków. Niemniej jednak staram się wyjaśnić (przynajmniej w skrócie) wszystkie tematy, które mogą nie być jasne dla wszystkich rodzajów programistów, takie jak klasy, enumy czy listy. Dlatego zakładam, że tę książkę mogą czytać programiści używający C, JavaScript czy Matlaba.
+
+Kotlin to język wieloplatformowy, ale głównie używany jest na JVM. Ponadto większość programistów Kotlin ma doświadczenie w Javie. Dlatego czasami odnoszę się do Javy i jej platformy, a czasami przedstawiam elementy specyficzne dla JVM. Za każdym razem, gdy to robię, wyraźnie to zaznaczam. Zakładam, że niektórzy czytelnicy mogą być głównie zainteresowani używaniem Kotlin/JS lub Kotlin/Native, więc wszystko, co nie jest opisane jako specyficzne dla Javy, powinno być dla nich użyteczne.
+
+### Co zostanie omówione?
+
+W tej książce omawiam te tematy, które uważam za niezbędne do programowania w Kotlin, w tym:
+
+* zmienne, wartości i typy,
+* instrukcje warunkowe i pętle,
+* wsparcie dla nullability,
+* klasy, interfejsy i dziedziczenie,
+* wyrażenia i deklaracje obiektów,
+* klasy danych, szczelne, wyliczeniowe i adnotacji,
+* wyjątki,
+* funkcje rozszerzeń,
+* kolekcje,
+* przeciążanie operatorów,
+* system typów,
+* generyki.
+
+Ta książka nie omawia funkcjonalnych cech Kotlin, takich jak wyrażenia lambda czy typy funkcji. Wszystkie funkcjonalne cechy są omówione w kontynuacji tej książki: *Functional Kotlin*.
+
+### Seria Kotlin dla programistów
+
+Ta książka jest pierwszą z serii książek o nazwie *Kotlin dla programistów*, która obejmuje następujące pozycje:
+* Kotlin Podstawy, omawiający wszystkie podstawowe funkcje Kotlin.
+* Funkcjonalny Kotlin, poświęcony funkcjonalnym cechom Kotlin, w tym typom funkcji, wyrażeniom lambda, przetwarzaniu kolekcji, DSL-om i funkcjom zakresu.
+* Zaawansowany Kotlin, poświęcony zaawansowanym funkcjom Kotlin, w tym modyfikatorom wariancji generyków, delegacji, dokumentowaniu kodu, przetwarzaniu ciągów znaków, refleksji i programowaniu wieloplatformowemu.
+
+Ta książka oraz moje dwie inne książki, *Kotlin Korutyny* i *Efektywny Kotlin*, tworzą dużą serię obejmującą wszystko, co moim zdaniem jest potrzebne, aby stać się niesamowitym programistą Kotlin.
+
+### Moja historia
+
+Moja historia z Kotline zaczęła się w 2015 roku, gdy pracowałem jako programista Java na Androida. Byłem dość sfrustrowany całą masą kodu szablonowego, takiego jak gettery i settery dla każdego pola, oraz niemal identycznymi metodami `equals`, `toString` i `hashCode`, które często powtarzają się w wielu klasach. Wtedy znalazłem podgląd Kotlin na stronie JetBrains i tak mnie zafascynowało, że każdą wolną chwilę poświęcałem na eksplorację tego języka. Wkrótce potem dostałem pracę jako programista Kotlin i zatopiłem się w społeczności. Teraz już od ponad siedmiu lat zawodowo używam Kotlin, w trakcie których opublikowałem setki artykułów o Kotlin i kilka książek oraz przeprowadziłem ponad sto warsztatów na temat Kotlin. Stałem się oficjalnym partnerem JetBrains w nauczaniu Kotlin oraz Google Developer Expert w Kotlin. Podczas tych wszystkich doświadczeń zgromadziłem dużo wiedzy, więc postanowiłem wyrazić ją w postaci serii książek, którą nazywam *Kotlin dla programistów*.
+
+### Konwencje
+
+Kiedy mam na myśli konkretny element kodu, używam czcionki kodu. Aby nazwać pojęcie, używam wielkiej litery. Aby odnieść się do dowolnego elementu danego typu, używam małej litery. Na przykład:
+- `List` to typ lub interfejs, więc jest wydrukowany czcionką kodu (jak w "Funkcja musi zwrócić `List`"),
+- List reprezentuje pojęcie, więc zaczyna się od wielkiej litery (jak w "To wyjaśnia istotną różnicę między List a Set"),
+- lista to instancja, dlatego jest pisane małą literą (jak w "zmienna `list` przechowuje listę").
+
+W tej książce postanowiłem użyć myślnika między „if”, „when”, „try”, „while” i „for” oraz słowem je opisującym, jak „condition”, „loop”, „statement” czy „expression”. Robię to, aby poprawić czytelność. Tak więc napiszę „if-condition” zamiast „if condition” czy "while-loop" zamiast "while loop". „if” i „when” to warunki, „while” i „for” to pętle. Wszystkie z nich mogą być używane jako instrukcje, podczas gdy „if”, „when” i „try” mogą być również używane jako wyrażenia. Zdecydowałem się również nie używać myślnika po „if-else”, „if-else-if” czy "try-catch" i ich deskryptorze, jak w „if-else statement”.
+
+### Konwencje kodu
+
+Większość prezentowanych fragmentów to wykonywalny kod bez instrukcji importowania. W wersji online tej książki na stronie Kt. Academy większość fragmentów można wykonać, dzięki czemu czytelnicy mogą eksperymentować z kodem.
+
+Wyniki fragmentów są prezentowane za pomocą funkcji `println`. Wynik często będzie umieszczony po instrukcji. Oto przykład:
+
+```kotlin
+fun main() {
+    println("Hello") // Hello
+    println(10 + 20) // 30
+}
+```
+
+{pagebreak}
+
+### Podziękowania
+
+{width: 25%, float: left, }
+![](owen.jpg)
+
+**Owen Griffiths** tworzy oprogramowanie od połowy lat 90. i pamięta produktywność języków takich jak Clipper czy Borland Delphi. Od 2001 roku przeniósł się do świata internetu, serwerów opartych na Javie i rewolucji open-source. Posiadając wiele lat doświadczenia komercyjnego w Javie, poznał Kotlin na początku 2015 roku. Po objazdach przez Clojure i Scalę, niczym Złotowłosa, uważa, że Kotlin jest właśnie w sam raz i ma najlepszy smak. Owen z entuzjazmem pomaga deweloperom Kotlin odnosić dalsze sukcesy.
+
+{width: 25%, float: left, }
+![](nicola_corti.jpeg)
+
+**Nicola Corti** jest Google Developer Expertem w dziedzinie Kotlin. Pracuje z tym językiem od czasów przed wersją 1.0 i jest opiekunem kilku bibliotek open-source i narzędzi dla deweloperów mobilnych (Detekt, Chucker, AppIntro). Obecnie pracuje w zespole React Native w Meta, tworząc jeden z najpopularniejszych frameworków mobilnych na różne platformy. Ponadto jest aktywnym członkiem społeczności deweloperskiej. Jego zaangażowanie obejmuje wystąpienia na międzynarodowych konferencjach, bycie członkiem komitetów CFP oraz wspieranie społeczności deweloperów w całej Europie. W wolnym czasie uwielbia piec, tworzyć podcasty i biegać.
+
+{width: 25%, float: left, }
+![](Matthias.jpg)
+
+**Matthias Schenk** rozpoczął swoją karierę z Javą ponad dziesięć lat temu, głównie w ekosystemie Spring/Spring Boot. Osiemnaście miesięcy temu przeszedł na Kotlin i od tego czasu stał się wielkim fanem pracy z natywnymi frameworkami Kotlin, takimi jak Koin, Ktor i Exposed.
+
+{pagebreak}
+
+{width: 25%, float: left, }
+![](deak.jpeg)
+
+**Endre Deak** jest architektem oprogramowania, który tworzy infrastrukturę AI w Disco, wiodącej firmie zajmującej się technologią prawniczą. Ma 15 lat doświadczenia w budowaniu złożonych, skalowalnych systemów i uważa, że Kotlin to jeden z najlepszych języków programowania, jakie kiedykolwiek powstały.
+
+{width: 25%, float: left, }
+![](Emanuele_Papa.png)
+
+**Emanuele Papa** jest pasjonatem Androida i fascynuje go od 2010 roku: im więcej się uczy, tym bardziej chce dzielić się swoją wiedzą z innymi, dlatego założył własnego bloga. W swojej obecnej roli jako Senior Android Developer w Zest One skupia się na Kotlin Multiplatform Mobile: już wygłosił kilka prelekcji na ten temat.
+
+**Roman Kamyshnikov**, doktor inżynierii, jest programistą Androida, który rozpoczął swoją karierę z Javą, ale przeszedł na Kotlin na początku 2020 roku. Jego zainteresowania zawodowe obejmują wzorce architektury, TDD, programowanie funkcyjne oraz Jetpack Compose. Autor kilku artykułów na temat Androida i Kotlin Coroutines.
+
+**Grigory Pletnev** jest inżynierem oprogramowania od 2000 roku, głównie w dziedzinie systemów wbudowanych. Dołączył do społeczności programistów Androida w 2010 roku. Zetknąwszy się z Kotlina w 2017 roku, zaczął używać go w projektach hobbystycznych, stopniowo migrując projekty Harman Connected Services i ich klientów na Kotlin. Pasjonuje się również językami, żeglarstwem i produkcją miodu pitnego.
