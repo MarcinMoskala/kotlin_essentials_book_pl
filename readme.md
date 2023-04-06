@@ -37,3 +37,16 @@ Instrukcje dla korektorów:
 By upewnić się, że każdy rozdział uzyska odpwiednią liczbę korektorów, proszę o przypisanie się do konkretnego rozdziału w zakładce [Issues](). Każdy z rozdziałów musi zostać przekorektowany przez co najmniej pięciu korektorów.
 
 Kod spushowany do brancha `master` jest automatycznie publikowany na LeanPub, a więc zmiany są widoczne przez wszystkich czytelników. Recenzenci powinni dostać dostęp do książki na LeanPub, aby móc zawsze sprawdzić, jak wygląda książka w formacie ebook.
+
+#### Format
+
+Wszystkie fragmenty kodu **muszą** się mieścić w 62 znakach szerokości, bo inaczej prowadzi to do brzydkiego ucinania linii. 
+
+![](img_cut.png)
+
+Obrazki powinny mieć określoną szerokość w % poprzez użycie atrybutu `width`.
+
+```
+{width: 50%}
+![W Kotlin nazywamy zmienne używając camelCase.](camelCase.png)
+```
