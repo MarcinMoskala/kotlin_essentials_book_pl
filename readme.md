@@ -34,7 +34,7 @@ Instrukcje dla korektorów:
 * **Nie bój się wprowadzać odważne zmiany językowe** - nie ograniczaj się do poprawiania literówek. Jeśli widzisz, że jakiś fragment jest niejasny, spróbuj go przetłumaczyć na inny sposób. Jeśli widzisz, że jakiś fragment jest niejasny, spróbuj go przetłumaczyć na inny sposób. 
 * **Książka powinna być spójna z orginałem** - nie wprowadzaj zmian w kodzie oraz nie zmieniaj struktury książki. Jeśli widzisz coś istotnego do poprawy, otwórz issue i przypisz do niego Marcina Moskałę. 
 
-By upewnić się, że każdy rozdział uzyska odpwiednią liczbę korektorów, proszę o przypisanie się do konkretnego rozdziału w zakładce [Issues](). Każdy z rozdziałów musi zostać przekorektowany przez co najmniej pięciu korektorów.
+By upewnić się, że każdy rozdział uzyska odpwiednią liczbę korektorów, proszę o przypisanie się do konkretnego rozdziału w zakładce [Issues](). Każdy z rozdziałów musi przejść korektę co najmniej pięciu osób.
 
 Kod spushowany do brancha `master` jest automatycznie publikowany na LeanPub, a więc zmiany są widoczne przez wszystkich czytelników. Recenzenci powinni dostać dostęp do książki na LeanPub, aby móc zawsze sprawdzić, jak wygląda książka w formacie ebook.
 
