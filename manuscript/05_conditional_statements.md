@@ -1,6 +1,6 @@
 ## Instrukcje warunkowe: if, when, try oraz while
 
-Większość instrukcji warunkowych, takich jak warunek if czy pętla while[^05_0], wygląda tak samo w Kotlin, Javie, C++, JavaScript i większości innych nowoczesnych języków. Na przykład, instrukcja if jest nie do odróżnienia we wszystkich tych językach:
+Większość instrukcji warunkowych, takich jak warunek if czy pętla while[^05_0], wygląda tak samo w Kotlin, Java, C++, JavaScript i większości innych nowoczesnych języków. Na przykład, instrukcja if jest nie do odróżnienia we wszystkich tych językach:
 
 ```kotlin
 if (predicate) {
@@ -193,15 +193,15 @@ Instrukcja when jest alternatywą dla if-else-if. W każdym z gałęzi określam
 ```kotlin
 fun main() {
     println("Czy będzie padać deszcz?")
-    val prawdopodobienstwo = 70
+    val probability = 70
     when {
-        prawdopodobienstwo < 40 -> {
+        probability < 40 -> {
             println("Nie bardzo")
         }
-        prawdopodobienstwo <= 80 -> {
+        probability <= 80 -> {
             println("Prawdopodobnie")
         }
-        prawdopodobienstwo < 100 -> {
+        probability < 100 -> {
             println("Tak")
         }
         else -> {
@@ -216,24 +216,26 @@ Podobnie jak w instrukcji if, nawiasy klamrowe są potrzebne tylko dla ciał z w
 ```kotlin
 fun main() {
     println("Czy będzie padać deszcz?")
-    val prawdopodobienstwo = 70
+    val probability = 70
     when {
-        prawdopodobienstwo < 40 -> println("Nie bardzo")
-        prawdopodobienstwo <= 80 -> println("Prawdopodobnie")
-        prawdopodobienstwo < 100 -> println("Tak")
+        probability < 40 -> println("Nie bardzo")
+        probability <= 80 -> println("Prawdopodobnie")
+        probability < 100 -> println("Tak")
         else -> println("Święty Krab")
     }
 }
 ```
+Instrukcja `when` może być również używana jako wyrażenie, ponieważ może zwracać wartość. Wynikiem jest ostatnie wyrażenie wybranego rozgałęzienia, dlatego poniższy przykład wydrukuje "Likely".
+
 
 ```kotlin
 fun main() {
     println("Czy będzie padać deszcz?")
-    val prawdopodobienstwo = 70
+    val probability = 70
     val tekst = when {
-        prawdopodobienstwo < 40 -> "Nie bardzo"
-        prawdopodobienstwo <= 80 -> "Prawdopodobnie"
-        prawdopodobienstwo < 100 -> "Tak"
+        probability < 40 -> "Nie bardzo"
+        probability <= 80 -> "Prawdopodobnie"
+        probability < 100 -> "Tak"
         else -> "Święty Krab"
     }
     println(tekst)
@@ -255,13 +257,13 @@ private fun getEmailErrorId(email: String) = when {
 Istnieje także inna forma instrukcji when. Jeśli dodamy wartość w nawiasach po słowie kluczowym `when`, nasza instrukcja when staje się alternatywą dla switch-case. Jest jednak znacznie potężniejsza alternatywa, ponieważ może nie tylko porównywać wartości pod względem równości, ale także sprawdzać, czy obiekt jest danego typu (używając `is`) lub czy obiekt zawiera tę wartość (używając `in`). Każdy blok może mieć wiele wartości, z którymi porównujemy, oddzielonych przecinkami.
 
 ```kotlin
-private val magiczneLiczby = listOf(7, 13)
+private val magicNumbers = listOf(7, 13)
 
-fun opisz(a: Any?) {
+fun describe(a: Any?) {
     when (a) {
         null -> println("Nic")
         1, 2, 3 -> println("Mała liczba")
-        in magiczneLiczby -> println("Magiczna liczba")
+        in magicNumbers -> println("Magiczna liczba")
         in 4..100 -> println("Duża liczba")
         is String -> println("To tylko $a")
         is Long, is Int -> println("To Int lub Long")
@@ -270,27 +272,29 @@ fun opisz(a: Any?) {
 }
 
 fun main() {
-    opisz(null) // Nic
-    opisz(1) // Mała liczba
-    opisz(3) // Mała liczba
-    opisz(7) // Magiczna liczba
-    opisz(9) // Duża liczba,
+    describe(null) // Nic
+    describe(1) // Mała liczba
+    describe(3) // Mała liczba
+    describe(7) // Magiczna liczba
+    describe(9) // Duża liczba,
     // ponieważ 9 jest w zakresie od 4 do 100
-    opisz("AAA") // To tylko AAA
-    opisz(1L) // To Int lub Long
-    opisz(-1) // To Int lub Long
-    opisz(1.0) // Naprawdę nie wiem,
+    describe("AAA") // To tylko AAA
+    describe(1L) // To Int lub Long
+    describe(-1) // To Int lub Long
+    describe(1.0) // Naprawdę nie wiem,
     // ponieważ 1.0 to Double
 }
 ```
 
-```kotlin
-private val magiczneLiczby = listOf(7, 13)
+Instrukcja `when` z wartością może być również używana jako wyrażenie, ponieważ może generować wartość:
 
-fun opisz(a: Any?): String = when (a) {
+```kotlin
+private val magicNumbers = listOf(7, 13)
+
+fun describe(a: Any?): String = when (a) {
     null -> "Nic"
     1, 2, 3 -> "Mała liczba"
-    in magiczneLiczby -> "Magiczna liczba"
+    in magicNumbers -> "Magiczna liczba"
     in 4..100 -> "Duża liczba"
     is String -> "To tylko $a"
     is Long, is Int -> "To Int lub Long"
@@ -298,16 +302,16 @@ fun opisz(a: Any?): String = when (a) {
 }
 
 fun main() {
-    println(opisz(null)) // Nic
-    println(opisz(1)) // Mała liczba
-    println(opisz(3)) // Mała liczba
-    println(opisz(7)) // Magiczna liczba
-    println(opisz(9)) // Duża liczba,
+    println(describe(null)) // Nic
+    println(describe(1)) // Mała liczba
+    println(describe(3)) // Mała liczba
+    println(describe(7)) // Magiczna liczba
+    println(describe(9)) // Duża liczba,
     // ponieważ 9 jest w zakresie od 4 do 100
-    println(opisz("AAA")) // To tylko AAA
-    println(opisz(1L)) // To Int lub Long
-    println(opisz(-1)) // To Int lub Long
-    println(opisz(1.0)) // Naprawdę nie wiem,
+    println(describe("AAA")) // To tylko AAA
+    println(describe(1L)) // To Int lub Long
+    println(describe(-1)) // To Int lub Long
+    println(describe(1.0)) // Naprawdę nie wiem,
     // ponieważ 1.0 to Double
 }
 ```
@@ -426,7 +430,7 @@ fun main() {
 }
 ```
 
-W Kotlinie uważamy `as?` za bezpieczniejszą opcję niż `as`, ale zbyt częste używanie obu tych operatorów jest uważane za code smell[^05_4]. Opiszmy rzutowanie inteligentne (smart-casting), które jest ich popularną alternatywą.
+W Kotlin uważamy `as?` za bezpieczniejszą opcję niż `as`, ale zbyt częste używanie obu tych operatorów jest uważane za code smell[^05_4]. Opiszmy rzutowanie inteligentne (smart-casting), które jest ich popularną alternatywą.
 
 ### Rzutowanie inteligentne (Smart-casting)
 
