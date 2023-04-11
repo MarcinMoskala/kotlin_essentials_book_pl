@@ -50,3 +50,25 @@ Obrazki powinny mieć określoną szerokość w % poprzez użycie atrybutu `widt
 {width: 50%}
 ![W Kotlin nazywamy zmienne używając camelCase.](camelCase.png)
 ```
+
+#### Spójność
+
+Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielskiego:
+* **annonymous function** - **funkcja anonimowa**,
+* **conditional statement** - **instrukcja warunkowa**,
+* **expression** - **wyrażenie**,
+* **function literal** - **literał funkcyjny**,
+* **if-expression** - **wyrażenie if**,
+* **lambda expression** - **wyrażenie lambda**,
+* **object expression** - **wyrażenie obiektu**,
+* **reference** - **referencja**,
+* **statement** - **instrukcja**,
+* **string interpolation** - **interpolacja łańcucha znaków**,
+* **string literal** - **literał łancucha znaków**,
+* **string template** - **szablon łańcucha znaków**,
+* **try-catch expression** - **wyrażenie try-catch**,
+* **when-expression** - **wyrażenie when**,
+* **call** - **wywołanie**,
+
+Jestem otwarty na wszelkie propozycje zmian. 
+Dodawajcie proszę inne nieoczywiste tłumaczenia. 
