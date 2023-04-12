@@ -1,31 +1,36 @@
 ## Podstawowe typy, ich literały i operacje
 
-Każdy język potrzebuje wygodnego sposobu reprezentowania podstawowych rodzajów wartości, takich jak liczby czy znaki. Wszystkie języki muszą mieć wbudowane **typy** i **literały**. Typy są używane do reprezentowania pewnych rodzajów wartości. Przykłady typów to `Int`, `Boolean` czy `String`. Literały to wbudowane notacje, które są używane do tworzenia instancji. Przykłady literałów to literał łańcuchowy, który to tekst w cudzysłowach, czy literał całkowitoliczbowy, który to goła liczba.
+Każdy język potrzebuje wygodnego sposobu reprezentowania podstawowych rodzajów wartości, takich jak liczby czy znaki. Wszystkie języki muszą mieć wbudowane **typy** i **literały**. Typy są używane do reprezentowania pewnych rodzajów wartości. Przykłady typów to `Int`, `Boolean` czy `String`. Literały to wbudowane notacje, które są używane do tworzenia instancji tych typów. Przykłady literałów to literał łańcucha znaków, czyli po prostu tekst w cudzysłowie, czy literał całkowitoliczbowy, czyli goła liczba.
 
-W tym rozdziale poznamy podstawowe typy Kotlin i ich literały:
+```kotlin
+"ABC" // literał łańcucha znaków
+1234 // literał całkowitoliczbowy
+```
+
+W tym rozdziale poznamy podstawowe typy języka Kotlin i ich literały:
 * liczby (`Int`, `Long`, `Double`, `Float`, `Short`, `Byte`),
 * wartości logiczne (`Boolean`),
 * znaki (`Char`),
 * łańcuchy znaków (`String`).
 
-W Kotlin istnieje także prymitywny typ tablicy, który zostanie omówiony w rozdziale *Kolekcje*.
+W Kotlin istnieją także tablice, który zostaną omówione w rozdziale *Kolekcje*.
 
-W Kotlin wszystkie wartości są traktowane jako obiekty (nie ma typów prymitywnych), więc wszystkie mają metody, a ich typy mogą być używane jako argumenty typów generycznych (to zostanie omówione później). Typy reprezentujące liczby, wartości logiczne i znaki mogą być zoptymalizowane przez kompilator Kotlin i używane jako typy prymitywne, ale ta optymalizacja nie wpływa na programistów Kotlin, dlatego nie musisz nawet o tym myśleć.
+W Kotlin wszystkie wartości są traktowane jako obiekty (nie ma typów prymitywnych), więc wszystkie mają metody, a ich typy mogą być używane jako argumenty typów generycznych (to zostanie omówione w rozdziale *Generyki*). Typy reprezentujące liczby, wartości logiczne i znaki mogą być zoptymalizowane przez kompilator Kotlin i używane jako typy prymitywne, ale ta optymalizacja nie ma wpływu na to jak wygląda nasz kod, dlatego nie musisz nawet o tym myśleć.
 
-Zacznijmy omawiać podstawowe typy w Kotlin, jeden po drugim.
+Zacznijmy omawiać podstawowe typy i literały w języku Kotlin, jeden po drugim.
 
 ### Liczby
 
-W Kotlin istnieje szereg różnych typów służących do reprezentowania liczb. Mogą być one podzielone na te reprezentujące liczby całkowite (bez miejsc dziesiętnych) oraz te reprezentujące liczby zmiennoprzecinkowe (z miejscami dziesiętnymi). W tych grupach różnica polega na liczbie bitów używanych do reprezentowania tych liczb, co determinuje możliwy rozmiar liczby i precyzję.
+W Kotlin istnieje szereg typów służących do reprezentowania liczb. Mogą być one podzielone na te reprezentujące liczby całkowite (bez części dziesiętnej) oraz te reprezentujące liczby zmiennoprzecinkowe (z częścią dziesiętną). W tych grupach różnica polega na liczbie bitów używanych do reprezentowania tych liczb, co determinuje możliwy rozmiar liczby i precyzję.
 
 Aby reprezentować liczby całkowite, używamy `Int`, `Long`, `Byte` i `Short`.
 
-| Typ     | Rozmiar (bity) | Wartość min | Wartość max   |
-|---------|---------------|-------------|----------------|
-| `Byte`  | 8             | -128        | 127            |
-| `Short` | 16            | -32768      | 32767          |
-| `Int`   | 32            | `-2^{31}`$  | `2^{31} - 1`$  |
-| `Long`  | 64            | `-2^{63}`$  | `2^{63} - 1`$  |
+| Typ     | Rozmiar (bity) | Wartość minimalna | Wartość maksymalna |
+|---------|---------------|-------------------|--------------------|
+| `Byte`  | 8             | -128              | 127                |
+| `Short` | 16            | -32768            | 32767              |
+| `Int`   | 32            | `-2^{31}`$        | `2^{31} - 1`$      |
+| `Long`  | 64            | `-2^{63}`$        | `2^{63} - 1`$      |
 
 Aby reprezentować liczby zmiennoprzecinkowe, używamy `Float` i `Double`.
 
@@ -56,7 +61,6 @@ fun main() {
 }
 ```
 
-
 To nie jest konwersja! Kotlin nie obsługuje niejawnej konwersji typów, więc nie można użyć `Byte` ani `Long`, gdzie oczekiwany jest `Int`.
 
 ![](05_int_long_error.png)
@@ -78,7 +82,7 @@ fun main() {
 
 #### Podkreślenia w liczbach
 
-W literałach liczbowych możemy użyć podkreślenia `_` pomiędzy cyframi. Ten znak jest ignorowany, ale czasami używamy go do formatowania długich liczb dla lepszej czytelności.
+W literałach liczbowych możemy użyć podkreślenia `_` pomiędzy cyframi. Ten znak jest ignorowany, ale używamy go do formatowania długich liczb dla lepszej czytelności.
 
 ```kotlin
 fun main() {
@@ -116,7 +120,7 @@ fun main() {
 }
 ```
 
-Typ `Number` określa funkcje przekształcania: z bieżącej liczby na dowolny inny podstawowy typ reprezentujący liczbę.
+Typ `Number` określa funkcje przekształcające z bieżącej liczby na dowolny inny podstawowy typ reprezentujący liczbę.
 
 ```kotlin
 abstract class Number {
@@ -171,11 +175,11 @@ fun main() {
 
 > Zauważ, że poprawny wynik `1.4 / 2.5` powinien wynosić `0.56`, a nie `0.5599999999999999`. Ten problem zostanie rozwiązany wkrótce.
 
-Uważaj, że gdy dzielimy `Int` przez `Int`, wynik jest również `Int`, więc część dziesiętna jest tracona.
+Zauważ, że gdy dzielimy `Int` przez `Int`, wynik jest również `Int`, więc część dziesiętna jest tracona.
 
 ```kotlin
 fun main() {
-    println(5 / 2) // 2, not 2.5
+    println(5 / 2) // 2, nie 2.5
 }
 ```
 
@@ -187,7 +191,7 @@ fun main() {
 }
 ```
 
-Istnieje również operator reszty[^04_2] `%`:
+Istnieje również operator reszty z dzielenia[^04_2] `%`:
 
 ```kotlin
 fun main() {
@@ -205,7 +209,7 @@ fun main() {
 }
 ```
 
-Kotlin obsługuje również operacje modyfikujące zmienną odczyt-zapis `var`:
+Kotlin obsługuje również operacje modyfikujące zmienną `var`:
 * `+=`, gdzie `a += b` jest równoznaczne z `a = a + b`,
 * `-=`, gdzie `a -= b` jest równoznaczne z `a = a - b`,
 * `*=`, gdzie `a *= b` jest równoznaczne z `a = a * b`,
@@ -272,7 +276,7 @@ fun main() {
 
 #### `BigDecimal` i `BigInteger`
 
-Wszystkie podstawowe typy w Kotlin mają ograniczony rozmiar i precyzję, co może prowadzić do nieprecyzyjnych lub błędnych wyników w niektórych sytuacjach.
+Wszystkie podstawowe typy w Kotlin mają ograniczony rozmiar i precyzję, co może prowadzić do nieprecyzyjnych lub błędnych wyników w specyficznych sytuacjach.
 
 ```kotlin
 fun main() {
@@ -281,7 +285,9 @@ fun main() {
 }
 ```
 
-To standardowy kompromis w programowaniu, z którym w większości przypadków musimy się pogodzić. Jednak są przypadki, gdy potrzebujemy mieć doskonałą precyzję i nieograniczony rozmiar liczby. Na JVM, dla nieograniczonego rozmiaru liczby powinniśmy użyć `BigInteger`, który reprezentuje liczbę bez części dziesiętnej. Dla nieograniczonego rozmiaru i precyzji powinniśmy użyć `BigDecimal`, który reprezentuje liczbę mającą część dziesiętną. Oba można utworzyć za pomocą konstruktorów[^04_1], funkcji fabrycznych (takich jak `valueOf`) lub konwersji z podstawowych typów reprezentujących liczby (metody `toBigDecimal` i `toBigInteger`).
+> Zrozummienie czemu wyniki są takie a nie inne wychodzi poza zakres tej książki, ale dla zainteresowanych, spieszę w wyjaśnieniem. W pierwszym przypadku wynik jest nieprecyzyjny, ponieważ liczby zmiennoprzecinkowe są reprezentowane w postaci binarnej, a nie dziesiętnej. W drugim przypadku wynik jest niepoprawny, ponieważ liczba całkowita jest reprezentowana przez 32 bity, a więc 2147483647 to największa możliwa liczba, a dodanie 1 powoduje jej przepełnienie i zmianę bitu reprezentującego znak na przeciwny.
+
+To standardowy kompromis w programowaniu, z którym w większości przypadków musimy się pogodzić. Jednak są przypadki, gdy potrzebujemy mieć doskonałą precyzję i nieograniczony rozmiar liczby. Na JVM, dla nieograniczonego rozmiaru liczby powinniśmy użyć `BigInteger`, który reprezentuje liczbę bez części dziesiętnej. Dla nieograniczonego rozmiaru i precyzji powinniśmy użyć `BigDecimal`, który reprezentuje liczbę mającą część dziesiętną. Oba można utworzyć za pomocą konstruktorów[^04_1], funkcji fabrycznych (takich jak `valueOf`) lub konwersji z podstawowych typów reprezentujących liczby (metody `toBigDecimal` i `toBigInteger`). Przykłady poniżej. 
 
 ```kotlin
 import java.math.BigDecimal
@@ -331,7 +337,7 @@ fun main() {
 
 Na platformach innych niż Kotlin/JVM do reprezentowania liczb o nieograniczonym rozmiarze i precyzji potrzebne są zewnętrzne biblioteki.
 
-### Boole
+### Wartości logiczne
 
 Innym podstawowym typem jest `Boolean`, który ma dwie możliwe wartości: `true` i `false`.
 
@@ -351,9 +357,9 @@ Używamy wartości logicznych do wyrażania odpowiedzi tak/nie, na przykład:
 
 W praktyce wartości logiczne są często wynikiem pewnego rodzaju porównania.
 
-#### Równość
+#### Porównania
 
-Wartość `Boolean` często jest wynikiem porównania równości. W Kotlin porównujemy dwa obiekty pod względem równości, używając podwójnego znaku równości `==`. Aby sprawdzić, czy dwa obiekty nie są równe, używamy znaku nierówności `!=`.
+Wartość `Boolean` często jest wynikiem porównania dwóch równości. W Kotlin sprawdzamy czy obiekty są równe używając podwójnego znaku równości `==`. Aby sprawdzić, czy dwa obiekty nie są równe, używamy znaku nierówności `!=`.
 
 ```kotlin
 fun main() {
@@ -431,7 +437,7 @@ fun main() {
 }
 ```
 
-Kotlin akceptuje znaki Unicode. Aby opisać je za pomocą ich kodu, zaczynamy od `\u`, a następnie musimy użyć formatu szesnastkowego, tak jak w Javie.
+Kotlin akceptuje znaki Unicode. Aby opisać je za pomocą ich kodu, zaczynamy od `\u`, a następnie musimy użyć formatu szesnastkowego (podobnie jak w Javie).
 
 ```kotlin
 fun main() {
@@ -439,9 +445,9 @@ fun main() {
 }
 ```
 
-### Ciągi znaków
+### Łańcuchy znaków
 
-Ciągi znaków to po prostu sekwencje znaków tworzące fragment tekstu. W Kotlin tworzymy ciąg znaków używając cudzysłowów `"` lub potrójnych cudzysłowów `"""`.
+Łańcuchy znaków to po prostu sekwencje znaków tworzące tekst. W Kotlin tworzymy ciąg znaków używając cudzysłowów `"` lub potrójnych cudzysłowów `"""`.
 
 ```kotlin
 fun main() {
@@ -509,7 +515,7 @@ fun main() {
 }
 ```
 
-Ciągi znaków mogą zawierać wyrażenia szablonowe, które są fragmentami kodu, które są ewaluowane, a ich wyniki są łączone w jeden ciąg. Wyrażenie szablonowe zaczyna się od znaku dolara (`$`) i składa się albo z nazwy zmiennej (takiej jak `"tekst to $text"`), albo z wyrażenia w nawiasach klamrowych (takiego jak `"1 + 2 = ${1 + 2}"`).
+Ciągi znaków mogą zawierać wyrażenia szablonowe, czyli odniesienia do zmiannych, których wartości zostaną wstawione do łańcucha znaków. Wyrażenie szablonowe zaczyna się od znaku dolara (`$`) i składa się albo z nazwy zmiennej (takiej jak `"tekst to $text"`), albo z wyrażenia w nawiasach klamrowych (takiego jak `"1 + 2 = ${1 + 2}"`).
 
 ```kotlin
 fun main() {
@@ -525,14 +531,14 @@ fun main() {
     println(fullNameUpper) // COOKIE DEPIES (6)
 
     val description = """
-       Name: $name
-       Surname: $surname
-       Age: $age
+       Imię: $name
+       Nazwisko: $surname
+       Wiek: $age
    """.trimIndent()
     println(description)
-    // Name: Cookie
-    // Surname: DePies
-    // Age: 6
+    // Imię: Cookie
+    // Nazwisko: DePies
+    // Wiek: 6
 }
 ```
 
@@ -564,4 +570,4 @@ W tym rozdziale poznaliśmy podstawowe typy Kotlin oraz literały używane do ic
 Mamy więc podstawy do korzystania z Kotlin. Przejdźmy do bardziej skomplikowanych struktur sterujących, które określają, jak zachowuje się nasz kod.
 
 [^04_1]: Konstruktory zostaną omówione w rozdziale *Klasy*.
-[^04_2]: Ten operator jest podobny do modulo. Zarówno operacja reszty, jak i modulo działają tak samo dla liczb dodatnich, ale inaczej dla liczb ujemnych. Wynik -5 reszty 4 to -1, ponieważ -5 = 4 * (-1) + (-1). Wynik -5 modulo 4 to 3, ponieważ -5 = 4 * (-2) + 3.
+[^04_2]: W języku angielskim istnieje rozdzielenie na operację "modulo" oraz "remainder", gdzie różnica między nimi jest w wyniku dla liczb ujemnych. Tutaj poprzez resztę z dzielenia rozumiemy operację określaną w języku angielskim jako "remainder". Tak więc reszta z dzielenia -5 przez 4 to -1, ponieważ -5 = 4 * (-1) + (-1). Wynik -5 modulo 4 to 3, ponieważ -5 = 4 * (-2) + 3. 
