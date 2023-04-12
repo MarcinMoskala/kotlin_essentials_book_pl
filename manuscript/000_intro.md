@@ -1,17 +1,12 @@
 ## Wprowadzenie
 
+Kotlin to niesamowity język wieloplatformowy, głównie dzięki swojej czytelnej składni, intuicyjnemu i bezpiecznemu dla wartości null systemowi typów oraz świetnemu wsparciu narzędzi. Nic dziwnego, że stał się najpopularniejszym językiem do tworzenia aplikacji na Androida i, w przypadku aplikacji backendowych, alternatywą dla Javy . Jest również używany przy przetwarzaniu i analizie danych oraz w programowaniu wieloplatformowych aplikacji na iOS, komputery stacjonarne i strony internetowe. W tej książce nauczysz się najważniejszych funkcji języka Kotlin, które pozwolą Ci właściwie rozpocząć twoją przygodę z Kotlinem.
+
 ### Dla kogo jest ta książka?
 
 Ta książka jest dedykowana programistom. Zakładam, że wszyscy programiści wiedzą, czym są funkcje, instrukcje warunkowe if czy ciągi znaków. Niemniej jednak staram się wyjaśnić (przynajmniej w skrócie) wszystkie rzeczy, które mogą nie być jasne dla wszystkich programistów, takie jak klasy, enumy czy listy. Na pewno będzie to dobra ksiżka dla osób używających C, JavaScript czy Matlaba.
 
-
-
-### Czym jest Kotlin?
-
-Kotlin to niesamowity język wieloplatformowy, głównie dzięki swojej czytelnej składni, intuicyjnemu i bezpiecznemu dla wartości null systemowi typów oraz świetnemu wsparciu narzędzi. Nic dziwnego, że stał się najpopularniejszym językiem do tworzenia aplikacji na Androida i, w przypadku aplikacji backendowych, alternatywą dla Javy . Jest również używany przy przetwarzaniu i analizie danych oraz w programowaniu wieloplatformowych aplikacji na iOS, komputery stacjonarne i strony internetowe. W tej książce nauczysz się najważniejszych funkcji języka Kotlin, które pozwolą Ci właściwie rozpocząć twoją przygodę z Kotlinem.
-
-Ponieważ większość programistów Kotlin ma doświadczenie w Javie, więc czasami odnoszę się do Javy i jej platformy i czasami przedstawiam elementy specyficzne dla JVM. Za każdym razem, gdy to robię, staram się wyraźnie to zaznaczyć. Zakładam, że niektórzy czytelnicy mogą być głównie zainteresowani używaniem Kotlin/JS lub Kotlin/Native, więc wszystko, co nie jest opisane jako specyficzne dla Javy, powinno być dla nich użyteczne.
- 
+Ponieważ większość programistów Kotlin ma doświadczenie w Javie, więc czasami odnoszę się do Javy i jej platformy i czasami przedstawiam elementy specyficzne dla JVM. Za każdym razem, gdy to robię, staram się wyraźnie to zaznaczyć. Zakładam, że niektórzy czytelnicy mogą być głównie zainteresowani używaniem Kotlin/JS lub Kotlin/Native, więc wszystko, co nie jest opisane jako specyficzne dla Javy, powinno być dla nich użyteczne. 
  
 ### Co zostanie omówione?
 
