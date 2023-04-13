@@ -28,7 +28,7 @@ fun main() {
 }
 ```
 
-Jednym z supermoców Kotlina jest to, że instrukcja if-else może być używana jako wyrażenie[^05_1], a więc generuje wartość.
+Jedną z supermocy Kotlina jest to, że instrukcja if-else może być używana jako wyrażenie[^05_1], a więc generuje wartość.
 
 val value = if (condition) {
     // ciało 1
