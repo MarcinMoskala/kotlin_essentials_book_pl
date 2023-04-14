@@ -72,3 +72,12 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 
 Jestem otwarty na wszelkie propozycje zmian. 
 Dodawajcie proszę inne nieoczywiste tłumaczenia. 
+
+#### Odmiana
+
+Odmieniamy nazwy języków np:
+* **Java** - **Javie**,
+* **Kotlin** - **Kotlinie**,
+* **JavaScript** - **JavaScripcie**
+
+Jeżeli masz pytanie na które nie znalazłeś/łaś odpowiedzi w powyższym tekście to możesz je również dodać w zakładce Issues, tak aby inni pracujący na dokumencie mogli się wypowiedzieć.
