@@ -23,7 +23,7 @@ Zacznijmy omawiać podstawowe typy i literały w języku Kotlin, jeden po drugim
 
 W Kotlin istnieje szereg typów służących do reprezentowania liczb. Mogą być one podzielone na te reprezentujące liczby całkowite (bez części dziesiętnej) oraz te reprezentujące liczby zmiennoprzecinkowe (z częścią dziesiętną). W tych grupach różnica polega na liczbie bitów używanych do reprezentowania tych liczb, co determinuje możliwy rozmiar liczby i precyzję.
 
-Aby reprezentować liczby całkowite, używamy `Int`, `Long`, `Byte` i `Short`.
+Do reprezentacji liczb całkowitych, używamy `Int`, `Long`, `Byte` i `Short`.
 
 | Typ     | Rozmiar (bity) | Wartość minimalna | Wartość maksymalna |
 |---------|---------------|-------------------|--------------------|
@@ -32,7 +32,7 @@ Aby reprezentować liczby całkowite, używamy `Int`, `Long`, `Byte` i `Short`.
 | `Int`   | 32            | `-2^{31}`$        | `2^{31} - 1`$      |
 | `Long`  | 64            | `-2^{63}`$        | `2^{63} - 1`$      |
 
-Aby reprezentować liczby zmiennoprzecinkowe, używamy `Float` i `Double`.
+Natomiast do reprezentacji liczb zmiennoprzecinkowych, używamy `Float` i `Double`.
 
 | Typ      | Rozmiar (bity) | Bity znaczące | Bity wykładnika | Cyfry dziesiętne |
 |----------|----------------|---------------|-----------------|------------------|
@@ -561,7 +561,7 @@ W ciągach znaków Kotlin używamy Unicode, więc możemy również zdefiniować
 
 ### Podsumowanie
 
-W tym rozdziale poznaliśmy podstawowe typy Kotlin oraz literały używane do ich tworzenia:
+W tym rozdziale poznaliśmy podstawowe typy używane w języku Kotlin oraz literały używane do ich tworzenia:
 * Liczby reprezentowane przez typy `Int`, `Long`, `Double`, `Float`, `Short` i `Byte` są tworzone za pomocą samych wartości liczbowych z możliwością dodania sufiksów dla dostosowania typu. Możemy definiować liczby ujemne oraz części dziesiętne. Możemy również używać podkreślników dla lepszego formatowania liczb.
 * Wartości logiczne `true` i `false` są reprezentowane przez typ `Boolean`.
 * Znaki, które są reprezentowane przez typ `Char`. Wartość znaku definiujemy za pomocą pojedynczych cudzysłowów.
