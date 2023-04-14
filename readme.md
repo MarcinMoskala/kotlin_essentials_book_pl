@@ -53,6 +53,8 @@ Obrazki powinny mieć określoną szerokość w % poprzez użycie atrybutu `widt
 
 #### Spójność
 
+**Podjąłem decyzję, że nadrzędna nad poprawnością językową powinna zrozumiałość!** Książka powinna być możliwie pisana tak, jak komunikują się programiści. Zamiast więc pisać "łacychy znaków", powinny być "stringi", a zamiast "celów kompilacji" powinny być "targety". 
+
 Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielskiego:
 * **annonymous function** - **funkcja anonimowa**,
 * **conditional statement** - **instrukcja warunkowa**,
@@ -63,9 +65,10 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 * **object expression** - **wyrażenie obiektu**,
 * **reference** - **referencja**,
 * **statement** - **instrukcja**,
-* **string interpolation** - **interpolacja łańcucha znaków**,
-* **string literal** - **literał łancucha znaków**,
-* **string template** - **szablon łańcucha znaków**,
+* **string** - **string**,
+* **string interpolation** - **interpolacja stringa**,
+* **string literal** - **literał stringa**,
+* **string template** - **szablon stringa**,
 * **try-catch expression** - **wyrażenie try-catch**,
 * **when-expression** - **wyrażenie when**,
 * **call** - **wywołanie**,
