@@ -188,7 +188,7 @@ fun main(args: Array<String>) {
 
 ### Instrukcja when
 
-Instrukcja when jest alternatywą dla if-else-if. W każdym z gałęzi określamy predykat i ciało, które powinno zostać wykonane, jeśli ten predykat zwróci `true` (a wcześniejsze predykaty nie). Działa więc tak samo jak if-else-if, ale należy go preferować, ponieważ jego składnia jest lepiej dostosowana do wielu warunków.
+Instrukcja when jest alternatywą dla if-else-if. W każdej z gałęzi określamy predykat i ciało, które powinno zostać wykonane, jeśli ten predykat zwróci `true` (a wcześniejsze predykaty nie). Działa więc tak samo jak if-else-if, ale należy go preferować, ponieważ jego składnia jest lepiej dostosowana do wielu warunków.
 
 ```kotlin
 fun main() {
