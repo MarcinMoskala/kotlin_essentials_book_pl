@@ -57,8 +57,10 @@ Obrazki powinny mieć określoną szerokość w % poprzez użycie atrybutu `widt
 
 Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielskiego:
 * **annonymous function** - **funkcja anonimowa**,
+* **companion object** - **companion object**,
 * **conditional statement** - **instrukcja warunkowa**,
 * **data class** - **klasa data**,
+* **enum class** - **enum**,
 * **expression** - **wyrażenie**,
 * **function literal** - **literał funkcyjny**,
 * **if-expression** - **wyrażenie if**,
@@ -71,6 +73,7 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 * **string interpolation** - **interpolacja stringa**,
 * **string literal** - **literał stringa**,
 * **string template** - **szablon stringa**,
+* **target** - **target**,
 * **try-catch expression** - **wyrażenie try-catch**,
 * **when-expression** - **wyrażenie when**,
 * **call** - **wywołanie**,
@@ -85,4 +88,12 @@ Odmieniamy nazwy języków np:
 * **Kotlin** - **Kotlinie**,
 * **JavaScript** - **JavaScripcie**
 
-Jeżeli masz pytanie na które nie znalazłeś/łaś odpowiedzi w powyższym tekście to możesz je również dodać w zakładce Issues, tak aby inni pracujący na dokumencie mogli się wypowiedzieć.
+#### Formy męskie i żeńskie
+
+Unikamy form męskich i żeńskich stosujemy raczej zwroty bezpośrednio do czytelnika albo użwając liczby mnogiej (np "programiści" zamiast "programista").
+
+Przy zwrotach do czytelnika, używamy wielkich liter, jak w listach (np "Twój", "Twoje", "Ciebie"). Nie jest to standardowa praktyka, ale uważam, że jest to miłe dla czytelnika. 
+
+#### Inne pytania
+
+Jeżeli masz pytanie, na które nie znalazłeś/łaś odpowiedzi w powyższym tekście to możesz je również dodać w zakładce Issues, tak aby inni pracujący na dokumencie mogli się wypowiedzieć.
