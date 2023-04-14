@@ -424,7 +424,7 @@ Notacja infiksowa służy tylko dla naszej wygody. Jest to przykład składni cu
 
 ### Formatowanie funkcji
 
-Gdy deklaracja funkcji (nazwa, parametry i typ wyniku) jest zbyt długa, aby zmieścić się w jednym wierszu, dzielimy ją tak, aby każda definicja parametru znajdowała się na innym wierszu, a początek i koniec deklaracji funkcji również były na oddzielnych wierszach.
+Gdy deklaracja funkcji (nazwa, parametry i typ wyniku) jest zbyt długa, aby zmieścić się w jednym wierszu, dzielimy ją tak, aby każda definicja parametru znajdowała się w innym wierszu, a początek i koniec deklaracji funkcji również były na oddzielnych wierszach.
 
 ```kotlin
 fun veryLongFunction(
