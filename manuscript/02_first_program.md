@@ -68,7 +68,7 @@ Polecam abyś przetestował to teraz. Otwórz dowolny projekt Kotlin (najlepiej,
 
 ### Co kryje się pod maską na JVM?
 
-Najważniejszym celem Kotlin jest JVM (Java Virtual Machine). Na JVM każdy element musi znajdować się w klasie. Możesz zatem zastanawiać się, jak możliwe jest, że nasza funkcja "main" może być uruchomiona w JVM, jeśli nie jest w żadnej klasie. Spróbujmy to wyjaśnić. Po drodze nauczymy się, jak sprawdzić, jak nasz kod Kotlin wyglądałby, gdyby był napisany w Java. Ta możliwość jest niesamowitą pomocą przy nauce Kotlina.
+Najważniejszym targetem Kotlin jest JVM (Java Virtual Machine). Na JVM każdy element musi znajdować się w klasie. Możesz zatem zastanawiać się, jak możliwe jest, że nasza funkcja "main" może być uruchomiona w JVM, jeśli nie jest w żadnej klasie. Spróbujmy to wyjaśnić. Po drodze nauczymy się, jak sprawdzić, jak nasz kod Kotlin wyglądałby, gdyby był napisany w Java. Ta możliwość jest niesamowitą pomocą przy nauce Kotlina.
 
 Zacznijmy od otwarcia lub uruchomienia projektu Kotlin w IntelliJ lub Android Studio. Stwórz nowy plik Kotlin o nazwie "Playground". W środku tego pliku użyj szablonu dynamicznego "maina" aby utworzyć główną funkcję z argumentami i dodać `println("Hello, World")` w środku.
 
@@ -103,7 +103,7 @@ Jeśli masz doświadczenie z Java, zapamiętaj to narzędzie, ponieważ może po
 - Jak działa konkretna funkcja Kotlin "pod maską".
 - Jak korzystać z elementu napisanego w języku Kotlin z Javy.
 
-Istnieją propozycje stworzenia podobnego narzędzia, aby pokazywać kod JavaScript generowany z kodu Kotlin, gdy naszym celem jest Kotlin/JS. Jednak w momencie pisania tej książki najlepszym, co możesz zrobić, jest samodzielne otwieranie wygenerowanych plików.
+Istnieją propozycje stworzenia podobnego narzędzia, aby pokazywać kod JavaScript generowany z kodu Kotlin, gdy naszym targetem jest Kotlin/JS. Jednak w momencie pisania tej książki najlepszym, co możesz zrobić, jest samodzielne otwieranie wygenerowanych plików.
 
 ### Podsumowanie
 

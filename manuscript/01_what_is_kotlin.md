@@ -16,7 +16,7 @@ Kotlin to kompilowany język programowania. Oznacza to, że możesz napisać jak
 {width: 100%}
 ![](kotlin_compile_results.png)
 
-W tej książce chciałbym omówić wszystkie te cele kompilacji i domyślnie pokazać kod, który działa na wszystkich z nich, ale skupię się na najbardziej popularnym: Kotlin/JVM.
+W tej książce chciałbym omówić wszystkie te targety i domyślnie pokazać kod, który działa na wszystkich z nich, ale skupię się na najbardziej popularnym: Kotlin/JVM.
 
 Kotlin/JVM to technologia służąca do kompilowania kodu Kotlin do bajtkodu JVM. Wynik jest prawie identyczny z wynikiem kompilowania kodu Java do bajtkodu JVM. Termin "Kotlin/JVM" używamy również, aby mówić o kodzie, który zostanie skompilowany do bajtkodu JVM.
 
@@ -48,7 +48,7 @@ Kotlin stał się również praktycznie standardowym językiem dla rozwoju aplik
 
 Coraz więcej projektów wykorzystuje fakt, że Kotlin może być kompilowany dla kilku różnych platform, ponieważ pozwala to zespołom na tworzenie kodu, który działa zarówno na Androidzie, jak i iOS, czy zarówno na backendzie, jak i frontendzie. Co więcej, ta wieloplatformowość pozwala twórcom bibliotek na tworzenie jednej biblioteki dla wielu platform jednocześnie. Wieloplatformowe możliwości Kotlin są już wykorzystywane w wielu firmach i stają się coraz bardziej popularne.
 
-Warto również wspomnieć o Jetpack Compose, który jest zestawem narzędzi do budowania natywnych interfejsów użytkownika w Kotlin. Został początkowo opracowany dla Androida, ale wykorzystuje możliwości wieloplatformowe Kotlina i może być również używany do tworzenia stron internetowych, aplikacji na komputery stacjonarne, aplikacji na iOS i innych celów[^01_3].
+Warto również wspomnieć o Jetpack Compose, który jest zestawem narzędzi do budowania natywnych interfejsów użytkownika w Kotlin. Został początkowo opracowany dla Androida, ale wykorzystuje możliwości wieloplatformowe Kotlina i może być również używany do tworzenia stron internetowych, aplikacji na komputery stacjonarne, aplikacji na iOS i innych targetów[^01_3].
 
 Coraz więcej programistów używa Kotlina do przetwarzania danych i analityki. Istnieją też osoby używające go do tworzenia stron webowych, głównie z wykorzystaniem Kotlin React.
 
@@ -56,5 +56,5 @@ Jak widać, już teraz można zrobić wiele rzeczy w języku Kotlin, a z każdym
 
 [^01_1]: Źródło: https://techcrunch.com/2022/08/18/five-years-later-google-is-still-all-in-on-kotlin/
 [^01_2]: Źródło: https://developer.android.com/kotlin/first
-[^01_3]: W chwili obecnej dojrzałość tych celów różni się.
+[^01_3]: W chwili obecnej dojrzałość tych targetów różni się.
 [^01_4]: Zostanie to wyjaśnione w rozdziale *Data klasy*.

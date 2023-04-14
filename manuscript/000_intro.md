@@ -27,6 +27,10 @@ W tej książce omawiam te tematy, które uważam za niezbędne do programowania
 
 Ta książka nie omawia funkcyjnych cech Kotlin, takich jak wyrażenia lambda czy typy funkcyjne. Te tematy są omówione w kontynuacji tej książki: *Functional Kotlin*.
 
+### Język użyty w książce
+
+Książka została pierwotnie przetłumaczona z zachowaniem formalnie poprawmych tłumaczeń pojęć technicznych. I tak "string" został przetłumaczony na "łańcuch znaków", a "data class" na "klasę danych". W czasie poprawek, uświadomiłem sobię jednak, że nie jest to język do jakiego większość programistów przywykła. My mówimy o "stringach" i "data klasach". Poruszyłem ten temat z kilkoma osobami i większość uważała polskie tłumaczenia książek za nieczytelne, właśnie poprzez użyte tłumaczenia technicznych pojęć. Zadecydowałem się więc w tej książce postawić na pragmatyzm i jak najbardziej oddać język jakim komunikuję się jako programista. Oznacza to, że będę używać spolszczeń angielskich pojęć, czyli będę mówił o stringach, data klasach, enumach, sealed klasach, itd.
+
 ### Seria Kotlin dla programistów
 
 Ta książka jest pierwszą z serii książek o nazwie *Kotlin dla programistów*, która obejmuje następujące pozycje:

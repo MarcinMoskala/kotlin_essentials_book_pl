@@ -239,7 +239,7 @@ val user: User = User.empty()
 val user: User = User.Companion.empty()
 ```
 
-W ten sposób osiągnęliśmy składnię, która jest prawie tak wygodna jak elementy statyczne. Jedynym niedogodnością jest to, że musimy umieścić wszystkie "statyczne" elementy wewnątrz pojedynczego obiektu (w klasie może być tylko jeden obiekt towarzyszący). Jest to ograniczenie, ale mamy coś w zamian: obiekty towarzyszące to obiekty, więc mogą rozszerzać klasy lub implementować interfejsy.
+W ten sposób osiągnęliśmy składnię, która jest prawie tak wygodna jak elementy statyczne. Jedynym niedogodnością jest to, że musimy umieścić wszystkie "statyczne" elementy wewnątrz pojedynczego obiektu (w klasie może być tylko jeden companion objekt). Jest to ograniczenie, ale mamy coś w zamian: obiekty towarzyszące to obiekty, więc mogą rozszerzać klasy lub implementować interfejsy.
 
 Pozwól, że pokażę Ci przykład. Powiedzmy, że reprezentujesz pieniądze w różnych walutach za pomocą różnych klas, takich jak `USD`, `EUR` czy `PLN`. Dla wygody każda z nich definiuje funkcje konstruujące `from`, które upraszczają tworzenie obiektów.
 
@@ -409,7 +409,7 @@ data class CoroutineName(
     val name: String
 ) : AbstractCoroutineContextElement(CoroutineName) {
 
-    // Obiekt towarzyszący to klucz
+    // Companion object to klucz
     companion object Key : CoroutineContext.Key<CoroutineName>
 
     override fun toString(): String = "CoroutineName($name)"
@@ -489,7 +489,7 @@ fun boo() {
 
 ### Podsumowanie
 
-W tym rozdziale dowiedzieliśmy się, że obiekty można tworzyć nie tylko z klas, ale także za pomocą wyrażeń obiektów i deklaracji obiektów. Obie te formy obiektów mają praktyczne zastosowania. Wyrażenie obiektu jest używane jako alternatywa dla anonimowych obiektów Java, ale oferuje więcej. Deklaracja obiektu to implementacja wzorca singleton w Kotlinie. Specjalna forma deklaracji obiektu, znana jako obiekt towarzyszący, jest używana jako alternatywa dla elementów statycznych, ale z dodatkowym wsparciem dla dziedziczenia. Mamy również modyfikator `const`, który oferuje lepsze wsparcie dla stałych elementów zdefiniowanych na najwyższym poziomie lub w deklaracjach obiektów.
+W tym rozdziale dowiedzieliśmy się, że obiekty można tworzyć nie tylko z klas, ale także za pomocą wyrażeń obiektów i deklaracji obiektów. Obie te formy obiektów mają praktyczne zastosowania. Wyrażenie obiektu jest używane jako alternatywa dla anonimowych obiektów Java, ale oferuje więcej. Deklaracja obiektu to implementacja wzorca singleton w Kotlinie. Specjalna forma deklaracji obiektu, znana jako companion objekt, jest używana jako alternatywa dla elementów statycznych, ale z dodatkowym wsparciem dla dziedziczenia. Mamy również modyfikator `const`, który oferuje lepsze wsparcie dla stałych elementów zdefiniowanych na najwyższym poziomie lub w deklaracjach obiektów.
 
 W poprzednim rozdziale omówiliśmy data klasy, ale w Kotlinie używamy innych modyfikatorów dla klas. W następnym rozdziale poznamy kolejny ważny rodzaj klas: wyjątki.
 

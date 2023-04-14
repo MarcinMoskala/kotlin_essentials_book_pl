@@ -329,6 +329,6 @@ W Kotlinie nie jesteśmy zmuszeni do łapania żadnych rodzajów wyjątków; w p
 
 W tym rozdziale dowiedzieliśmy się o wyjątkach, które są ważną częścią programowania w Kotlinie. Nauczyliśmy się, jak rzucać, łapać i definiować wyjątki. Dowiedzieliśmy się również o bloku finally oraz hierarchii wyjątków.
 
-Kontynuując tematykę specjalnych rodzajów klas, porozmawiajmy o klasach wyliczeniowych, które są używane do reprezentowania zestawu wartości instancji obiektów.
+Kontynuując tematykę specjalnych rodzajów klas, porozmawiajmy o enumach, które są używane do reprezentowania zestawu wartości instancji obiektów.
 
 [^e_1]: Ten temat jest lepiej opisany w książce Effective Kotlin, *Pozycja 5: Określ swoje oczekiwania względem argumentów i stanów*.

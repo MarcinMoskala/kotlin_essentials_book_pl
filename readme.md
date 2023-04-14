@@ -57,8 +57,10 @@ Obrazki powinny mieć określoną szerokość w % poprzez użycie atrybutu `widt
 
 Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielskiego:
 * **annonymous function** - **funkcja anonimowa**,
+* **companion object** - **companion object**,
 * **conditional statement** - **instrukcja warunkowa**,
 * **data class** - **klasa data**,
+* **enum class** - **enum**,
 * **expression** - **wyrażenie**,
 * **function literal** - **literał funkcyjny**,
 * **if-expression** - **wyrażenie if**,
@@ -71,6 +73,7 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 * **string interpolation** - **interpolacja stringa**,
 * **string literal** - **literał stringa**,
 * **string template** - **szablon stringa**,
+* **target** - **target**,
 * **try-catch expression** - **wyrażenie try-catch**,
 * **when-expression** - **wyrażenie when**,
 * **call** - **wywołanie**,
