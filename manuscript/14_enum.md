@@ -22,7 +22,7 @@ fun main() {
 
 Każda klasa wyliczeniowa ma następujące funkcje obiektu towarzyszącego:
 * `values`, która zwraca tablicę wszystkich wartości tej klasy wyliczeniowej;
-* `valueOf`, która analizuje ciąg znaków na wartość o pasującej nazwie (jest to z uwzględnieniem wielkości liter) lub rzuca wyjątek.
+* `valueOf`, która zamienia stringa na wartość o pasującej nazwie (jest to z uwzględnieniem wielkości liter) lub rzuca wyjątek.
 
 ```kotlin
 enum class PaymentOption {
@@ -170,7 +170,7 @@ Ta opcja nie jest popularna, ponieważ zazwyczaj wolimy używać funkcjonalnych 
 
 Klasy wyliczeniowe to wygodny sposób reprezentowania konkretnego zestawu możliwych wartości. Każda wartość ma właściwości `name` i `ordinal` (pozycja). Możemy uzyskać tablicę wszystkich wartości za pomocą funkcji towarzyszącej obiektu `values` lub funkcji najwyższego poziomu `enumValues`. Możemy także przetworzyć wartość wyliczenia z `String` za pomocą funkcji towarzyszącej obiektu `valueOf` lub funkcji najwyższego poziomu `enumValueOf`.
 
-W następnym rozdziale porozmawiamy o klasach szczelnych, które często traktowane są jako podobne do wyliczeń, ale reprezentują zupełnie inne, a nawet bardziej potężne abstrakcje. Klasy szczelne mogą tworzyć zamkniętą hierarchię klas, podczas gdy wyliczenia reprezentują tylko zestaw stałych wartości.
+W następnym rozdziale porozmawiamy o klasach szczelnych, które często traktowane są jako podobne do wyliczeń, ale reprezentują zupełnie inne, a nawet bardziej potężne abstrakcje. Klasy sealed mogą tworzyć zamkniętą hierarchię klas, podczas gdy wyliczenia reprezentują tylko zestaw stałych wartości.
 
 [^13_1]: Zmienne funkcjonalne są opisane w książce *Funkcjonalny Kotlin*. Przykład użycia klasy wyliczeniowej z funkcjonalnymi parametrami konstruktora głównego przedstawiono w *Efektywny Kotlin*, *Pozycja 41: Użyj wyliczenia do reprezentowania listy wartości*.
 [^13_2]: Funkcje rozszerzeń są opisane później w tej książce.

@@ -296,5 +296,5 @@ W tym rozdziale nauczyliśmy się korzystać z pętli for. W Kotlin jest naprawd
 Teraz porozmawiajmy o jednym z najważniejszych ulepszeń Kotlin względem Javy: dobrym wsparciu dla obsługi wartości null.
 
 [^07_1]: Ma metodę operatora `iterator`.
-[^07_2]: Destrukturyzacja będzie wyjaśniona bardziej szczegółowo w rozdziale *Klasy danych*.
+[^07_2]: Destrukturyzacja będzie wyjaśniona bardziej szczegółowo w rozdziale *Data klasy*.
 

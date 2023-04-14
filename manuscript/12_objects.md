@@ -424,7 +424,7 @@ val name2 = context[CoroutineName.Key]
 
 ### Deklaracje obiektów danych
 
-Od Kotlin 1.8 można używać modyfikatora `data` dla deklaracji obiektów. Generuje on metodę `toString` dla obiektu; ta metoda obejmuje nazwę obiektu jako łańcuch znaków.
+Od Kotlin 1.8 można używać modyfikatora `data` dla deklaracji obiektów. Generuje on metodę `toString` dla obiektu; ta metoda obejmuje nazwę obiektu jako string.
 
 ```kotlin
 data object ABC
@@ -491,7 +491,7 @@ fun boo() {
 
 W tym rozdziale dowiedzieliśmy się, że obiekty można tworzyć nie tylko z klas, ale także za pomocą wyrażeń obiektów i deklaracji obiektów. Obie te formy obiektów mają praktyczne zastosowania. Wyrażenie obiektu jest używane jako alternatywa dla anonimowych obiektów Java, ale oferuje więcej. Deklaracja obiektu to implementacja wzorca singleton w Kotlinie. Specjalna forma deklaracji obiektu, znana jako obiekt towarzyszący, jest używana jako alternatywa dla elementów statycznych, ale z dodatkowym wsparciem dla dziedziczenia. Mamy również modyfikator `const`, który oferuje lepsze wsparcie dla stałych elementów zdefiniowanych na najwyższym poziomie lub w deklaracjach obiektów.
 
-W poprzednim rozdziale omówiliśmy klasy danych, ale w Kotlinie używamy innych modyfikatorów dla klas. W następnym rozdziale poznamy kolejny ważny rodzaj klas: wyjątki.
+W poprzednim rozdziale omówiliśmy data klasy, ale w Kotlinie używamy innych modyfikatorów dla klas. W następnym rozdziale poznamy kolejny ważny rodzaj klas: wyjątki.
 
 [^12_2]: Ta praktyka jest lepiej opisana w *Effective Kotlin*, *Pozycja 27: Użyj abstrakcji, aby chronić kod przed zmianami*.
 [^12_3]: Akceptowane typy to `Int`, `Long`, `Double`, `Float`, `Short`, `Byte`, `Boolean`, `Char` i `String`.

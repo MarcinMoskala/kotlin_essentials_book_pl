@@ -1,9 +1,9 @@
 ## Podstawowe typy, ich literały i operacje
 
-Każdy język potrzebuje wygodnego sposobu reprezentowania podstawowych rodzajów wartości, takich jak liczby czy znaki. Wszystkie języki muszą mieć wbudowane **typy** i **literały**. Typy są używane do reprezentowania pewnych rodzajów wartości. Przykłady typów to `Int`, `Boolean` czy `String`. Literały to wbudowane notacje, które są używane do tworzenia instancji tych typów. Przykłady literałów to literał łańcucha znaków, czyli po prostu tekst w cudzysłowie, czy literał całkowitoliczbowy, czyli goła liczba.
+Każdy język potrzebuje wygodnego sposobu reprezentowania podstawowych rodzajów wartości, takich jak liczby czy znaki. Wszystkie języki muszą mieć wbudowane **typy** i **literały**. Typy są używane do reprezentowania pewnych rodzajów wartości. Przykłady typów to `Int`, `Boolean` czy `String`. Literały to wbudowane notacje, które są używane do tworzenia instancji tych typów. Przykłady literałów to literał stringa, czyli po prostu tekst w cudzysłowie, czy literał całkowitoliczbowy, czyli goła liczba.
 
 ```kotlin
-"ABC" // literał łańcucha znaków
+"ABC" // literał stringa
 1234 // literał całkowitoliczbowy
 ```
 
@@ -11,7 +11,7 @@ W tym rozdziale poznamy podstawowe typy języka Kotlin i ich literały:
 * liczby (`Int`, `Long`, `Double`, `Float`, `Short`, `Byte`),
 * wartości logiczne (`Boolean`),
 * znaki (`Char`),
-* łańcuchy znaków (`String`).
+* stringi(`String`).
 
 W Kotlin istnieją także tablice, który zostaną omówione w rozdziale *Kolekcje*.
 
@@ -445,9 +445,9 @@ fun main() {
 }
 ```
 
-### Łańcuchy znaków
+### Stringi
 
-Łańcuchy znaków to po prostu sekwencje znaków tworzące tekst. W Kotlin tworzymy ciąg znaków używając cudzysłowów `"` lub potrójnych cudzysłowów `"""`.
+Stringi to po prostu sekwencje znaków tworzące tekst. W Kotlin tworzymy stringa używając cudzysłowów `"` lub potrójnych cudzysłowów `"""`.
 
 ```kotlin
 fun main() {
@@ -458,7 +458,7 @@ fun main() {
 }
 ```
 
-Ciąg znaków otoczony pojedynczymi cudzysłowami wymaga tekstu w jednym wierszu. Jeśli chcemy zdefiniować znak nowej linii, musimy użyć specjalnego znaku `\n`. To nie jedyna rzecz, która potrzebuje (lub może potrzebować) ukośnika wstecznego do wyrażenia w ciągu znaków.
+String otoczony pojedynczymi cudzysłowami wymaga tekstu w jednym wierszu. Jeśli chcemy zdefiniować znak nowej linii, musimy użyć specjalnego znaku `\n`. To nie jedyna rzecz, która potrzebuje (lub może potrzebować) ukośnika wstecznego do wyrażenia w ciągu znaków.
 
 | Sekwencja ucieczki | Znaczenie               |
 |--------------------|-------------------------|
@@ -515,7 +515,7 @@ fun main() {
 }
 ```
 
-Ciągi znaków mogą zawierać wyrażenia szablonowe, czyli odniesienia do zmiannych, których wartości zostaną wstawione do łańcucha znaków. Wyrażenie szablonowe zaczyna się od znaku dolara (`$`) i składa się albo z nazwy zmiennej (takiej jak `"tekst to $text"`), albo z wyrażenia w nawiasach klamrowych (takiego jak `"1 + 2 = ${1 + 2}"`).
+Ciągi znaków mogą zawierać wyrażenia szablonowe, czyli odniesienia do zmiannych, których wartości zostaną wstawione do stringa. Wyrażenie szablonowe zaczyna się od znaku dolara (`$`) i składa się albo z nazwy zmiennej (takiej jak `"tekst to $text"`), albo z wyrażenia w nawiasach klamrowych (takiego jak `"1 + 2 = ${1 + 2}"`).
 
 ```kotlin
 fun main() {

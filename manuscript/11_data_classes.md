@@ -1,11 +1,11 @@
-## Klasy danych
+## Data klasy
 
 W Kotlin mówimy, że wszystkie klasy dziedziczą po nadrzędnej klasie `Any`, która znajduje się na szczycie hierarchii klas[^11_3]. Metody zdefiniowane w `Any` mogą być wywoływane na wszystkich obiektach. Są to metody:
 * `equals` - używana przy porównywaniu dwóch obiektów za pomocą `==`,
 * `hashCode` - używana przez kolekcje, które korzystają z algorytmu tablicy mieszającej,
-* `toString` - używana do reprezentacji obiektu jako łańcucha znaków, np. w szablonie łańcucha znaków lub funkcji `print`.
+* `toString` - używana do reprezentacji obiektu jako stringa, np. w szablonie stringa lub funkcji `print`.
 
-Dzięki tym metodom możemy reprezentować dowolny obiekt jako łańcuch znaków lub sprawdzić równość dowolnych dwóch obiektów.
+Dzięki tym metodom możemy reprezentować dowolny obiekt jako string lub sprawdzić równość dowolnych dwóch obiektów.
 
 ```kotlin
 // Formalna definicja Any
@@ -29,7 +29,7 @@ fun main() {
 
 > Prawdę mówiąc, `Any` jest reprezentowane jako klasa, ale powinno być traktowane jako głowa hierarchii typów, ale z pewnymi specjalnymi funkcjami. Weź pod uwagę fakt, że `Any` jest także nadrzędnym typem wszystkich interfejsów, mimo że interfejsy nie mogą dziedziczyć po klasach.
 
-Domyślne implementacje `equals`, `hashCode` i `toString` są mocno oparte na adresie obiektu w pamięci. Metoda `equals` zwraca `true` tylko wtedy, gdy adres obu obiektów jest taki sam, co oznacza, że po obu stronach jest ten sam obiekt. Metoda `hashCode` zwykle zamienia adres na liczbę. `toString` generuje łańcuch znaków, który zaczyna się od nazwy klasy, a następnie znaku małpy "@", a potem bez znakowej reprezentacji szesnastkowej kodu skrótu obiektu.
+Domyślne implementacje `equals`, `hashCode` i `toString` są mocno oparte na adresie obiektu w pamięci. Metoda `equals` zwraca `true` tylko wtedy, gdy adres obu obiektów jest taki sam, co oznacza, że po obu stronach jest ten sam obiekt. Metoda `hashCode` zwykle zamienia adres na liczbę. `toString` generuje string, który zaczyna się od nazwy klasy, a następnie znaku małpy "@", a potem bez znakowej reprezentacji szesnastkowej kodu skrótu obiektu.
 
 ```kotlin
 class A
@@ -55,7 +55,7 @@ fun main() {
 }
 ```
 
-Poprzez nadpisywanie tych metod możemy zdecydować, jak klasa powinna się zachowywać. Rozważ poniższą klasę `A`, która jest równa innym instancjom tej samej klasy i zwraca stały kod skrótu oraz reprezentację łańcucha znaków.
+Poprzez nadpisywanie tych metod możemy zdecydować, jak klasa powinna się zachowywać. Rozważ poniższą klasę `A`, która jest równa innym instancjom tej samej klasy i zwraca stały kod skrótu oraz reprezentację stringa.
 
 ```kotlin
 class A {
@@ -101,11 +101,11 @@ data class Player(
 val player = Player(0, "Gecko", 9999)
 ```
 
-Przeanalizujmy wspomniane wcześniej domyślne metody klasy danych oraz różnice między zachowaniem zwykłej klasy a zachowaniem klasy danych.
+Przeanalizujmy wspomniane wcześniej domyślne metody data klasy oraz różnice między zachowaniem zwykłej klasy a zachowaniem data klasy.
 
-### Przekształcanie do łańcucha znaków
+### Przekształcanie do stringa
 
-Domyślne przekształcenie `toString` generuje łańcuch znaków, który zaczyna się od nazwy klasy, a następnie znaku małpy "@", a potem bez znakowej reprezentacji szesnastkowej kodu skrótu obiektu. Celem tego jest wyświetlenie nazwy klasy oraz określenie, czy dwa łańcuchy znaków reprezentują ten sam obiekt, czy nie.
+Domyślne przekształcenie `toString` generuje string, który zaczyna się od nazwy klasy, a następnie znaku małpy "@", a potem bez znakowej reprezentacji szesnastkowej kodu skrótu obiektu. Celem tego jest wyświetlenie nazwy klasy oraz określenie, czy dwa stringireprezentują ten sam obiekt, czy nie.
 
 ```kotlin
 class FakeUserRepository
@@ -119,7 +119,7 @@ fun main() {
 }
 ```
 
-Dzięki modyfikatorowi `data`, kompilator generuje `toString`, który wyświetla nazwę klasy, a następnie pary z nazwą i wartością dla każdej właściwości konstruktora głównego. Zakładamy, że klasy danych są reprezentowane przez ich właściwości konstruktora głównego, więc wszystkie te właściwości wraz z ich wartościami są wyświetlane podczas przekształcania na łańcuch znaków. Jest to przydatne do rejestrowania i debugowania.
+Dzięki modyfikatorowi `data`, kompilator generuje `toString`, który wyświetla nazwę klasy, a następnie pary z nazwą i wartością dla każdej właściwości konstruktora głównego. Zakładamy, że data klasy są reprezentowane przez ich właściwości konstruktora głównego, więc wszystkie te właściwości wraz z ich wartościami są wyświetlane podczas przekształcania na string. Jest to przydatne do rejestrowania i debugowania.
 
 ```kotlin
 data class Player(
@@ -378,7 +378,7 @@ val (name, surname) = elon
 print("To jest $name $surname!") // To jest Elon Reeve!
 ```
 
-Musimy być ostrożni z destrukturyzacją. Przydatne jest stosowanie tych samych nazw jak właściwości głównego konstruktora klasy danych. W przypadku nieprawidłowej kolejności zostanie wyświetlone ostrzeżenie IntelliJ/Android Studio. Może być nawet przydatne uaktualnienie tego ostrzeżenia do błędu.
+Musimy być ostrożni z destrukturyzacją. Przydatne jest stosowanie tych samych nazw jak właściwości głównego konstruktora data klasy. W przypadku nieprawidłowej kolejności zostanie wyświetlone ostrzeżenie IntelliJ/Android Studio. Może być nawet przydatne uaktualnienie tego ostrzeżenia do błędu.
 
 {width: 84%}
 ![](data_fullname.png)
@@ -427,7 +427,7 @@ fun main() {
 }
 ```
 
-Klasy danych powinny przechowywać wszystkie istotne właściwości w swoim głównym konstruktorze. W ciele klasy powinniśmy trzymać tylko zbędne, niemodyfikowalne właściwości, co oznacza właściwości, których wartość jest wyraźnie obliczana na podstawie właściwości głównego konstruktora, takie jak `fullName`, które jest obliczane na podstawie `name` i `surname`. Takie wartości są również ignorowane przez metody klasy danych, ale ich wartość zawsze będzie poprawna, ponieważ będzie obliczana podczas tworzenia nowego obiektu.
+Data klasy powinny przechowywać wszystkie istotne właściwości w swoim głównym konstruktorze. W ciele klasy powinniśmy trzymać tylko zbędne, niemodyfikowalne właściwości, co oznacza właściwości, których wartość jest wyraźnie obliczana na podstawie właściwości głównego konstruktora, takie jak `fullName`, które jest obliczane na podstawie `name` i `surname`. Takie wartości są również ignorowane przez metody data klasy, ale ich wartość zawsze będzie poprawna, ponieważ będzie obliczana podczas tworzenia nowego obiektu.
 
 ```kotlin
 data class FullName(
@@ -448,11 +448,11 @@ fun main() {
 }
 ```
 
-Powinieneś również pamiętać, że klasy danych muszą być **finalne** i dlatego nie mogą być używane jako nadrzędny typ w dziedziczeniu.
+Powinieneś również pamiętać, że data klasy muszą być **finalne** i dlatego nie mogą być używane jako nadrzędny typ w dziedziczeniu.
 
-### Wybieraj klasy danych zamiast krotek
+### Wybieraj data klasy zamiast krotek
 
-Klasy danych oferują więcej niż to, co zwykle dostarczają krotki. Historycznie zastąpiły one krotki w Kotlinie, ponieważ uważa się je za lepszą praktykę[^11_2]. Jedynymi pozostałymi krotkami są `Pair` i `Triple`, ale te są klasami danych wewnętrznie:
+Data klasy oferują więcej niż to, co zwykle dostarczają krotki. Historycznie zastąpiły one krotki w Kotlinie, ponieważ uważa się je za lepszą praktykę[^11_2]. Jedynymi pozostałymi krotkami są `Pair` i `Triple`, ale te są klasami danych wewnętrznie:
 
 ```kotlin
 data class Pair<out A, out B>(
@@ -515,7 +515,7 @@ val (odd, even) = numbers.partition { it % 2 == 1 }
 val map = mapOf(1 to "San Francisco", 2 to "Amsterdam")
 ```
 
-W innych przypadkach preferujemy klasy danych. Spójrz na przykład: załóżmy, że potrzebujemy funkcji, która przetwarza pełne imię i nazwisko na imię i nazwisko. Ktoś może reprezentować to imię i nazwisko jako `Pair<String, String>`:
+W innych przypadkach preferujemy data klasy. Spójrz na przykład: załóżmy, że potrzebujemy funkcji, która przetwarza pełne imię i nazwisko na imię i nazwisko. Ktoś może reprezentować to imię i nazwisko jako `Pair<String, String>`:
 
 ```kotlin
 fun String.parseName(): Pair<String, String>? {
@@ -541,7 +541,7 @@ val (lastName, firstName) = fullName.parseName() ?: return
 print("Jego imię to $firstName") // Jego imię to Moskała
 ```
 
-Aby uczynić użycie bezpieczniejszym i funkcję łatwiejszą do odczytania, powinniśmy użyć klasy danych:
+Aby uczynić użycie bezpieczniejszym i funkcję łatwiejszą do odczytania, powinniśmy użyć data klasy:
 
 ```kotlin
 data class FullName(
@@ -578,11 +578,11 @@ Jeśli nie chcesz, aby ta klasa miała szerszy zakres, możesz ograniczyć jej w
 
 ### Podsumowanie
 
-W tym rozdziale poznaliśmy `Any`, które jest nadklasą wszystkich klas. Dowiedzieliśmy się także o metodach zdefiniowanych przez `Any`: `equals`, `hashCode` i `toString`. Poznaliśmy również dwa główne typy obiektów. Zwykłe obiekty są uważane za unikalne i nie ujawniają swoich szczegółów. Obiekty klasy danych, które tworzyliśmy za pomocą modyfikatora `data`, reprezentują wiązki danych (przechowujemy je w właściwościach głównego konstruktora). Są równe, gdy przechowują te same dane. Po przekształceniu na łańcuch znaków wyświetlają wszystkie swoje dane. Dodatkowo obsługują destrukturyzację i tworzenie kopii za pomocą metody `copy`. Dwie generyczne klasy danych w Kotlin stdlib to `Pair` i `Triple`, ale (z wyjątkiem pewnych przypadków) wolimy używać własnych klas danych zamiast tych. Ponadto, ze względów bezpieczeństwa, gdy destrukturyzujemy klasę danych, wolimy dopasować nazwy zmiennych do nazw parametrów.
+W tym rozdziale poznaliśmy `Any`, które jest nadklasą wszystkich klas. Dowiedzieliśmy się także o metodach zdefiniowanych przez `Any`: `equals`, `hashCode` i `toString`. Poznaliśmy również dwa główne typy obiektów. Zwykłe obiekty są uważane za unikalne i nie ujawniają swoich szczegółów. Obiekty data klasy, które tworzyliśmy za pomocą modyfikatora `data`, reprezentują wiązki danych (przechowujemy je w właściwościach głównego konstruktora). Są równe, gdy przechowują te same dane. Po przekształceniu na string wyświetlają wszystkie swoje dane. Dodatkowo obsługują destrukturyzację i tworzenie kopii za pomocą metody `copy`. Dwie generyczne data klasy w Kotlin stdlib to `Pair` i `Triple`, ale (z wyjątkiem pewnych przypadków) wolimy używać własnych klas danych zamiast tych. Ponadto, ze względów bezpieczeństwa, gdy destrukturyzujemy klasę danych, wolimy dopasować nazwy zmiennych do nazw parametrów.
 
 Teraz przejdźmy do tematu poświęconego specjalnej składni Kotlin, która pozwala nam tworzyć obiekty bez definiowania klasy.
 
 [^11_0]: Są to *Pozycja 42: Szanuj kontrakt `equals`* oraz *Pozycja 43: Szanuj kontrakt `hashCode`*.
 [^11_1]: Ten rodzaj klasy jest tak popularny, że w Javie powszechną praktyką jest automatyczne generowanie `equals`, `hashCode` i `toString` w IntelliJ lub za pomocą biblioteki Lombok.
-[^11_2]: Kotlin miał wsparcie dla krotek, gdy był jeszcze w wersji beta. Mogliśmy zdefiniować krotkę za pomocą nawiasów i zestawu typów, takich jak `(Int, String, String, Long)`. To, co osiągnęliśmy, zachowywało się tak samo jak klasy danych, ale było znacznie mniej czytelne. Czy możesz zgadnąć, jaki typ reprezentuje ten zestaw typów? Może być dowolny. Korzystanie z krotek jest kuszące, ale korzystanie z klas danych jest prawie zawsze lepsze. Dlatego krotki zostały usunięte, a pozostały tylko `Pair` i `Triple`.
+[^11_2]: Kotlin miał wsparcie dla krotek, gdy był jeszcze w wersji beta. Mogliśmy zdefiniować krotkę za pomocą nawiasów i zestawu typów, takich jak `(Int, String, String, Long)`. To, co osiągnęliśmy, zachowywało się tak samo jak data klasy, ale było znacznie mniej czytelne. Czy możesz zgadnąć, jaki typ reprezentuje ten zestaw typów? Może być dowolny. Korzystanie z krotek jest kuszące, ale korzystanie z klas danych jest prawie zawsze lepsze. Dlatego krotki zostały usunięte, a pozostały tylko `Pair` i `Triple`.
 [^11_3]: Więc `Any` jest analogiczne do `Object` w Javie, JavaScripcie lub C#. W C++ nie ma bezpośredniego odpowiednika.

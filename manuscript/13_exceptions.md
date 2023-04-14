@@ -26,7 +26,7 @@ fun main() {
 //     at PlaygroundKt.main(Playground.kt)
 ```
 
-Jako kolejny przykład możemy przekształcić ciąg znaków na liczbę całkowitą za pomocą metody `toInt`, ale działa to tylko wtedy, gdy ciąg znaków jest liczbą. Gdy tak nie jest, zobaczymy `NumberFormatException` z wiadomością wyjaśniającą, który ciąg znaków został użyty.
+Jako kolejny przykład możemy przekształcić stringa na liczbę całkowitą za pomocą metody `toInt`, ale działa to tylko wtedy, gdy stringa jest liczbą. Gdy tak nie jest, zobaczymy `NumberFormatException` z wiadomością wyjaśniającą, który stringa został użyty.
 
 ```kotlin
 fun main() {
@@ -182,11 +182,11 @@ fun main() {
     } catch (e: FileNotFoundException) {
         ""
     }
-    println(content) // (pusty ciąg znaków)
+    println(content) // (pusty stringa)
 }
 ```
 
-Praktycznym przykładem może być odczytanie ciągu znaków zawierającego obiekt w formacie JSON. Używamy biblioteki Gson, której metoda `fromJson` rzuca wyjątek `JsonSyntaxException`, gdy ciąg znaków nie zawiera prawidłowego obiektu JSON. W takich przypadkach wolelibyśmy funkcję zwracającą wartość `null`; możemy to zaimplementować, używając try-catch jako wyrażenia.
+Praktycznym przykładem może być odczytanie ciągu znaków zawierającego obiekt w formacie JSON. Używamy biblioteki Gson, której metoda `fromJson` rzuca wyjątek `JsonSyntaxException`, gdy stringa nie zawiera prawidłowego obiektu JSON. W takich przypadkach wolelibyśmy funkcję zwracającą wartość `null`; możemy to zaimplementować, używając try-catch jako wyrażenia.
 
 ```kotlin
 fun <T : Any> fromJsonOrNull(

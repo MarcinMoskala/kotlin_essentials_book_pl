@@ -1,4 +1,4 @@
-## Klasy i interfejsy szczelne
+## Klasy i interfejsy sealed
 
 Klasy i interfejsy w Kotlinie nie służą tylko do reprezentowania zestawu operacji lub danych; możemy również używać klas i dziedziczenia do reprezentowania hierarchii za pomocą polimorfizmu. Na przykład, powiedzmy, że wysyłasz żądanie sieciowe; w rezultacie albo otrzymujesz żądane dane, albo żądanie kończy się niepowodzeniem z informacjami o tym, co poszło nie tak. Te dwa rezultaty można przedstawić za pomocą dwóch klas implementujących interfejs:
 
@@ -56,9 +56,9 @@ Wszystkie dzieci klasy szczelnej lub interfejsu szczelnego muszą spełniać kil
 
 Oznacza to, że gdy używasz modyfikatora `sealed`, kontrolujesz, jakie podklasy ma klasa lub interfejs. Klienci Twojej biblioteki lub modułu nie mogą dodać własnych bezpośrednich podklas[^14_2]. Nikt nie może cicho dodać lokalnej klasy ani wyrażenia obiektu, które rozszerza szczelną klasę lub interfejs. Kotlin uczynił to niemożliwym. Hierarchia podklas jest ograniczona.
 
-> Szczelne interfejsy zostały wprowadzone w nowszych wersjach Kotlina, aby umożliwić klasom implementowanie wielu szczelnych hierarchii. Relacja między szczelną klasą a szczelnym interfejsem jest podobna do relacji między klasą abstrakcyjną a interfejsem. Mocą klas jest to, że mogą przechowywać stan (właściwości nieabstrakcyjne) i kontrolować otwartość swoich elementów (mogą mieć metody i właściwości końcowe). Mocą interfejsów jest to, że klasa może dziedziczyć tylko z jednej klasy, ale może implementować wiele interfejsów.
+> sealed interfejsy zostały wprowadzone w nowszych wersjach Kotlina, aby umożliwić klasom implementowanie wielu szczelnych hierarchii. Relacja między szczelną klasą a szczelnym interfejsem jest podobna do relacji między klasą abstrakcyjną a interfejsem. Mocą klas jest to, że mogą przechowywać stan (właściwości nieabstrakcyjne) i kontrolować otwartość swoich elementów (mogą mieć metody i właściwości końcowe). Mocą interfejsów jest to, że klasa może dziedziczyć tylko z jednej klasy, ale może implementować wiele interfejsów.
 
-### Szczelne klasy i wyrażenia `when`
+### sealed klasy i wyrażenia `when`
 
 Użycie `when` jako wyrażenia musi zwrócić jakąś wartość, więc musi być wyczerpujące. W większości przypadków jedynym sposobem na osiągnięcie tego jest określenie klauzuli `else`.
 

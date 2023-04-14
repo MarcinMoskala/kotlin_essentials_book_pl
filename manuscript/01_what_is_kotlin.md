@@ -1,6 +1,6 @@
 ## Czym jest Kotlin?
 
-Kotlin to otwartoźródłowy, wieloplatformowy, wieloparadygmatyczny, statycznie typowany, ogólnego przeznaczenia język programowania. Ale co to wszystko oznacza?
+Kotlin to otwartoźródłowy (open source), wieloplatformowy, wieloparadygmatyczny, statycznie typowany, ogólnego przeznaczenia język programowania. Ale co to wszystko oznacza?
 * Otwartoźródłowy oznacza, że źródła kompilatora Kotlin są swobodnie dostępne do modyfikacji i redystrybucji. Kotlin jest tworzony głównie przez JetBrains, ale istnieje również Kotlin Foundation, która promuje i rozwija ten język. Istnieje również publiczny proces znany jako KEEP, który pozwala każdemu zobaczyć i komentować oficjalne propozycje zmian w projekcie.
 * Wieloplatformowy oznacza, że język można stosować na więcej niż jednej platformie. Na przykład Kotlin można używać zarówno na Androidzie, jak i iOS.
 * Wieloparadygmatyczny oznacza, że język obsługuje więcej niż jeden paradygmat programowania. Kotlin ma potężne wsparcie zarówno dla programowania obiektowego, jak i funkcjonalnego.
@@ -32,7 +32,7 @@ Kotlin i Java mogą być łączone w jednym projekcie. Typowym scenariuszem jest
 
 Jednym z przykładów takiego projektu jest sam kompilator Kotlin. Początkowo został napisany w Javie, ale coraz więcej plików było migrowanych do Kotlin, gdy stał się wystarczająco stabilny. Ten proces trwa już od lat; w chwili pisania tej książki, projekt kompilatora Kotlin wciąż zawiera około 10% kodu Java.
 
-Teraz, gdy zrozumieliśmy związek między Kotlinem a Javą, czas obalić pewne nieporozumienia. Wielu widzi Kotlin jako warstwę cukru składniowego na wierzchu Javy, ale to nieprawda. Kotlin to inny język niż Java. Ma swoje własne konwencje, praktyki oraz funkcjonalności, których Java nie posiada, jak możliwości wieloplatformowe i korutyny. Nie musisz znać Javy, aby zrozumieć Kotlin. Moim zdaniem Kotlin to lepszy pierwszy język niż Java. Juniorzy Kotlin nie muszą znać metody `equals` ani wiedzieć, jak ją nadpisywać. Wystarczy, że rozumieją równość klas i klas danych[^01_4]. Nie muszą uczyć się pisać getterów i setterów ani implementować wzorca singletonu czy buildera. Kotlin ma niższy próg wejścia niż Java i nie potrzebuje platformy JVM.
+Teraz, gdy zrozumieliśmy związek między Kotlinem a Javą, czas obalić pewne nieporozumienia. Wielu widzi Kotlin jako warstwę cukru składniowego na wierzchu Javy, ale to nieprawda. Kotlin to inny język niż Java. Ma swoje własne konwencje, praktyki oraz funkcjonalności, których Java nie posiada, jak możliwości wieloplatformowe i korutyny. Nie musisz znać Javy, aby zrozumieć Kotlin. Moim zdaniem Kotlin to lepszy pierwszy język niż Java. Juniorzy Kotlin nie muszą znać metody `equals` ani wiedzieć, jak ją nadpisywać. Wystarczy, że rozumieją równość klas i klas danych[^01_4]. Nie muszą uczyć się pisać getterów i setterów ani implementować wzorca singletonu czy buildera. Kotlin ma niższy próg wejścia niż Java i nie potrzebuje platformy JVM, gdyż można używać go na platformie JavaScript czy natywnie.
 
 ### Środowisko IDE dla Kotlin
 
@@ -50,11 +50,11 @@ Coraz więcej projektów wykorzystuje fakt, że Kotlin może być kompilowany dl
 
 Warto również wspomnieć o Jetpack Compose, który jest zestawem narzędzi do budowania natywnych interfejsów użytkownika w Kotlin. Został początkowo opracowany dla Androida, ale wykorzystuje możliwości wieloplatformowe Kotlina i może być również używany do tworzenia stron internetowych, aplikacji na komputery stacjonarne, aplikacji na iOS i innych celów[^01_3].
 
-Wielu programistów używa języka Kotlin do tworzenia front-endu, głównie z wykorzystaniem React, a także rośnie społeczność naukowców danych korzystających z Kotlina.
+Coraz więcej programistów używa Kotlina do przetwarzania danych i analityki. Istnieją też osoby używające go do tworzenia stron webowych, głównie z wykorzystaniem Kotlin React.
 
 Jak widać, już teraz można zrobić wiele rzeczy w języku Kotlin, a z każdym rokiem pojawia się coraz więcej możliwości. Jestem pewien, że znajdziesz dobre sposoby na zastosowanie swojej nowej wiedzy po przeczytaniu tej książki.
 
 [^01_1]: Źródło: https://techcrunch.com/2022/08/18/five-years-later-google-is-still-all-in-on-kotlin/
 [^01_2]: Źródło: https://developer.android.com/kotlin/first
 [^01_3]: W chwili obecnej dojrzałość tych celów różni się.
-[^01_4]: Zostanie to wyjaśnione w rozdziale *Klasy danych*.
+[^01_4]: Zostanie to wyjaśnione w rozdziale *Data klasy*.

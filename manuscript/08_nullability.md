@@ -1,4 +1,4 @@
-## Możliwość wystąpienia wartości null
+## Nullowalność
 
 Kotlinie powstał jako rozwiązanie problemów Javy, a największym problemem w Javie jest możliwość wystąpienia wartości null. W Javie, jak w wielu innych językach, każda zmienna może przyjmować wartość `null`. Każde wywołanie na wartości `null` prowadzi do słynnego `NullPointerException` (NPE). Jest to wyjątek nr 1 w większości projektów Javie[^08_0]. Jest tak powszechny, że często nazywany jest "błędem wartym miliard dolarów" po słynnym przemówieniu Sir Charlesa Antony'ego Richarda Hoare'a, który powiedział: "Nazywam to moim błędem wartym miliard dolarów. Był to wynalazek null reference w 1965 roku... Doprowadziło to do niezliczonych błędów, podatności i awarii systemów, które przez ostatnie czterdzieści lat prawdopodobnie spowodowały straty rzędu miliarda dolarów".
 
