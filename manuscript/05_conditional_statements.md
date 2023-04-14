@@ -453,7 +453,7 @@ fun lengthIfString(a: Any): Int {
 }
 ```
 
-Wewnątrz predykatu warunku if sprawdziliśmy, czy `a` jest typu `String`. Ciało tego wyrażenia zostanie wykonane tylko wtedy, gdy sprawdzenie typu zakończy się powodzeniem. Dlatego `a` jest typu `String` wewnątrz tego bloku, dlatego możemy sprawdzić jego długość. Taka konwersja, z `Any` na `String`, jest wykonana niejawnie przez kompilator Kotlin. Może się to zdarzyć tylko wtedy, gdy Kotlin jest pewien, że żaden inny wątek nie może zmienić naszej właściwości, więc kiedy jest to stała lub lokalna zmienna. Nie zadziała to dla nie-lokalnych właściwości `var`, ponieważ w takich przypadkach nie ma gwarancji, że nie zostały one zmodyfikowane między sprawdzeniem a użyciem (np. przez inny wątek).
+Wewnątrz predykatu warunku if sprawdziliśmy, czy `a` jest typu `String`. Ciało tego wyrażenia zostanie wykonane tylko wtedy, gdy sprawdzenie typu zakończy się powodzeniem. Dlatego `a` jest typu `String` wewnątrz tego bloku, dlatego możemy sprawdzić jego długość. Taka konwersja, z `Any` na `String`, jest wykonana niejawnie przez kompilator Kotlin. Może się to zdarzyć tylko wtedy, gdy Kotlin jest pewien, że żaden inny wątek nie może zmienić naszej właściwości, więc kiedy jest to stała lub lokalna zmienna. Nie zadziała to dla nielokalnych właściwości `var`, ponieważ w takich przypadkach nie ma gwarancji, że nie zostały one zmodyfikowane między sprawdzeniem a użyciem (np. przez inny wątek).
 
 ```kotlin
 var obj: Any = "AAA"
