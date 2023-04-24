@@ -4,9 +4,9 @@ Kotlin to niesamowity język wieloplatformowy, głównie dzięki swojej czytelne
 
 ### Dla kogo jest ta książka?
 
-Ta książka jest dedykowana programistom. Zakładam, że wszyscy programiści wiedzą, czym są funkcje, instrukcje warunkowe if czy ciągi znaków. Niemniej jednak staram się wyjaśnić (przynajmniej w skrócie) wszystkie rzeczy, które mogą nie być jasne dla wszystkich programistów, takie jak klasy, enumy czy listy. Na pewno będzie to dobra ksiżka dla osób używających C, JavaScript czy Matlaba.
+Ta książka jest dedykowana programistom. Zakładam, że wszyscy programiści wiedzą, czym są funkcje, instrukcje warunkowe if czy ciągi znaków. Niemniej jednak staram się wyjaśnić (przynajmniej w skrócie) wszystkie rzeczy, które mogą nie być jasne dla wszystkich programistów, takie jak klasy, enumy czy listy. Na pewno będzie to dobra książka dla osób używających C, JavaScript czy Matlaba.
 
-Ponieważ większość programistów piszacych w Kotlinie ma doświadczenie w Javie, czasami odnoszę się do niej i jej platformy, oraz od czasu do czasu przedstawiam elementy specyficzne dla JVM. Za każdym razem, gdy to robię, staram się wyraźnie to zaznaczyć. Zakładam, że niektórzy czytelnicy mogą być głównie zainteresowani używaniem Kotlin/JS lub Kotlin/Native, więc wszystko, co nie jest opisane jako specyficzne dla Javy, powinno być dla nich użyteczne. 
+Ponieważ większość programistów piszących w Kotlinie ma doświadczenie w Javie, czasami odnoszę się do niej i jej platformy, oraz od czasu do czasu przedstawiam elementy specyficzne dla JVM. Za każdym razem, gdy to robię, staram się wyraźnie to zaznaczyć. Zakładam, że niektórzy czytelnicy mogą być głównie zainteresowani używaniem Kotlin/JS lub Kotlin/Native, więc wszystko, co nie jest opisane jako specyficzne dla Javy, powinno być dla nich użyteczne. 
  
 ### Co zostanie omówione?
 
@@ -29,11 +29,7 @@ Ta książka nie omawia funkcyjnych cech Kotlina, takich jak wyrażenia lambda c
 
 ### Język użyty w książce
 
-Książka została pierwotnie przetłumaczona z zachowaniem formalnie poprawmych tłumaczeń pojęć technicznych. I tak "string" został przetłumaczony na "łańcuch znaków", a "data class" na "klasę danych". W czasie poprawek uświadomiłem sobię jednak, że nie jest to język, do jakiego większość programistów przywykła. My mówimy o "stringach" i "data klasach". Poruszyłem ten temat z kilkoma osobami i większość uważała polskie tłumaczenia książek za nieczytelne, właśnie poprzez użyte tłumaczenia technicznych pojęć. Zadecydowałem się więc w tej książce postawić na pragmatyzm i jak najbardziej oddać język jakim komunikuję się jako programista. Oznacza to, że będę używać spolszczeń angielskich pojęć, czyli będę mówił o stringach, data klasach, enumach, sealed klasach, itd.
-
-### Język użyty w książce
-
-Książka została pierwotnie przetłumaczona z zachowaniem formalnie poprawmych tłumaczeń pojęć technicznych. I tak "string" został przetłumaczony na "łańcuch znaków", a "data class" na "klasę danych". W czasie poprawek, uświadomiłem sobię jednak, że nie jest to język do jakiego większość programistów przywykła. My mówimy o "stringach" i "data klasach". Poruszyłem ten temat z kilkoma osobami i większość uważała polskie tłumaczenia książek za nieczytelne, właśnie poprzez użyte tłumaczenia technicznych pojęć. Zadecydowałem się więc w tej książce postawić na pragmatyzm i jak najbardziej oddać język jakim komunikuję się jako programista. Oznacza to, że będę używać spolszczeń angielskich pojęć, czyli będę mówił o stringach, data klasach, enumach, sealed klasach, itd.
+Książka została pierwotnie przetłumaczona z zachowaniem formalnie poprawnych tłumaczeń pojęć technicznych. I tak "string" został przetłumaczony na "łańcuch znaków", a "data class" na "klasę danych". W czasie poprawek uświadomiłem sobie jednak, że nie jest to język, do jakiego większość programistów przywykła. My mówimy o "stringach" i "data klasach". Poruszyłem ten temat z kilkoma osobami i większość uważała polskie tłumaczenia książek za nieczytelne, właśnie poprzez użyte tłumaczenia technicznych pojęć. Zadecydowałem się więc w tej książce postawić na pragmatyzm i jak najbardziej oddać język, jakim komunikuję się jako programista. Oznacza to, że będę używać spolszczeń angielskich pojęć, czyli będę mówił o stringach, data klasach, enumach, sealed klasach, itd.
 
 ### Seria Kotlin dla programistów
 
@@ -46,7 +42,7 @@ Ta książka oraz moje dwie inne książki, *Kotlin Korutyny* i *Efektywny Kotli
 
 ### Moja historia
 
-Moja historia z Kotline zaczęła się w 2015 roku, gdy pracowałem jako programista Android w Javie. Byłem dość sfrustrowany całym tym powtarzalnym kodem, takim jak gettery i settery dla każdego pola, oraz niemal identycznymi metodami `equals`, `toString` i `hashCode`, które często powtarzają się w wielu klasach. Wtedy znalazłem Kotlina na stronie JetBrains i tak mnie zafascynował ten język, że każdą wolną chwilę poświęcałem na jego eksplorację. Wkrótce potem dostałem pracę jako programista Kotlina i zatopiłem się w społeczności. Teraz już od ponad siedmiu lat zawodowo używam Kotlina, w trakcie których opublikowałem setki artykułów o tym języku i na powiązane tematy. Opublikowałem też kilka książek oraz przeprowadziłem ponad sto warsztatów. Stałem się oficjalnym partnerem JetBrains w nauczaniu Kotlina oraz Google Developer Expert w Kotlinie. Podczas tych wszystkich doświadczeń zgromadziłem dużo wiedzy, więc postanowiłem wyrazić ją w postaci serii książek, którą nazywam *Kotlin dla programistów*.
+Moja historia z Kotlinem zaczęła się w 2015 roku, gdy pracowałem jako programista Android w Javie. Byłem dość sfrustrowany całym tym powtarzalnym kodem, takim jak gettery i settery dla każdego pola, oraz niemal identycznymi metodami `equals`, `toString` i `hashCode`, które często powtarzają się w wielu klasach. Wtedy znalazłem Kotlina na stronie JetBrains i tak mnie zafascynował ten język, że każdą wolną chwilę poświęcałem na jego eksplorację. Wkrótce potem dostałem pracę jako programista Kotlina i zatopiłem się w społeczności. Teraz już od ponad siedmiu lat zawodowo używam Kotlina, w trakcie których opublikowałem setki artykułów o tym języku i na powiązane tematy. Opublikowałem też kilka książek oraz przeprowadziłem ponad sto warsztatów. Stałem się oficjalnym partnerem JetBrains w nauczaniu Kotlina oraz Google Developer Expert w Kotlinie. Podczas tych wszystkich doświadczeń zgromadziłem dużo wiedzy, więc postanowiłem wyrazić ją w postaci serii książek, którą nazywam *Kotlin dla programistów*.
 
 ### Konwencje kodu
 
@@ -78,7 +74,7 @@ fun main() {
 {width: 25%, float: left, }
 ![](Matthias.jpg)
 
-**Matthias Schenk** rozpoczął swoją karierę z Javą ponad dziesięć lat temu, głównie w ekosystemie Spring/Spring Boot. Osiemnaście miesięcy temu przeszedł na Kotlin i od tego czasu stał się wielkim fanem pracy z natywnymi frameworkami Kotlina, takimi jak Koin, Ktor i Exposed.
+**Matthias Schenk** rozpoczął swoją karierę z Javą ponad dziesięć lat temu, głównie w ekosystemie Spring/Spring Boot. Osiemnaście miesięcy temu przeszedł na Kotlina i od tego czasu stał się wielkim fanem pracy z natywnymi frameworkami Kotlina, takimi jak Koin, Ktor i Exposed.
 
 {pagebreak}
 
@@ -92,6 +88,6 @@ fun main() {
 
 **Emanuele Papa** jest pasjonatem Androida i fascynuje go od 2010 roku: im więcej się uczy, tym bardziej chce dzielić się swoją wiedzą z innymi, dlatego założył własnego bloga. W swojej obecnej roli jako Senior Android Developer w Zest One skupia się na Kotlin Multiplatform Mobile: już wygłosił kilka prelekcji na ten temat.
 
-**Roman Kamyshnikov**, doktor inżynierii, jest programistą Androida, który rozpoczął swoją karierę z Javą, ale przeszedł na Kotlin na początku 2020 roku. Jego zainteresowania zawodowe obejmują wzorce architektury, TDD, programowanie funkcyjne oraz Jetpack Compose. Autor kilku artykułów na temat Androida i Kotlin Coroutines.
+**Roman Kamyshnikov**, doktor inżynierii, jest programistą Androida, który rozpoczął swoją karierę z Javą, ale przeszedł na Kotlina na początku 2020 roku. Jego zainteresowania zawodowe obejmują wzorce architektury, TDD, programowanie funkcyjne oraz Jetpack Compose. Autor kilku artykułów na temat Androida i Kotlin Coroutines.
 
 **Grigory Pletnev** jest inżynierem oprogramowania od 2000 roku, głównie w dziedzinie systemów wbudowanych. Dołączył do społeczności programistów Androida w 2010 roku. Zetknąwszy się z Kotlinem w 2017 roku, zaczął używać go w projektach hobbystycznych, stopniowo migrując projekty Harman Connected Services i ich klientów na Kotlina. Pasjonuje się również językami, żeglarstwem i produkcją miodu pitnego.
