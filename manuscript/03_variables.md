@@ -1,6 +1,6 @@
 ## Zmienne
 
-Aby zadeklarować zmienną w Kotlin, zaczynamy od słowa kluczowego `val` lub `var`, następnie podajemy nazwę zmiennej, znak równości i wartość początkową.
+Aby zadeklarować zmienną w Kotlinie, zaczynamy od słowa kluczowego `val` lub `var`, następnie podajemy nazwę zmiennej, znak równości i wartość początkową.
 * Słowo kluczowe `var` (od słowa "variable" czyli "zmienna") definiuje *zmienną do odczytu i zapisu* i jest używane do definiowania zmiennych, do których zawsze możesz przypisać inną wartość. 
 * Słowo kluczowe `val` (od słowa "value" czyli "wartość") definiuje *zmienne tylko do odczytu* i jest używane do definiowania wartości, któych wartości określa się tylko raz (choć jeśli wartość ta jest mutowalna, to może się ona wciąż zmienić). 
 
@@ -10,7 +10,7 @@ fun main() {
    var b = "ABC"
    println(a) // 10
    println(b) // ABC
-   // a = 12 nie jest możliwe, ponieważ a jest tylko do odczytu!
+   // a = 12 - ponowne przypisanie nie jest możliwe, ponieważ `a` jest tylko do odczytu!
    b = "CDE"
    println(b) // CDE
 }
@@ -49,9 +49,9 @@ fun main() {
 }
 ```
 
-Możemy założyć, że zmienna powinna być zwykle zainicjalizowana przy użyciu znaku równości po jej deklaracji (jak w `val a = 10`). Co więć może znajdować się po prawej stronie znaku równości? Może to być dowolne wyrażenie, tj. fragment kodu zwracający wartość. Oto najczęstsze rodzaje wyrażeń w języku Kotlin:
+Możemy założyć, że zmienna powinna być zwykle zainicjalizowana przy użyciu znaku równości po jej deklaracji (jak w `val a = 10`). Co więc może znajdować się po prawej stronie znaku równości? Może to być dowolne wyrażenie, tj. fragment kodu zwracający wartość. Oto najczęstsze rodzaje wyrażeń w języku Kotlin:
 * wartość dosłowna, jak `1` czy `"ABC"`[^03_2],
-* instrukcja warunkowa użyta jako wyrażenie, jak wyrażenie if, wyrażenie when czy wyrażenie try-catch[^03_3].
+* instrukcja warunkowa użyta jako wyrażenie, jak wyrażenie `if`, wyrażenie `when` czy wyrażenie `try-catch`[^03_3].
 * wywołanie konstruktora[^03_4],
 * wywołanie funkcji[^03_5],
 * wyrażenie obiektu lub użycie deklaracji obiektu[^03_6],
@@ -63,7 +63,7 @@ Mamy wiele do omówienia, więc zacznijmy od wartości dosłownych.
 [^03_2]: Wartości dosłowne oraz typy podstawowe omówione są w kolejnym rozdziale.
 [^03_3]: Instrukcje warunkowe omówione są w rozdziale *Instrukcje warunkowe*.
 [^03_4]: Konstruktory omówione są w rozdziale *Klasy*.
-[^03_5]: Wszystkie funkcje w języku Kotlin zwracają jakąś wartość, więc wszystkie mogą być użyte po prawej stronie przypisania zmiennej. Funkcje omówione są w rozdziale *Funkcje*.
+[^03_5]: Wszystkie funkcje w Kotlinie zwracają jakąś wartość, więc wszystkie mogą być użyte po prawej stronie przypisania zmiennej. Funkcje omówione są w rozdziale *Funkcje*.
 [^03_6]: Wyrażenia obiektu i deklaracja obiektu omówione są w rozdziale *Obiekty*.
 [^03_7]: Literały funkcyjne omówione są w książce *Funkcyjny Kotlin* w rozdziałach *Funkcje anonimowe*, *Wyrażenia lambda* i *Referencje do funkcji*.
 [^03_8]: Rodzaje referencji do elementów omówione są w książce *Zaawansowany Kotlin* w rozdziale *Refleksja*.
