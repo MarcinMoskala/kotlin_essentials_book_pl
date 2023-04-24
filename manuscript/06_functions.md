@@ -87,12 +87,13 @@ fun main() {
 }
 ```
 
-### Functions on all levels
 
-Kotlin allows us to define functions on many levels, but this isn’t very obvious as Java only allows functions inside classes. In Kotlin, we can define:
-* functions in files outside any classes, called **top-level functions**,
-* functions inside classes or objects, called **member functions** (they are also called **methods**),
-* functions inside functions, called **local functions** or **nested functions**.
+### Funkcje na wszystkich poziomach
+
+Kotlin pozwala nam definiować funkcje na wielu poziomach, ale nie jest to oczywiste, ponieważ Java pozwala na definiowanie funkcji tylko w klasach. W Kotlinie możemy zdefiniować:
+* funkcje w plikach, poza jakąkolwiek klasą, nazywane **funkcjami na najwyższym poziomie**,
+* funkcje wewnątrz klas lub obiektów, nazywane **funkcjami członkowskimi** (nazywane są również **metodami**),
+* funkcje wewnątrz funkcji, nazywane **funkcjami lokalnymi** lub **funkcjami zagnieżdżonymi**.
 
 ```kotlin
 // Top-level function
