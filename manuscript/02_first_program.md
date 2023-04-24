@@ -10,7 +10,7 @@ fun main() {
 
 Niewiele potrzeba, prawda? Nie potrzebujemy klas (jak w Javie), żadnych obiektów (jak `console` w JavaScripcie) ani warunków (jak w Pythonie). Potrzebujemy funkcji `main` oraz wywołania funkcji `println` z jakimś tekstem[^02_0].
 
-To jest najbardziej popularny (choć nie jedyna) wariant funkcji "main". Jeśli potrzebujemy argumentów, możemy dołączyć parametr typu `Array<String>`:
+To jest najbardziej popularny (choć nie jedyny) wariant funkcji "main". Jeśli potrzebujemy argumentów, możemy dołączyć parametr typu `Array<String>`:
 
 ```kotlin
 fun main(args: Array<String>) {
@@ -64,7 +64,7 @@ Jeśli zdecydujesz się przetestować lub przećwiczyć materiał z tej książk
 
 W większości moich warsztatów używałem tego szablonu setki razy. Kiedy tylko chcę pokazać coś nowego z kodowaniem na żywo, otwieram plik "Playground.kt", zaznaczam całą jego zawartość (Ctrl/command + A), wpisuję "main", potwierdzam szablon dynamiczny klawiszem Enter i mam idealną przestrzeń do pokazania, jak coś działa.
 
-Polecam abyś przetestował to teraz. Otwórz dowolny projekt Kotlin (najlepiej, jeśli masz dedykowany projekt do zabawy z Kotlinem), utwórz nowy plik (możesz go nazwać "Test" lub "Playground") i utwórz funkcję `main` szablonem dynamicznym "maina". Użyj funkcji `print` z jakimś tekstem i uruchom kod przyciskiem "Uruchom".
+Polecam, abyś przetestował to teraz. Otwórz dowolny projekt Kotlin (najlepiej, jeśli masz dedykowany projekt do zabawy z Kotlinem), utwórz nowy plik (możesz go nazwać "Test" lub "Playground") i utwórz funkcję `main` szablonem dynamicznym "maina". Użyj funkcji `print` z jakimś tekstem i uruchom kod przyciskiem "Uruchom".
 
 ### Co kryje się pod maską na JVM?
 
@@ -96,7 +96,7 @@ To świetne miejsce dla każdego, kto lubi czytać bajtkod JVM. Ponieważ nie ws
 
 Ten kod ujawnia, że nasza funkcja `main` na JVM staje się statyczną funkcją wewnątrz klasy o nazwie `PlaygroundKt`. Skąd pochodzi ta nazwa? Spróbuj zgadnąć. Tak, domyślnie jest to nazwa pliku z sufiksem "Kt". To samo dzieje się ze wszystkimi innymi funkcjami i właściwościami zdefiniowanymi poza klasami na JVM. Jeśli chcielibyśmy wywołać naszą funkcję `main` z kodu Java, możemy wywołać `PlaygroundKt.main({})`.
 
-Nazwę `PlaygroundKt` można zmienić, dodając adnotację `@file:JvmName("NewName")` na górze pliku[^02_6]. Nie wpłynie to na użucie tych elememtów z języka Kotlin, ale zmienia nazwę klasy gdy używana jest z innych języków JVM. Po tej zmianie, moglibyśmy wywołać funkcję `main` z kodu Java jako `NewName.main({})`.
+Nazwę `PlaygroundKt` można zmienić, dodając adnotację `@file:JvmName("NewName")` na górze pliku[^02_6]. Nie wpłynie to na użycie tych elementów z języka Kotlin, ale zmienia nazwę klasy, gdy używana jest z innych języków JVM. Po tej zmianie moglibyśmy wywołać funkcję `main` z kodu Java jako `NewName.main({})`.
 
 Jeśli masz doświadczenie z Java, zapamiętaj to narzędzie, ponieważ może pomóc Ci zrozumieć:
 - Jak działa kod Kotlin na niskim poziomie.
