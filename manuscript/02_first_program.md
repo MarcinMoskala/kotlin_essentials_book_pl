@@ -66,9 +66,9 @@ W większości moich warsztatów używałem tego szablonu setki razy. Kiedy tylk
 
 Polecam, abyś przetestował to teraz. Otwórz dowolny projekt Kotlin (najlepiej, jeśli masz dedykowany projekt do zabawy z Kotlinem), utwórz nowy plik (możesz go nazwać "Test" lub "Playground") i utwórz funkcję `main` szablonem dynamicznym "maina". Użyj funkcji `print` z jakimś tekstem i uruchom kod przyciskiem "Uruchom".
 
-### Co kryje się pod maską na JVM?
+### Co kryje się pod maską JVM?
 
-Najważniejszym targetem Kotlin jest JVM (Java Virtual Machine). Na JVM każdy element musi znajdować się w klasie. Możesz zatem zastanawiać się, jak możliwe jest, że nasza funkcja "main" może być uruchomiona w JVM, jeśli nie jest w żadnej klasie. Spróbujmy to wyjaśnić. Po drodze nauczymy się, jak sprawdzić, jak nasz kod Kotlin wyglądałby, gdyby był napisany w Java. Ta możliwość jest niesamowitą pomocą przy nauce Kotlina.
+Najważniejszym targetem Kotlin jest JVM (Java Virtual Machine). W JVM każdy element musi znajdować się w klasie. Możesz zatem zastanawiać się, jak możliwe jest, że nasza funkcja "main" może być uruchomiona w JVM, jeśli nie jest w żadnej klasie. Spróbujmy to wyjaśnić. Po drodze nauczymy się, jak sprawdzić, jak nasz kod Kotlin wyglądałby, gdyby był napisany w Java. Ta możliwość jest niesamowitą pomocą przy nauce Kotlina.
 
 Zacznijmy od otwarcia lub uruchomienia projektu Kotlin w IntelliJ lub Android Studio. Stwórz nowy plik Kotlin o nazwie "Playground". W środku tego pliku użyj szablonu dynamicznego "maina" aby utworzyć główną funkcję z argumentami i dodać `println("Hello, World")` w środku.
 
@@ -94,7 +94,7 @@ To świetne miejsce dla każdego, kto lubi czytać bajtkod JVM. Ponieważ nie ws
 {width: 100%}
 ![](hello_world_decompiled.png)
 
-Ten kod ujawnia, że nasza funkcja `main` na JVM staje się statyczną funkcją wewnątrz klasy o nazwie `PlaygroundKt`. Skąd pochodzi ta nazwa? Spróbuj zgadnąć. Tak, domyślnie jest to nazwa pliku z sufiksem "Kt". To samo dzieje się ze wszystkimi innymi funkcjami i właściwościami zdefiniowanymi poza klasami na JVM. Jeśli chcielibyśmy wywołać naszą funkcję `main` z kodu Java, możemy wywołać `PlaygroundKt.main({})`.
+Ten kod ujawnia, że nasza funkcja `main` w JVM staje się statyczną funkcją wewnątrz klasy o nazwie `PlaygroundKt`. Skąd pochodzi ta nazwa? Spróbuj zgadnąć. Tak, domyślnie jest to nazwa pliku z sufiksem "Kt". To samo dzieje się ze wszystkimi innymi funkcjami i właściwościami zdefiniowanymi poza klasami na JVM. Jeśli chcielibyśmy wywołać naszą funkcję `main` z kodu Java, możemy wywołać `PlaygroundKt.main({})`.
 
 Nazwę `PlaygroundKt` można zmienić, dodając adnotację `@file:JvmName("NewName")` na górze pliku[^02_6]. Nie wpłynie to na użycie tych elementów z języka Kotlin, ale zmienia nazwę klasy, gdy używana jest z innych języków JVM. Po tej zmianie moglibyśmy wywołać funkcję `main` z kodu Java jako `NewName.main({})`.
 

@@ -452,7 +452,7 @@ class User(
 )
 ```
 
-Wynik kompilacji jest praktycznie taki sam. Gettery i konstruktory są obecne. Jeśli w to nie wierzysz, sprawdź sam (jak przedstawiono w sekcji *Co kryje się pod maską na JVM?* w rozdziale *Twój pierwszy program w Kotlin*). Kotlinie to zwięzły, ale potężny język.
+Wynik kompilacji jest praktycznie taki sam. Gettery i konstruktory są obecne. Jeśli w to nie wierzysz, sprawdź sam (jak przedstawiono w sekcji *Co kryje się pod maską JVM?* w rozdziale *Twój pierwszy program w Kotlin*). Kotlinie to zwięzły, ale potężny język.
 
 ### Klasy wewnętrzne
 

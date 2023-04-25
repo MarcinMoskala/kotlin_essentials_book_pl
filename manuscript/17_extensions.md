@@ -70,7 +70,7 @@ Funkcje rozszerzenia zachowują się bardzo podobnie do funkcji elementów. Kied
 
 ### Funkcje rozszerzenia pod maską
 
-Aby zrozumieć funkcje rozszerzenia, użyjmy ponownie opcji "Narzędzia > Kotlin > Pokaż bajtkod Kotlin" i "Dekompiluj" (jak wyjaśniono w rozdziale *Twój pierwszy program w Kotlin* w sekcji *Co kryje się pod maską na JVM?*). Skompilujemy i zdekompilujemy na Java naszą definicję funkcji `usun` oraz jej wywołanie:
+Aby zrozumieć funkcje rozszerzenia, użyjmy ponownie opcji "Narzędzia > Kotlin > Pokaż bajtkod Kotlin" i "Dekompiluj" (jak wyjaśniono w rozdziale *Twój pierwszy program w Kotlin* w sekcji *Co kryje się pod maską JVM?*). Skompilujemy i zdekompilujemy na Java naszą definicję funkcji `usun` oraz jej wywołanie:
 
 ```kotlin
 fun String.usun(wartosc: String) = this.replace(wartosc, "")
