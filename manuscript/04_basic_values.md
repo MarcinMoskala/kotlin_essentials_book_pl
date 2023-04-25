@@ -13,15 +13,15 @@ W tym rozdziale poznamy podstawowe typy języka Kotlin i ich literały:
 * znaki (`Char`),
 * stringi(`String`).
 
-W Kotlin istnieją także tablice, który zostaną omówione w rozdziale *Kolekcje*.
+W Kotlinie istnieją także tablice, który zostaną omówione w rozdziale *Kolekcje*.
 
-W Kotlin wszystkie wartości są traktowane jako obiekty (nie ma typów prymitywnych), więc wszystkie mają metody, a ich typy mogą być używane jako argumenty typów generycznych (to zostanie omówione w rozdziale *Generyki*). Typy reprezentujące liczby, wartości logiczne i znaki mogą być zoptymalizowane przez kompilator Kotlin i używane jako typy prymitywne, ale ta optymalizacja nie ma wpływu na to jak wygląda nasz kod, dlatego nie musisz nawet o tym myśleć.
+W Kotlinie wszystkie wartości są traktowane jako obiekty (nie ma typów prymitywnych), więc wszystkie mają metody, a ich typy mogą być używane jako argumenty typów generycznych (to zostanie omówione w rozdziale *Generyki*). Typy reprezentujące liczby, wartości logiczne i znaki mogą być zoptymalizowane przez kompilator Kotlina i używane jako typy prymitywne, ale ta optymalizacja nie ma wpływu na to jak wygląda nasz kod, dlatego nie musisz nawet o tym myśleć.
 
 Zacznijmy omawiać podstawowe typy i literały w języku Kotlin, jeden po drugim.
 
 ### Liczby
 
-W Kotlin istnieje szereg typów służących do reprezentowania liczb. Mogą być one podzielone na te reprezentujące liczby całkowite (bez części dziesiętnej) oraz te reprezentujące liczby zmiennoprzecinkowe (z częścią dziesiętną). W tych grupach różnica polega na liczbie bitów używanych do reprezentowania tych liczb, co determinuje możliwy rozmiar liczby i precyzję.
+W Kotlinie istnieje szereg typów służących do reprezentowania liczb. Mogą one być podzielone na te reprezentujące liczby całkowite (bez części dziesiętnej) oraz te reprezentujące liczby zmiennoprzecinkowe (z częścią dziesiętną). W tych grupach różnica polega na liczbie bitów używanych do reprezentowania tych liczb, co determinuje możliwy rozmiar liczby i precyzję.
 
 Do reprezentacji liczb całkowitych, używamy `Int`, `Long`, `Byte` i `Short`.
 
@@ -43,15 +43,15 @@ Zwykła liczba bez kropki dziesiętnej jest interpretowana jako `Int`. Zwykła l
 
 ![](05_int_double.png)
 
-Możesz utworzyć `Long`, dodając przyrostek `L` po liczbie. `Long` jest również używany dla literałów liczbowych, które są zbyt duże dla `Int`.
+Możesz utworzyć `Long`, dodając sufiks `L` po liczbie. `Long` jest również używany dla literałów liczbowych, które są zbyt duże dla `Int`.
 
 ![](05_long.png)
 
-Podobnie, możesz utworzyć `Float`, kończąc liczbę przyrostkiem `F` lub `f`.
+Podobnie, możesz utworzyć `Float`, kończąc liczbę sufiksem `F` lub `f`.
 
 ![](05_float.png)
 
-Nie ma przyrostka do tworzenia typów `Byte` ani `Short`. Jednak liczba wyraźnie określona jako jeden z tych typów stworzy instancję tego typu. To samo dotyczy `Long`.
+Nie ma sufiksu do tworzenia typów `Byte` ani `Short`. Jednak liczba wyraźnie określona jako jeden z tych typów stworzy instancję tego typu. To samo dotyczy `Long`.
 
 ```kotlin
 fun main() {
@@ -276,7 +276,7 @@ fun main() {
 
 #### `BigDecimal` i `BigInteger`
 
-Wszystkie podstawowe typy w Kotlin mają ograniczony rozmiar i precyzję, co może prowadzić do nieprecyzyjnych lub błędnych wyników w specyficznych sytuacjach.
+Wszystkie podstawowe typy w Kotlinie mają ograniczony rozmiar i precyzję, co może prowadzić do nieprecyzyjnych lub błędnych wyników w specyficznych sytuacjach.
 
 ```kotlin
 fun main() {
@@ -287,7 +287,7 @@ fun main() {
 
 > Zrozummienie czemu wyniki są takie a nie inne wychodzi poza zakres tej książki, ale dla zainteresowanych, spieszę w wyjaśnieniem. W pierwszym przypadku wynik jest nieprecyzyjny, ponieważ liczby zmiennoprzecinkowe są reprezentowane w postaci binarnej, a nie dziesiętnej. W drugim przypadku wynik jest niepoprawny, ponieważ liczba całkowita jest reprezentowana przez 32 bity, a więc 2147483647 to największa możliwa liczba, a dodanie 1 powoduje jej przepełnienie i zmianę bitu reprezentującego znak na przeciwny.
 
-To standardowy kompromis w programowaniu, z którym w większości przypadków musimy się pogodzić. Jednak są przypadki, gdy potrzebujemy mieć doskonałą precyzję i nieograniczony rozmiar liczby. Na JVM, dla nieograniczonego rozmiaru liczby powinniśmy użyć `BigInteger`, który reprezentuje liczbę bez części dziesiętnej. Dla nieograniczonego rozmiaru i precyzji powinniśmy użyć `BigDecimal`, który reprezentuje liczbę mającą część dziesiętną. Oba można utworzyć za pomocą konstruktorów[^04_1], funkcji fabrycznych (takich jak `valueOf`) lub konwersji z podstawowych typów reprezentujących liczby (metody `toBigDecimal` i `toBigInteger`). Przykłady poniżej. 
+To standardowy kompromis w programowaniu, z którym w większości przypadków musimy się pogodzić. Jednak są przypadki, gdy potrzebujemy mieć doskonałą precyzję i nieograniczony rozmiar liczby. W JVM, dla nieograniczonego rozmiaru liczby powinniśmy użyć `BigInteger`, który reprezentuje liczbę bez części dziesiętnej. Dla nieograniczonego rozmiaru i precyzji powinniśmy użyć `BigDecimal`, który reprezentuje liczbę mającą część dziesiętną. Oba można utworzyć za pomocą konstruktorów[^04_1], funkcji fabrycznych (takich jak `valueOf`) lub konwersji z podstawowych typów reprezentujących liczby (metody `toBigDecimal` i `toBigInteger`). Przykłady poniżej. 
 
 ```kotlin
 import java.math.BigDecimal
@@ -359,7 +359,7 @@ W praktyce wartości logiczne są często wynikiem pewnego rodzaju porównania.
 
 #### Porównania
 
-Wartość `Boolean` często jest wynikiem porównania dwóch równości. W Kotlin sprawdzamy czy obiekty są równe używając podwójnego znaku równości `==`. Aby sprawdzić, czy dwa obiekty nie są równe, używamy znaku nierówności `!=`.
+Wartość `Boolean` często jest wynikiem porównania dwóch równości. W Kotlinie sprawdzamy czy obiekty są równe używając podwójnego znaku równości `==`. Aby sprawdzić, czy dwa obiekty nie są równe, używamy znaku nierówności `!=`.
 
 ```kotlin
 fun main() {
@@ -370,7 +370,7 @@ fun main() {
 }
 ```
 
-Liczby i wszystkie obiekty, które można porównać (tzn. implementują interfejs `Comparable`), można również porównać za pomocą `>`, `<`, `>=` i `<=`.
+Liczby i wszystkie obiekty, które można porównać (tzn. implementują interfejs `Comparable`), można również porównać za pomocą znaków `>`, `<`, `>=` i `<=`.
 
 ```kotlin
 fun main() {
@@ -394,7 +394,7 @@ fun main() {
 
 #### Operacje logiczne
 
-W Kotlin mamy trzy podstawowe operatory logiczne:
+W Kotlinie mamy trzy podstawowe operatory logiczne:
 * and `&&`, który zwraca `true`, gdy wartości po obu jego stronach są `true`; w przeciwnym razie zwraca `false`.
 * or `||`, który zwraca `true`, gdy wartość po którejkolwiek ze swoich stron jest `true`; w przeciwnym razie zwraca `false`.
 * not `!`, który zamienia `true` na `false` i `false` na `true`.
@@ -447,7 +447,7 @@ fun main() {
 
 ### Stringi
 
-Stringi to po prostu sekwencje znaków tworzące tekst. W Kotlin tworzymy stringa używając cudzysłowów `"` lub potrójnych cudzysłowów `"""`.
+Stringi to po prostu sekwencje znaków tworzące tekst. W Kotlinie tworzymy stringa używając cudzysłowów `"` lub potrójnych cudzysłowów `"""`.
 
 ```kotlin
 fun main() {
@@ -515,7 +515,7 @@ fun main() {
 }
 ```
 
-Ciągi znaków mogą zawierać wyrażenia szablonowe, czyli odniesienia do zmiannych, których wartości zostaną wstawione do stringa. Wyrażenie szablonowe zaczyna się od znaku dolara (`$`) i składa się albo z nazwy zmiennej (takiej jak `"tekst to $text"`), albo z wyrażenia w nawiasach klamrowych (takiego jak `"1 + 2 = ${1 + 2}"`).
+Ciągi znaków mogą zawierać wyrażenia szablonowe, czyli odniesienia do zmiennych, których wartości zostaną wstawione do stringa. Wyrażenie szablonowe zaczyna się od znaku dolara (`$`) i składa się albo z nazwy zmiennej (takiej jak `"tekst to $text"`), albo z wyrażenia w nawiasach klamrowych (takiego jak `"1 + 2 = ${1 + 2}"`).
 
 ```kotlin
 fun main() {
@@ -555,7 +555,7 @@ fun main() {
 }
 ```
 
-W ciągach znaków Kotlin używamy Unicode, więc możemy również zdefiniować znak Unicode, używając liczby zaczynającej się od `\u`, a następnie podając kod znaku Unicode w składni szesnastkowej.
+W ciągach znaków Kotlina używamy Unicode, możemy więc zdefiniować znak Unicode, używając liczby zaczynającej się od `\u`, a następnie podając kod znaku Unicode w składni szesnastkowej.
 
 ![](unicode.png)
 
@@ -567,7 +567,7 @@ W tym rozdziale poznaliśmy podstawowe typy używane w języku Kotlin oraz liter
 * Znaki, które są reprezentowane przez typ `Char`. Wartość znaku definiujemy za pomocą pojedynczych cudzysłowów.
 * Ciągi znaków, które służą do reprezentowania tekstu, są reprezentowane przez typ `String`. Każdy ciąg to tylko seria znaków. Ciągi znaków definiujemy wewnątrz podwójnych cudzysłowów.
 
-Mamy więc podstawy do korzystania z Kotlin. Przejdźmy do bardziej skomplikowanych struktur sterujących, które określają, jak zachowuje się nasz kod.
+Mamy więc podstawy do korzystania z Kotlina. Przejdźmy do bardziej skomplikowanych struktur sterujących, które określają, jak zachowuje się nasz kod.
 
 [^04_1]: Konstruktory zostaną omówione w rozdziale *Klasy*.
 [^04_2]: W języku angielskim istnieje rozdzielenie na operację "modulo" oraz "remainder", gdzie różnica między nimi jest w wyniku dla liczb ujemnych. Tutaj poprzez resztę z dzielenia rozumiemy operację określaną w języku angielskim jako "remainder". Tak więc reszta z dzielenia -5 przez 4 to -1, ponieważ -5 = 4 * (-1) + (-1). Wynik -5 modulo 4 to 3, ponieważ -5 = 4 * (-2) + 3. 
