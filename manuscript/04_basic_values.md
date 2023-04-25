@@ -1,6 +1,6 @@
 ## Podstawowe typy, ich literały i operacje
 
-Każdy język potrzebuje wygodnego sposobu reprezentowania podstawowych rodzajów wartości, takich jak liczby czy znaki. Wszystkie języki muszą mieć wbudowane **typy** i **literały**. Typy są używane do reprezentowania pewnych rodzajów wartości. Przykłady typów to `Int`, `Boolean` czy `String`. Literały to wbudowane notacje, które są używane do tworzenia instancji tych typów. Przykłady literałów to literał stringa, czyli po prostu tekst w cudzysłowie, czy literał całkowitoliczbowy, czyli goła liczba.
+Każdy język potrzebuje wygodnego sposobu reprezentowania podstawowych rodzajów wartości, takich jak liczby czy znaki. Wszystkie języki muszą mieć wbudowane **typy** i **literały**. Typy są używane do reprezentowania pewnych rodzajów wartości. Przykłady typów to `Int`, `Boolean` czy `String`. Literały to wbudowane notacje, które są używane do tworzenia instancji tych typów. Przykłady literałów to literał stringa, czyli po prostu tekst w cudzysłowie, czy literał całkowitoliczbowy, czyli zwykła liczba całkowita.
 
 ```kotlin
 "ABC" // literał stringa
@@ -106,7 +106,7 @@ fun main() {
 
 #### `Number` i funkcje konwersji
 
-Wszystkie podstawowe typy reprezentujące liczby są podtypem typu `Number`.
+Wszystkie podstawowe typy reprezentujące liczby należą do podtypów klasy `Number`.
 
 ```kotlin
 fun main() {
@@ -120,7 +120,7 @@ fun main() {
 }
 ```
 
-Typ `Number` określa funkcje przekształcające z bieżącej liczby na dowolny inny podstawowy typ reprezentujący liczbę.
+Klasa abstrakcyjna `Number` określa funkcje przekształcające z bieżącej liczby na dowolny inny podstawowy typ reprezentujący liczbę.
 
 ```kotlin
 abstract class Number {
@@ -149,7 +149,7 @@ fun main() {
 
 #### Operacje na liczbach
 
-Liczby w Kotlin obsługują podstawowe operacje matematyczne:
+Kotlin obsługuje podstawowe operacje matematyczne na liczbach:
 * dodawanie (`+`),
 * odejmowanie (`-`),
 * mnożenie (`*`),
@@ -191,7 +191,7 @@ fun main() {
 }
 ```
 
-Istnieje również operator reszty z dzielenia[^04_2] `%`:
+Istnieje również operator reszty z dzielenia[^04_1] `%`:
 
 ```kotlin
 fun main() {
@@ -285,9 +285,9 @@ fun main() {
 }
 ```
 
-> Zrozummienie czemu wyniki są takie a nie inne wychodzi poza zakres tej książki, ale dla zainteresowanych, spieszę w wyjaśnieniem. W pierwszym przypadku wynik jest nieprecyzyjny, ponieważ liczby zmiennoprzecinkowe są reprezentowane w postaci binarnej, a nie dziesiętnej. W drugim przypadku wynik jest niepoprawny, ponieważ liczba całkowita jest reprezentowana przez 32 bity, a więc 2147483647 to największa możliwa liczba, a dodanie 1 powoduje jej przepełnienie i zmianę bitu reprezentującego znak na przeciwny.
+> Zrozummienie dlaczego wyniki są takie, a nie inne wychodzi poza zakres tej książki, ale dla zainteresowanych spieszę w wyjaśnieniem. W pierwszym przypadku wynik jest nieprecyzyjny, ponieważ liczby zmiennoprzecinkowe są reprezentowane w postaci binarnej, a nie dziesiętnej. W drugim przypadku wynik jest niepoprawny, ponieważ liczba całkowita jest reprezentowana przez 32 bity, a więc 2147483647 to największa możliwa liczba, a dodanie 1 powoduje jej przepełnienie i zmianę bitu reprezentującego znak na przeciwny.
 
-To standardowy kompromis w programowaniu, z którym w większości przypadków musimy się pogodzić. Jednak są przypadki, gdy potrzebujemy mieć doskonałą precyzję i nieograniczony rozmiar liczby. Na JVM, dla nieograniczonego rozmiaru liczby powinniśmy użyć `BigInteger`, który reprezentuje liczbę bez części dziesiętnej. Dla nieograniczonego rozmiaru i precyzji powinniśmy użyć `BigDecimal`, który reprezentuje liczbę mającą część dziesiętną. Oba można utworzyć za pomocą konstruktorów[^04_1], funkcji fabrycznych (takich jak `valueOf`) lub konwersji z podstawowych typów reprezentujących liczby (metody `toBigDecimal` i `toBigInteger`). Przykłady poniżej. 
+To standardowy kompromis w programowaniu, z którym w większości przypadków musimy się pogodzić. Jednak są przypadki, gdy potrzebujemy mieć doskonałą precyzję i nieograniczony rozmiar liczby. Na JVM, dla nieograniczonego rozmiaru liczby powinniśmy użyć `BigInteger`, który reprezentuje liczbę bez części dziesiętnej. Dla nieograniczonego rozmiaru i precyzji powinniśmy użyć `BigDecimal`, który reprezentuje liczbę mającą część dziesiętną. Obiekty obu typów można utworzyć za pomocą konstruktorów[^04_2], funkcji fabrycznych (takich jak `valueOf`) lub konwersji z podstawowych typów reprezentujących liczby (metody `toBigDecimal` i `toBigInteger`). Przykłady poniżej. 
 
 ```kotlin
 import java.math.BigDecimal
@@ -515,7 +515,7 @@ fun main() {
 }
 ```
 
-Ciągi znaków mogą zawierać wyrażenia szablonowe, czyli odniesienia do zmiennych, których wartości zostaną wstawione do stringa. Wyrażenie szablonowe zaczyna się od znaku dolara (`$`) i składa się albo z nazwy zmiennej (takiej jak `"tekst to $text"`), albo z wyrażenia w nawiasach klamrowych (takiego jak `"1 + 2 = ${1 + 2}"`).
+Ciągi znaków mogą zawierać wyrażenia szablonowe, czyli odniesienia do zmiennych, których wartości zostaną podstawione do stringa. Wyrażenie szablonowe zaczyna się od znaku dolara (`$`) i składa się albo z nazwy zmiennej (takiej jak `"tekst to $text"`), albo z wyrażenia w nawiasach klamrowych (takiego jak `"1 + 2 = ${1 + 2}"`).
 
 ```kotlin
 fun main() {
@@ -562,12 +562,12 @@ W ciągach znaków Kotlina używamy Unicode, możemy więc zdefiniować znak Uni
 ### Podsumowanie
 
 W tym rozdziale poznaliśmy podstawowe typy używane w języku Kotlin oraz literały używane do ich tworzenia:
-* Liczby reprezentowane przez typy `Int`, `Long`, `Double`, `Float`, `Short` i `Byte` są tworzone za pomocą samych wartości liczbowych z możliwością dodania sufiksów dla dostosowania typu. Możemy definiować liczby ujemne oraz części dziesiętne. Możemy również używać podkreślników dla lepszego formatowania liczb.
+* Liczby reprezentowane przez typy `Int`, `Long`, `Double`, `Float`, `Short` i `Byte` są tworzone za pomocą samych wartości liczbowych z możliwością dodania sufiksów dla dostosowania typu. Możemy definiować liczby ujemne oraz części dziesiętne. Możemy również używać podkreślników dla lepszej czytelności liczb.
 * Wartości logiczne `true` i `false` są reprezentowane przez typ `Boolean`.
 * Znaki, które są reprezentowane przez typ `Char`. Wartość znaku definiujemy za pomocą pojedynczych cudzysłowów.
 * Ciągi znaków, które służą do reprezentowania tekstu, są reprezentowane przez typ `String`. Każdy ciąg to tylko seria znaków. Ciągi znaków definiujemy wewnątrz podwójnych cudzysłowów.
 
 Mamy więc podstawy do korzystania z Kotlina. Przejdźmy do bardziej skomplikowanych struktur sterujących, które określają, jak zachowuje się nasz kod.
 
-[^04_1]: Konstruktory zostaną omówione w rozdziale *Klasy*.
-[^04_2]: W języku angielskim istnieje rozdzielenie na operację "modulo" oraz "remainder", gdzie różnica między nimi jest w wyniku dla liczb ujemnych. Tutaj poprzez resztę z dzielenia rozumiemy operację określaną w języku angielskim jako "remainder". Tak więc reszta z dzielenia -5 przez 4 to -1, ponieważ -5 = 4 * (-1) + (-1). Wynik -5 modulo 4 to 3, ponieważ -5 = 4 * (-2) + 3. 
+[^04_1]: W języku angielskim istnieje rozdzielenie na operację "modulo" oraz "remainder", gdzie różnica między nimi jest w wyniku dla liczb ujemnych. Tutaj poprzez resztę z dzielenia rozumiemy operację określaną w języku angielskim jako "remainder". Tak więc reszta z dzielenia -5 przez 4 to -1, ponieważ -5 = 4 * (-1) + (-1). Wynik -5 modulo 4 to 3, ponieważ -5 = 4 * (-2) + 3.
+[^04_2]: Konstruktory zostaną omówione w rozdziale *Klasy*.
