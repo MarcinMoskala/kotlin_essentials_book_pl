@@ -10,7 +10,8 @@ fun main() {
    var b = "ABC"
    println(a) // 10
    println(b) // ABC
-   // a = 12 - ponowne przypisanie nie jest możliwe, ponieważ `a` jest tylko do odczytu!
+   // a = 12 - ponowne przypisanie nie jest możliwe, 
+   // ponieważ a jest tylko do odczytu!
    b = "CDE"
    println(b) // CDE
 }
