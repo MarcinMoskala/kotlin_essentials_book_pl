@@ -144,7 +144,7 @@ fun main() {
 }
 ```
 
-Dlaczego by to robić? Głównie dla czytelności. Czy zapytałbyś "Czy lodówka zawiera piwo?" czy "Czy w lodówce jest piwo?"? Użycie operatora `in` daje nam możliwość wyboru.
+Ale dlaczego to robić? Głównie dla czytelności. Czy zapytałbyś "Czy lodówka zawiera piwo?" czy "Czy w lodówce jest piwo?"? Użycie operatora `in` daje nam możliwość wyboru.
 
 Często używamy również operatora `in` razem z zakresami. Wyrażenie `1..10` generuje obiekt typu `IntRange`, który ma metodę `contains`. Dlatego można użyć `in` i zakresu, aby sprawdzić, czy liczba znajduje się w tym zakresie.
 
@@ -188,7 +188,7 @@ public interface Iterable<out T> {
 }
 ```
 
-Można zdefiniować obiekty, które można iterować, ale nie implementują interfejsu `Iterable`. `Map` jest świetnym przykładem. Nie implementuje interfejsu `Iterable`, jednak można iterować po niej używając pętli for. Jak to możliwe? Dzięki operatorowi `iterator`, który jest zdefiniowany jako funkcja rozszerzenia w bibliotece standardowej Kotlin.
+Można zdefiniować obiekty, które można iterować, ale nie implementują interfejsu `Iterable`. `Map` jest świetnym tego przykładem. Nie implementuje interfejsu `Iterable`, jednak można iterować po niej używając pętli for. Jak to możliwe? Dzięki operatorowi `iterator`, który jest zdefiniowany jako funkcja rozszerzenia w bibliotece standardowej Kotlin.
 
 ```kotlin
 // Część biblioteki standardowej Kotlin
@@ -488,7 +488,7 @@ fun main() {
 
 ### Priorytet
 
-Jaki jest wynik wyrażenia `1 + 2 * 3`? Odpowiedź brzmi `7`, a nie `9`, ponieważ w matematyce mnożymy przed dodawaniem. Mówimy, że mnożenie ma wyższy priorytet niż dodawanie.
+Jaki jest wynik wyrażenia `1 + 2 * 3`? Odpowiedź brzmi `7`, a nie `9`, ponieważ w matematyce mnożenie wykonuje się przed dodawaniem. Mówimy, że mnożenie ma wyższy priorytet niż dodawanie.
 
 Priorytet jest również niezwykle ważny w programowaniu, ponieważ gdy kompilator ocenia wyrażenie takie jak `1 + 2 == 3`, musi wiedzieć, czy powinien najpierw dodać `1` do `2`, czy porównać `2` i `3`. Poniższa tabela porównuje priorytet wszystkich operatorów, w tym tych, które można przeciążyć, i tych, których nie można.
 
@@ -530,7 +530,7 @@ fun main() {
 
 ### Podsumowanie
 
-W Kotlin używamy wielu operatorów, z których wiele można przeciążyć. Można to wykorzystać do poprawy czytelności naszego kodu. Z poznawczego punktu widzenia, używanie intuicyjnego operatora może być ogromną poprawą w porównaniu z używaniem wszędzie metod. Dlatego warto wiedzieć, jakie opcje są dostępne i być otwartym na używanie operatorów zdefiniowanych przez Kotlin stdlib, ale również warto umieć zdefiniować własne operatory.
+W Kotlinie używamy wielu operatorów, z których wiele można przeciążyć. Można to wykorzystać do poprawy czytelności naszego kodu. Z poznawczego punktu widzenia, używanie intuicyjnego operatora może być ogromną poprawą w porównaniu z używaniem wszędzie metod. Dlatego warto wiedzieć, jakie opcje są dostępne i być otwartym na używanie operatorów zdefiniowanych przez Kotlin stdlib, ale również warto umieć zdefiniować własne operatory.
 
 [^18_0]: Ten operator wcześniej nazywał się `mod`, co pochodzi od "modulo", ale teraz ta nazwa jest przestarzała. W matematyce zarówno operacje reszty, jak i modulo działają tak samo dla liczb dodatnich, ale różnica polega na liczbach ujemnych. Wynik -5 reszty 4 to -1, ponieważ -5 = 4 * (-1) + (-1). Wynik -5 modulo 4 to 3, ponieważ -5 = 4 * (-2) + 3. Operator `%` w Kotlinie implementuje zachowanie reszty, dlatego jego nazwa musiała zostać zmieniona z `mod` na `rem`.
 [^18_1]: Więcej na ten temat można znaleźć w *Effective Kotlin*, *Pozycja 12: Znaczenie operatora powinno być zgodne z nazwą funkcji* i *Pozycja 13: Używaj operatorów, aby zwiększyć czytelność*.
