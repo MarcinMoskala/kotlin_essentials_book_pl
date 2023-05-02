@@ -3,39 +3,39 @@
 Najbardziej intuicyjnym sposobem definiowania metod i właściwości jest umieszczanie ich wewnątrz klas. Takie elementy nazywane są **elementami klasy** lub, bardziej konkretnie, **funkcjami elementów** i **właściwościami elementów**.
 
 ```kotlin
-class Telefon(
+class Telephone(
     // właściwość elementu
-    val numer: String
+    val number: String
 ) {
     // funkcja elementu
-    fun dzwon() {
+    fun call() {
         print("Dzwonię do $numer")
     }
 }
 
 fun main() {
     // Użycie
-    val telefon = Telefon("123456789")
-    println(telefon.numer) // 123456789
-    telefon.dzwon() // Dzwonię do 123456789
+    val telephone = Telephone("123456789")
+    println(telephone.number) // 123456789
+    telephone.call() // Dzwonię do 123456789
 }
 ```
 
 Z drugiej strony, Kotlin pozwala na inną metodę definiowania funkcji i właściwości, które są wywoływane na instancji: rozszerzenia. **Funkcje rozszerzenia** są definiowane jak zwykłe funkcje, ale mają dodatkowy typ (i kropkę) przed nazwą funkcji. W poniższym przykładzie funkcja `dzwon` jest zdefiniowana jako funkcja rozszerzenia dla `Telefon`, więc musi być wywoływana na instancji tego typu.
 
 ```kotlin
-class Telefon(
-    val numer: String
+class Telephone(
+    val number: String
 )
 
-fun Telefon.dzwon() {
+fun Telephone.call() {
     print("Dzwonię do $numer")
 }
 
 fun main() {
     // Użycie
-    val telefon = Telefon("123456789")
-    telefon.dzwon() // Dzwonię do 123456789
+    val Telephone = telephone("123456789")
+    telephone.dzwon() // Dzwonię do 123456789
 }
 ```
 
@@ -44,10 +44,10 @@ fun main() {
 Funkcje rozszerzenia można definiować na typach, którymi nie zarządzamy, na przykład `String`. Daje nam to możliwość rozszerzania zewnętrznych interfejsów API o nasze własne funkcje.
 
 ```kotlin
-fun String.usun(wartosc: String) = this.replace(wartosc, "")
+fun String.remove(value: String) = this.replace(value, "")
 
 fun main() {
-    println("Who Framed Roger Rabbit?".usun(" "))
+    println("Who Framed Roger Rabbit?".remove(" "))
     // WhoFramedRogerRabbit?
 }
 ```
@@ -56,10 +56,10 @@ Spójrz na powyższy przykład. Zdefiniowaliśmy funkcję rozszerzenia `usun` na
 
 ```kotlin
 // jawne this
-fun String.usun(wartosc: String) = this.replace(wartosc, "")
+fun String.remove(value: String) = this.replace(value, "")
 
 // niejawne this
-fun String.usun(wartosc: String) = replace(wartosc, "")
+fun String.remove(value: String) = replace(value, "")
 ```
 
 Słowo kluczowe `this` jest znane jako **odbiorca**. Wewnątrz funkcji rozszerzenia nazywamy go **odbiorcą rozszerzenia**. Wewnątrz funkcji elementów nazywamy go **odbiorcą wysyłki**. Typ, który rozszerzamy za pomocą funkcji rozszerzenia, nazywany jest **typem odbiorcy**.
@@ -73,10 +73,10 @@ Funkcje rozszerzenia zachowują się bardzo podobnie do funkcji elementów. Kied
 Aby zrozumieć funkcje rozszerzenia, użyjmy ponownie opcji "Narzędzia > Kotlin > Pokaż bajtkod Kotlin" i "Dekompiluj" (jak wyjaśniono w rozdziale *Twój pierwszy program w Kotlin* w sekcji *Co kryje się pod maską na JVM?*). Skompilujemy i zdekompilujemy na Java naszą definicję funkcji `usun` oraz jej wywołanie:
 
 ```kotlin
-fun String.usun(wartosc: String) = this.replace(wartosc, "")
+fun String.remove(value: String) = this.replace(value, "")
 
 fun main() {
-    println("A B C".usun(" ")) // ABC
+    println("A B C".remove(" ")) // ABC
 }
 ```
 
@@ -85,14 +85,14 @@ W rezultacie powinieneś zobaczyć następujący kod:
 ```java
 public final class PlaygroundKt {
     @NotNull
-    public static final String usun(
-            @NotNull String $this$usun,
-            @NotNull String wartosc
+    public static final String remove(
+            @NotNull String $this$remove,
+            @NotNull String value
     ) {
         // sprawdzenie, czy parametry nie są nullami
         return StringsKt.replace$default(
-                $this$usun,
-                wartosc,
+                $this$remove,
+                value,
                 ""
                 // oraz wartości domyślne
         );
@@ -100,7 +100,7 @@ public final class PlaygroundKt {
 
     public static final void main(@NotNull String[] args) {
         // sprawdzenie, czy parametr nie jest nullem
-        String var1 = usun("A B C", " ");
+        String var1 = remove("A B C", " ");
         System.out.println(var1);
     }
 }
@@ -111,11 +111,11 @@ Zauważ, co stało się z typem odbiorcy: stał się parametrem. Możesz także 
 Definiując funkcję rozszerzenia, naprawdę nie dodajesz nic do klasy. To tylko cukier syntaktyczny. Porównajmy dwie następujące implementacje funkcji `usun`.
 
 ```kotlin
-fun usun(tekst: String, wartosc: String) =
-    tekst.replace(wartosc, "")
+fun remove(text: String, value: String) =
+    tekst.replace(value, "")
 
-fun String.usun(wartosc: String) =
-    this.replace(wartosc, "")
+fun String.remove(value: String) =
+    this.replace(value, "")
 ```
 
 Pod maską są niemal identyczne. Różnica polega na tym, jak Kotlin oczekuje, że będą wywoływane. Zwykłe funkcje otrzymują wszystkie swoje argumenty w zwykłych pozycjach argumentów. Funkcje rozszerzenia są wywoływane "na" wartości.
@@ -125,7 +125,7 @@ Pod maską są niemal identyczne. Różnica polega na tym, jak Kotlin oczekuje, 
 Rozszerzenie nie może przechowywać stanu, więc nie może mieć pól. Chociaż właściwości nie potrzebują pól, mogą być definiowane przez swoje metody pobierające i ustawiające. Dlatego możemy definiować właściwości rozszerzenia, jeśli nie potrzebują one pola wspierającego i są definiowane przez akcesory.
 
 ```kotlin
-val <T> List<T>.ostatniIndeks: Int
+val <T> List<T>.lastIndex: Int
     get() = size - 1
 ```
 
@@ -136,11 +136,11 @@ val Context.inflater: LayoutInflater
     get() = getSystemService(Context.LAYOUT_INFLATER_SERVICE)
     as LayoutInflater
 
-val Context.menadzerPowiadomien: NotificationManager
+val Context.notificationManager: NotificationManager
     get() = getSystemService(Context.NOTIFICATION_SERVICE)
     as NotificationManager
 
-val Context.menadzerAlarmow: AlarmManager
+val Context.alarmManager: AlarmManager
     get() = getSystemService(Context.ALARM_SERVICE)
     as AlarmManager
 ```
@@ -150,13 +150,13 @@ Właściwości rozszerzenia mogą definiować zarówno getter, jak i setter. Oto
 ```kotlin
 class User {
     // ...
-    var dataUrodzeniaMillis: Long? = null
+    var dateBirthMillis: Long? = null
 }
 
-var User.dataUrodzenia: Date?
-    get() = dataUrodzeniaMillis?.let(::Date)
+var User.dateBirth: Date?
+    get() = dateBirthMillis?.let(::Date)
     set(value) {
-        dataUrodzeniaMillis = value?.time
+        dateBirthMillis = value?.time
     }
 ```
 
