@@ -1,6 +1,6 @@
 ## Kolekcje
 
-Kolekcje to jeden z najważniejszych pojęć w programowaniu. Są to typy reprezentujące grupy elementów. W Kotlinie najważniejszymi typami kolekcji są:
+Kolekcje są jednymi z najważniejszych pojęć w programowaniu. Są to typy reprezentujące grupy elementów. W Kotlinie najważniejszymi typami kolekcji są:
 
 * `List`, który reprezentuje uporządkowaną kolekcję elementów. Te same elementy mogą wystąpić wiele razy. Elementy listy można uzyskać, używając indeksów (liczb całkowitych z zerem na początku, które odzwierciedlają pozycje elementów). Przykładem może być lista utworów w kolejce: ważna jest kolejność utworów, a każdy utwór może wystąpić w wielu miejscach.
 
@@ -204,7 +204,7 @@ fun main() {
 }
 ```
 
-Od początku Kotlinu trwają dyskusje, która z tych dwóch podejść powinna być preferowana. Pierwsze daje większą swobodę[^17_2], ale drugie jest uważane za bardziej wydajne[^17_3].
+Od początku stworzenia Kotlina trwają dyskusje, która z tych dwóch podejść powinna być preferowana. Pierwsze daje większą swobodę[^17_2], ale drugie jest uważane za bardziej wydajne[^17_3].
 
 Możesz również użyć operatora `+=` do dodawania elementu lub kolekcji do zmiennej `var`, która wskazuje na listę tylko do odczytu, lub do zmiennej `var`, która wskazuje na modyfikowalną listę.
 
@@ -627,7 +627,7 @@ fun main() {
 }
 ```
 
-Uważaj, że nie są dozwolone zduplikowane klucze; więc, gdy dodasz nową wartość z istniejącym kluczem, zastępuje ona starą wartość.
+Uważaj, ponieważ nie są dozwolone zduplikowane klucze; więc, gdy dodasz nową wartość z istniejącym kluczem, zastępuje ona starą wartość.
 
 ```kotlin
 fun main() {
@@ -722,7 +722,7 @@ fun main() {
 
 ### Korzystanie z tablic w praktyce
 
-**Tablica** to bardzo podstawowa struktura danych, która ściśle wiąże się z organizacją pamięci. Pamięć naszego komputera przypomina wielki parking, gdzie każde miejsce ma kolejny numer. Tablica to jak rezerwacja na kilka przyległych miejsc. Dzięki takiej rezerwacji łatwo iterować się po samochodach, które posiadamy. Również łatwo znaleźć samochód o konkretnym indeksie.
+**Tablica** to bardzo podstawowa struktura danych, która ściśle wiąże się z organizacją pamięci. Pamięć naszego komputera przypomina wielki parking, gdzie każde miejsce ma kolejny numer. Tablica to jak rezerwacja na kilka przyległych miejsc. Dzięki takiej rezerwacji łatwo jest iterować po samochodach, które posiadamy. Również łatwo znaleźć samochód o konkretnym indeksie.
 
 Załóżmy, że tablica zaczyna się na pozycji 1024 w pamięci, a my chcemy znaleźć element o indeksie 100 w tablicy. Wiemy również, że każdy element zajmuje 4 pozycje (tablica rezerwuje stałą ilość miejsca dla swoich elementów, która w większości przypadków to rozmiar referencji pamięci). To proste zadanie: nasz element zaczyna się na pozycji 1024 + 100 * 4 = 1424. Dostęp do elementu na określonej pozycji to bardzo prosta i wydajna operacja, co jest dużą zaletą korzystania z tablic.
 
@@ -730,7 +730,7 @@ Korzystanie z tablic bezpośrednio jest trudniejsze niż z innych rodzajów kole
 
 Tablice są również używane przez domyślne `Set` i `Map`, które stosujemy w Kotlin. Oba opierają się na algorytmie tablicy mieszającej, który musi używać tablicy, aby działać wydajnie.
 
-Ni mniej jednak, zobaczmy jak można używać tablic bezpośrednio. Tworzymy tablicę za pomocą funkcji `arrayOf`. Tworzy to instancję klasy `Array` oraz typ `Array<T>`, gdzie `T` to typ elementów. Aby uzyskać element o określonym indeksie, możemy użyć nawiasów kwadratowych lub metody `get`. Aby zmodyfikować element w określonej pozycji, można użyć nawiasów kwadratowych lub metody `set`. Można również uzyskać rozmiar tablicy, używając właściwości `size` lub iterując się po tablicy za pomocą pętli for.
+Niemniej jednak, zobaczmy jak można używać tablic bezpośrednio. Tworzymy tablicę za pomocą funkcji `arrayOf`. Tworzy to instancję klasy `Array` oraz typ `Array<T>`, gdzie `T` to typ elementów. Aby uzyskać element o określonym indeksie, możemy użyć nawiasów kwadratowych lub metody `get`. Aby zmodyfikować element w określonej pozycji, można użyć nawiasów kwadratowych lub metody `set`. Można również uzyskać rozmiar tablicy, używając właściwości `size` lub iterując się po tablicy za pomocą pętli for.
 
 ```kotlin
 fun main() {
@@ -800,7 +800,7 @@ fun main() {
 
 #### Tablice typów prostych
 
-Niektóre rodzaje wartości w Kotlinie, takie jak `Int` czy `Char`, mogą być reprezentowane w prostszy sposób niż zwykły obiekt. Ta forma jest znana jako typ prosty (primitive) i jest optymalizacją Kotlin, która nie wpływa na używanie wartości; jednak sprawia, że wartości prymitywne zajmują mniej pamięci, a ich użycie jest bardziej wydajne. Problem polega na tym, że typów prostych nie można przechowywać w zwykłych kolekcjach, ale można je przechowywać w specjalnych tablicach. Dla każdej wartości, która ma formę prymitywną, istnieje dedykowany typ tablicy. Oto one:
+Niektóre rodzaje wartości w Kotlinie, takie jak `Int` czy `Char`, mogą być reprezentowane w prostszy sposób niż zwykły obiekt. Ta forma jest znana jako typ prosty (primitive) i jest optymalizacją w Kotlinie, która nie wpływa na używanie wartości; jednak sprawia, że wartości prymitywne zajmują mniej pamięci, a ich użycie jest bardziej wydajne. Problem polega na tym, że typów prostych nie można przechowywać w zwykłych kolekcjach, ale można je przechowywać w specjalnych tablicach. Dla każdej wartości, która ma formę prymitywną, istnieje dedykowany typ tablicy. Oto one:
 * `IntArray`, która reprezentuje tablicę prymitywnych wartości `Int`.
 * `LongArray`, która reprezentuje tablicę prymitywnych wartości `Long`.
 * `DoubleArray`, która reprezentuje tablicę prymitywnych wartości `Double`.
@@ -879,7 +879,7 @@ fun main() {
 
 ### Podsumowanie
 
-W tym rozdziale omówiliśmy najważniejsze rodzaje kolekcji Kotlin i ich typowe przypadki użycia:
+W tym rozdziale omówiliśmy najważniejsze rodzaje kolekcji używanych w Kotlinie i ich typowe przypadki użycia:
 
 * `List` reprezentuje uporządkowaną kolekcję elementów. Jest to najbardziej podstawowy sposób przechowywania kolekcji elementów.
 * `Set` reprezentuje kolekcję unikalnych elementów. Używamy go, gdy chcemy się upewnić, że elementy w naszej kolekcji są unikalne, lub gdy często szukamy określonego elementu.
