@@ -56,7 +56,7 @@ Obrazki powinny mieć określoną szerokość w % poprzez użycie atrybutu `widt
 **Podjąłem decyzję, że nadrzędna nad poprawnością językową powinna zrozumiałość!** Książka powinna być możliwie pisana tak, jak komunikują się programiści. Zamiast więc pisać "łacychy znaków", powinny być "stringi", a zamiast "celów kompilacji" powinny być "targety". 
 
 Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielskiego:
-* **annonymous function** - **funkcja anonimowa**,
+* **anonymous function** - **funkcja anonimowa**,
 * **companion object** - **companion object**,
 * **conditional statement** - **instrukcja warunkowa**,
 * **data class** - **klasa data**,

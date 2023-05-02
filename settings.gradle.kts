@@ -1,2 +1,2 @@
-rootProject.name = "Kotlin Podstawy"
+rootProject.name = "Kotlin dla programistów"
 

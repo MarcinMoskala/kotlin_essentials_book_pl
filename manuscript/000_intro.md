@@ -29,13 +29,17 @@ Ta książka nie omawia funkcyjnych cech Kotlina, takich jak wyrażenia lambda c
 
 ### Język użyty w książce
 
-Książka została pierwotnie przetłumaczona z zachowaniem formalnie poprawnych tłumaczeń pojęć technicznych. I tak "string" został przetłumaczony na "łańcuch znaków", a "data class" na "klasę danych". W czasie poprawek uświadomiłem sobie jednak, że nie jest to język, do jakiego większość programistów przywykła. My mówimy o "stringach" i "data klasach". Poruszyłem ten temat z kilkoma osobami i większość uważała polskie tłumaczenia książek za nieczytelne, właśnie poprzez użyte tłumaczenia technicznych pojęć. Zadecydowałem się więc w tej książce postawić na pragmatyzm i jak najbardziej oddać język, jakim komunikuję się jako programista. Oznacza to, że będę używać spolszczeń angielskich pojęć, czyli będę mówił o stringach, data klasach, enumach, sealed klasach, itd.
+Kiedy zacząłem czytać tłumaczenie innej swojej książki, Effective Kotlin, to sprawdzać po numerze angielskie nazwy niektórych rozdziałów, by zrozumieć, o co chodzi. W języku polskim przyjęło się wiele tłumaczeń, które są formalnie poprawne, ale nie są używane na co dzień przez programistów. Efekt jest taki, że tekst "poprawnie przetłumaczonych" książek jest bardzo trudny do zrozumienia, w wyniku czego większość programistów preferuje czytać w języku oryginału. 
+
+W tej książce chciałbym złamać to błędne koło. Przy jej tłumaczeniu postawiłem **wyłącznie** na pragmatyzm. Starałem się używać języka, który jest używany przez programistów, a nie formalnie poprawnych tłumaczeń. Bardzo często oznacza to używanie anglicyzmów. Będę na przykład mówił o stringach, data klasach, enumach, sealed klasach itd. Tam jednak, gdzie znaczenie polskiego słowa wydaje mi się dostatecznie zrozumiałe, będę używał polskiego słowa. Na przykład, będę mówił o klasach, interfejsach, dziedziczeniu itd. W wielu miejscach miałem niemały dylemat, jakiego pojęcia użyć. I tak mówię o "rozszerzeniach" a nie "extensionach" głównie ze względu na to, że zdecydowałem się używać pojęcia "funkcje" a nie "functions", a "funkcje rozszerzające" brzmią znacznie lepiej niż "funkcje typu extension". Być może nie zgodzisz się ze wszystkimi moimi decyzjami, zapewne niejeden skrytykuje kalanie języka ojczystego licznymi anglicyzmami, ale mam nadzieję jednak, że większość czytelników doceni pragmatyzm, którym kierowałem się przy pisaniu tej książki.
+
+Lista tłumaczeń, jakich zdecydowałem się używać w tej książce, znajduje się w readmy repozytorium tej książki, pod adresem [https://github.com/MarcinMoskala/kotlin_essentials_book_pl](https://github.com/MarcinMoskala/kotlin_essentials_book_pl). 
 
 ### Seria Kotlin dla programistów
 
 Ta książka jest pierwszą z serii książek o nazwie *Kotlin dla programistów*, która obejmuje następujące pozycje:
-* Kotlin Podstawy, omawiający wszystkie podstawowe funkcje Kotlina.
-* Funkcjonalny Kotlin, poświęcony funkcjonalnym cechom Kotlina, w tym typom funkcji, wyrażeniom lambda, przetwarzaniu kolekcji, DSL-om i funkcjom zakresu.
+* Kotlin dla programistów, omawiający wszystkie podstawowe funkcje Kotlina.
+* Funkcjonalny Kotlin, poświęcony funkcjonalnym funkcjonalnościom Kotlina, w tym typom funkcji, wyrażeniom lambda, przetwarzaniu kolekcji, DSL-om i funkcjom zakresu.
 * Zaawansowany Kotlin, poświęcony zaawansowanym funkcjom Kotlina, w tym modyfikatorom wariancji generyków, delegacji, dokumentowaniu kodu, przetwarzaniu ciągów znaków, refleksji i programowaniu wieloplatformowemu.
 
 Ta książka oraz moje dwie inne książki, *Kotlin Korutyny* i *Efektywny Kotlin*, tworzą dużą serię obejmującą wszystko, co moim zdaniem jest potrzebne, aby stać się niesamowitym programistą Kotlin.
