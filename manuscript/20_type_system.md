@@ -1,4 +1,4 @@
-## Piękno systemu typów Kotlin
+## Piękno systemu typów w Kotlinie
 
 System typów Kotlin jest niesamowicie zaprojektowany. Wiele funkcji, które wyglądają jak przypadki specjalne, są po prostu naturalnym następstwem tego, jak zaprojektowany jest system typów. Na przykład, dzięki systemowi typów, w poniższym przykładzie typ `surname` to `String`, typ `age` to `Int`, a my możemy użyć `return` i `throw` po prawej stronie operatora Elvisa.
 
@@ -43,7 +43,7 @@ Więc czym jest typ? **Można go rozważyć jako zbiór rzeczy, które możemy z
 
 ### Relacja między klasami a typami
 
-Mówimy, że klasy generują typy. Pomyśl o klasie `User`. Generuje ona dwa typy. Czy możesz je oba wymienić? Jeden to `User`, ale drugi to nie `Any` (`Any` jest już w hierarchii typów). Drugim nowym typem generowanym przez klasę `User` jest `User?`. Tak, nullable wariant to oddzielny typ.
+Mówimy, że klasy generują typy. Pomyśl o klasie `User`. Generuje ona dwa typy. Czy możesz je oba wymienić? Jeden to `User`, ale drugi to nie `Any` (`Any` jest już w hierarchii typów). Drugim nowym typem generowanym przez klasę `User` jest `User?`. Tak, nullowanych wariant to oddzielny typ.
 
 Istnieją klasy, które generują znacznie więcej typów: klasy ogólne. Klasa `Box<T>` teoretycznie generuje nieskończoną liczbę typów.
 
@@ -51,11 +51,11 @@ Istnieją klasy, które generują znacznie więcej typów: klasy ogólne. Klasa 
 
 ### Klasa kontra typ w praktyce
 
-Dyskusja ta może brzmieć bardzo teoretycznie, ale ma już pewne praktyczne implikacje. Zauważ, że klasy nie mogą być nullable, ale typy już tak. Weź pod uwagę początkowy przykład, gdzie poprosiłem Cię, abyś wskazał, gdzie `User` jest typem. Tylko na pozycjach reprezentujących typy można użyć `User?` zamiast `User`.
+Dyskusja ta może brzmieć bardzo teoretycznie, ale ma już pewne praktyczne implikacje. Zauważ, że klasy nie mogą być nullowanych, ale typy już tak. Weź pod uwagę początkowy przykład, gdzie poprosiłem Cię, abyś wskazał, gdzie `User` jest typem. Tylko na pozycjach reprezentujących typy można użyć `User?` zamiast `User`.
 
-![](typing_system_type_vs_class_nullable.png)
+![](typing_system_type_vs_class_nullowanych.png)
 
-Funkcje składowe są zdefiniowane dla klas, więc ich odbiorca nie może być nullable ani mieć argumentów typu[^20_4]. Funkcje rozszerzeń są zdefiniowane dla typów, więc mogą być nullable lub zdefiniowane dla konkretnego typu ogólnego. Weź pod uwagę funkcję `sum`, która jest rozszerzeniem `Iterable<Int>`, lub funkcję `isNullOrBlank`, która jest rozszerzeniem `String?`.
+Funkcje składowe są zdefiniowane dla klas, więc ich odbiorca nie może być nullowanych ani mieć argumentów typu[^20_4]. Funkcje rozszerzeń są zdefiniowane dla typów, więc mogą być nullowanych lub zdefiniowane dla konkretnego typu ogólnego. Weź pod uwagę funkcję `sum`, która jest rozszerzeniem `Iterable<Int>`, lub funkcję `isNullOrBlank`, która jest rozszerzeniem `String?`.
 
 ```kotlin
 fun Iterable<Int>.sum(): Int {
@@ -106,7 +106,7 @@ Dlaczego? Ponieważ istnieje konkretna relacja między tymi typami: `Dog` jest p
 {width: 25%, align: middle}
 ![](typing_system_A_B.png)
 
-Istnieje również relacja między typami nullable i non-nullable. Non-nullable może być używane wszędzie tam, gdzie oczekiwane jest nullable.
+Istnieje również relacja między typami nullowanych i non-nullowanych. Non-nullowanych może być używane wszędzie tam, gdzie oczekiwane jest nullowanych.
 
 ```kotlin
 fun petDogIfPresent(dog: Dog?) {}
@@ -122,17 +122,17 @@ fun main() {
 }
 ```
 
-Dzieje się tak, ponieważ wariant non-nullable każdego typu jest podtypem wariantu nullable.
+Dzieje się tak, ponieważ wariant non-nullowanych każdego typu jest podtypem wariantu nullowanych.
 
 {width: 50%, align: middle}
 ![](typing_system_A_B_nullability.png)
 
-Nadklasą wszystkich klas w Kotlinie jest `Any`, co jest podobne do `Object` w Javie. Nadtypem wszystkich typów nie jest `Any`, ale `Any?`. `Any` jest nadtypem wszystkich typów non-nullable. Mamy też coś, czego nie ma w Javie i większości innych głównych języków: podtyp wszystkich typów, który nazywa się `Nothing`. Wkrótce o nim porozmawiamy.
+Nadklasą wszystkich klas w Kotlinie jest `Any`, co jest podobne do `Object` w Javie. Nadtypem wszystkich typów nie jest `Any`, ale `Any?`. `Any` jest nadtypem wszystkich typów non-nullowanych. Mamy też coś, czego nie ma w Javie i większości innych głównych języków: podtyp wszystkich typów, który nazywa się `Nothing`. Wkrótce o nim porozmawiamy.
 
 {width: 50%, align: middle}
 ![](typing_system_A_B_nullability_Any_Nothing.png)
 
-`Any` jest tylko nadtypem typów non-nullable. Więc tam, gdzie oczekiwany jest `Any`, typy nullable nie będą akceptowane. Ten fakt jest również wykorzystywany do ustawienia górnego ograniczenia parametru typu, aby akceptować tylko typy non-nullable[^20_5].
+`Any` jest tylko nadtypem typów non-nullowanych. Więc tam, gdzie oczekiwany jest `Any`, typy nullowanych nie będą akceptowane. Ten fakt jest również wykorzystywany do ustawienia górnego ograniczenia parametru typu, aby akceptować tylko typy non-nullowanych[^20_5].
 
 ```kotlin
 fun <T : Any> String.parseJson(): T = ...
@@ -322,7 +322,7 @@ fun main() {
 }
 ```
 
-Oznacza to, że `null` ma swój typ, który jest podtypem wszystkich typów nullable. Spójrz na hierarchię typów i zgadnij, jaki to typ.
+Oznacza to, że `null` ma swój typ, który jest podtypem wszystkich typów nullowanych. Spójrz na hierarchię typów i zgadnij, jaki to typ.
 
 {width: 50%, align: middle}
 ![](typing_system_A_B_nullability_Any_Nothing.png)
@@ -351,15 +351,15 @@ Z tego samego powodu, kiedy wymagamy `String?`, możemy przekazać zarówno `Str
 
 W tym rozdziale nauczyliśmy się:
 * Klasa jest szablonem do tworzenia obiektów. Typ definiuje oczekiwania i funkcjonalności.
-* Każda klasa generuje typ nullable i typ non-nullable.
-* Typ nullable jest supertypem dla nieoznaczonej wersji tego typu.
+* Każda klasa generuje typ nullowanych i typ non-nullowanych.
+* Typ nullowanych jest supertypem dla nieoznaczonej wersji tego typu.
 * Supertypem wszystkich typów jest `Any?`.
-* Supertypem typów non-nullable jest `Any`.
+* Supertypem typów non-nullowanych jest `Any`.
 * Podtypem wszystkich typów jest `Nothing`.
 * Gdy funkcja deklaruje `Nothing` jako typ zwracany, oznacza to, że zgłosi błąd lub będzie działać w nieskończoność.
 * Zarówno `throw`, jak i `return` deklarują `Nothing` jako swój typ wyniku.
 * Kompilator Kotlin rozumie, że gdy wyrażenie deklaruje `Nothing` jako typ wyniku, wszystko później jest nieosiągalne.
-* Typem `null` jest `Nothing?`, który jest podtypem wszystkich typów nullable.
+* Typem `null` jest `Nothing?`, który jest podtypem wszystkich typów nullowanych.
 
 W następnym rozdziale omówimy generyki i zobaczymy, jak są ważne dla naszego systemu typów.
 

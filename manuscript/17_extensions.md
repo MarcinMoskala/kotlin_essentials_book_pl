@@ -232,7 +232,7 @@ fun main() {
 }
 ```
 
-Kolejną konsekwencją tego, czym są rozszerzenia, jest to, że **definiujemy rozszerzenia dla typów, a nie dla klas**. Daje nam to większą swobodę. Na przykład możemy zdefiniować rozszerzenie dla typu nullable lub generycznego:
+Kolejną konsekwencją tego, czym są rozszerzenia, jest to, że **definiujemy rozszerzenia dla typów, a nie dla klas**. Daje nam to większą swobodę. Na przykład możemy zdefiniować rozszerzenie dla typu nullowanych lub generycznego:
 
 ```kotlin
 inline fun CharSequence?.isNullOrBlank(): Boolean {

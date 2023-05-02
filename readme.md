@@ -76,12 +76,17 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 * **lambda expression** - **wyrażenie lambda**,
 * **member function** - **funkcja klasy**,
 * **member property** - **właściwość klasy**,
+* **not-null assertion** - **assersja not-null**,
+* **not-nullable type** - **typ nie-nullowalny**
+* **nullable** - **nullowalny**,
+* **nullable type** - **typ nullowalny**
 * **object expression** - **wyrażenie obiektu**,
 * **overloading** - **przeciążanie**,
 * **predicate** - **predykat**,
 * **property** - **właściwość**,
 * **range** - **zakres**,
 * **reference** - **referencja**,
+* **safe call** - **wywołanie bezpieczne**,
 * **sealed class** - **klasa sealed**,
 * **single-expression function** - **funkcja z pojedynczym wyrażeniem**,
 * **smart cast** - **smart cast**,

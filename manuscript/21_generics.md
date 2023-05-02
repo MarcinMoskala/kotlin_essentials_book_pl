@@ -152,7 +152,7 @@ fun main() {
 
 ### Klasy generyczne a możliwość bycia nullem
 
-Zauważ, że argumenty typu mogą być nullable, więc moglibyśmy stworzyć `ValueWithHistory<String?>`. W takim przypadku wartość `null` jest zupełnie prawidłową opcją.
+Zauważ, że argumenty typu mogą być nullowanych, więc moglibyśmy stworzyć `ValueWithHistory<String?>`. W takim przypadku wartość `null` jest zupełnie prawidłową opcją.
 
 ```kotlin
 fun main() {
@@ -173,7 +173,7 @@ fun main() {
 }
 ```
 
-Inne rzeczy to, że gdy używasz parametrów ogólnych w klasach lub funkcjach, możesz uczynić je nullable, dodając pytajnik. Zobacz poniższy przykład. Typ `T` może być, ale nie musi być nullable, w zależności od argumentu typu, ale typ `T?` zawsze jest nullable. Możemy przypisać wartość `null` do zmiennych typu `T?`. Nullable parametr typu ogólnego `T?` musi zostać rozpakowany przed użyciem go jako `T`.
+Inne rzeczy to, że gdy używasz parametrów ogólnych w klasach lub funkcjach, możesz uczynić je nullowanych, dodając pytajnik. Zobacz poniższy przykład. Typ `T` może być, ale nie musi być nullowanych, w zależności od argumentu typu, ale typ `T?` zawsze jest nullowanych. Możemy przypisać wartość `null` do zmiennych typu `T?`. nullowanych parametr typu ogólnego `T?` musi zostać rozpakowany przed użyciem go jako `T`.
 
 ```kotlin
 class Box<T> {
@@ -183,7 +183,7 @@ class Box<T> {
 }
 ```
 
-Można wyrazić również przeciwność. Ponieważ parametr typu ogólnego może reprezentować typ nullable, możemy określić zdecydowanie niezmienną wersję tego typu, dodając `& Any` po parametrze typu. W poniższym przykładzie metoda `orThrow` może być wywoływana dla dowolnej wartości, ale rozpakowuje typy nullable na niezmienną.
+Można wyrazić również przeciwność. Ponieważ parametr typu ogólnego może reprezentować typ nullowanych, możemy określić zdecydowanie niezmienną wersję tego typu, dodając `& Any` po parametrze typu. W poniższym przykładzie metoda `orThrow` może być wywoływana dla dowolnej wartości, ale rozpakowuje typy nullowanych na niezmienną.
 
 ```kotlin
 fun <T> T.orThrow(): T & Any = this ?: throw Error()

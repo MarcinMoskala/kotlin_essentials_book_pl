@@ -236,7 +236,7 @@ fun main() {
 
 W Kotlinie występują dwa rodzaje równości:
 
-* Równość strukturalna - sprawdzana za pomocą metody `equals` lub operatora `==` (i jego negowanej wersji `!=`). `a == b` przekłada się na `a.equals(b)` gdy `a` nie jest nullable, w przeciwnym razie przekłada się na `a?.equals(b) ?: (b === null)`. Równość strukturalna jest zwykle preferowana nad równością referencyjną. Metodę `equals` można nadpisać w niestandardowej klasie.
+* Równość strukturalna - sprawdzana za pomocą metody `equals` lub operatora `==` (i jego negowanej wersji `!=`). `a == b` przekłada się na `a.equals(b)` gdy `a` nie jest nullowanych, w przeciwnym razie przekłada się na `a?.equals(b) ?: (b === null)`. Równość strukturalna jest zwykle preferowana nad równością referencyjną. Metodę `equals` można nadpisać w niestandardowej klasie.
 
 * Równość referencyjna - sprawdzana za pomocą operatora `===` (i jego negowanej wersji `!==`); zwraca `true`, gdy obie strony wskazują na ten sam obiekt. `===` i `!==` (sprawdzenia tożsamości) nie są przeciążalne.
 

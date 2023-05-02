@@ -1,45 +1,45 @@
 ## Nullowalność
 
-Kotlinie powstał jako rozwiązanie problemów Javy, a największym problemem w Javie jest możliwość wystąpienia wartości null. W Javie, jak w wielu innych językach, każda zmienna może przyjmować wartość `null`. Każde wywołanie na wartości `null` prowadzi do słynnego `NullPointerException` (NPE). Jest to wyjątek nr 1 w większości projektów Javie[^08_0]. Jest tak powszechny, że często nazywany jest "błędem wartym miliard dolarów" po słynnym przemówieniu Sir Charlesa Antony'ego Richarda Hoare'a, który powiedział: "Nazywam to moim błędem wartym miliard dolarów. Był to wynalazek null reference w 1965 roku... Doprowadziło to do niezliczonych błędów, podatności i awarii systemów, które przez ostatnie czterdzieści lat prawdopodobnie spowodowały straty rzędu miliarda dolarów".
+Kotlinie pierwotnie powstawał jako rozwiązanie problemów Javy, a największym problemem w Javie jest możliwość wystąpienia wartości `null` niemalże wszędzie. W Javie, jak w wielu innych językach, każda zmienna może przyjmować wartość `null`. Każde wywołanie na wartości `null` prowadzi do słynnego `NullPointerException` (NPE). Jest to najpopularniejszy wyjątek w większości projektów napisanych w Javie[^08_0]. Jest tak powszechny, że często nazywany jest "błędem za miliard dolarów" po słynnym przemówieniu Sir Charlesa Antony'ego Richarda Hoare'a, który powiedział: "Nazywam to moim błędem za miliard dolarów. Był to wynalazek null reference w 1965 roku... Doprowadziło to do niezliczonych błędów, podatności i awarii systemów, które przez ostatnie czterdzieści lat prawdopodobnie spowodowały straty rzędu miliarda dolarów".
 
-Jednym z priorytetów Kotlinie było ostateczne rozwiązanie tego problemu, co udało się doskonale. Wprowadzone w Kotlinie mechanizmy są tak skuteczne, że zobaczenie `NullPointerException` wyrzuconego z kodu Kotlinie jest niezwykle rzadkie. Wartość `null` przestała być problemem, a programiści Kotlinie nie obawiają się jej już. Stała się naszym przyjacielem.
+Jednym z priorytetów Kotlina było ostateczne rozwiązanie tego problemu, co udało się doskonale. Wprowadzone w Kotlinie mechanizmy są tak skuteczne, że zobaczenie `NullPointerException` wyrzuconego z kodu Kotlinie jest niezwykle rzadkie. Wartość `null` przestała być problemem, a programiści Kotla już się jej nie obawiają. Stała się naszym przyjacielem.
 
-Jak zatem działa możliwość wystąpienia wartości null w Kotlin? Wszystko opiera się na kilku zasadach:
+Jak to zatem działa? Opiera się to na następujących zasadach:
 
-1. Każda właściwość musi mieć jawną wartość. Nie ma czegoś takiego jak domyślna wartość `null`.
+1. Każda zmienna musi mieć określoną wartość. Nie ma czegoś takiego jak domyślna wartość `null`.
 
 ```kotlin
 var person: Person // BŁĄD KOMPILACJI,
-// właściwość musi być zainicjalizowana
+// zmienna musi być zainicjalizowana
 ```
 
 2. Zwykły typ nie akceptuje wartości `null`.
 
 ```kotlin
 var person: Person = null // BŁĄD KOMPILACJI,
-// Person nie jest typem nullable i nie może być `null`
+// Person nie jest typem nullowalnym i nie może być null
 ```
 
-3. Aby określić typ nullable, musisz zakończyć zwykły typ znakiem zapytania (`?`).
+3. Aby określić typ nullowalny, musisz zakończyć zwykły typ znakiem zapytania (`?`).
 
 ```kotlin
 var person: Person? = null // OK
 ```
 
-4. Wartości nullable nie mogą być używane bezpośrednio. Muszą być używane bezpiecznie lub rzutowane najpierw (za pomocą jednego z narzędzi przedstawionych później w tym rozdziale).
+4. Zmienne nullowalne nie mogą być używane bezpośrednio. Muszą być używane bezpiecznie lub wcześniej rzutowane za pomocą jednego z narzędzi przedstawionych później w tym rozdziale.
 
 ```kotlin
 person.name // BŁĄD KOMPILACJI,
-// typ person jest nullable, więc nie możemy go używać bezpośrednio
+// typ person jest nullowanych, więc nie możemy go używać bezpośrednio
 ```
 
-Dzięki wszystkim tym mechanizmom zawsze wiemy, co może być `null`, a co nie. Używamy wartości null tylko wtedy, gdy tego potrzebujemy - gdy istnieje ku temu jakiś powód. W takich przypadkach użytkownicy są zmuszeni do jawnej obsługi wartości null. We wszystkich innych przypadkach nie ma takiej potrzeby. Jest to doskonałe rozwiązanie, ale potrzebne są dobre narzędzia, aby poradzić sobie z nullowaniem w sposób wygodny dla programistów.
+Dzięki wszystkim tym mechanizmom zawsze wiemy, co może być `null`, a co nie. Używamy wartości `null` tylko wtedy, gdy tego potrzebujemy, czyli gdy istnieje ku temu jakiś powód. W takich przypadkach użytkownicy są zmuszeni do jawnej obsługi wartości `null`. We wszystkich innych przypadkach nie ma takiej potrzeby. Jest to doskonałe rozwiązanie, ale potrzebne są dobre narzędzia, aby poradzić sobie z nullowalnością w sposób wygodny dla programistów.
 
-Kotlinie obsługuje wiele sposobów użycia wartości nullable, w tym bezpieczne wywołania, asercje not-null, inteligentne rzutowanie czy operator Elvisa. Omówmy je po kolei.
+Kotlin obsługuje wiele sposobów użycia wartości nullowalnych, w tym bezpieczne wywołania, asercje not-null, inteligentne rzutowanie czy operator Elvisa. Omówmy je po kolei.
 
 ### Bezpieczne wywołania
 
-Najprostszym sposobem wywołania metody lub właściwości na wartości nullable jest bezpieczne wywołanie, które polega na użyciu znaku zapytania i kropki (`?.`) zamiast zwykłej kropki (`.`). Bezpieczne wywołania działają następująco:
+Najprostszym sposobem wywołania metody lub właściwości na wartości nullowalnej jest bezpieczne wywołanie, które polega na użyciu znaku zapytania i kropki (`?.`) zamiast zwykłej kropki (`.`). Bezpieczne wywołania działają następująco:
 * jeśli wartość to `null`, nic nie robi i zwraca `null`,
 * jeśli wartość nie jest `null`, działa jak zwykłe wywołanie.
 
@@ -55,13 +55,13 @@ var user: User? = null
 fun main() {
     user?.cheer() // (nic nie robi)
     println(user?.name) // null
-    user = User("Ciasteczko")
-    user?.cheer() // Cześć, mam na imię Ciasteczko
-    println(user?.name) // Ciasteczko
+    user = User("Cookie")
+    user?.cheer() // Cześć, mam na imię Cookie
+    println(user?.name) // Cookie
 }
 ```
 
-Zauważ, że wynik bezpiecznego wywołania zawsze jest typem nullable, ponieważ bezpieczne wywołanie zwraca `null`, gdy jest wywołane na `null`. Oznacza to, że wartość null propaguje się. Jeśli chcesz dowiedzieć się, jaką długość ma imię użytkownika, wywołanie `user?.name.length` nie zostanie skompilowane. Mimo że `name` nie jest wartością null, wynik `user?.name` to `String?`, więc musimy użyć ponownie bezpiecznego wywołania: `user?.name?.length`.
+Zauważ, że wynik bezpiecznego wywołania zawsze ma typ nullowalny, ponieważ bezpieczne wywołanie zwraca `null`, gdy jest wywołane na `null`. Oznacza to, że wartość `null` propaguje się. Jeśli chcesz dowiedzieć się, jaką długość ma imię użytkownika, wywołanie `user?.name.length` się nie skompiluje. Mimo że `name` nie jest wartością nullowalną, wynik `user?.name` to `String?`, więc musimy użyć ponownie bezpiecznego wywołania: `user?.name?.length`.
 
 ```kotlin
 class User(val name: String) {
@@ -75,7 +75,7 @@ var user: User? = null
 fun main() {
     // println(user?.name.length) // NIEDOZWOLONE
     println(user?.name?.length) // null
-    user = User("Ciasteczko")
+    user = User("Cookie")
     // println(user?.name.length) // NIEDOZWOLONE
     println(user?.name?.length) // 10
 }
@@ -92,7 +92,7 @@ class User(val name: String) {
     }
 }
 
-var user: User? = User("Ciasteczko")
+var user: User? = User("Cookie")
 
 fun main() {
     println(user!!.name.length) // 10
@@ -101,9 +101,9 @@ fun main() {
 }
 ```
 
-To nie jest bardzo bezpieczna opcja, ponieważ jeśli się mylimy i wartość `null` znajduje się tam, gdzie jej nie oczekujemy, prowadzi to do wyjątku `NullPointerException`. Czasami chcemy zgłosić wyjątek, aby upewnić się, że nie ma sytuacji, w których używany jest `null`, ale zazwyczaj wolimy zgłosić bardziej znaczący wyjątek[^08_4]. W tym celu najpopularniejsze opcje to:
-- `requireNotNull`, który przyjmuje wartość nullable jako argument i rzuca wyjątek `IllegalArgumentException`, jeśli ta wartość jest równa null. W przeciwnym razie zwraca tę wartość jako non-nullable.
-- `checkNotNull`, który przyjmuje wartość nullable jako argument i rzuca wyjątek `IllegalStateException`, jeśli ta wartość jest równa null. W przeciwnym razie zwraca tę wartość jako non-nullable.
+To nie jest bardzo bezpieczna opcja, ponieważ jeśli się mylimy i wartość `null` znajduje się tam, gdzie jej nie oczekujemy, prowadzi to do wyjątku `NullPointerException`. Dlatego stosujemy `!!` tylko wtedy, gdy rzeczywiście chcemy zobaczyć wyjątek, jeśli wartość jest `null`. Aczkolwiek w takich przypadkach częściej wolimy użyć funkcji, które rzucają bardziej znaczący wyjątek, jak `requireNotNull` lub `checkNotNull`[^08_4]:
+- `requireNotNull`, który przyjmuje wartość nullowalną jako argument i rzuca wyjątek `IllegalArgumentException` jeśli ta wartość jest równa `null`. W przeciwnym razie zwraca tę wartość jako nienullowalną.
+- `checkNotNull`, który przyjmuje wartość nullowalną jako argument i rzuca wyjątek `IllegalStateException` jeśli ta wartość jest równa `null`. W przeciwnym razie zwraca tę wartość jako nie-nullowalną.
 
 ```kotlin
 fun sendData(dataWrapped: Wrapper<Data>) {
@@ -115,7 +115,7 @@ fun sendData(dataWrapped: Wrapper<Data>) {
 
 ### Smart-casting
 
-Smart-casting działa również dla wartości null. W związku z tym, w zakresie sprawdzenia braku wartości null, typ nullable jest rzutowany na typ non-nullable.
+Smart-casting działa również dla wartości `null`. W związku z tym, w zakresie sprawdzenia, że wartość nie jest `null`, typ nullowalny jest rzutowany na typ nie-nullowalny.
 
 ```kotlin
 fun printLengthIfNotNull(str: String?) {
@@ -125,7 +125,7 @@ fun printLengthIfNotNull(str: String?) {
 }
 ```
 
-Smart-casting działa również, gdy używamy `return` lub `throw`, jeśli wartość nie jest `null`.
+Smart-casting działa również, gdy używamy `return` lub `throw`.
 
 ```kotlin
 fun printLengthIfNotNull(str: String?) {
@@ -168,26 +168,26 @@ fun printLengthIfNotNullOrThrow(str: String?) {
 }
 ```
 
-> Dzięki funkcji o nazwie **kontrakty**, która jest wyjaśniona w książce *Advanced Kotlin*, smart-casting działa w powyższym kodzie.
+> Smart-casting działa dla `requireNotNull` dzięki Kotlinowym kontraktom, które opisałem w książce *Zaaawansowany Kotlin*.
 
 ### Operator Elvisa
 
-Ostatnią specjalną funkcją Kotlinie, która jest używana do obsługi wartości null, jest operator Elvisa `?:`. Tak, to pytajnik i dwukropek. Nazywa się go operatorem Elvisa, ponieważ przypomina Elvisa Presleya (z jego charakterystyczną fryzurą), który patrzy na nas zza muru, więc widzimy tylko jego włosy i oczy.
+Ostatnią specjalną funkcją Kotlina, która jest używana do obsługi wartości `null`, jest operator Elvisa `?:`. Tak, to pytajnik i dwukropek. Nazywa się go operatorem Elvisa, ponieważ przypomina Elvisa Presleya (z jego charakterystyczną fryzurą). Możesz sobie wyobrazić, że patrzy na nas zza muru, więc widzimy tylko jego włosy i oczy.
 
 ![](elvis.png)
 
-Umieszcza się go pomiędzy dwiema wartościami. Jeśli wartość po lewej stronie operatora Elvisa nie jest `null`, używamy wartości nullable, która wynika z operatora Elvisa. Jeśli lewa strona jest `null`, zwracana jest prawa strona.
+Operator Elvisa umieszcza się pomiędzy dwiema wartościami. Jeśli wartość po lewej stronie operatora Elvisa nie jest `null`, to jest ona wynikiem. Jeśli lewa strona jest `null`, zwracana jest prawa strona.
 
 ```kotlin
 fun main() {
     println("A" ?: "B") // A
-    println(null ?: "B") // B
     println("A" ?: null) // A
+    println(null ?: "B") // B
     println(null ?: null) // null
 }
 ```
 
-Możemy użyć operatora Elvisa, aby ustawić wartość domyślną dla wartości nullable.
+Używamy operatora Elvisa do określenia wartości domyślnej dla wartości nullowalnej.
 
 ```kotlin
 class User(val name: String)
@@ -203,12 +203,12 @@ fun main() {
 }
 ```
 
-### Rozszerzenia dla typów nullable
+### Rozszerzenia dla typów nullowanych
 
-Zwykłe funkcje nie mogą być wywoływane na zmiennych nullable. Istnieje jednak specjalny rodzaj funkcji, który można zdefiniować tak, aby można go było wywoływać na zmiennych nullable[^08_3]. Dzięki temu, biblioteka standardowa Kotlinie definiuje następujące funkcje, które można wywoływać na `String?`:
-* `orEmpty` zwraca wartość, jeśli nie jest `null`. W przeciwnym razie zwraca pusty ciąg.
-* `isNullOrEmpty` zwraca `true`, jeśli wartość jest `null` lub pusta. W przeciwnym razie zwraca `false`.
-* `isNullOrBlank` zwraca `true`, jeśli wartość jest `null` lub pusta. W przeciwnym razie zwraca `false`.
+Zwykłe funkcje nie mogą być wywoływane na wartościach nullowalnych. Istnieje jednak specjalny rodzaj funkcji, funkcje rozszerzające, który można zdefiniować tak, aby można go było wywoływać na zmiennych nullowalnych[^08_3]. Biblioteka standardowa Kotlina definiuje następujące funkcje, które można wywoływać na `String?`:
+* `orEmpty` zwraca pusty string zamiast `null`.
+* `isNullOrEmpty` zwraca `true`, jeśli wartość to `null` lub pusty string. W przeciwnym razie zwraca `false`.
+* `isNullOrBlank` zwraca `true`, jeśli wartość to `null` lub string nie zawiarąjcy żadnego nie-białego znaku. W przeciwnym razie zwraca `false`.
 
 ```kotlin
 fun check(str: String?) {
@@ -242,8 +242,8 @@ fun main() {
 }
 ```
 
-Biblioteka standardowa Kotlinie zawiera również podobne funkcje dla nullable list:
-* `orEmpty` zwraca wartość, jeśli nie jest `null`. W przeciwnym razie zwraca pustą listę.
+Biblioteka standardowa Kotlinie zawiera również podobne funkcje dla nullowalnych list:
+* `orEmpty` zwraca pustą listę zamiast `null`.
 * `isNullOrEmpty` zwraca `true`, jeśli wartość jest `null` lub pusta. W przeciwnym razie zwraca `false`.
 
 ```kotlin
@@ -269,15 +269,15 @@ fun main() {
 }
 ```
 
-Te funkcje pomagają nam operować na wartościach nullable.
+Te funkcje pomagają nam operować na wartościach nullowanych.
 
 ### `null` to nasz przyjaciel
 
-Zmiennność była źródłem bólu w wielu językach, takich jak Javie, gdzie każdy obiekt może być nullable. W efekcie ludzie zaczęli unikać nullability. W rezultacie można znaleźć sugestie takie jak "Pozycja 43. Zwracaj puste tablice lub kolekcje, a nie wartości null" z *Effective Java* 2nd Edition autorstwa Joshua Bloch. Takie praktyki nie mają sensu w Kotlinie, gdzie mamy właściwy system nullability i nie powinniśmy obawiać się wartości `null`. W Kotlinie traktujemy `null` jako naszego przyjaciela, a nie jako błąd[^08_1]. Rozważ funkcję `getUsers`. Istnieje istotna różnica między zwracaniem pustej listy a `null`. Pusta lista powinna być interpretowana jako "wynik to pusta lista użytkowników, ponieważ żadni nie są dostępni". Wynik `null` powinien być interpretowany jako "nie można wyprodukować wyniku, a lista użytkowników pozostaje nieznana". Zapomnij o przestarzałych praktykach dotyczących nullability. Wartość `null` to nasz przyjaciel w Kotlin[^08_2].
+To, że każda wartość mogła być nullem, jest ogromnym problemem w językach takich jak Java. W efekcie programiści zaczęli unikać unikać wartości `null` i traktować ją jak wroga. Wiele książek dotyczących dobrych praktyk programowania w Javie sugeruje unikanie wartości `null`, na przykład poprzez zastąpienie ich pustymi listamy, stringami lub specjalną wartością enuma (patrz "Temat 43. Zwracanie pustych tablic lub kolekcji zamiast wartości null" z bardzo popularnej książki *Java. Efektywne programowanie.* 2nd Edition autorstwa Joshua Blocha). Takie praktyki nie mają sensu w Kotlinie, gdzie mamy dobre wsparcie nullowalności i nie powinniśmy obawiać się wartości `null`. W Kotlinie traktujemy `null` jako naszego przyjaciela, a nie jako błąd[^08_1]. Rozważ funkcję `getUsers`. Istnieje istotna różnica między zwracaniem pustej listy a `null`. Pusta lista powinna być interpretowana jako "wynik to pusta lista użytkowników, ponieważ żadni nie są dostępni". Wynik `null` powinien być interpretowany jako "nie można wyprodukować wyniku, a lista użytkowników pozostaje nieznana". Zapomnij o przestarzałych praktykach dotyczących nullowalności. W Kotlinie wartość `null` to nasz przyjaciel[^08_2].
 
-### lateinit
+### Właściwości lateinit
 
-Są sytuacje, gdy chcemy zachować typ właściwości jako nie-nullable, ale nie możemy określić jego wartości podczas tworzenia obiektu. Weźmy pod uwagę właściwości, których wartość jest wstrzykiwana przez ramkę wstrzykiwania zależności, albo weźmy pod uwagę właściwości, które są tworzone dla każdego testu w fazie konfiguracji. Uczynienie takich właściwości nullable prowadziłoby do niewygodnego użycia: używałbyś operacji not-null nawet wtedy, gdy wiesz, że wartość nie może być `null`, ponieważ na pewno zostanie zainicjowana przed użyciem. Dla takich sytuacji twórcy Kotlinie wprowadzili właściwość `lateinit`. Takie właściwości mają typy nie-nullable i nie można ich zainicjować podczas tworzenia.
+Są sytuacje, gdy chcemy, aby właściwość klasy miała typ nie-nullowalny, ale nie możemy określić jej wartości podczas tworzenia obiektu. Chodzi przede wszystkim o właściwości, których wartość jest wstrzykiwana lub są tworzone w jednej z pierwszych metod cyklu życia klasy. Uczynienie takich właściwości nullowalnymi wymagałoby ich odpakowania przy każdym użyciu, mimo iż wiedzielibyśmy, że nie mogą mieć one wartości `null`, ponieważ spodziewamy się że ich wartość zostanie wstrzyknięta lub ustawiona odpowiednio wcześniej. Dla takich sytuacji twórcy Kotlinie wprowadzili modyfikator `lateinit`. Gdy go używamy, właściwość nie określa wartości pierwotnej, a przy tym musi mieć typ nie-nullowany. Kotlin spodziewa się, że ustawimy wartość tej właściwości przed jej pierwszym użyciem. Przykłady użycia `lateinit`:
 
 ```kotlin
 @AndroidEntryPoint
@@ -289,6 +289,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        Injector.inject(this)
         presenter.onCreate()
     }
 }
@@ -326,7 +327,7 @@ fun main() {
 }
 ```
 
-Zawsze możesz sprawdzić, czy właściwość została zainicjowana, używając właściwości `isInitialized` na jej odniesieniu. Aby użyć odniesienia do właściwości, użyj dwóch dwukropków i nazwy właściwości[^08_5].
+Zawsze możesz sprawdzić, czy właściwość została zainicjowana, używając właściwości `isInitialized` na jej referencji. Aby użyć referencji do właściwości, użyj dwóch dwukropków i nazwy właściwości[^08_5].
 
 ```kotlin
 lateinit var text: String
@@ -348,11 +349,11 @@ fun main() {
 
 ### Podsumowanie
 
-Kotlinie oferuje potężne wsparcie dla nullability, które zamienia nullability z przerażającego i zawiłego na użyteczne i bezpieczne. Jest to obsługiwane przez system typów, który rozróżnia, co jest nullable lub not nullable. Zmienne, które są nullable, muszą być używane bezpiecznie; do tego możemy użyć bezpiecznych wywołań, asercji not-null, smart-casting czy operatora Elvisa. Teraz przejdźmy wreszcie do klas. Używaliśmy ich już wiele razy, ale wreszcie mamy wszystko, czego potrzebujemy, aby dobrze je opisać.
+Kotlinie oferuje potężne wsparcie dla nullowalności, które sprawia że `null` przestaje być zagrożeniem, a staje się bezpieczny i prawdziwie użyteczny. System wsparcia obejmuje system typów, który rozróżnia, co jest nullowalne a co nie. Zmienne, które są nullowanye, muszą być używane bezpiecznie; do tego możemy użyć bezpiecznych wywołań, asercji not-null, smart-castingu czy operatora Elvisa. Teraz przejdźmy wreszcie do klas. Używaliśmy ich już wiele razy, ale dopiero teraz mamy wszystko, czego potrzebujemy, aby dobrze je omówić.
 
-[^08_0]: Niektóre badania to potwierdzają: na przykład dane zebrane przez OverOps potwierdzają, że `NullPointerException` jest najczęstszym wyjątkiem w 70% środowisk produkcyjnych.
-[^08_1]: Zobacz artykuł "Null is your friend, not a mistake" (link https://kt.academy/l/re-null) autorstwa Romana Elizarova, obecnego kierownika projektu języka programowania Kotlin.
-[^08_2]: Więcej informacji na temat stosowania nullability znajdziesz w książce *Effective Kotlin*.
-[^08_3]: Są to funkcje rozszerzeń, które omówimy w rozdziale *Extensions*.
-[^08_4]: Więcej informacji na temat wyjątków, `IllegalArgumentException` i `IllegalStateException` znajdziesz w rozdziale *Exceptions*.
-[^08_5]: Aby odnieść się do właściwości innego obiektu, musimy zacząć od obiektu, zanim użyjemy `::` i nazwy właściwości. Więcej informacji na temat odnoszenia się do właściwości znajdziesz w zaawansowanej książce o Kotlin.
+[^08_0]: Niektóre badania to potwierdzają: na przykład dane zebrane przez OverOps potwierdzają, że `NullPointerException` jest najczęstszym wyjątkiem w 70% projektów.
+[^08_1]: Zobacz artykuł "Null is your friend, not a mistake" (link https://kt.academy/l/re-null) autorstwa Romana Elizarova, obecnego kierownika zespołu tworzącego język Kotlin.
+[^08_2]: Więcej informacji na temat stosowania nullowalności znajdziesz w książce *Efektywny Kotlin*.
+[^08_3]: Są to funkcje rozszerzające, które omówimy w rozdziale *Rozszerzenia*.
+[^08_4]: Więcej informacji na temat wyjątków `IllegalArgumentException` i `IllegalStateException` znajdziesz w rozdziale *Wyjątki*.
+[^08_5]: Aby odnieść się do właściwości innego obiektu, musimy zacząć od obiektu, zanim użyjemy `::` i nazwy właściwości. Więcej informacji na temat referencji do właściwości znajdziesz w książce *Zaawansowany Kotlin*.

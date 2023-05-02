@@ -594,7 +594,7 @@ fun main() {
 
 #### Wyszukiwanie wartości według klucza
 
-Aby znaleźć wartość według klucza, można użyć funkcji `get` lub nawiasów kwadratowych z kluczem. Na przykład, aby znaleźć wartość dla klucza `'A'` w mapie `alphabet`, użyj `alphabet.get('A')` lub `alphabet['A']`. Wynik ma nullable typ wartości, który w tym przypadku to `Int?`. Dlaczego nullable? Jeśli klucza, o który pytasz, nie ma w mapie, zwrócona zostanie wartość `null`.
+Aby znaleźć wartość według klucza, można użyć funkcji `get` lub nawiasów kwadratowych z kluczem. Na przykład, aby znaleźć wartość dla klucza `'A'` w mapie `alphabet`, użyj `alphabet.get('A')` lub `alphabet['A']`. Wynik ma nullowanych typ wartości, który w tym przypadku to `Int?`. Dlaczego nullowanych? Jeśli klucza, o który pytasz, nie ma w mapie, zwrócona zostanie wartość `null`.
 
 ```kotlin
 fun main() {
