@@ -42,7 +42,7 @@ suspend fun main() {
 }
 ```
 
-Chociaż wszystkie te formy są poprawne, skupmy się na prostym `main`, gdyż będzie on najbardziej użyteczny. Użyję go niemal w każdym przykładzie w tej książce i zazwyczaj będą w pełni wykonywalne, jeśli tylko skopiujesz i wkleisz je do IntelliJ lub do Kotlin Playground[^02_2].
+Chociaż wszystkie te formy są poprawne, skupmy się na prostym `main`, gdyż będzie on najbardziej użyteczny. Użyję go niemal w każdym przykładzie w tej książce. Te przykłady w większości są całymi programami, które możesz uruchomić, jeśli tylko skopiujesz i wkleisz je do IDE lub do Kotlin Playground[^02_2].
 
 ```kotlin
 fun main() {
@@ -50,7 +50,7 @@ fun main() {
 }
 ```
 
-Wszystko, co musisz zrobić, aby uruchomić funkcję `main` w IntelliJ, to kliknąć zielony trójkąt, który pojawia się po lewej stronie funkcji `main`, znany jako "gutter icon". 
+Wszystko, co musisz zrobić, aby uruchomić funkcję `main` w IntelliJ (najpopularniejszym IDE Kotlina), to kliknąć zielony trójkąt, który pojawia się po lewej stronie funkcji `main`, znany jako "gutter icon". 
 
 {width: 100%}
 ![](main_run.png)
