@@ -15,7 +15,7 @@ fun processPerson(person: Person?) {
 }
 ```
 
-System typów daje nam również bardzo wygodne wsparcie dla nullowalności, inteligentne wnioskowanie typów i wiele więcej. W tym rozdziale odkryjemy wiele magii Kotlin. Zawsze uwielbiam mówić o tym na moich warsztatach, ponieważ widzę oszałamiające piękno tego, jak system typów Kotlin jest tak dobrze zaprojektowany, że wszystkie te elementy doskonale się ze sobą łączą i dają nam wspaniałe doświadczenie z programowania. Uważam ten temat za fascynujący, ale postaram się również dodać kilka użytecznych wskazówek, które pokazują, gdzie ta wiedza może być przydatna w praktyce. Mam nadzieję, że odkrywanie tego sprawi ci tyle samo przyjemności, co mnie.
+System typów daje nam również bardzo wygodne wsparcie dla nullowalności, inteligentne wnioskowanie typów i wiele więcej. W tym rozdziale odkryjemy wiele magii Kotlina. Zawsze uwielbiam mówić o tym na moich warsztatach, ponieważ widzę oszałamiające piękno tego, jak system typów Kotlin jest tak dobrze zaprojektowany, że wszystkie te elementy doskonale się ze sobą łączą i dają nam wspaniałe doświadczenie z programowania. Uważam ten temat za fascynujący, ale postaram się również dodać kilka użytecznych wskazówek, które pokazują, gdzie ta wiedza może być przydatna w praktyce. Mam nadzieję, że odkrywanie tego sprawi ci tyle samo przyjemności, co mnie.
 
 ### Czym jest typ?
 
