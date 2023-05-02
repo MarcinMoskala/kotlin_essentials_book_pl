@@ -61,14 +61,18 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 * **companion object** - **companion object**,
 * **conditional statement** - **instrukcja warunkowa**,
 * **data class** - **klasa data**,
+* **destructuring** - **destrukturyzacja**,
 * **enum class** - **enum**,
 * **expression** - **wyrażenie**,
 * **extension** - **rozszerzenia**,
 * **extension functions** - **funkcje rozszerzające**,
 * **field** - **pole**,
 * **function literal** - **literał funkcyjny**,
+* **function type** - **typ funkcyjny**,
+* **functional programming** - **programowanie funkcyjne**,
 * **if-expression** - **wyrażenie if**,
 * **infix function** - **funkcja infixowa**,
+* **inferred type** - **typ wnioskowany**,
 * **lambda expression** - **wyrażenie lambda**,
 * **member function** - **funkcja klasy**,
 * **member property** - **właściwość klasy**,
@@ -76,6 +80,7 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 * **overloading** - **przeciążanie**,
 * **predicate** - **predykat**,
 * **property** - **właściwość**,
+* **range** - **zakres**,
 * **reference** - **referencja**,
 * **sealed class** - **klasa sealed**,
 * **single-expression function** - **funkcja z pojedynczym wyrażeniem**,
@@ -89,6 +94,11 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 * **try-catch expression** - **wyrażenie try-catch**,
 * **when-expression** - **wyrażenie when**,
 * **call** - **wywołanie**,
+
+Nazwy własne:
+* **Advanced Kotlin** - **Zaawansowany Kotlin**,
+* **Functional Kotlin** - **Funkcyjny Kotlin**,
+* **Kotlin Essentials** - **Kotlin dla programistów**,
 
 Jestem otwarty na wszelkie propozycje zmian. 
 Dodawajcie proszę inne nieoczywiste tłumaczenia. 

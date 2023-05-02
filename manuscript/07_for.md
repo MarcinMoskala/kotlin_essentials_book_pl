@@ -1,25 +1,25 @@
 ## Moc pętli for
 
-W Java i innych starszych językach pętla for zwykle ma trzy części: pierwsza inicjuje zmienną przed rozpoczęciem pętli; druga zawiera warunek wykonania bloku kodu; trzecia jest wykonywana po bloku kodu.
+W Javie i innych starszych językach pętla for zwykle ma trzy części: pierwsza inicjuje zmienną przed rozpoczęciem pętli; druga zawiera warunek wykonania bloku kodu; trzecia jest wykonywana po bloku kodu.
 
-__THREE_BACKTICKS__
-// Java
+```
+// Javie
 for(int i=0; i < 5; i++){
    System.out.println(i);
 }
-__THREE_BACKTICKS__
+```
 
-Jednak uważa się, że jest to skomplikowane i podatne na błędy. Weźmy pod uwagę sytuację, w której ktoś używa `>` lub `<=` zamiast `<`. Taka mała różnica nie jest łatwa do zauważenia, ale wpływa na zachowanie tej pętli for.
+Taki zapis jest jednak dość skomplikowany i łatwo w nim o błąd. Na przykład, gdy ktoś użyje `>` lub `<=` zamiast `<`. Taka mała różnica nie jest łatwa do zauważenia, ale istotnie wpływa na zachowanie tej pętli for.
 
-Jako alternatywę dla tej klasycznej pętli for wiele języków wprowadziło nowoczesną alternatywę do iterowania po kolekcjach. Dlatego w językach takich jak Java czy JavaScript mamy dwie zupełnie różne rodzaje pętli for, obie zdefiniowane tym samym słowem kluczowym `for`. Kotlin uprościł to. W Kotlin mamy jedną uniwersalną pętlę for, która może być wyrazisto używana do iterowania po kolekcji, mapie, zakresie liczb i wielu innych.
+Jako alternatywę dla tej klasycznej pętli for, wiele języków wprowadziło nowoczesną alternatywę do iterowania po kolekcjach. Dlatego w językach takich jak Java czy JavaScript mamy dwie zupełnie różne rodzaje pętli for, obie zdefiniowane tym samym słowem kluczowym `for`. Kotlinie uprościł to. W Kotlinie mamy jedną uniwersalną pętlę for, która może być używana do iterowania po kolekcji, mapie, zakresie liczb i wielu innych.
 
-Ogólnie rzecz biorąc, pętla for jest używana w Kotlin do iterowania po czymś, co jest iterowalne[^07_1].
+Ogólnie rzecz biorąc, pętla for jest używana w Kotlinie do iterowania po czymś, co jest iterowalne[^07_1].
 
 ![](for_described.jpg)
 
 Możemy iterować po listach lub zbiorach.
 
-__THREE_BACKTICKS__kotlin
+```kotlin
 fun main() {
     val list = listOf("A", "B", "C")
     for (letter in list) {
@@ -32,11 +32,11 @@ fun main() {
     }
 }
 // ABCDEF
-__THREE_BACKTICKS__
+```
 
-Możemy również iterować po dowolnym innym obiekcie, o ile zawiera metodę `iterator` bez parametrów, oraz typ wyniku `Iterator` i modyfikator `operator`. Najłatwiejszym sposobem zdefiniowania tej metody jest zaimplementowanie interfejsu `Iterable` przez naszą klasę.
+Możemy również iterować po dowolnym innym obiekcie, o ile zawiera metodę `iterator` bez parametrów i z modyfikatorem `operator`, zwracającej typ `Iterator`. Ten warunek jest spełniony przez wszystkie klasy implementujące interfejs `Iterable`.
 
-__THREE_BACKTICKS__kotlin
+```kotlin
 fun main() {
     val tree = Tree(
         value = "B",
@@ -61,41 +61,41 @@ class Tree(
         if (right != null) yieldAll(right)
     }
 }
-__THREE_BACKTICKS__
+```
 
 Wnioskowany typ zmiennej zdefiniowanej wewnątrz pętli for pochodzi z argumentu typu `Iterable`. Gdy iterujemy po `Iterable<User>`, wnioskowany typ elementu będzie `User`. Gdy iterujemy po `Iterable<Long?>`, wnioskowany typ elementu będzie `Long?`. To samo dotyczy wszystkich innych typów.
 
-Ten mechanizm, oparty na `Iterable`, jest naprawdę potężny i pozwala nam pokryć liczne przypadki użycia, z których jednym z najbardziej znanych jest wykorzystanie *zakresów* do wyrażania progresji.
+Ten mechanizm, oparty na `Iterable`, jest naprawdę potężny i pozwala nam pokryć liczne przypadki użycia, z których jednym z najpopularniejszych jest wykorzystanie *zakresów* do wyrażania progresji.
 
 ### Zakresy
 
-W Kotlin, jeśli umieścisz dwie kropki pomiędzy dwoma liczbami, jak `1..5`, utworzysz `IntRange`. Ta klasa implementuje `Iterable<Int>`, więc możemy jej użyć w pętli for:
+W Kotlinie, jeśli umieścisz dwie kropki pomiędzy dwoma liczbami, jak `1..5`, utworzysz `IntRange`, czyli zakres liczb od 1 do 5. `IntRange` implementuje `Iterable<Int>`, więc możemy jej użyć w pętli for:
 
-__THREE_BACKTICKS__kotlin
+```kotlin
 fun main() {
     for (i in 1..5) {
         print(i)
     }
 }
 // 12345
-__THREE_BACKTICKS__
+```
 
-To rozwiązanie jest wydajne, jak również wygodne, ponieważ kompilator Kotlinu optymalizuje jego wydajność "pod maską".
+To rozwiązanie jest nie tylko wygodne, ale również wydajne, ponieważ kompilator Kotlina optymalizuje je do efektywnej iteracji po numerach (a więc jeśli nie jest to naprawdę konieczne, obiekt klasy `IntRange` nie powstaje).
 
 Zakresy utworzone za pomocą `..` obejmują ostatnią wartość (co oznacza, że są to **zamknięte zakresy**). Jeśli chcesz zakresu, który kończy się przed ostatnią wartością, użyj zamiast tego funkcji infiksowej `until`.
 
-__THREE_BACKTICKS__kotlin
+```kotlin
 fun main() {
     for (i in 1 until 5) {
         print(i)
     }
 }
 // 1234
-__THREE_BACKTICKS__
+```
 
 Zarówno `..`, jak i `until` zaczynają się od wartości po lewej stronie i zmierzają w kierunku prawej liczby z przyrostem o jeden. Jeśli użyjesz większej liczby po lewej stronie, wynikiem będzie pusty zakres.
 
-__THREE_BACKTICKS__kotlin
+```kotlin
 fun main() {
     for (i in 5..1) {
         print(i)
@@ -105,22 +105,22 @@ fun main() {
     }
 }
 // (nic nie jest drukowane)
-__THREE_BACKTICKS__
+```
 
 Jeśli chcesz iterować w przeciwnym kierunku, od większych do mniejszych liczb, użyj funkcji `downTo`.
 
-__THREE_BACKTICKS__kotlin
+```kotlin
 fun main() {
     for (i in 5 downTo 1) {
         print(i)
     }
 }
 // 54321
-__THREE_BACKTICKS__
+```
 
 Domyślnym krokiem we wszystkich tych przypadkach jest `1`. Jeśli chcesz użyć innego kroku, powinieneś użyć funkcji infiksowej `step`.
 
-__THREE_BACKTICKS__kotlin
+```kotlin
 fun main() {
     for (i in 1..10 step 3) {
         print("$i ")
@@ -137,15 +137,15 @@ fun main() {
 // 1 4 7 10 
 // 1 4 7 
 // 10 7 4 1 
-__THREE_BACKTICKS__
+```
 
-### Break i continue
+### Break oraz continue
 
 Wewnątrz pętli możemy użyć słów kluczowych `break` i `continue`:
 * `break` - kończy najbliższą otaczającą pętlę.
 * `continue` - przechodzi do następnego kroku najbliższej otaczającej pętli.
 
-__THREE_BACKTICKS__kotlin
+```kotlin
 fun main() {
     for (i in 1..5) {
         if (i == 3) break
@@ -161,15 +161,15 @@ fun main() {
     }
     // 1245
 }
-__THREE_BACKTICKS__
+```
 
-Oba są stosowane raczej rzadko, a nawet miałem trudności ze znalezieniem choćby jednego realnego przykładu w komercyjnych projektach, które współtworzyłem. Zakładam również, że są dobrze znane programistom, którzy przyszli do Kotlina ze starszych języków. Dlatego tak krótko przedstawiam te słowa kluczowe.
+> Oba są stosowane raczej rzadko, a nawet miałem trudności ze znalezieniem choćby jednego realnego przykładu w większości komercyjnych projektów, które współtworzyłem. Zakładam również, że są dobrze znane programistom, którzy przyszli do Kotlina ze starszych języków. Dlatego tak krótko je przedstawiam.
 
 ### Przypadki użycia
 
 Programiści z doświadczeniem w starszych językach często używają pętli for tam, gdzie zamiast tego powinny być używane nieco bardziej nowoczesne alternatywy. Na przykład, w niektórych projektach można znaleźć pętlę for, która służy do iterowania po elementach z indeksami.
 
-__THREE_BACKTICKS__kotlin
+```kotlin
 fun main() {
     val names = listOf("Alex", "Bob", "Celina")
 
@@ -181,13 +181,13 @@ fun main() {
 // [0] Alex
 // [1] Bob
 // [2] Celina
-__THREE_BACKTICKS__
+```
 
-To nie jest dobre rozwiązanie. W Kotlin istnieje wiele sposobów, aby zrobić to lepiej.
+To nie jest dobre rozwiązanie. W Kotlinie istnieje wiele sposobów, aby zrobić to lepiej.
 
 Po pierwsze, zamiast jawnie iterować po zakresie `0 until names.size`, moglibyśmy użyć właściwości `indices`, która zwraca zakres dostępnych indeksów.
 
-__THREE_BACKTICKS__kotlin
+```kotlin
 fun main() {
     val names = listOf("Alex", "Bob", "Celina")
 
@@ -199,11 +199,11 @@ fun main() {
 // [0] Alex
 // [1] Bob
 // [2] Celina
-__THREE_BACKTICKS__
+```
 
 Po drugie, zamiast iterować po indeksach i znajdować element dla każdego z nich, moglibyśmy zamiast tego iterować po indeksowanych wartościach. Możemy tworzyć indeksowane wartości za pomocą `withIndex` na obiektach iterowalnych. Każda indeksowana wartość zawiera zarówno indeks, jak i wartość. Takie obiekty można destrukturyzować w pętli for[^07_2].
 
-__THREE_BACKTICKS__kotlin
+```kotlin
 fun main() {
     val names = listOf("Alex", "Bob", "Celina")
 
@@ -214,11 +214,11 @@ fun main() {
 // [0] Alex
 // [1] Bob
 // [2] Celina
-__THREE_BACKTICKS__
+```
 
-Po trzecie, jeszcze lepszym rozwiązaniem jest użycie `forEachIndexed`, które jest wyjaśnione w kolejnej książce: *Funkcjonalny Kotlin*.
+Po trzecie, jeszcze lepszym rozwiązaniem jest użycie `forEachIndexed`, które jest wyjaśnione w kolejnej książce: *Funkcyjny Kotlin*.
 
-__THREE_BACKTICKS__kotlin
+```kotlin
 fun main() {
     val names = listOf("Alex", "Bob", "Celina")
 
@@ -229,11 +229,11 @@ fun main() {
 // [0] Alex
 // [1] Bob
 // [2] Celina
-__THREE_BACKTICKS__
+```
 
-Innym popularnym przypadkiem użycia jest iterowanie po mapie. Programiści z doświadczeniem w Java często robią to w ten sposób:
+Innym popularnym przypadkiem użycia jest iterowanie po mapie. Programiści z doświadczeniem w Javie często robią to w ten sposób:
 
-__THREE_BACKTICKS__kotlin
+```kotlin
 fun main() {
     val capitals = mapOf(
         "USA" to "Washington DC",
@@ -249,11 +249,11 @@ fun main() {
 // Stolica USA to Washington DC
 // Stolica Polska to Warszawa
 // Stolica Ukraina to Kijów
-__THREE_BACKTICKS__
+```
 
-Można to ulepszyć, iterując bezpośrednio po mapie, więc wywołanie entries jest zbędne. Dodatkowo możemy zdestrukturyzować wpisy, aby lepiej nazwać wartości.
+Można to ulepszyć, iterując bezpośrednio po mapie, więc wywołanie `entries` jest zbędne. Dodatkowo możemy zdestrukturyzować wpisy, aby lepiej nazwać wartości.
 
-__THREE_BACKTICKS__kotlin
+```kotlin
 fun main() {
     val capitals = mapOf(
         "USA" to "Washington DC",
@@ -268,11 +268,11 @@ fun main() {
 // Stolica USA to Washington DC
 // Stolica Polska to Warszawa
 // Stolica Ukraina to Kijów
-__THREE_BACKTICKS__
+```
 
-Możemy użyć forEach dla mapy.
+Możemy również użyć `forEach` dla mapy, co zostanie wyjaśnione w książce *Funkcyjny Kotlin*.
 
-__THREE_BACKTICKS__kotlin
+```kotlin
 fun main() {
     val capitals = mapOf(
         "USA" to "Washington DC",
@@ -287,14 +287,13 @@ fun main() {
 // Stolica USA to Washington DC
 // Stolica Polska to Warszawa
 // Stolica Ukraina to Kijów
-__THREE_BACKTICKS__
+```
 
 ### Podsumowanie
 
-W tym rozdziale nauczyliśmy się korzystać z pętli for. W Kotlin jest naprawdę prosta i potężna, więc warto wiedzieć, jak działa, mimo że nie jest używana zbyt często (ze względu na niesamowite funkcje funkcyjne Kotlin, które często są używane zamiast niej).
+W tym rozdziale nauczyliśmy się korzystać z pętli for. W Kotlinie jest naprawdę prosta i potężna, więc warto wiedzieć, jak działa.
 
-Teraz porozmawiajmy o jednym z najważniejszych ulepszeń Kotlin względem Javy: dobrym wsparciu dla obsługi wartości null.
+Teraz porozmawiajmy o jednym z najważniejszych ulepszeń jakie Kotlin wprowadził do świata JVM: dobrym wsparciu dla obsługi wartości `null`.
 
-[^07_1]: Ma metodę operatora `iterator`.
+[^07_1]: Ma metodę `iterator`.
 [^07_2]: Destrukturyzacja będzie wyjaśniona bardziej szczegółowo w rozdziale *Data klasy*.
-
