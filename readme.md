@@ -57,6 +57,7 @@ Obrazki powinny mieć określoną szerokość w % poprzez użycie atrybutu `widt
 
 Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielskiego:
 * **anonymous function** - **funkcja anonimowa**,
+* **bytecode** - **bytecode**,
 * **companion object** - **companion object**,
 * **conditional statement** - **instrukcja warunkowa**,
 * **data class** - **klasa data**,
