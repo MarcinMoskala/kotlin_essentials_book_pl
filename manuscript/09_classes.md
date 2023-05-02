@@ -1,6 +1,6 @@
 ## Klasy
 
-Spojrzyj na świat wokół siebie, a prawdopodobnie zauważysz mnóstwo obiektów. Może to być książka, czytnik Ebooków, monitor lub kubek kawy. Jesteśmy otoczeni obiektami. Ta idea prowadzi do wniosku, że żyjemy w świecie obiektów, a zatem nasze programy powinny być zbudowane w ten sam sposób. To jest koncepcyjna podstawa podejścia do programowania obiektowego. Nie wszyscy podzielają ten światopogląd - niektórzy wolą widzieć świat jako miejsce możliwych działań[^09_0], co jest koncepcyjną podstawą podejścia do programowania funkcjonalnego - ale niezależnie od tego, które podejście preferujemy, klasy i obiekty są ważnymi strukturami w programowaniu Kotlin.
+Spojrzyj na świat wokół siebie, a prawdopodobnie zauważysz mnóstwo obiektów. Może to być książka, czytnik Ebooków, monitor lub kubek kawy. Jesteśmy otoczeni obiektami. Ta idea prowadzi do wniosku, że żyjemy w świecie obiektów, a zatem nasze programy powinny być zbudowane w ten sam sposób. To jest koncepcyjna podstawa podejścia do programowania obiektowego. Nie wszyscy podzielają ten światopogląd - niektórzy wolą widzieć świat jako miejsce możliwych działań[^09_0], co jest koncepcyjną podstawą podejścia do programowania funkcjonalnego - ale niezależnie od tego, które podejście preferujemy, klasy i obiekty są ważnymi strukturami w programowaniu w języku Kotlin.
 
 Klasa to szablon, który służy do tworzenia obiektu o konkretnych cechach. Aby utworzyć klasę w Kotlinie, używamy słowa kluczowego `class`, a następnie podajemy nazwę. To dosłownie wszystko, czego potrzebujemy, aby utworzyć najprostszą klasę, ponieważ ciało klasy jest opcjonalne. Aby utworzyć obiekt, który jest instancją klasy, używamy domyślnej funkcji konstruktora, która jest nazwą klasy i nawiasami okrągłymi. W przeciwieństwie do innych języków, takich jak C++ czy Javie, w Kotlinie nie używamy słowa kluczowego `new`.
 
@@ -52,7 +52,7 @@ Wewnątrz ciał klas możemy również definiować zmienne. Zmienne zdefiniowane
 * getter - funkcja, która służy do pobierania bieżącej wartości tego pola,
 * setter - funkcja, która służy do ustawiania nowych wartości dla tego pola.
 
-Ten wzorzec jest bardzo wpływowy; w projektach Javy można zobaczyć mnóstwo funkcji getterów i setterów, które są głównie używane w klasach przechowujących dane. Są one potrzebne do osiągnięcia enkapsulacji, ale są również zakłócającym boilerplate code. Dlatego twórcy języków wymyślili potężniejsze pojęcie zwane "właściwościami". **Właściwość** to zmienna w klasie, która jest automatycznie enkapsulowana, tak że używa gettera i settera "pod maską". We Kotlinie wszystkie zmienne zdefiniowane wewnątrz klas są właściwościami, a nie polami.
+Ten wzorzec jest bardzo wpływowy; w projektach Javy można zobaczyć mnóstwo funkcji getterów i setterów, które są głównie używane w klasach przechowujących dane. Są one potrzebne do osiągnięcia enkapsulacji, ale są również zakłócającym boilerplate code. Dlatego twórcy języków wymyślili potężniejsze pojęcie zwane "właściwościami". **Właściwość** to zmienna w klasie, która jest automatycznie enkapsulowana, tak że używa gettera i settera "pod maską". W Kotlinie wszystkie zmienne zdefiniowane wewnątrz klas są właściwościami, a nie polami.
 
 Niektóre języki, takie jak JavieScriptie, mają wbudowane wsparcie dla właściwości, ale Javie nie. Dlatego w Kotlin/JVM dla każdej właściwości generowane są funkcje akcesorów: getter dla `val` oraz getter i setter dla `var`.
 
@@ -316,7 +316,7 @@ fun main() {
 }
 ```
 
-Konstruktory są zwykle używane do ustawiania początkowych wartości naszych właściwości. Aby to uprościć, Kotlinie wprowadził specjalny rodzaj konstruktora nazywany **konstruktorem głównym**. Definiuje się go zaraz po nazwie klasy, a jego parametry można użyć podczas inicjalizacji właściwości.
+Konstruktory są zwykle używane do ustawiania początkowych wartości naszych właściwości. Aby to uprościć, w Kotlinie wprowadzono specjalny rodzaj konstruktora nazywany **konstruktorem głównym**. Definiuje się go zaraz po nazwie klasy, a jego parametry można użyć podczas inicjalizacji właściwości.
 
 ```kotlin
 class User constructor(name: String, surname: String) {
@@ -406,7 +406,7 @@ fun main() {
 
 ### Klasy reprezentujące dane w Kotlinie i Javie
 
-Porównując klasy zdefiniowane w Kotlinie i Javie, możemy zauważyć, ile kodu szablonowego Kotlinie wyeliminował. W Javie, aby przedstawić prostego użytkownika, z imieniem, nazwiskiem i wiekiem, typowa implementacja wygląda następująco:
+Porównując klasy zdefiniowane w Kotlinie i Javie, możemy zauważyć, ile kodu szablonowego zostało wyeliminowanego w Kotlinie. W Javie, aby przedstawić prostego użytkownika, z imieniem, nazwiskiem i wiekiem, typowa implementacja wygląda następująco:
 
 ```java
 public final class User {
@@ -452,7 +452,7 @@ class User(
 )
 ```
 
-Wynik kompilacji jest praktycznie taki sam. Gettery i konstruktory są obecne. Jeśli w to nie wierzysz, sprawdź sam (jak przedstawiono w sekcji *Co kryje się pod maską na JVM?* w rozdziale *Twój pierwszy program w Kotlin*). Kotlinie to zwięzły, ale potężny język.
+Wynik kompilacji jest praktycznie taki sam. Gettery i konstruktory są obecne. Jeśli w to nie wierzysz, sprawdź sam (jak przedstawiono w sekcji *Co kryje się pod maską na JVM?* w rozdziale *Twój pierwszy program w Kotlin*). Kotlin to zwięzły, ale potężny język.
 
 ### Klasy wewnętrzne
 
@@ -520,7 +520,7 @@ class FileTreeWalk(
 
 ### Podsumowanie
 
-Jak widać, w Kotlinie możemy definiować klasy za pomocą naprawdę zwięzłej składni, a wynik jest bardzo czytelny. Główny konstruktor to niesamowity wynalazek, podobnie jak fakt, że Kotlinie używa właściwości zamiast pól. Dowiedziałeś się także o klasach wewnętrznych. To wszystko jest wspaniałe, ale jeszcze nie poruszyliśmy tematu dziedziczenia, które jest tak ważne dla programistów lubiących styl zorientowany obiektowo. Omówimy to wraz z interfejsami i klasami abstrakcyjnymi w następnym rozdziale.
+Jak widać, w Kotlinie możemy definiować klasy za pomocą naprawdę zwięzłej składni, a wynik jest bardzo czytelny. Główny konstruktor to niesamowity wynalazek, podobnie jak fakt, że język używa właściwości zamiast pól. Dowiedziałeś się także o klasach wewnętrznych. To wszystko jest wspaniałe, ale jeszcze nie poruszyliśmy tematu dziedziczenia, które jest tak ważne dla programistów lubiących styl zorientowany obiektowo. Omówimy to wraz z interfejsami i klasami abstrakcyjnymi w następnym rozdziale.
 
 [^09_0]: Zobacz "Obiektowo-orientowany czy funkcyjny? Dwa sposoby widzenia świata" autorstwa Marcina Moskały, link: https://kt.academy/article/oop-vs-fp
 
