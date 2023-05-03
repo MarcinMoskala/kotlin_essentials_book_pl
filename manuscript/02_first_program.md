@@ -1,4 +1,4 @@
-## Twój pierwszy program w Kotlin
+## Twój pierwszy program w Kotlinie
 
 Pierwszym krokiem w naszej przygodzie z Kotlinem jest napisanie minimalnego programu w tym języku. Tak, słynny program "Hello, World!". Oto jak wygląda on w Kotlinie:
 

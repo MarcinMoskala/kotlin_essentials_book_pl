@@ -1,20 +1,20 @@
 ## Klasy
 
-Spojrzyj na świat wokół siebie, a prawdopodobnie zauważysz mnóstwo obiektów. Może to być książka, czytnik Ebooków, monitor lub kubek kawy. Jesteśmy otoczeni obiektami. Ta idea prowadzi do wniosku, że żyjemy w świecie obiektów, a zatem nasze programy powinny być zbudowane w ten sam sposób. To jest koncepcyjna podstawa podejścia do programowania obiektowego. Nie wszyscy podzielają ten światopogląd - niektórzy wolą widzieć świat jako miejsce możliwych działań[^09_0], co jest koncepcyjną podstawą podejścia do programowania funkcjonalnego - ale niezależnie od tego, które podejście preferujemy, klasy i obiekty są ważnymi strukturami w programowaniu Kotlin.
+Spojrzyj na świat wokół siebie, a prawdopodobnie zauważysz mnóstwo obiektów. Może to być książka, czytnik Ebooków, monitor lub kubek kawy. Jesteśmy otoczeni obiektami. Ta obserwacja prowadzi do wniosku, że żyjemy w świecie obiektów, a zatem nasze programy powinny być zbudowane w ten sam sposób. To jest koncepcyjna podstawa programowania obiektowego. Nie wszyscy podzielają ten światopogląd, niektórzy wolą widzieć świat jako miejsce możliwych działań[^09_0], co jest podstawą programowania funkcyjnego. Niezależnie od tego, które podejście preferujemy, klasy i obiekty są ważnymi strukturami w programowaniu Kotlin i omówimy je w tym rozdziale. 
 
-Klasa to szablon, który służy do tworzenia obiektu o konkretnych cechach. Aby utworzyć klasę w Kotlinie, używamy słowa kluczowego `class`, a następnie podajemy nazwę. To dosłownie wszystko, czego potrzebujemy, aby utworzyć najprostszą klasę, ponieważ ciało klasy jest opcjonalne. Aby utworzyć obiekt, który jest instancją klasy, używamy domyślnej funkcji konstruktora, która jest nazwą klasy i nawiasami okrągłymi. W przeciwieństwie do innych języków, takich jak C++ czy Javie, w Kotlinie nie używamy słowa kluczowego `new`.
+Klasa to szablon, który służy do tworzenia obiektu o konkretnych cechach. Aby utworzyć klasę w Kotlinie, używamy słowa kluczowego `class`, a następnie określamy jej nazwę. To dosłownie wszystko, czego potrzebujemy, aby utworzyć najprostszą klasę, ponieważ ciało klasy jest opcjonalne. Aby utworzyć obiekt, który jest instancją klasy, używamy konstruktora, czyli nazwy klasy z nawiasami okrągłymi. W przeciwieństwie do innych języków, takich jak C++ czy Javie, w Kotlinie nie używamy słowa kluczowego `new`.
 
 ```kotlin
 // Najprostsza definicja klasy
 class A
 
 fun main() {
-    // Tworzenie obiektu z klasy
+    // Tworzenie obiektu z klasy A
     val a: A = A()
 }
 ```
 
-### Metody członkowskie
+### Metody klasy
 
 Wewnątrz klas możemy definiować funkcje. Aby to zrobić, najpierw musimy otworzyć nawiasy klamrowe w definicji klasy, aby określić ciało klasy.
 
@@ -24,8 +24,8 @@ class A {
 }
 ```
 
-Tam możemy określić funkcje. Funkcje zdefiniowane w ten sposób mają dwie ważne cechy:
-* Funkcje muszą być wywołane na instancji tej klasy. Oznacza to, że aby wywołać metodę, najpierw musi zostać utworzony obiekt.
+W ciele możemy określić funkcje. Funkcje zdefiniowane w ten sposób mają dwie ważne cechy:
+* Muszą być wywołane na instancji tej klasy. Oznacza to, że aby wywołać metodę, najpierw musi zostać utworzony obiekt.
 * Wewnątrz metod możemy użyć `this`, które jest odniesieniem do instancji klasy, na której wywołaliśmy tę funkcję.
 
 ```kotlin
@@ -42,19 +42,19 @@ fun main() {
 }
 ```
 
-Wszystkie elementy zdefiniowane w ciele klasy nazywane są **członkami**, więc funkcja zdefiniowana w ciele klasy nazywana jest **funkcją członkowską**. Funkcje związane z klasami nazywane są **metodami**, więc wszystkie funkcje członkowskie są metodami, ale funkcje rozszerzeń (które zostaną omówione w późniejszym rozdziale) są również metodami.
+Wszystkie metody zdefiniowane w ciele klasy nazywać będziemy metodami klasy. Są one również **metodami**, choć metodami są również funkcje rozszerzające.
 
 Koncepcyjnie rzecz biorąc, metody reprezentują to, co obiekt może robić. Na przykład, ekspres do kawy powinien być w stanie produkować kawę, co możemy reprezentować za pomocą metody `makeCoffee` w klasie `CoffeeMachine`. W ten sposób klasy z metodami pomagają nam modelować świat.
 
 ### Właściwości
 
 Wewnątrz ciał klas możemy również definiować zmienne. Zmienne zdefiniowane wewnątrz klas nazywane są **polami**. Istnieje ważna idea związana z "enkapsulacją", która oznacza, że pola nie powinny być używane bezpośrednio spoza klasy, ponieważ w takim przypadku tracimy kontrolę nad ich stanem. Zamiast tego, pola powinny być używane przez akcesory:
-* getter - funkcja, która służy do pobierania bieżącej wartości tego pola,
-* setter - funkcja, która służy do ustawiania nowych wartości dla tego pola.
+* getter - funkcja służąca do pobierania aktualnej wartości pola,
+* setter - funkcja służąca do ustawiania nowych wartości pola.
 
-Ten wzorzec jest bardzo wpływowy; w projektach Javy można zobaczyć mnóstwo funkcji getterów i setterów, które są głównie używane w klasach przechowujących dane. Są one potrzebne do osiągnięcia enkapsulacji, ale są również zakłócającym boilerplate code. Dlatego twórcy języków wymyślili potężniejsze pojęcie zwane "właściwościami". **Właściwość** to zmienna w klasie, która jest automatycznie enkapsulowana, tak że używa gettera i settera "pod maską". We Kotlinie wszystkie zmienne zdefiniowane wewnątrz klas są właściwościami, a nie polami.
+Ten wzorzec jest bardzo powszechny; w projektach Javy można zobaczyć mnóstwo funkcji getterów i setterów. Są one potrzebne do osiągnięcia enkapsulacji, ale sprawiają że kod jest rozwlekły i mało czytelny. Dlatego twórcy języków wymyślili "właściwości". **Właściwość** to zmienna w klasie, która jest automatycznie enkapsulowana, a więc używa gettera i settera w sposób niejawny. W Kotlinie wszystkie zmienne zdefiniowane wewnątrz klas są właściwościami, a nie polami.
 
-Niektóre języki, takie jak JavieScriptie, mają wbudowane wsparcie dla właściwości, ale Javie nie. Dlatego w Kotlin/JVM dla każdej właściwości generowane są funkcje akcesorów: getter dla `val` oraz getter i setter dla `var`.
+Niektóre języki, takie jak JavaScript, mają wbudowane wsparcie dla właściwości, ale Javie nie. Dlatego w Kotlin/JVM bytecode generowanym z kodu w Kotlinie zawarte są metody getterów i setterów.
 
 ```kotlin
 // Kod w Kotlin
@@ -83,7 +83,7 @@ function main(args) {
 ```
 
 ```java
-// równoważny kod Javie
+// równoważny kod Java
 public final class User {
     @NotNull
     private String name = "";
@@ -108,23 +108,24 @@ public final class PlaygroundKt {
     }
 }
 ```
+
 Każda właściwość w Kotlinie ma akcesory, dlatego nie powinniśmy definiować getterów ani setterów za pomocą jawnie określonych funkcji. Jeśli chcesz zmienić domyślny akcesor, istnieje specjalna składnia do tego.
 
 ```kotlin
 class User {
     private var name: String = ""
 
-    // NIE RÓB TEGO! ZDEFINIUJ GETTER WŁAŚCIWOŚCI ZAMIAST TEGO
+    // NIE RÓB TEGO! ZAMIAST TEGO ZDEFINIUJ GETTER
     fun getName() = name
 
-    // NIE RÓB TEGO! ZDEFINIUJ SETTER WŁAŚCIWOŚCI ZAMIAST TEGO
+    // NIE RÓB TEGO! ZAMIAST TEGO ZDEFINIUJ SETTER
     fun setName(name: String) {
         this.name = name
     }
 }
 ```
 
-Aby określić niestandardowy getter, używamy słowa kluczowego `get` po definicji właściwości. Reszta jest równoznaczna z definiowaniem funkcji bez parametrów. Wewnątrz tej funkcji używamy słowa kluczowego `field`, aby odwołać się do pola wspierającego. Domyślny getter zwraca wartość `field`, ale możemy zmienić to zachowanie tak, aby wartość ta była w jakiś sposób modyfikowana przed jej zwróceniem. Gdy definiujemy getter, możemy użyć składni jednowyrażeniowej lub zwykłego ciała i słowa kluczowego `return`.
+Aby określić niestandardowy getter, używamy słowa kluczowego `get` po definicji właściwości. Reszta jest równoznaczna z definiowaniem funkcji bez parametrów. Wewnątrz tej funkcji używamy słowa kluczowego `field`, aby odwołać się do pola właściwości. Domyślny getter zwraca wartość `field`, ale możemy zmienić to zachowanie tak, aby wartość ta była w jakiś sposób modyfikowana przed jej zwróceniem. Gdy definiujemy getter, możemy użyć składni jednowyrażeniowej lub zwykłego ciała i słowa kluczowego `return`.
 
 ```kotlin
 class User {
@@ -188,7 +189,7 @@ fun main() {
 
 Settery mogą mieć bardziej ograniczoną widoczność niż właściwości, co pokażemy w kolejnym rozdziale.
 
-Jeśli niestandardowe akcesory właściwości nie używają słowa kluczowego `field`, pole wspierające nie zostanie wygenerowane. Na przykład możemy zdefiniować właściwość reprezentującą pełne imię i nazwisko, które jest obliczane na podstawie imienia i nazwiska. Oznacza to, że niektóre właściwości w ogóle mogą nie potrzebować pola.
+Jeśli niestandardowe akcesory właściwości nie używają słowa kluczowego `field`, pole nie zostanie wygenerowane dla właściwości. Na przykład możemy zdefiniować właściwość reprezentującą pełne imię i nazwisko, które jest obliczane na podstawie imienia i nazwiska. Taka właściwość nie zawiera pola.
 
 ```kotlin
 class User {
@@ -229,7 +230,7 @@ fun main() {
 }
 ```
 
-Ta różnica jest widoczna tylko wtedy, gdy wartości, na których opiera się nasza właściwość, są zmiennymi; dlatego gdy definiujemy niezmienny obiekt, obliczanie wartości właściwości w getterze lub podczas tworzenia klasy powinno dać ten sam wynik. Różnica polega na wydajności: obliczamy stałe wartości właściwości podczas tworzenia obiektu, ale wartości getterów są obliczane na żądanie za każdym razem, gdy są one potrzebne.
+Ta różnica jest widoczna tylko wtedy, gdy wartości, z których korzysta nasza właściwość, są zmienne; gdy definiujemy niezmienny obiekt, wartość obliczona w getterze oraz podczas tworzenia klasy zawsze powinna być ta sama. Różnica w takim przypadku polega tylko na wydajności: czy wartość będzie obliczana podczas tworzenia obiektu, czy przy wywołaniu gettera.
 
 ```kotlin
 class Holder {
@@ -244,16 +245,17 @@ class Holder {
 
 fun main() {
     val h1 = Holder() // Obliczanie v2
-    // h1 nigdy nie używał v1, więc nie został obliczony
-    // obliczył v2, chociaż nie był używany
+    // h1 nigdy nie używał ani v1 ani v2
+    // wartość v1 nie została obliczona ani razu
+    // wartość v2 została obliczona raz
     val h2 = Holder() // Obliczanie v2
     println(h2.v1) // Obliczanie v1 i 42
     println(h2.v1) // Obliczanie v1 i 42
     println(h2.v2) // 42
     println(h2.v2) // 42
-    // h2 użył v1 dwa razy i został obliczony dwa razy
-    // obliczył v2 tylko raz,
-    // mimo że był używany dwa razy
+    // h2 użył v1 i v2 po dwa razy 
+    // wartość v1 została obliczona dwa razy
+    // wartość v2 została obliczona tylko raz
 }
 ```
 
@@ -268,7 +270,7 @@ class User {
 }
 ```
 
-Upłynął czas, i `Date` nie jest już dobrym sposobem na reprezentowanie tego atrybutu. Być może mamy problemy z serializacją; być może musimy uczynić nasz obiekt wieloplatformowym; albo być może musimy reprezentować czas w innym kalendarzu, którego `Date` nie obsługuje. Dlatego postanowiliśmy użyć innego typu zamiast `Date`. Powiedzmy, że zdecydowaliśmy się użyć właściwości `Long` do przechowywania milisekund, ale nie możemy pozbyć się poprzedniej właściwości, ponieważ jest ona używana przez wiele innych części naszego kodu. Aby móc mieć ciastko i zjeść ciastko, możemy przekształcić naszą właściwość `birthdate`, aby w pełni zależała od nowej reprezentacji. W ten sposób zmieniliśmy sposób reprezentowania daty urodzenia, nie zmieniając wcześniejszego użycia.
+Po pewnym czasie zadecydowaliśmy, że `Date` nie jest już dobrym sposobem na reprezentowanie tego atrybutu. Być może mamy problemy z serializacją; być może musimy uczynić nasz obiekt wieloplatformowym; a być może musimy reprezentować czas w inny sposób, którego `Date` nie obsługuje. Dlatego postanowiliśmy użyć innego typu zamiast `Date`. Powiedzmy, że zdecydowaliśmy się użyć właściwości typu `Long` do przechowywania milisekund, ale nie chcemy pozbyć się poprzedniej właściwości, ponieważ jest ona używana w wielu innych częściach naszego kodu. Aby mieć ciastko i zjeść ciastko, możemy przekształcić naszą właściwość `birthdate`, aby w pełni zależała od nowej reprezentacji. W ten sposób zmieniliśmy sposób reprezentowania daty urodzenia, nie zmieniając wcześniejszego użycia.
 
 ```kotlin
 class User {
@@ -282,13 +284,14 @@ class User {
         }
 }
 ```
-> W powyższym getterze używam `let` oraz referencji do konstruktora. Oba te elementy Kotlinie są wyjaśnione w książce **Functional Kotlin**.
 
-Taka właściwość `birthdate` może być również zdefiniowana jako funkcja rozszerzenia, co zostanie przedstawione w rozdziale *Rozszerzenia*.
+> W powyższym getterze używam `let` oraz referencji do konstruktora. Oba te elementy Kotlinie są wyjaśnione w książce **Funkcyjny Kotlin**.
+
+Taka właściwość `birthdate` może być również zdefiniowana jako funkcja rozszerzenia, co zostało przedstawione w rozdziale *Rozszerzenia*.
 
 ### Konstruktory
 
-Kiedy tworzymy obiekt, często chcemy zainicjować go określonymi wartościami. Właśnie do tego używamy konstruktorów. Jak już widzieliśmy, gdy nie są określone żadne konstruktory, generowany jest pusty konstruktor domyślny bez żadnych parametrów.
+Kiedy tworzymy obiekt, często chcemy zainicjować go określonymi wartościami. Do tego używamy konstruktorów. Jak już widzieliśmy, gdy nie są określone żadne konstruktory, generowany jest pusty konstruktor domyślny bez żadnych parametrów.
 
 ```kotlin
 class A
@@ -296,7 +299,7 @@ class A
 val a = A()
 ```
 
-Aby zdefiniować nasz niestandardowy konstruktor, klasyczny sposób polega na użyciu słowa kluczowego `constructor` w ciele klasy, a następnie definiujemy jego parametry i ciało.
+Aby zdefiniować nasz niestandardowy konstruktor, klasyczny sposób polega na użyciu słowa kluczowego `constructor` w ciele klasy, a następnie zdefiniowaniu jego parametrów i ciała.
 
 ```kotlin
 class User {
@@ -316,7 +319,7 @@ fun main() {
 }
 ```
 
-Konstruktory są zwykle używane do ustawiania początkowych wartości naszych właściwości. Aby to uprościć, Kotlinie wprowadził specjalny rodzaj konstruktora nazywany **konstruktorem głównym**. Definiuje się go zaraz po nazwie klasy, a jego parametry można użyć podczas inicjalizacji właściwości.
+Konstruktory są zwykle używane do ustawiania początkowych wartości naszych właściwości. Aby to uprościć, w Kotlinie wprowadził specjalny rodzaj konstruktora nazywany **konstruktorem głównym** (**primary constructor**). Definiuje się go zaraz po nazwie klasy, a jego parametry można użyć do inicjalizacji właściwości.
 
 ```kotlin
 class User constructor(name: String, surname: String) {
@@ -346,7 +349,7 @@ fun main() {
 }
 ```
 
-Może być tylko jeden konstruktor główny. Możemy zdefiniować kolejny konstruktor, zwany **konstruktorem wtórnym**, ale musi on wywołać konstruktor główny za pomocą słowa kluczowego `this`.
+Może być tylko jeden konstruktor główny. Możemy zdefiniować kolejny konstruktor, zwany **konstruktorem wtórnym** (**secondary constructor**), ale musi on wywołać konstruktor główny za pomocą słowa kluczowego `this`.
 
 ```kotlin
 class User(name: String, surname: String) {
@@ -370,10 +373,11 @@ fun main() {
 }
 ```
 
-Główny konstruktor jest zwykle używany do określania wartości początkowych dla naszych właściwości. Te właściwości często mają te same nazwy co inne parametry, dlatego Kotlinie wprowadził lepsze wsparcie dla tego: możemy definiować właściwości wewnątrz konstruktora głównego. Takie właściwości definiują właściwość klasy i parametr konstruktora, które mają tę samą nazwę.
+Główny konstruktor jest zwykle używany do określania wartości początkowych dla naszych właściwości. Te właściwości często mają te same nazwy co inne parametry, dlatego Kotlinie wprowadził specjalną notację: możemy definiować właściwości wewnątrz konstruktora głównego. Jeśli przed parametrem konstruktora głównego użyjemy `val` lub `var`, to definiujemy właściwość o takiej samej nazwie jak ten parametr, której wartością będzie wartość tego parametru. Takie parametry nazywamy **właściwościami konstruktora głównego**. 
 
 ```kotlin
 class User(
+    // właściwości konstruktora głównego
     var name: String,
     var surname: String,
 ) {
@@ -387,9 +391,7 @@ fun main() {
 }
 ```
 
-Większość klas w Kotlinie jest definiowana właśnie w ten sposób: za pomocą konstruktora głównego z właściwościami. Rzadko używamy innych rodzajów konstruktorów.
-
-Często definiujemy konstruktory główne z domyślnymi wartościami. Tutaj tworzymy instancję `User` bez podawania argumentu `surname`, więc podczas tworzenia `User` zostanie użyta określona przez nas wartość domyślna.
+W praktyce rzadko używamy innych rodzajów konstruktorów niż konstruktor główny, a w nim większość parametrów określamy jako właściwości. Także często definiujemy konstruktory główne z domyślnymi wartościami. W poniższym przykładzie tworzymy instancję `User` bez podawania argumentu `surname`, więc podczas tworzenia obiektu zostanie użyta określona przez nas wartość domyślna.
 
 ```kotlin
 class User(
@@ -406,7 +408,7 @@ fun main() {
 
 ### Klasy reprezentujące dane w Kotlinie i Javie
 
-Porównując klasy zdefiniowane w Kotlinie i Javie, możemy zauważyć, ile kodu szablonowego Kotlinie wyeliminował. W Javie, aby przedstawić prostego użytkownika, z imieniem, nazwiskiem i wiekiem, typowa implementacja wygląda następująco:
+Porównując klasy zdefiniowane w Kotlinie i Javie, możemy zauważyć, ile powtarzalnego kodu zostało wyeliminowanego dzięki zwięzłej składni Kotlina. W Javie, aby zareprezentować prostego użytkownika, z imieniem, nazwiskiem i wiekiem, typowa implementacja wygląda następująco:
 
 ```java
 public final class User {
@@ -442,7 +444,7 @@ public final class User {
 }
 ```
 
-W Kotlinie reprezentujemy tę samą klasę w następujący sposób:
+W Kotlinie definiujemy tę samą klasę w następujący sposób:
 
 ```kotlin
 class User(
@@ -452,11 +454,11 @@ class User(
 )
 ```
 
-Wynik kompilacji jest praktycznie taki sam. Gettery i konstruktory są obecne. Jeśli w to nie wierzysz, sprawdź sam (jak przedstawiono w sekcji *Co kryje się pod maską na JVM?* w rozdziale *Twój pierwszy program w Kotlin*). Kotlinie to zwięzły, ale potężny język.
+Wynik kompilacji jest praktycznie taki sam. Gettery i konstruktory są obecne. Jeśli w to nie wierzysz, sprawdź sam (jak przedstawiono w sekcji *Co kryje się pod maską na JVM?* w rozdziale *Twój pierwszy program w Kotlinie*). Kotlinie to zwięzły, ale potężny język.
 
 ### Klasy wewnętrzne
 
-W Kotlinie możemy definiować klasy wewnątrz klas. Domyślnie są one statyczne, co oznacza, że nie mają dostępu do klas zewnętrznych, dlatego mogą być tworzone bez odniesienia do klasy zewnętrznej.
+W Kotlinie możemy definiować klasy wewnątrz klas. Domyślnie są one statyczne, co oznacza, że nie mają dostępu do funkcji i właściwości klas zewnętrznych, dlatego mogą być tworzone bez odniesienia do klasy zewnętrznej.
 
 ```kotlin
 class Puppy(val name: String) {
@@ -476,7 +478,7 @@ fun main() {
 }
 ```
 
-Jeśli chcesz, aby Twoja klasa wewnętrzna miała odniesienie do swojej klasy zewnętrznej, musisz uczynić ją wewnętrzną za pomocą modyfikatora `inner`. Jednak tworzenie obiektów z takich klas wymaga instancji klasy zewnętrznej.
+Jeśli chcesz, aby Twoja klasa wewnętrzna miała odniesienie do swojej klasy zewnętrznej, musisz uczynić ją wewnętrzną przy pomocy modyfikatora `inner`. Jednak tworzenie obiektów z takich klas wymaga instancji klasy zewnętrznej.
 
 ```kotlin
 class Puppy(val name: String) {
@@ -497,7 +499,7 @@ fun main() {
 
 Przykłady klas wewnętrznych w bibliotece standardowej to:
 * prywatne implementacje iteratorów;
-* klasy, gdzie istnieje ścisłe powiązanie między klasą zewnętrzną a klasą wewnętrzną, a klasa wewnętrzna służy do tego, aby nie definiować kolejnej nazwy w przestrzeni nazw biblioteki.
+* klasy, w których istnieje ścisłe powiązanie między klasą zewnętrzną a klasą wewnętrzną, a klasa wewnętrzna służy do tego, aby nie definiować kolejnej nazwy w przestrzeni nazw biblioteki.
 
 ```kotlin
 // Klasa z biblioteki standardowej Kotlin
@@ -520,7 +522,7 @@ class FileTreeWalk(
 
 ### Podsumowanie
 
-Jak widać, w Kotlinie możemy definiować klasy za pomocą naprawdę zwięzłej składni, a wynik jest bardzo czytelny. Główny konstruktor to niesamowity wynalazek, podobnie jak fakt, że Kotlinie używa właściwości zamiast pól. Dowiedziałeś się także o klasach wewnętrznych. To wszystko jest wspaniałe, ale jeszcze nie poruszyliśmy tematu dziedziczenia, które jest tak ważne dla programistów lubiących styl zorientowany obiektowo. Omówimy to wraz z interfejsami i klasami abstrakcyjnymi w następnym rozdziale.
+Jak widać, w Kotlinie możemy definiować klasy za pomocą naprawdę zwięzłej składni, a wynik jest bardzo czytelny. Główny konstruktor to niesamowity wynalazek, podobnie jak fakt, że w Kotlinie używamy właściwości zamiast pól. Dowiedziałeś się także o klasach wewnętrznych. Wszystko pięknie, ale jeszcze nie poruszyliśmy tematu dziedziczenia, które jest jakże ważne dla programistów piszących w stylu obiektowym. Omówimy je wraz z interfejsami i klasami abstrakcyjnymi w następnym rozdziale.
 
-[^09_0]: Zobacz "Obiektowo-orientowany czy funkcyjny? Dwa sposoby widzenia świata" autorstwa Marcina Moskały, link: https://kt.academy/article/oop-vs-fp
+[^09_0]: Zobacz artykuł "Object-oriented or functional? Two ways to see the world", link: https://kt.academy/article/oop-vs-fp
 

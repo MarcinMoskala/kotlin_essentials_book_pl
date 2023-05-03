@@ -83,6 +83,7 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 * **object expression** - **wyrażenie obiektu**,
 * **overloading** - **przeciążanie**,
 * **predicate** - **predykat**,
+* **primary constructor** - **konstruktor główny**,
 * **property** - **właściwość**,
 * **range** - **zakres**,
 * **reference** - **referencja**,
