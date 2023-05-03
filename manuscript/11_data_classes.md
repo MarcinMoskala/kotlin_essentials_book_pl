@@ -1,8 +1,8 @@
 ## Data klasy
 
-W Kotlin mówimy, że wszystkie klasy dziedziczą po nadrzędnej klasie `Any`, która znajduje się na szczycie hierarchii klas[^11_3]. Metody zdefiniowane w `Any` mogą być wywoływane na wszystkich obiektach. Są to metody:
+W Kotlinie mówimy, że wszystkie klasy dziedziczą po nadrzędnej klasie `Any`, która znajduje się na szczycie hierarchii klas[^11_3]. Metody zdefiniowane w `Any` mogą być wywoływane na wszystkich obiektach. Są to metody:
 * `equals` - używana przy porównywaniu dwóch obiektów za pomocą `==`,
-* `hashCode` - używana przez kolekcje, które korzystają z algorytmu tablicy mieszającej,
+* `hashCode` - używana przez kolekcje, które korzystają z algorytmu hash table,
 * `toString` - używana do reprezentacji obiektu jako stringa, np. w szablonie stringa lub funkcji `print`.
 
 Dzięki tym metodom możemy reprezentować dowolny obiekt jako string lub sprawdzić równość dowolnych dwóch obiektów.
@@ -27,9 +27,9 @@ fun main() {
 }
 ```
 
-> Prawdę mówiąc, `Any` jest reprezentowane jako klasa, ale powinno być traktowane jako głowa hierarchii typów, ale z pewnymi specjalnymi funkcjami. Weź pod uwagę fakt, że `Any` jest także nadrzędnym typem wszystkich interfejsów, mimo że interfejsy nie mogą dziedziczyć po klasach.
+> Prawdę mówiąc, `Any` jest reprezentowane jako klasa, ale powinno być traktowane jako typ. Weź pod uwagę fakt, że `Any` jest także nadrzędnym typem wszystkich interfejsów, mimo że interfejsy nie mogą dziedziczyć po klasach.
 
-Domyślne implementacje `equals`, `hashCode` i `toString` są mocno oparte na adresie obiektu w pamięci. Metoda `equals` zwraca `true` tylko wtedy, gdy adres obu obiektów jest taki sam, co oznacza, że po obu stronach jest ten sam obiekt. Metoda `hashCode` zwykle zamienia adres na liczbę. `toString` generuje string, który zaczyna się od nazwy klasy, a następnie znaku małpy "@", a potem bez znakowej reprezentacji szesnastkowej kodu skrótu obiektu.
+Domyślne implementacje `equals`, `hashCode` i `toString` są mocno oparte na adresie obiektu w pamięci. Metoda `equals` zwraca `true` tylko wtedy, gdy adres obu obiektów jest taki sam, co oznacza, że po obu stronach jest ten sam obiekt. Metoda `hashCode` zamienia ten adres na liczbę. `toString` generuje string, który zaczyna się od nazwy klasy, a następnie znaku małpy "@", a potem skrótu adresu obiektu w notacji szesnastkowej.
 
 ```kotlin
 class A
@@ -55,7 +55,7 @@ fun main() {
 }
 ```
 
-Poprzez nadpisywanie tych metod możemy zdecydować, jak klasa powinna się zachowywać. Rozważ poniższą klasę `A`, która jest równa innym instancjom tej samej klasy i zwraca stały kod skrótu oraz reprezentację stringa.
+Poprzez nadpisywanie tych metod możemy zdecydować, jak klasa powinna się zachowywać. Rozważ poniższą klasę `A`, która jest równa innym instancjom tej samej klasy i zwraca stały hash oraz reprezentację stringa.
 
 ```kotlin
 class A {
@@ -87,9 +87,9 @@ fun main() {
 }
 ```
 
-W książce *Efektywny Kotlin* poświęciłem oddzielne elementy na implementację własnych metod `equals` i `hashCode`[^11_0], ale w praktyce rzadko musimy to robić. Okazuje się, że we współczesnych projektach prawie wyłącznie operujemy tylko na dwóch rodzajach obiektów:
+W książce *Efektywny Kotlin* poświęciłem oddzielne tematy na implementację własnych metod `equals` i `hashCode`[^11_0], ale w praktyce rzadko musimy to robić. Okazuje się, że we współczesnych projektach prawie wyłącznie operujemy tylko na dwóch rodzajach obiektów:
 * Aktywne obiekty, takie jak usługi, kontrolery, repozytoria itp. Takie klasy nie muszą nadpisywać żadnych metod z `Any`, ponieważ domyślne zachowanie jest dla nich idealne.
-* Obiekty klas modelu danych, które reprezentują pakiety danych. Dla takich obiektów używamy modyfikatora `data`, który nadpisuje metody `toString`, `equals` i `hashCode`. Modyfikator `data` implementuje również metody `copy` oraz `componentN` (`component1`, `component2` itp.), które nie są dziedziczone i nie mogą być modyfikowane[^11_1].
+* Obiekty reprezentujące nasz model danych, takie jak `User`, `Payment` itp. Dla takich obiektów używamy modyfikatora `data`, który nadpisuje metody `toString`, `equals` i `hashCode` w wsposób odpowiedni dla klas modelu danych. Modyfikator `data` implementuje również metody `copy` oraz `componentN` (`component1`, `component2` itp.), które nie są dziedziczone i nie mogą być modyfikowane.
 
 ```kotlin
 data class Player(
@@ -105,7 +105,7 @@ Przeanalizujmy wspomniane wcześniej domyślne metody data klasy oraz różnice 
 
 ### Przekształcanie do stringa
 
-Domyślne przekształcenie `toString` generuje string, który zaczyna się od nazwy klasy, a następnie znaku małpy "@", a potem bez znakowej reprezentacji szesnastkowej kodu skrótu obiektu. Celem tego jest wyświetlenie nazwy klasy oraz określenie, czy dwa stringireprezentują ten sam obiekt, czy nie.
+Domyślne przekształcenie `toString` generuje string zaczynającego się od nazwy klasy, a następnie zawierającego znak małpy "@" oraz hash adresu w reprezentacji szesnastkowej. Celem tego jest wyświetlenie nazwy klasy oraz określenie, czy dwa stringi reprezentują ten sam obiekt, czy nie.
 
 ```kotlin
 class FakeUserRepository
@@ -119,7 +119,7 @@ fun main() {
 }
 ```
 
-Dzięki modyfikatorowi `data`, kompilator generuje `toString`, który wyświetla nazwę klasy, a następnie pary z nazwą i wartością dla każdej właściwości konstruktora głównego. Zakładamy, że data klasy są reprezentowane przez ich właściwości konstruktora głównego, więc wszystkie te właściwości wraz z ich wartościami są wyświetlane podczas przekształcania na string. Jest to przydatne do rejestrowania i debugowania.
+Dzięki modyfikatorowi `data`, kompilator generuje `toString`, który wyświetla nazwę klasy, a następnie pary z nazwą i wartością dla każdej właściwości konstruktora głównego. Zakładamy, że klasy modelu danych są reprezentowane przez ich właściwości konstruktora głównego, więc wszystkie te właściwości wraz z ich wartościami są wyświetlane podczas przekształcania na string. Jest to przydatne przy loggowaniu i debugowania.
 
 ```kotlin
 data class Player(
@@ -142,7 +142,7 @@ fun main() {
 
 ### Równość obiektów
 
-W Kotlin sprawdzamy równość dwóch obiektów za pomocą `==`, które używa metody `equals` z `Any`. Ta metoda decyduje więc, czy dwa obiekty powinny być uznane za równe, czy nie. Domyślnie dwie różne instancje nigdy nie są równe. Jest to doskonałe dla aktywnych obiektów, czyli obiektów, które działają niezależnie od innych instancji tej samej klasy i mają możliwość chronionego stanu zmiennego.
+W Kotlinie sprawdzamy równość dwóch obiektów za pomocą `==`, które używa metody `equals` z `Any`. Ta metoda decyduje więc, czy dwa obiekty powinny być uznane za równe, czy nie. Domyślnie dwie różne instancje nigdy nie są równe. Jest to doskonałe zachowanie dla aktywnych obiektów, czyli obiektów, dla których każda instancja jest unikatowa i chroni swój stan. 
 
 ```kotlin
 class FakeUserRepository
@@ -155,7 +155,7 @@ fun main() {
 }
 ```
 
-Klasy z modyfikatorem `data` reprezentują pakiety danych; uważa się je za równe innym instancjom, jeśli:
+Klasy z modyfikatorem `data` reprezentują zbiór danych; uważa się je za równe innym instancjom, jeśli:
 * obie są tej samej klasy,
 * wartości właściwości głównego konstruktora są równe.
 
@@ -182,15 +182,15 @@ override fun equals(other: Any?): Boolean = other is Player &&
    other.points == this.points
 ```
 
-> Implementacja własnej metody `equals` opisana jest w *Efektywny Kotlin*, *Pozycja 42: Szanuj kontrakt metody `equals`*.
+> Implementacja własnej metody `equals` opisana jest w *Efektywny Kotlin*, *Temat 42: Szanuj kontrakt metody equals*.
 
 ### Kod hashujący
 
-Kolejną metodą z klasy `Any` jest `hashCode`, która służy do przekształcenia obiektu na wartość `Int`. Dzięki metodzie `hashCode`, instancję obiektu można przechowywać w implementacjach struktury danych tablicy mieszającej, będących częścią wielu popularnych klas, takich jak `HashSet` i `HashMap`. Najważniejsza zasada implementacji `hashCode` mówi, że powinna ona:
+Kolejną metodą z klasy `Any` jest `hashCode`, która służy do przekształcenia obiektu na wartość `Int`. Dzięki metodzie `hashCode`, instancję obiektu można przechowywać w implementacjach struktury danych hash table (co się tłumaczy także jako "tablica mieszająca"), będących częścią wielu popularnych klas, takich jak `HashSet` i `HashMap`. Najważniejsza zasada implementacji `hashCode` mówi, że powinna ona:
 * być zgodna z `equals`, więc powinna zwracać tę samą wartość `Int` dla równych obiektów, a także zawsze zwracać ten sam kod hashujący dla tego samego obiektu.
 * rozkładać obiekty jak najbardziej równomiernie w zakresie wszystkich możliwych wartości `Int`.
 
-Domyślny `hashCode` opiera się na adresie obiektu w pamięci. Kod hashujący generowany przez modyfikator `data` opiera się na kodach hashujących właściwości głównego konstruktora tego obiektu. W obu przypadkach dla równych obiektów zwracana jest ta sama liczba.
+Domyślny `hashCode` opiera się na adresie obiektu w pamięci. Kod hashujący generowany przez modyfikator `data` opiera się na kodach hashujących właściwości głównego konstruktora tego obiektu. Gdy dwa obiekty są równe, ich kody hashujący są również równe. 
 
 ```kotlin
 data class Player(
@@ -206,15 +206,15 @@ fun main() {
 }
 ```
 
-Aby dowiedzieć się więcej o algorytmie tablicy mieszającej oraz implementacji własnej metody `hashCode`, zobacz *Efektywny Kotlin*, *Pozycja 41: Szanuj kontrakt metody `hashCode`*.
+Aby dowiedzieć się więcej o algorytmie tablicy mieszającej oraz implementacji własnej metody `hashCode`, zobacz *Efektywny Kotlin*, *Temat 41: Szanuj kontrakt metody hashCode*.
 
-### Klonowanie obiektów
+### Tworzenie kopii obiektów
 
 Kolejną metodą generowaną przez modyfikator `data` jest `copy`, który służy do tworzenia nowej instancji klasy, ale z konkretną modyfikacją. Idea jest bardzo prosta: jest to funkcja z parametrami dla każdej właściwości głównego konstruktora, ale każdy z tych parametrów ma wartość domyślną, tj. bieżącą wartość powiązanej właściwości.
 
 ```kotlin
 // Oto jak wygląda metoda copy generowana przez modyfikator data
-// dla klasy Person "pod spodem"
+// dla klasy Person "pod kopułą"
 fun copy(
    id: Int = this.id,
    name: String = this.name,
@@ -234,7 +234,8 @@ data class Player(
 fun main() {
    val p = Player(0, "Gecko", 9999)
 
-   println(p.copy()) // Player(id=0, name=Gecko, points=9999)
+   println(p.copy()) 
+    // Player(id=0, name=Gecko, points=9999)
 
    println(p.copy(id = 1, name = "Nowa nazwa"))
    // Player(id=1, name=Nowa nazwa, points=9999)
@@ -244,7 +245,7 @@ fun main() {
 }
 ```
 
-Zauważ, że `copy` tworzy płytką kopię obiektu; więc, jeśli nasz obiekt przechowuje zmienny stan, zmiana w jednym obiekcie będzie również zmianą we wszystkich jego kopiach.
+Zauważ, że `copy` tworzy płytką kopię obiektu; jeśli więc nasz obiekt przechowuje zmienny stan, zmiana w jednym obiekcie będzie również zmianą we wszystkich jego kopiach.
 
 ```kotlin
 data class StudentGrades(
@@ -267,7 +268,7 @@ fun main() {
 }
 ```
 
-Nie mamy tego problemu, gdy używamy `copy` dla klas niemutowalnych, tj. klas mających tylko właściwości `val`, które przechowują niemutowalne wartości. `copy` został wprowadzony jako specjalne wsparcie dla niemutowalności (szczegóły można znaleźć w *Efektywny Kotlin*, *Pozycja 1: Ogranicz mutowalność*).
+Nie mamy tego problemu, gdy używamy `copy` dla klas niemutowalnych, tj. klas mających tylko właściwości `val`, które przechowują niemutowalne wartości. `copy` został wprowadzony jako specjalne wsparcie dla niemutowalności (szczegóły można znaleźć w *Efektywny Kotlin*, *Temat 1: Ogranicz mutowalność*).
 
 ```kotlin
 data class StudentGrades(
@@ -289,7 +290,7 @@ fun main() {
 }
 ```
 
-Zauważ, że klasy data nie nadają się dla obiektów, które muszą utrzymywać niezmiennik ograniczeń na zmiennych właściwościach. Na przykład, w przypadku poniższego przykładu `User`, klasa nie byłaby w stanie zagwarantować, że wartości `name` i `surname` nie są puste, gdyby te zmienne były mutowalne (czyli zdefiniowane za pomocą `var`). Klasy data doskonale nadają się dla niemutowalnych właściwości, których ograniczenia można sprawdzić podczas tworzenia tych obiektów. W poniższym przykładzie możemy być pewni, że wartości `name` i `surname` nie są puste w instancji `User`.
+Zauważ, że data klasy nie nadają się dla obiektów, które muszą utrzymywać pewne wymogli dla mutowalnych właściwości. Na przykład, w przypadku poniższego przykładu `User`, klasa nie byłaby w stanie zagwarantować, że wartości `name` i `surname` nie są puste, gdyby te zmienne były mutowalne (czyli zdefiniowane za pomocą `var`). Data klasy doskonale nadają się dla niemutowalnych właściwości, których ograniczenia można sprawdzić podczas tworzenia tych obiektów. W poniższym przykładzie możemy być pewni, że wartości `name` i `surname` nie są puste w instancji `User`.
 
 ```kotlin
 data class User(
@@ -582,7 +583,6 @@ W tym rozdziale poznaliśmy `Any`, które jest nadklasą wszystkich klas. Dowied
 
 Teraz przejdźmy do tematu poświęconego specjalnej składni Kotlin, która pozwala nam tworzyć obiekty bez definiowania klasy.
 
-[^11_0]: Są to *Pozycja 42: Szanuj kontrakt `equals`* oraz *Pozycja 43: Szanuj kontrakt `hashCode`*.
-[^11_1]: Ten rodzaj klasy jest tak popularny, że w Javie powszechną praktyką jest automatyczne generowanie `equals`, `hashCode` i `toString` w IntelliJ lub za pomocą biblioteki Lombok.
+[^11_0]: Są to *Temat 42: Szanuj kontrakt equals* oraz *Temat 43: Szanuj kontrakt hashCode*.
 [^11_2]: Kotlin miał wsparcie dla krotek, gdy był jeszcze w wersji beta. Mogliśmy zdefiniować krotkę za pomocą nawiasów i zestawu typów, takich jak `(Int, String, String, Long)`. To, co osiągnęliśmy, zachowywało się tak samo jak data klasy, ale było znacznie mniej czytelne. Czy możesz zgadnąć, jaki typ reprezentuje ten zestaw typów? Może być dowolny. Korzystanie z krotek jest kuszące, ale korzystanie z klas danych jest prawie zawsze lepsze. Dlatego krotki zostały usunięte, a pozostały tylko `Pair` i `Triple`.
 [^11_3]: Więc `Any` jest analogiczne do `Object` w Javie, JavaScripcie lub C#. W C++ nie ma bezpośredniego odpowiednika.
