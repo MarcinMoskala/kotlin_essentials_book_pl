@@ -1,6 +1,6 @@
 ## Enumy
 
-W tym rozdziale zapoznamy się z enumami. Zacznijmy od przykładu. Załóżmy, że implementujesz metodę płatności, która musi obsługiwać trzy możliwe opcje: płatność gotówką, płatność kartą i przelew bankowy. Najprostszym sposobem na reprezentowanie stałego zestawu wartości w Kotlinie jest enum. W jej ciele wymieniamy wszystkie wartości, oddzielając je przecinkami. Wartości nazywamy notacją UPPER_SNAKE_CASE (np. `BANK_TRANSFER`). Elementy enumów można odwołać się przez nazwę wyliczenia, po której następuje kropka, a następnie nazwa wartości (np. `PaymentOption.CASH`). Wszystkie wartości mają typ enuma.
+W tym rozdziale zapoznamy się z enumami, czyli specjalnym rodzajem klasy, służącym do reprezentowania stałego zbioru wartości. Zacznijmy od przykładu. Załóżmy, że implementujesz metodę płatności, która musi obsługiwać trzy możliwe opcje: płatność gotówką, płatność kartą i przelew bankowy. Najprostszym sposobem na reprezentowanie stałego zestawu wartości w Kotlinie jest enum. W jego ciele wymieniamy wszystkie wartości, oddzielając je przecinkami. Wartości nazywamy przy użyciu notacji UPPER_SNAKE_CASE (np. `CASH`). Do wartości klasy enum można odwołać się przez nazwę tej wartości, poprzedzoną nazwą klasy i kropką (np. `PaymentOption.CASH`). Wszystkie te wartości mają typ enuma (w tym przypadku `PaymentOption`).
 
 ```kotlin
 enum class PaymentOption {
@@ -20,9 +20,9 @@ fun main() {
 }
 ```
 
-Każdy enum ma następujące funkcje obiektu towarzyszącego:
+Każdy enum ma następujące funkcje statyczne:
 * `values`, która zwraca tablicę wszystkich wartości tego enuma;
-* `valueOf`, która zamienia stringa na wartość o pasującej nazwie (jest to z uwzględnieniem wielkości liter) lub rzuca wyjątek.
+* `valueOf`, która zamienia stringa na wartość o pasującej nazwie (z uwzględnieniem wielkości liter) lub rzuca wyjątek.
 
 ```kotlin
 enum class PaymentOption {
@@ -50,7 +50,7 @@ fun main() {
 // TRANSFER
 ```
 
-Zamiast tych metod możemy również użyć funkcji najwyższego poziomu `enumValues` i `enumValueOf`.
+Zamiast tych metod możemy również użyć funkcji `enumValues` i `enumValueOf`, w których typ enuma określamy przy użyciu argumentu generycznego.
 
 ```kotlin
 enum class PaymentOption {
@@ -76,7 +76,7 @@ fun main() {
 // TRANSFER
 ```
 
-Jak widać, elementy wyliczeń zachowują swoje wartości w kolejności. Ta kolejność jest ważna. Każda wartość wyliczenia ma dwie właściwości:
+Jak widać, kolejność elementów w enumów jest ważna. Funkcje `values` oraz `enumValues` zawsze zwracają wartości w kolejności, w jakiej są one zdefiniowane. Warto też dodać, że każda wartość enuma ma dwie właściwości:
 * `name` - nazwa tej wartości,
 * `ordinal` - pozycja tej wartości (zaczynając od 0).
 
@@ -94,7 +94,7 @@ fun main() {
 }
 ```
 
-Każdy enum jest podklasą abstrakcyjnej klasy `Enum`. Ta nadrzędna klasa gwarantuje właściwości `name` i `ordinal`. Enumy mają właściwości, które implementują `toString`, `equals` oraz `hashCode`, ale w przeciwieństwie do klas danych, mają także `compareTo` (ich naturalna kolejność to kolejność elementów w ciele).
+Każdy enum jest podklasą abstrakcyjnej klasy `Enum`. Ta nadrzędna klasa gwarantuje właściwości `name` i `ordinal`. Enumy mają właściwości, które implementują `toString`, `equals` oraz `hashCode`, ale w przeciwieństwie do klas danych, mają także `compareTo` (ich naturalna kolejność to kolejność definicji).
 
 Wartości wyliczeń można używać w warunkach when. Co więcej, nie ma potrzeby używania gałęzi else, gdy pokrywają się wszystkie możliwe wartości wyliczeń.
 
@@ -133,7 +133,7 @@ fun main() {
 
 ### Enumy z własnymi metodami
 
-Wyliczenia Kotlinowe mogą mieć abstrakcyjne metody, których implementacje są specyficzne dla elementu. Kiedy je definiujemy, enum musi zdefiniować abstrakcyjną metodę, a każdy element musi ją nadpisać:
+Enumy w Kotlinie mogą mieć abstrakcyjne metody, których implementacje są specyficzne dla elementu. Kiedy je definiujemy, enum musi zdefiniować abstrakcyjną metodę, a każdy element musi ją nadpisać:
 
 ```kotlin
 enum class PaymentOption {
@@ -164,13 +164,13 @@ enum class PaymentOption {
 }
 ```
 
-Ta opcja nie jest popularna, ponieważ zazwyczaj wolimy używać funkcjonalnych parametrów konstruktora głównego[^13_1] lub funkcji rozszerzeń[^13_2].
+Ta opcja nie jest popularna, ponieważ zazwyczaj wolimy używać funkcyjnych właściwości konstruktora głównego[^13_1] lub funkcji rozszerzających[^13_2].
 
 ### Podsumowanie
 
-Enumy to wygodny sposób reprezentowania konkretnego zestawu możliwych wartości. Każda wartość ma właściwości `name` i `ordinal` (pozycja). Możemy uzyskać tablicę wszystkich wartości za pomocą funkcji towarzyszącej obiektu `values` lub funkcji najwyższego poziomu `enumValues`. Możemy także przetworzyć wartość wyliczenia z `String` za pomocą funkcji towarzyszącej obiektu `valueOf` lub funkcji najwyższego poziomu `enumValueOf`.
+Enumy to wygodny sposób reprezentowania konkretnego zestawu możliwych wartości. Każda wartość ma właściwości `name` i `ordinal` (pozycja). Możemy uzyskać tablicę wszystkich wartości za pomocą funkcji statycznej `values` lub funkcji `enumValues`. Możemy także przetworzyć wartość wyliczenia z `String` za pomocą funkcji statycznej `valueOf` lub funkcji `enumValueOf`.
 
-W następnym rozdziale porozmawiamy o klasach szczelnych, które często traktowane są jako podobne do wyliczeń, ale reprezentują zupełnie inne, a nawet bardziej potężne abstrakcje. Klasy sealed mogą tworzyć zamkniętą hierarchię klas, podczas gdy wyliczenia reprezentują tylko zestaw stałych wartości.
+W następnym rozdziale porozmawiamy o sealed klasach, które często traktowane są jako podobne do enumów, ale reprezentują zupełnie inną, potężniejszą abstrakcję. Klasy sealed mogą tworzyć zamkniętą hierarchię klas, podczas gdy enumy reprezentują tylko zestaw stałych wartości.
 
-[^13_1]: Zmienne funkcjonalne są opisane w książce *Funkcjonalny Kotlin*. Przykład użycia enuma z funkcjonalnymi parametrami konstruktora głównego przedstawiono w *Efektywny Kotlin*, *Pozycja 41: Użyj wyliczenia do reprezentowania listy wartości*.
+[^13_1]: Zmienne funkcyjne są opisane w książce *Funkcyjny Kotlin*. Przykład użycia enuma z funkcjonalnymi właściwościami konstruktora głównego przedstawiłem w książce *Efektywny Kotlin*, *Temat 41: Użyj wyliczenia do reprezentowania listy wartości*.
 [^13_2]: Funkcje rozszerzeń są opisane później w tej książce.

@@ -492,23 +492,23 @@ Jaki jest wynik wyrażenia `1 + 2 * 3`? Odpowiedź brzmi `7`, a nie `9`, poniewa
 
 Priorytet jest również niezwykle ważny w programowaniu, ponieważ gdy kompilator ocenia wyrażenie takie jak `1 + 2 == 3`, musi wiedzieć, czy powinien najpierw dodać `1` do `2`, czy porównać `2` i `3`. Poniższa tabela porównuje priorytet wszystkich operatorów, w tym tych, które można przeciążyć, i tych, których nie można.
 
-| Priorytet | Tytuł           | Symbole                                  |
-|------------|-----------------|------------------------------------------|
-| Najwyższy  | Postfiksowy     | ++, --, . (zwykłe wywołanie), ?. (bezpieczne wywołanie) |
-|            | Prefiksowy      | -, +, ++, --, !                          |
-|            | Rzutowanie typów| as, as?                                  |
-|            | Mnożenie        | *, /, %                                  |
-|            | Dodawanie       | +, -                                     |
-|            | Zakres          | ..                                       |
-|            | Funkcja infiksowa| simpleIdentifier                         |
-|            | Elvis           | ?:                                       |
-|            | Sprawdzenia nazwane| in, !in, is, !is                         |
-|            | Porównanie      | <, >, <=, >=                             |
-|            | Równość         | ==, !=, ===, !==                         |
-|            | Koniunkcja      | &&                                       |
-|            | Alternatywa     | \                                        |\|                  |
-|            | Operator rozprzestrzeniania | *                            |
-| Najniższy  | Przypisanie     | =, +=, -=, *=, /=, %=                    |
+| Priorytet | Tytuł                       | Symbole                                                 |
+|-----------|-----------------------------|---------------------------------------------------------|
+| Najwyższy | Postfiksowy                 | ++, --, . (zwykłe wywołanie), ?. (bezpieczne wywołanie) |
+|           | Prefiksowy                  | -, +, ++, --, !                                         |
+|           | Rzutowanie typów            | as, as?                                                 |
+|           | Mnożenie                    | *, /, %                                                 |
+|           | Dodawanie                   | +, -                                                    |
+|           | Zakres                      | ..                                                      |
+|           | Funkcja infiksowa           | simpleIdentifier                                        |
+|           | Elvis                       | ?:                                                      |
+|           | Sprawdzenia nazwane         | in, !in, is, !is                                        |
+|           | Porównanie                  | <, >, <=, >=                                            |
+|           | Równość                     | ==, !=, ===, !==                                        |
+|           | Koniunkcja                  | &&                                                      |
+|           | Alternatywa                 | \|\|                                                    |
+|           | Operator rozprzestrzeniania | *                                                       |
+| Najniższy | Przypisanie                 | =, +=, -=, *=, /=, %=                                   |
 
 Czy na podstawie tej tabeli potrafisz przewidzieć, co wydrukuje poniższy kod?
 
@@ -525,8 +525,6 @@ fun main() {
     println((-1).plus(1)) // 0
 }
 ```
-
-{pagebreak}
 
 ### Podsumowanie
 

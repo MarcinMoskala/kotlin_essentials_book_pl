@@ -55,7 +55,7 @@ Możemy założyć, że zmienna powinna być zwykle zainicjalizowana przy użyci
 * instrukcja warunkowa użyta jako wyrażenie, jak wyrażenie `if`, wyrażenie `when` czy wyrażenie `try-catch`[^03_3].
 * wywołanie konstruktora[^03_4],
 * wywołanie funkcji[^03_5],
-* wyrażenie obiektu lub użycie deklaracji obiektu[^03_6],
+* wyrażenie tworzące obiekt lub użycie deklaracji obiektu[^03_6],
 * literał funkcyjny, jak wyrażenie lambda, funkcja anonimowa lub referencja do funkcji[^03_7],
 * referencja do elementu[^03_8].
 

@@ -1,6 +1,6 @@
 ## Generyki
 
-W początkowych czasach Javy, została zaprojektowana tak, że wszystkie listy miały ten sam typ `List`, zamiast konkretnych list z określonymi typami parametrów, takimi jak `List<String>` czy `List<Int>`. Typ `List` w Javie akceptuje wszystkie rodzaje wartości; gdy prosisz o wartość na określonej pozycji, typem wyniku jest `Object` (który w Javie jest nadtypem wszystkich typów).
+Java została pierwotnie zaprojektowana tak, że wszystkie listy miały ten sam typ `List`, zamiast konkretnych list z określonymi typami parametrów, takimi jak `List<String>` czy `List<Int>`. Typ `List` w Javie akceptuje wszystkie rodzaje wartości; gdy prosisz o wartość na określonej pozycji, typem wyniku jest `Object` (który w Javie jest nadtypem wszystkich typów).
 
 ```
 // Java

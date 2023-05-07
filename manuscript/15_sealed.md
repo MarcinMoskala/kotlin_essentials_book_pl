@@ -1,6 +1,6 @@
-## Klasy i interfejsy sealed
+## Sealed klasy i interfejsy
 
-Klasy i interfejsy w Kotlinie nie służą tylko do reprezentowania zestawu operacji lub danych; możemy również używać klas i dziedziczenia do reprezentowania hierarchii za pomocą polimorfizmu. Na przykład, powiedzmy, że wysyłasz żądanie sieciowe; w rezultacie albo otrzymujesz żądane dane, albo żądanie kończy się niepowodzeniem z informacjami o tym, co poszło nie tak. Te dwa rezultaty można przedstawić za pomocą dwóch klas implementujących interfejs:
+Klasy i interfejsy w Kotlinie nie służą tylko do reprezentowania zestawu operacji lub danych; możemy również używać klas i dziedziczenia do reprezentowania hierarchii. Na przykład, powiedzmy, że wysyłasz żądanie sieciowe; w rezultacie albo otrzymujesz żądane dane, albo żądanie kończy się niepowodzeniem z informacjami o tym, co poszło nie tak. Te dwa możliwe rezultaty można przedstawić za pomocą dwóch klas implementujących interfejs:
 
 ```kotlin
 interface Result
@@ -16,7 +16,7 @@ class Success(val data: String) : Result()
 class Failure(val exception: Throwable) : Result()
 ```
 
-W przypadku każdego z nich wiemy, że gdy funkcja zwraca `Result`, może być to `Success` lub `Failure`.
+W tym przypadku spodziewamy się, że gdy funkcja zwraca `Result`, może być to `Success` lub `Failure`.
 
 ```kotlin
 val result: Result = getSomeData()
@@ -26,15 +26,16 @@ when (result) {
 }
 ```
 
-Problem polega na tym, że przy użyciu zwykłego interfejsu lub klasy abstrakcyjnej nie ma gwarancji, że zdefiniowane podklasy są wszystkimi możliwymi podtypami tego interfejsu lub klasy abstrakcyjnej. Ktoś może zdefiniować inną klasę i sprawić, że zaimplementuje `Result`. Ktoś może także zaimplementować wyrażenie obiektu, które implementuje `Result`.
+Problem polega na tym, że przy użyciu zwykłego interfejsu lub klasy abstrakcyjnej nie ma gwarancji, że zdefiniowane podklasy są wszystkimi możliwymi podtypami tego interfejsu lub klasy abstrakcyjnej. Ktoś może zdefiniować inną klasę i sprawić, że będzie ona implementować lub rozszerzać `Result`. Ktoś może nawet użyć do tego wyrażenia tworzącego obiekt.
 
 ```kotlin
 class FakeSuccess : Result
 
-val res: Result = object : Result {}
+val res1: Result = FakeSuccess()
+val res2: Result = object : Result {}
 ```
 
-Hierarchia, której podklasy nie są znane z góry, nazywana jest hierarchią nieograniczoną. Dla `Result` wolelibyśmy zdefiniować hierarchię ograniczoną, co robimy, używając modyfikatora `sealed` przed klasą lub interfejsem[^14_0].
+Hierarchia, której podklasy nie są znane z góry, nazywana jest hierarchią nieograniczoną. Dla `Result` wolelibyśmy zdefiniować hierarchię ograniczoną, co robimy, używając modyfikatora `sealed` przed klasą lub interfejsem[^14_0][^14_3].
 
 ```kotlin
 sealed interface Result
@@ -48,19 +49,19 @@ class Success(val data: String) : Result()
 class Failure(val exception: Throwable) : Result()
 ```
 
-> Gdy używamy modyfikatora `sealed` przed klasą, sprawia to, że klasa staje się już abstrakcyjna, więc nie używamy modyfikatora `abstract`.
+> Gdy używamy modyfikatora `sealed` przed klasą, sprawia to, że klasa staje się już abstrakcyjna, więc nie używamy dodatkowo modyfikatora `abstract`.
 
-Wszystkie dzieci klasy szczelnej lub interfejsu szczelnego muszą spełniać kilka wymagań:
-* muszą być zdefiniowane w tym samym pakiecie i module, co szczelna klasa lub interfejs,
-* nie mogą być lokalne ani zdefiniowane za pomocą wyrażenia obiektu.
+Wszystkie podklasy sealed klasy lub interfejsu muszą spełniać kilka wymagań:
+* muszą być zdefiniowane w tym samym pakiecie i module, co ich rodzic,
+* nie mogą być lokalne ani zdefiniowane za pomocą wyrażenia tworzącego obiekt.
 
-Oznacza to, że gdy używasz modyfikatora `sealed`, kontrolujesz, jakie podklasy ma klasa lub interfejs. Klienci Twojej biblioteki lub modułu nie mogą dodać własnych bezpośrednich podklas[^14_2]. Nikt nie może cicho dodać lokalnej klasy ani wyrażenia obiektu, które rozszerza szczelną klasę lub interfejs. Kotlin uczynił to niemożliwym. Hierarchia podklas jest ograniczona.
+Oznacza to, że gdy używasz modyfikatora `sealed`, kontrolujesz, jakie podklasy ma klasa lub interfejs. Klienci Twojej biblioteki lub modułu nie mogą dodać własnych bezpośrednich podklas[^14_2]. Nikt nie może po cichu dodać lokalnej klasy ani wyrażenia obiektu, które rozszerza sealed klasę lub interfejs. Kotlin uczynił to niemożliwym. Hierarchia podklas jest ograniczona.
 
-> sealed interfejsy zostały wprowadzone w nowszych wersjach Kotlina, aby umożliwić klasom implementowanie wielu szczelnych hierarchii. Relacja między szczelną klasą a szczelnym interfejsem jest podobna do relacji między klasą abstrakcyjną a interfejsem. Mocą klas jest to, że mogą przechowywać stan (właściwości nieabstrakcyjne) i kontrolować otwartość swoich elementów (mogą mieć metody i właściwości końcowe). Mocą interfejsów jest to, że klasa może dziedziczyć tylko z jednej klasy, ale może implementować wiele interfejsów.
+> Sealed interfejsy zostały wprowadzone w nowszych wersjach Kotlina, aby umożliwić klasom uczestnictwo w wielu różnych ograniczonych hierarchiach (można rozszerzać tylko jedną klasę, ale implementować wiele interfejsów). Relacja między sealed klasą i interfejsem jest podobna do relacji między klasą abstrakcyjną a interfejsem. Mocą klas jest to, że mogą przechowywać stan (właściwości nieabstrakcyjne) i kontrolować otwartość swoich elementów (mogą mieć metody i właściwości końcowe). Mocą interfejsów jest to, że klasa może dziedziczyć tylko z jednej klasy, ale może implementować wiele interfejsów.
 
-### sealed klasy i wyrażenia `when`
+### Sealed klasy i wyrażenia `when`
 
-Użycie `when` jako wyrażenia musi zwrócić jakąś wartość, więc musi być wyczerpujące. W większości przypadków jedynym sposobem na osiągnięcie tego jest określenie klauzuli `else`.
+Kiedy używamy `when` jako wyrażenia, zawsze musimy zwrócić jakąś wartość. W większości przypadków jedynym sposobem na osiągnięcie tego jest określenie gałęzi `else`.
 
 ```kotlin
 fun commentValue(value: String) = when {
@@ -76,23 +77,23 @@ fun main() {
 }
 ```
 
-Jednak istnieją również przypadki, w których Kotlin wie, że określiliśmy wszystkie możliwe wartości. Na przykład, gdy używamy wyrażenia when z wartością enum i porównujemy tę wartość do wszystkich możliwych wartości enum.
+Jednak istnieją również przypadki, w których Kotlin wie, że rozpatrzyliśmy wszystkie możliwe wartości. Na przykład, gdy używamy wyrażenia when z wartością typu enum i porównujemy tę wartość do wszystkich możliwych wartości enum.
 
 ```kotlin
 enum class PaymentType {
-    GOTÓWKA,
-    KARTA,
-    CZEK
+    CASH,
+    CARD,
+    TRANSFER,
 }
 
 fun commentDecision(type: PaymentType) = when (type) {
-    PaymentType.GOTÓWKA -> "Zapłacę gotówką"
-    PaymentType.KARTA -> "Zapłacę kartą"
-    PaymentType.CZEK -> "Zapłacę czekiem"
+    PaymentType.CASH -> "Zapłacę gotówką"
+    PaymentType.CARD -> "Zapłacę kartą"
+    PaymentType.TRANSFER -> "Zapłacę przelewem"
 }
 ```
 
-Moc posiadania skończonego zestawu typów jako argument sprawia, że wyczerpujące `when` z gałęzią dla każdej możliwej wartości jest możliwe. W przypadku klas szczelnie zamkniętych lub interfejsów oznacza to posiadanie sprawdzeń `is` dla wszystkich możliwych podtypów.
+Dla wartości określone typem z modyfikatorem sealed można rozpatrzyć wszystkie możliwości poprzez sprawdzenie wszystkich możliwych podtypów. Do sprawdzenia typu używamy operatora `is`. W ten sposób nie musimy używać gałęzi `else`.
 
 ```kotlin
 sealed class Response<out V>
@@ -109,19 +110,19 @@ fun handle(response: Response<String>) {
 }
 ```
 
-Ponadto IntelliJ automatycznie sugeruje dodanie pozostałych gałęzi. To sprawia, że klasy szczelnie zamknięte są bardzo wygodne, gdy musimy pokryć wszystkie możliwe typy.
+Ponadto IntelliJ automatycznie sugeruje dodanie pozostałych gałęzi. To sprawia, że sealed klasy i interfejsy są bardzo wygodne w użyciu, gdy musimy pokryć wszystkie możliwe warianty.
 
 ![](remaining_branches.png)
 
-Zauważ, że gdy klauzula `else` nie jest używana, a my dodajemy kolejną podklasę tej klasy szczelnie zamkniętej, należy dostosować jej użycie, uwzględniając ten nowy typ. Jest to wygodne w lokalnym kodzie, ponieważ zmusza nas do obsługi tej nowej klasy w wyczerpujących wyrażeniach `when`. Niewygodne jest to, że gdy ta klasa szczelnie zamknięta jest częścią publicznego API biblioteki lub współdzielonego modułu, dodanie podtypu stanowi łamanie zgodności, ponieważ wszystkie moduły używające wyczerpującego `when` muszą obsłużyć jeden więcej możliwy typ.
+Zauważ, że gdy `else` nie jest używane, a my dodajemy kolejną podklasę sealed klasy lub interfejsu, należy dostosować użycie tego wyrażenia `when`, uwzględniając ten nowy typ. Jest to wygodne w lokalnym kodzie, ponieważ zmusza nas do obsługi nowego wariantu w wyczerpujących wyrażeniach `when`. Jest to jednak problem gdy sealed klasa lub interfejs jest częścią publicznego API biblioteki, lub współdzielonego modułu, gdyż dodanie podtypu jest niekompatybilne wstecznie, ponieważ wszystkie moduły używające wyczerpującego `when` muszą obsłużyć jeden więcej możliwy typ.
 
-### Szczelnie zamknięte vs enum
+### Sealed vs enum
 
-Klasy Enum służą do reprezentowania zestawu wartości. Klasy szczelnie zamknięte lub interfejsy reprezentują zestaw podtypów, które można utworzyć za pomocą klas lub deklaracji obiektów. To istotna różnica. Klasa to coś więcej niż wartość. Może mieć wiele instancji i może być nośnikiem danych. Pomyśl o `Response`: gdyby była klasą enum, nie mogłaby przechowywać `value` ani `error`. Podklasy szczelnie zamknięte mogą przechowywać różne dane, podczas gdy enum to tylko zestaw wartości.
+Enumy reprezentują zestaw wartości. Sealed klasy lub interfejsy reprezentują zestaw typów. To istotna różnica. Klasa to coś więcej niż wartość. Może mieć wiele instancji i może być nośnikiem danych. Pomyśl o `Response`: gdyby była enumem, nie mogłaby przechowywać `value` ani `error`. Podklasy seled klasy lub interfejsy mogą przechowywać różne dane, podczas gdy enum to tylko zestaw wartości.
 
 ### Przypadki użycia
 
-Używamy klas szczelnie zamkniętych, gdy chcemy wyrazić, że istnieje konkretna liczba podklas danej klasy.
+Używamy sealed klas, gdy chcemy wyrazić, że istnieje konkretna liczba podklas danej klasy.
 
 ```kotlin
 sealed class MathOperation
@@ -144,7 +145,7 @@ object GoogleAd : AdView
 class OwnAd(val text: String, val imgUrl: String) : AdView
 ```
 
-Kluczową korzyścią jest to, że wyrażenie when może łatwo pokryć wszystkie możliwe typy w hierarchii, używając is-checks. Warunek when z uszczelnionym elementem jako wartość zapewnia, że kompilator wykonuje wyczerpujące sprawdzanie typów, a nasz program może reprezentować tylko prawidłowe stany.
+Kluczową korzyścią jest to, że wyrażenie when może łatwo pokryć wszystkie możliwe typy w hierarchii, używając operatora `is`. Warunek when zapewnia wtedy, że obsługiwane są wszystkie możliwe podtypy.
 
 ```kotlin
 fun BinaryTree.height(): Int = when (this) {
@@ -153,7 +154,7 @@ fun BinaryTree.height(): Int = when (this) {
 }
 ```
 
-Jednak wyrażenie, że hierarchia jest ograniczona, poprawia czytelność. W końcu, gdy używamy modyfikatora `sealed`, możemy użyć refleksji, aby znaleźć wszystkie podklasy[^14_1]:
+Warto także dodać, że gdy używamy modyfikatora `sealed`, możemy użyć refleksji, aby znaleźć wszystkie podklasy[^14_1]:
 
 ```kotlin
 sealed interface Parent
@@ -169,10 +170,11 @@ fun main() {
 
 ### Podsumowanie
 
-Klasy szczelnie zamknięte oraz interfejsy powinny być używane do reprezentowania ograniczonych hierarchii. Wyrażenie when ułatwia obsługę każdego możliwego szczelnie zamkniętego podtypu i, w rezultacie, dodawanie nowych metod do uszczelnionych elementów za pomocą funkcji rozszerzenia. Klasy abstrakcyjne pozostawiają miejsce dla nowych klas, które dołączą do tej hierarchii. Jeśli chcemy kontrolować, jakimi są podklasy danej klasy, powinniśmy użyć modyfikatora `sealed`.
+Sealed klasy oraz interfejsy powinny być używane do reprezentowania ograniczonych hierarchii. Wyrażenie when ułatwia obsługę każdego możliwego podtypu. Jest to wygodne i często wykorzystywane w Kotlinie. Jeśli chcemy kontrolować, jakie są podklasy danej klasy, powinniśmy użyć modyfikatora `sealed`.
 
-Następnie omówimy ostatni specjalny rodzaj klasy, który służy do dodawania dodatkowych informacji o elementach naszego kodu: adnotacje.
+Następnie omówimy ostatni specjalny rodzaj klasy, który służy do definiowania dodatkowych informacji o elementach naszego kodu: adnotacje.
 
 [^14_0]: Ograniczone hierarchie są używane do reprezentowania wartości, które mogą przyjmować kilka różnych, ale stałych typów. W innych językach, ograniczone hierarchie mogą być reprezentowane przez sumę typów, koprodukty lub unie oznakowane.
-[^14_1]: Wymaga to zależności `kotlin-reflect`. Więcej o refleksji w *Zaawansowane Kotlin*.
-[^14_2]: Nadal można deklarować klasę abstrakcyjną lub interfejs jako część uszczelnionej hierarchii, z której klient będzie mógł dziedziczyć w innym module.
+[^14_1]: Wymaga to zależności `kotlin-reflect`. Więcej o refleksji w *Zaawansowany Kotlin*.
+[^14_2]: Nadal można deklarować klasę abstrakcyjną lub interfejs jako podklasę sealed klasy, lub interfejsu i z niej już klient będzie mógł dziedziczyć w innym module.
+[^14_3]: Słowo "sealed" można przetłumaczyć jako "zapieczętowany", tak jak pieczętowało się niegdyś koperty przed wysłaniem.  

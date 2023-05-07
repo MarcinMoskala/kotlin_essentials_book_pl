@@ -306,9 +306,9 @@ data class User(
 }
 ```
 
-### Dekonstrukcja
+### Destrukturyzacja
 
-Kotlin obsługuje funkcję dekonstrukcji opartej na pozycji, która pozwala przypisać wiele zmiennych do składników pojedynczego obiektu. W tym celu umieszczamy nazwy naszych zmiennych w nawiasach okrągłych.
+Kotlin obsługuje funkcję destrukturyzacji opartej na pozycji, która pozwala przypisać wiele zmiennych do składników pojedynczego obiektu. W tym celu umieszczamy nazwy naszych zmiennych w nawiasach okrągłych, po czym używamy przypisania. 
 
 ```kotlin
 data class Player(
@@ -336,36 +336,36 @@ val name: String = player.component2()
 val pts: Int = player.component3()
 ```
 
-Ten kod działa, ponieważ modyfikator `data` generuje funkcje `componentN` dla każdego parametru konstruktora głównego, zgodnie z ich kolejnością w konstruktorze.
+Ten kod działa, ponieważ modyfikator `data` generuje funkcje `componentN` dla każdej właściwości konstruktora głównego, zgodnie z ich kolejnością w konstruktorze.
 
-To są obecnie wszystkie funkcjonalności, które dostarcza modyfikator `data`. Nie używaj go, jeśli nie potrzebujesz `toString`, `equals`, `hashCode`, `copy` lub dekonstrukcji. Jeśli potrzebujesz niektórych z tych funkcjonalności dla klasy reprezentującej pakiet danych, użyj modyfikatora `data` zamiast implementować metody samodzielnie.
+To są obecnie wszystkie funkcjonalności, które dostarcza modyfikator `data`. Nie używaj go, jeśli nie potrzebujesz `toString`, `equals`, `hashCode`, `copy` lub destrukturyzacji. Jeśli potrzebujesz niektórych z tych funkcjonalności dla klasy reprezentującej pakiet danych, użyj modyfikatora `data` zamiast implementować metody samodzielnie.
 
-### Kiedy i jak powinniśmy używać dekonstrukcji?
+### Kiedy i jak powinniśmy używać destrukturyzacji?
 
-Dekonstrukcja oparta na pozycji ma swoje zalety i wady. Największą zaletą jest to, że możemy nadawać zmiennym dowolne nazwy, więc możemy użyć nazw takich jak `kraj` i `miasto` w poniższym przykładzie. Możemy też dekonstruować wszystko, czego chcemy, o ile dostarcza funkcji `componentN`. Obejmuje to `List` i `Map.Entry`, które mają zdefiniowane funkcje `componentN` jako rozszerzenia:
+Dekonstrukcja oparta na pozycji ma swoje zalety i wady. Największą zaletą jest to, że możemy nadawać zmiennym dowolne nazwy, więc możemy użyć nazw takich jak `kraj` i `miasto` w poniższym przykładzie. Możemy też dekonstruować wszystko, co dostarcza funkcji `componentN`. Obejmuje to `List` i `Map.Entry`, które mają zdefiniowane funkcje `componentN` jako rozszerzenia:
 
 ```kotlin
 fun main() {
-   val odwiedzone = listOf("Hiszpania", "Maroko", "Indie")
-   val (pierwszy, drugi, trzeci) = odwiedzone
-   println("$pierwszy $drugi $trzeci")
-   // Hiszpania Maroko Indie
+    val visited = listOf("Hiszpania", "Maroko", "Indie")
+    val (first, second, third) = visited
+    println("$first $second $third")
+    // Hiszpania Maroko Indie
 
-   val podroze = mapOf(
-       "Hiszpania" to "Gran Canaria",
-       "Maroko" to "Taghazout",
-       "Indie" to "Rishikesh"
-   )
-   for ((kraj, miasto) in podroze) {
-       println("Uwielbialiśmy $miasto w $kraj")
-       // Uwielbialiśmy Gran Canaria w Hiszpanii
-       // Uwielbialiśmy Taghazout w Maroku
-       // Uwielbialiśmy Rishikesh w Indiach
-   }
+    val trip = mapOf(
+        "Hiszpania" to "Gran Canaria",
+        "Maroko" to "Taghazout",
+        "Indie" to "Rishikesh"
+    )
+    for ((country, city) in trip) {
+        println("Odwiedziliśmy $city w $country")
+        // Odwiedziliśmy Gran Canaria w Hiszpanii
+        // Odwiedziliśmy Taghazout w Maroku
+        // Odwiedziliśmy Rishikesh w Indiach
+    }
 }
 ```
 
-Z drugiej strony, destrukturyzacja oparta na pozycji jest niebezpieczna. Musimy dostosować każdą destrukturyzację, gdy kolejność lub liczba elementów w klasie danych ulegnie zmianie. Korzystając z tej funkcji, bardzo łatwo jest wprowadzić błędy do naszego kodu, zmieniając kolejność właściwości głównego konstruktora.
+Z drugiej strony, destrukturyzacja oparta na pozycji jest niebezpieczna. Gdy kolejność lub liczba elementów w klasie danych ulegnie zmianie, musimy dostosować wszystkie destrukturyzacje. Korzystając z tej funkcjonalności, łatwo jest wprowadzić błędy do naszego kodu, gdy ulega zmianie kolejność właściwości głównego konstruktora.
 
 ```kotlin
 data class FullName(
@@ -384,7 +384,7 @@ Musimy być ostrożni z destrukturyzacją. Przydatne jest stosowanie tych samych
 {width: 84%}
 ![](data_fullname.png)
 
-Destructuring pojedynczej wartości w lambdzie jest bardzo mylące, zwłaszcza że nawiasy wokół argumentów w wyrażeniach lambda są w niektórych językach opcjonalne lub wymagane.
+Destrukturyzacja pojedynczej wartości jest bardzo myląca. Zwłaszcza w funkcji lambda, gdzie nawiasy wokół argumentów w wyrażeniach lambda są w niektórych językach opcjonalne lub wymagane.
 
 ```kotlin
 data class User(
@@ -405,7 +405,7 @@ fun main() {
 
 ### Ograniczenia klas danych
 
-Ideą stojącą za klasami danych jest to, że reprezentują one zestaw danych; ich konstruktory pozwalają nam określić wszystkie te dane, a my możemy uzyskać do nich dostęp poprzez destrukturyzację lub kopiując je do innego obiektu za pomocą metody `copy`. Dlatego tylko właściwości głównego konstruktora są brane pod uwagę przez metody zdefiniowane w klasach danych.
+Ideą stojącą za data klasami jest to, że reprezentują one zestaw danych; ich konstruktory pozwalają nam określić wszystkie te dane, a my możemy uzyskać do nich dostęp poprzez destrukturyzację lub kopiując je do innego obiektu za pomocą metody `copy`. Dlatego tylko właściwości głównego konstruktora są brane pod uwagę przez te metody.
 
 ```kotlin
 data class Dog(
@@ -428,7 +428,7 @@ fun main() {
 }
 ```
 
-Data klasy powinny przechowywać wszystkie istotne właściwości w swoim głównym konstruktorze. W ciele klasy powinniśmy trzymać tylko zbędne, niemodyfikowalne właściwości, co oznacza właściwości, których wartość jest wyraźnie obliczana na podstawie właściwości głównego konstruktora, takie jak `fullName`, które jest obliczane na podstawie `name` i `surname`. Takie wartości są również ignorowane przez metody data klasy, ale ich wartość zawsze będzie poprawna, ponieważ będzie obliczana podczas tworzenia nowego obiektu.
+Data klasy powinny przechowywać wszystkie istotne właściwości w swoim głównym konstruktorze. W ciele klasy powinniśmy trzymać tylko nadmiarowe, niemodyfikowalne właściwości, co oznacza właściwości, których wartość jest obliczana na podstawie właściwości głównego konstruktora, takie jak `fullName`, które jest obliczane na podstawie `name` i `surname`. Takie wartości są również ignorowane przez metody data klasy, ale ich wartość zawsze będzie poprawna, ponieważ będzie obliczana podczas tworzenia nowego obiektu.
 
 ```kotlin
 data class FullName(
@@ -451,9 +451,9 @@ fun main() {
 
 Powinieneś również pamiętać, że data klasy muszą być **finalne** i dlatego nie mogą być używane jako nadrzędny typ w dziedziczeniu.
 
-### Wybieraj data klasy zamiast krotek
+### Wybieraj data klasy zamiast Pair i Triple
 
-Data klasy oferują więcej niż to, co zwykle dostarczają krotki. Historycznie zastąpiły one krotki w Kotlinie, ponieważ uważa się je za lepszą praktykę[^11_2]. Jedynymi pozostałymi krotkami są `Pair` i `Triple`, ale te są klasami danych wewnętrznie:
+Data klasy oferują więcej niż to, co w innych językach dostarczają tuple (krotki). Historycznie Kotlin również wspierał tuple, ale zostały one usunięte z języka, ponieważ używanie data klas zostało uznane za lepszą praktykę[^11_2]. Jedynymi pozostałymi tuplami są `Pair` i `Triple`, które są po prostu zdefiniowanymi w bibliotece standardowej data klasami. 
 
 ```kotlin
 data class Pair<out A, out B>(
@@ -476,7 +476,7 @@ data class Triple<out A, out B, out C>(
 }
 ```
 
-Najłatwiejszym sposobem na utworzenie `Pair` jest użycie funkcji `to`. Jest to ogólna funkcja rozszerzenia infiksowa, zdefiniowana w następujący sposób (omówimy zarówno funkcje ogólne, jak i rozszerzenia w późniejszych rozdziałach).
+Najłatwiejszym sposobem na utworzenie `Pair` jest użycie funkcji `to`. Jest to infiksowa funkcja rozszerzająca dowolny typ, zdefiniowana w następujący sposób (omówimy zarówno typy generyczne, jak i rozszerzenia w późniejszych rozdziałach).
 
 ```kotlin
 infix fun <A, B> A.to(that: B): Pair<A, B> = Pair(this, that)
@@ -569,20 +569,20 @@ fun main() {
 
 To prawie nic nie kosztuje i znacznie poprawia funkcję:
 
-* Typ zwracany tej funkcji jest bardziej jasny.
+* Typ zwracany tej funkcji jest łatwiejszy do zinterpretowania.
 
 * Typ zwracany jest krótszy i łatwiejszy do przekazania dalej.
 
 * Jeśli użytkownik destrukturyzuje zmienne o poprawnych nazwach, ale w niewłaściwych pozycjach, ostrzeżenie zostanie wyświetlone w IntelliJ.
 
-Jeśli nie chcesz, aby ta klasa miała szerszy zakres, możesz ograniczyć jej widoczność. Może być nawet prywatna, jeśli potrzebujesz jej tylko do lokalnego przetwarzania w pojedynczym pliku lub klasie. Warto używać klas danych zamiast krotek. Klasy są tanie w Kotlinie, więc nie bój się ich używać w swoich projektach.
+Jeśli nie chcesz, aby ta klasa miała szerszy zakres, możesz ograniczyć jej widoczność. Może być nawet prywatna, jeśli potrzebujesz jej tylko do lokalnego przetwarzania w pojedynczym pliku lub klasie. Warto używać klas danych zamiast `Pair` i `Triple`. Klasy są tanie w Kotlinie, więc nie bój się ich używać w swoich projektach.
 
 ### Podsumowanie
 
-W tym rozdziale poznaliśmy `Any`, które jest nadklasą wszystkich klas. Dowiedzieliśmy się także o metodach zdefiniowanych przez `Any`: `equals`, `hashCode` i `toString`. Poznaliśmy również dwa główne typy obiektów. Zwykłe obiekty są uważane za unikalne i nie ujawniają swoich szczegółów. Obiekty data klasy, które tworzyliśmy za pomocą modyfikatora `data`, reprezentują wiązki danych (przechowujemy je w właściwościach głównego konstruktora). Są równe, gdy przechowują te same dane. Po przekształceniu na string wyświetlają wszystkie swoje dane. Dodatkowo obsługują destrukturyzację i tworzenie kopii za pomocą metody `copy`. Dwie generyczne data klasy w Kotlin stdlib to `Pair` i `Triple`, ale (z wyjątkiem pewnych przypadków) wolimy używać własnych klas danych zamiast tych. Ponadto, ze względów bezpieczeństwa, gdy destrukturyzujemy klasę danych, wolimy dopasować nazwy zmiennych do nazw parametrów.
+W tym rozdziale poznaliśmy `Any`, które jest nadklasą wszystkich klas. Dowiedzieliśmy się także o metodach zdefiniowanych przez `Any`: `equals`, `hashCode` i `toString`. Poznaliśmy również dwa główne typy obiektów. Zwykłe obiekty są uważane za unikalne i nie ujawniają swoich szczegółów. Obiekty data klasy, które tworzyliśmy przy pomocy modyfikatora `data`, reprezentują zbiory danych. Są równe, gdy przechowują te same dane. Po przekształceniu na string wyświetlają wszystkie swoje dane. Dodatkowo obsługują destrukturyzację i tworzenie kopii za pomocą metody `copy`. Dwie generyczne data klasy w Kotlinie to `Pair` i `Triple`, ale (z wyjątkiem pewnych przypadków) wolimy używać lepiej nazwanych klas danych zamiast nich. Ponadto, ze względów bezpieczeństwa, gdy destrukturyzujemy klasę danych, wolimy dopasować nazwy zmiennych do nazw parametrów.
 
-Teraz przejdźmy do tematu poświęconego specjalnej składni Kotlin, która pozwala nam tworzyć obiekty bez definiowania klasy.
+Teraz przejdźmy do rozdziału poświęconego specjalnej składni Kotlina, która pozwala nam tworzyć obiekty bez definiowania klasy.
 
 [^11_0]: Są to *Temat 42: Szanuj kontrakt equals* oraz *Temat 43: Szanuj kontrakt hashCode*.
-[^11_2]: Kotlin miał wsparcie dla krotek, gdy był jeszcze w wersji beta. Mogliśmy zdefiniować krotkę za pomocą nawiasów i zestawu typów, takich jak `(Int, String, String, Long)`. To, co osiągnęliśmy, zachowywało się tak samo jak data klasy, ale było znacznie mniej czytelne. Czy możesz zgadnąć, jaki typ reprezentuje ten zestaw typów? Może być dowolny. Korzystanie z krotek jest kuszące, ale korzystanie z klas danych jest prawie zawsze lepsze. Dlatego krotki zostały usunięte, a pozostały tylko `Pair` i `Triple`.
+[^11_2]: Kotlin miał wsparcie dla tupli, gdy był jeszcze w wersji beta. Mogliśmy zdefiniować krotkę za pomocą nawiasów i zestawu typów, takich jak `(Int, String, String, Long)`. To, co osiągnęliśmy, zachowywało się podobnie jak data klasy, ale było znacznie mniej czytelne. Korzystanie z tupli jest kuszące, ale korzystanie z data klas jest prawie zawsze lepsze. Dlatego tuple zostały usunięte, a pozostały tylko `Pair` i `Triple`.
 [^11_3]: Więc `Any` jest analogiczne do `Object` w Javie, JavaScripcie lub C#. W C++ nie ma bezpośredniego odpowiednika.
