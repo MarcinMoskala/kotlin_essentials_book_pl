@@ -53,7 +53,7 @@ Istnieją klasy, które generują znacznie więcej typów: klasy ogólne. Klasa 
 
 Dyskusja o różnicy między klasą a typem może się wydawać bardzo teoretycznie, ale ma praktyczne implikacje. Zauważ, że klasy nie mogą być nullowalne, ale typy już tak. Weź pod uwagę początkowy przykład, gdzie poprosiłem Cię, abyś wskazał, gdzie `User` jest typem. Tylko na pozycjach reprezentujących typy można użyć `User?` zamiast `User`.
 
-![](typing_system_type_vs_class_nullowanych.png)
+![](typing_system_type_vs_class_nullable.png)
 
 Funkcje klas są zdefiniowane dla klas, więc ich odbiorca nie może być nullowany ani określać typu generycznego[^20_4]. Funkcje rozszerzające są zdefiniowane na typach, więc mogą być nullowane lub zdefiniowane dla typu generycznegi. Weź pod uwagę funkcję `sum`, która jest rozszerzeniem `Iterable<Int>`, lub funkcję `isNullOrBlank`, która jest rozszerzeniem `String?`.
 

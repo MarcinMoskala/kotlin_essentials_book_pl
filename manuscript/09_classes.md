@@ -319,7 +319,7 @@ fun main() {
 }
 ```
 
-Konstruktory są zwykle używane do ustawiania początkowych wartości naszych właściwości. Aby to uprościć, w Kotlinie wprowadził specjalny rodzaj konstruktora nazywany **konstruktorem głównym** (**primary constructor**). Definiuje się go zaraz po nazwie klasy, a jego parametry można użyć do inicjalizacji właściwości.
+Konstruktory są zwykle używane do ustawiania początkowych wartości naszych właściwości. Aby to uprościć, w Kotlinie wprowadzono specjalny rodzaj konstruktora nazywany **konstruktorem głównym** (**primary constructor**). Definiuje się go zaraz po nazwie klasy, a jego parametry można użyć do inicjalizacji właściwości.
 
 ```kotlin
 class User constructor(name: String, surname: String) {
@@ -408,7 +408,7 @@ fun main() {
 
 ### Klasy reprezentujące dane w Kotlinie i Javie
 
-Porównując klasy zdefiniowane w Kotlinie i Javie, możemy zauważyć, ile powtarzalnego kodu zostało wyeliminowanego dzięki zwięzłej składni Kotlina. W Javie, aby zareprezentować prostego użytkownika, z imieniem, nazwiskiem i wiekiem, typowa implementacja wygląda następująco:
+Porównując klasy zdefiniowane w Kotlinie i Javie, możemy zauważyć, ile powtarzalnego kodu zostało wyeliminowanego dzięki zwięzłej składni Kotlina. W Javie, aby za reprezentować prostego użytkownika, z imieniem, nazwiskiem i wiekiem, typowa implementacja wygląda następująco:
 
 ```java
 public final class User {
@@ -454,7 +454,7 @@ class User(
 )
 ```
 
-Wynik kompilacji jest praktycznie taki sam. Gettery i konstruktory są obecne. Jeśli w to nie wierzysz, sprawdź sam (jak przedstawiono w sekcji *Co kryje się pod maską na JVM?* w rozdziale *Twój pierwszy program w Kotlinie*). Kotlinie to zwięzły, ale potężny język.
+Wynik kompilacji jest praktycznie taki sam. Gettery i konstruktory są obecne. Jeśli w to nie wierzysz, sprawdź sam (jak przedstawiłem w sekcji *Co kryje się pod maską na JVM?* w rozdziale *Twój pierwszy program w Kotlinie*). Kotlin to zwięzły, ale potężny język.
 
 ### Klasy wewnętrzne
 

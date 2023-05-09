@@ -125,7 +125,7 @@ Pod maską są niemal identyczne. Różnica polega na tym, jak się je wywołuje
 Rozszerzenie nie może przechowywać stanu, więc nie może mieć pól. Ale przecież właściwości nie potrzebują pól, mogą być definiowane przez gettery i settery, czyli akcesory. Dlatego możemy definiować właściwości rozszerzające, jeśli nie potrzebują one pola i są w zupełności definiowane przez akcesory.
 
 ```kotlin
-val <T> List<T>.ostatniIndeks: Int
+val <T> List<T>.lastIndex: Int
     get() = size - 1
 ```
 
@@ -136,13 +136,13 @@ val Context.inflater: LayoutInflater
     get() = getSystemService(Context.LAYOUT_INFLATER_SERVICE)
     as LayoutInflater
 
-val Context.menadzerPowiadomien: NotificationManager
+val Context.notificationManager: NotificationManager
     get() = getSystemService(Context.NOTIFICATION_SERVICE)
-    as NotificationManager
+            as NotificationManager
 
-val Context.menadzerAlarmow: AlarmManager
+val Context.alarmManager: AlarmManager
     get() = getSystemService(Context.ALARM_SERVICE)
-    as AlarmManager
+            as AlarmManager
 ```
 
 Właściwości rozszerzające mogą definiować zarówno gettera, jak i settera. Oto właściwość rozszerzenia, która dostarcza inną reprezentację daty urodzenia użytkownika:

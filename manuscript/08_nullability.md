@@ -1,8 +1,8 @@
 ## Nullowalność
 
-Kotlinie pierwotnie powstawał jako rozwiązanie problemów Javy, a największym problemem w Javie jest możliwość wystąpienia wartości `null` niemalże wszędzie. W Javie, jak w wielu innych językach, każda zmienna może przyjmować wartość `null`. Każde wywołanie na wartości `null` prowadzi do słynnego `NullPointerException` (NPE). Jest to najpopularniejszy wyjątek w większości projektów napisanych w Javie[^08_0]. Jest tak powszechny, że często nazywany jest "błędem za miliard dolarów" po słynnym przemówieniu Sir Charlesa Antony'ego Richarda Hoare'a, który powiedział: "Nazywam to moim błędem za miliard dolarów. Był to wynalazek null reference w 1965 roku... Doprowadziło to do niezliczonych błędów, podatności i awarii systemów, które przez ostatnie czterdzieści lat prawdopodobnie spowodowały straty rzędu miliarda dolarów".
+Kotlin pierwotnie powstawał jako rozwiązanie problemów Javy, a największym problemem w Javie jest możliwość wystąpienia wartości `null` niemalże wszędzie. W Javie, jak w wielu innych językach, każda zmienna może przyjmować wartość `null`. Każde wywołanie na wartości `null` prowadzi do słynnego `NullPointerException` (NPE). Jest to najpopularniejszy wyjątek w większości projektów napisanych w Javie[^08_0]. Jest tak powszechny, że często nazywany jest "błędem za miliard dolarów" po słynnym przemówieniu Sir Charlesa Antony'ego Richarda Hoare'a, który powiedział: "Nazywam to moim błędem za miliard dolarów. Był to wynalazek null reference w 1965 roku... Doprowadziło to do niezliczonych błędów, podatności i awarii systemów, które przez ostatnie czterdzieści lat prawdopodobnie spowodowały straty rzędu miliarda dolarów".
 
-Jednym z priorytetów Kotlina było ostateczne rozwiązanie tego problemu, co udało się doskonale. Wprowadzone w Kotlinie mechanizmy są tak skuteczne, że zobaczenie `NullPointerException` wyrzuconego z kodu Kotlinie jest niezwykle rzadkie. Wartość `null` przestała być problemem, a programiści Kotla już się jej nie obawiają. Stała się naszym przyjacielem.
+Jednym z priorytetów Kotlina było ostateczne rozwiązanie tego problemu, co udało się doskonale. Wprowadzone w nim mechanizmy są tak skuteczne, że zobaczenie `NullPointerException` rzuconego z kodu napisanego w Kotlinie jest niezwykle rzadkie. Wartość `null` przestała być problemem, a programiści Kotlina już się jej nie obawiają. Stała się naszym przyjacielem.
 
 Jak to zatem działa? Opiera się to na następujących zasadach:
 
@@ -242,7 +242,7 @@ fun main() {
 }
 ```
 
-Biblioteka standardowa Kotlinie zawiera również podobne funkcje dla nullowalnych list:
+Biblioteka standardowa Kotlina zawiera również podobne funkcje dla nullowalnych list:
 * `orEmpty` zwraca pustą listę zamiast `null`.
 * `isNullOrEmpty` zwraca `true`, jeśli wartość jest `null` lub pusta. W przeciwnym razie zwraca `false`.
 
@@ -277,7 +277,7 @@ To, że każda wartość mogła być nullem, jest ogromnym problemem w językach
 
 ### Właściwości lateinit
 
-Są sytuacje, gdy chcemy, aby właściwość klasy miała typ nienullowalny, ale nie możemy określić jej wartości podczas tworzenia obiektu. Chodzi przede wszystkim o właściwości, których wartość jest wstrzykiwana lub są tworzone w jednej z pierwszych metod cyklu życia klasy. Uczynienie takich właściwości nullowalnymi wymagałoby ich odpakowania przy każdym użyciu, mimo iż wiedzielibyśmy, że nie mogą mieć one wartości `null`, ponieważ spodziewamy się że ich wartość zostanie wstrzyknięta lub ustawiona odpowiednio wcześniej. Dla takich sytuacji twórcy Kotlinie wprowadzili modyfikator `lateinit`. Gdy go używamy, właściwość nie określa wartości pierwotnej, a przy tym musi mieć typ nienullowany. Kotlin spodziewa się, że ustawimy wartość tej właściwości przed jej pierwszym użyciem. Przykłady użycia `lateinit`:
+Są sytuacje, gdy chcemy, aby właściwość klasy miała typ nienullowalny, ale nie możemy określić jej wartości podczas tworzenia obiektu. Chodzi przede wszystkim o właściwości, których wartość jest wstrzykiwana lub są tworzone w jednej z pierwszych metod cyklu życia klasy. Uczynienie takich właściwości nullowalnymi wymagałoby ich odpakowania przy każdym użyciu, mimo iż wiedzielibyśmy, że nie mogą mieć one wartości `null`, ponieważ spodziewamy się że ich wartość zostanie wstrzyknięta lub ustawiona odpowiednio wcześniej. Dla takich sytuacji twórcy Kotlina wprowadzili modyfikator `lateinit`. Gdy go używamy, właściwość nie określa wartości pierwotnej, a przy tym musi mieć typ nienullowany. Kotlin spodziewa się, że ustawimy wartość tej właściwości przed jej pierwszym użyciem. Przykłady użycia `lateinit`:
 
 ```kotlin
 @AndroidEntryPoint
@@ -349,7 +349,7 @@ fun main() {
 
 ### Podsumowanie
 
-Kotlinie oferuje potężne wsparcie dla nullowalności, które sprawia że `null` przestaje być zagrożeniem, a staje się bezpieczny i prawdziwie użyteczny. System wsparcia obejmuje system typów, który rozróżnia, co jest nullowalne a co nie. Zmienne, które są nullowanye, muszą być używane bezpiecznie; do tego możemy użyć bezpiecznych wywołań, asercji not-null, smart-castingu czy operatora Elvisa. Teraz przejdźmy wreszcie do klas. Używaliśmy ich już wiele razy, ale dopiero teraz mamy wszystko, czego potrzebujemy, aby dobrze je omówić.
+Kotlin oferuje potężne wsparcie dla nullowalności, które sprawia, że `null` przestaje być zagrożeniem, a staje się bezpieczny i prawdziwie użyteczny. System wsparcia obejmuje system typów, który rozróżnia, co jest nullowalne a co nie. Zmienne, które są nullowanye, muszą być używane bezpiecznie; do tego możemy użyć bezpiecznych wywołań, asercji not-null, smart-castingu czy operatora Elvisa. Teraz przejdźmy wreszcie do klas. Używaliśmy ich już wiele razy, ale dopiero teraz mamy wszystko, czego potrzebujemy, aby dobrze je omówić.
 
 [^08_0]: Niektóre badania to potwierdzają: na przykład dane zebrane przez OverOps potwierdzają, że `NullPointerException` jest najczęstszym wyjątkiem w 70% projektów.
 [^08_1]: Zobacz artykuł "Null is your friend, not a mistake" (link https://kt.academy/l/re-null) autorstwa Romana Elizarova, obecnego kierownika zespołu tworzącego język Kotlin.

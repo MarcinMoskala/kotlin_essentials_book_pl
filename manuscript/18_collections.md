@@ -725,7 +725,7 @@ fun main() {
 
 ### Tablice
 
-**Tablica** to nisko-poziomowa struktura danych, która ściśle wiąże się z organizacją danych w pamięci. Pamięć naszego komputera przypomina wielki parking, gdzie każde miejsce oznaczone jest kolejnym numerem. Tablica przypomina rezerwację na kilka przyległych miejsc. Dzięki takiej rezerwacji łatwo iterować się po samochodach, które posiadamy. Również łatwo znaleźć samochód o konkretnym indeksie.
+**Tablica** to nisko-poziomowa struktura danych, która ściśle wiąże się z organizacją danych w pamięci. Pamięć naszego komputera przypomina wielki parking, gdzie każde miejsce oznaczone jest kolejnym numerem. Tablica przypomina rezerwację na kilka przyległych miejsc. Dzięki takiej rezerwacji łatwo iterować po samochodach, które posiadamy. Również łatwo znaleźć samochód o konkretnym indeksie.
 
 Załóżmy, że tablica zaczyna się na pozycji 1024 w pamięci, a my chcemy znaleźć element o indeksie 100 w tablicy. Wiemy również, że każdy element zajmuje 4 pozycje (tablica rezerwuje stałą ilość miejsca dla swoich elementów, która w większości przypadków to rozmiar referencji pamięci). To proste zadanie: nasz element zaczyna się na pozycji 1024 + 100 * 4 = 1424. Jak więc widać, nie musimy szukać samochody o konkretnym indeksie, doskonale wiemy, gdzie on jest. Dlatego dostęp do elementu na określonej pozycji to bardzo prosta i wydajna operacja, co jest dużą zaletą korzystania z tablic.
 
@@ -884,7 +884,7 @@ fun main() {
 
 ### Podsumowanie
 
-W tym rozdziale omówiliśmy najważniejsze rodzaje kolekcji Kotlina i ich typowe przypadki użycia:
+W tym rozdziale omówiliśmy najważniejsze rodzaje kolekcji używane w Kotlinie i ich typowe przypadki użycia:
 
 * `List` reprezentuje uporządkowaną kolekcję elementów. Jest to najbardziej podstawowy sposób przechowywania kolekcji elementów.
 * `Set` reprezentuje kolekcję unikalnych elementów. Używamy go, gdy chcemy się upewnić, że elementy w naszej kolekcji są unikalne, lub gdy często szukamy określonego elementu.

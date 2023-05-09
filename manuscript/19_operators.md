@@ -188,7 +188,7 @@ public interface Iterable<out T> {
 }
 ```
 
-Mogą istnieć obiekty iterowane, które nie implementują interfejsu `Iterable`. `Map` jest świetnym przykładem. Nie implementuje interfejsu `Iterable`, jednak można po nim iterować, używając pętli for. Jak to możliwe? Dzięki operatorowi `iterator`, który jest zdefiniowany jako funkcja rozszerzająca w bibliotece standardowej Kotlin.
+Mogą istnieć obiekty iterowane, które nie implementują interfejsu `Iterable`. `Map` jest świetnym tego przykładem. Nie implementuje interfejsu `Iterable`, jednak można po nim iterować, używając pętli for. Jak to możliwe? Dzięki operatorowi `iterator`, który jest zdefiniowany jako funkcja rozszerzająca w bibliotece standardowej Kotlin.
 
 ```kotlin
 // Część biblioteki standardowej Kotlin
@@ -488,7 +488,7 @@ fun main() {
 
 ### Kolejność wywołania operatorów
 
-Jaki jest wynik wyrażenia `1 + 2 * 3`? Odpowiedź brzmi `7`, a nie `9`, ponieważ w matematyce mnożymy przed dodawaniem. Mówimy, że mnożenie ma wyższy priorytet niż dodawanie.
+Jaki jest wynik wyrażenia `1 + 2 * 3`? Odpowiedź brzmi `7`, a nie `9`, ponieważ w matematyce mnożenie wykonuje się przed dodawaniem. Mówimy, że mnożenie ma wyższy priorytet niż dodawanie.
 
 Priorytet jest również niezwykle ważny w programowaniu, ponieważ gdy kompilator ewaluuje wyrażenie takie jak `1 + 2 == 3`, musi wiedzieć, czy powinien najpierw dodać `1` do `2`, czy porównać `2` i `3`. Poniższa tabela porównuje priorytety wszystkich operatorów, w tym tych, które można przeciążyć, i tych, których nie można.
 
