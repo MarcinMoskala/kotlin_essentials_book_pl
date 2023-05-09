@@ -89,7 +89,7 @@ Po prawej stronie powinno otworzyć się nowe narzędzie. "Show Kotlin Bytecode"
 {width: 100%}
 ![](show_kotlin_bytecode.png)
 
-To świetne miejsce dla każdego, kto lubi czytać bytecode JVM. Ponieważ nie wszyscy są jak Jake Wharton, w związku z tym większość z nas może uznać przycisk "Decompile" za przydatny. To, co robi, jest dość zabawne. Skompilowaliśmy nasz kod w Kotlinie do bytecode'u JVM, a ten przycisk pozwoli nam go wyświetlić po zdekompilowaniu do Javy. W rezultacie możemy zobaczyć, jak wyglądałby nasz kod, gdyby był napisany w Javie[^02_5].
+To świetne miejsce dla każdego, kto lubi czytać bajtkod JVM. Ponieważ nie wszyscy są jak Jake Wharton, w związku z tym większość z nas może uznać przycisk "Decompile" za przydatny. To, co robi, jest dość zabawne. Skompilowaliśmy nasz kod w Kotlinie do bytecode'u JVM, a ten przycisk pozwoli nam go wyświetlić po zdekompilowaniu do Javy. W rezultacie możemy zobaczyć, jak wyglądałby nasz kod, gdyby był napisany w Javie[^02_5].
 
 {width: 100%}
 ![](hello_world_decompiled.png)

@@ -1,6 +1,6 @@
 ## Piękno systemu typów w Kotlinie
 
-System typów Kotlin jest niesamowicie zaprojektowany. Wiele funkcji, które wyglądają jak przypadki specjalne, są po prostu naturalnym następstwem tego, jak zaprojektowany jest system typów. Na przykład, dzięki systemowi typów, w poniższym przykładzie typ `surname` to `String`, typ `age` to `Int`, a my możemy użyć `return` i `throw` po prawej stronie operatora Elvisa.
+System typów w Kotlinie jest absolutnie niesamowicie zaprojektowany. Wiele funkcji, które wyglądają jak specjalne przypadki, są po prostu naturalnym następstwem tego, jak zaprojektowany jest system typów. Na przykład, dzięki systemowi typów, w poniższym przykładzie typ `surname` to `String`, typ `age` to `Int`, a my możemy użyć `return` i `throw` po prawej stronie operatora Elvisa.
 
 ```kotlin
 fun processPerson(person: Person?) {
@@ -15,7 +15,7 @@ fun processPerson(person: Person?) {
 }
 ```
 
-System typów daje nam również bardzo wygodne wsparcie dla nullowalności, inteligentne wnioskowanie typów i wiele więcej. W tym rozdziale odkryjemy wiele magii Kotlin. Zawsze uwielbiam mówić o tym na moich warsztatach, ponieważ widzę oszałamiające piękno tego, jak system typów Kotlin jest tak dobrze zaprojektowany, że wszystkie te elementy doskonale się ze sobą łączą i dają nam wspaniałe doświadczenie z programowania. Uważam ten temat za fascynujący, ale postaram się również dodać kilka użytecznych wskazówek, które pokazują, gdzie ta wiedza może być przydatna w praktyce. Mam nadzieję, że odkrywanie tego sprawi ci tyle samo przyjemności, co mnie.
+System typów daje nam również bardzo wygodne wsparcie dla nullowalności, inteligentnego wnioskowania typów i wiele więcej. W tym rozdziale odkryjemy wiele z tego co mniej doświadczeni programiści uważają za magię Kotlina, a w rzeczywistości jest dość oczywiste i przewidywalne. To jeden z moich ulubionych tematów na warsztatach, ponieważ widzę oszałamiające piękno tego, jak dobrze zaprojektowany jest system typów w Kotlinie, jak wszystkie elementy doskonale się ze sobą łączą i dają nam wspaniałe doświadczenie przy programowaniu. Uważam ten temat za fascynujący, ale postaram się również dodać kilka użytecznych wskazówek, które pokazują, gdzie ta wiedza może być przydatna w praktyce. Mam nadzieję, że odkrywanie tego sprawi ci tyle samo przyjemności, co mnie.
 
 ### Czym jest typ?
 
@@ -25,21 +25,21 @@ Typy są często mylone z klasami, ale te dwa terminy reprezentują zupełnie r�
 
 ![](typing_system_type_vs_class_question.png)
 
-Po słowie kluczowym `class` definiujesz nazwę klasy. Klasa to szablon dla obiektów, który definiuje zestaw właściwości i metod. Gdy wywołujemy konstruktor, tworzymy obiekt. Typy są używane tutaj, aby określić, jakiego rodzaju obiektów oczekujemy w zmiennych[^20_1].
+Po słowie kluczowym `class` definiujesz nazwę klasy. Klasa to szablon, na podstawie którego tworzone są obiekty. Gdy wywołujemy konstruktor, tworzymy obiekt. Typy są tutaj natomiast używane do określenia, jakiego rodzaju obiektów oczekujemy w zmiennych[^20_1].
 
 ![](typing_system_type_vs_class.png)
 
 ### Dlaczego mamy typy?
 
-Przeprowadźmy na chwilę eksperyment myślowy. Kotlin to język o statycznej typizacji, więc wszystkie zmienne i funkcje muszą być typowane. Jeśli nie określimy ich typów jawnie, zostaną one wywnioskowane. Ale cofnijmy się na chwilę i wyobraźmy sobie, że jesteś projektantem języka, który decyduje, jak powinien wyglądać Kotlin. Możemy porzucić wszystkie te wymagania i całkowicie wyeliminować typy. Kompilator tak naprawdę ich nie potrzebuje[^20_2]. Ma klasy, które definiują, jak powinny być tworzone obiekty, oraz obiekty, które są używane podczas wykonywania. Co tracimy, jeśli pozbędziemy się typów? Głównie bezpieczeństwo i wygodę dla programistów.
+Przeprowadźmy na chwilę eksperyment myślowy. Kotlin to język statycznie typowany, więc wszystkie zmienne i funkcje muszą określać typ. Jeśli nie określimy ich typów jawnie, typy te zostaną wywnioskowane niejawnie. Cofnijmy się jednak na chwilę i wyobraźmy sobie, że jesteś projektantem języka, który decyduje, jak powinien wyglądać Kotlin. Możliwą decyzją byłaby zupełna rezygnacja z typów. Kompilator tak naprawdę ich nie potrzebuje[^20_2]. Ma klasy, które definiują, jak powinny być tworzone obiekty, oraz obiekty, które są używane podczas wykonywania. Co tracimy, jeśli pozbędziemy się typów? Głównie bezpieczeństwo i wygodę dla programistów.
 
 ![](typing_system_type_vs_class_crossed.png)
 
-Warto wspomnieć, że wiele języków obsługuje klasy i obiekty, ale nie typy. Wśród nich są JavaScript[^20_6] i (do niedawna) Python - dwie z najpopularniejszych na świecie języków[^20_3]. Jednak typy przynoszą nam wartość, dlatego w społeczności JavaScript coraz więcej osób używa TypeScript (który to jest w zasadzie JavaScript plus typy), a Python wprowadził wsparcie dla typów.
+Warto wspomnieć, że wiele języków obsługuje klasy i obiekty, ale nie typy. Wśród nich są JavaScript[^20_6] i (do niedawna) Python - dwa z najpopularniejszych na świecie języków programowania[^20_3]. Jednak typy dostarczają nam pewną dodatkową wartość, dlatego w społeczności JavaScript coraz więcej osób używa TypeScript (który do JavaScript dodaje praktycznie wyłącznie typowanie), a Python wprowadził wsparcie dla typów.
 
-Więc dlaczego mamy typy? Są one głównie dla nas, programistów. Typ mówi nam, jakie metody lub właściwości możemy używać na obiekcie. Typ mówi nam, jaki rodzaj wartości może być użyty jako argument. Typy uniemożliwiają używanie nieprawidłowych obiektów, metod lub właściwości. Dają nam bezpieczeństwo, a sugestie są dostarczane przez środowisko IDE. Kompilator również korzysta z typów, gdyż są one wykorzystywane do lepszego optymalizowania naszego kodu lub do decydowania, która funkcja powinna zostać wybrana, gdy jej nazwa jest przeciążona. Mimo to, to właśnie programiści są najważniejszymi beneficjentami typów.
+Więc dlaczego mamy typy? Są one głównie dla nas, programistów. Typ mówi nam, jakie metody lub właściwości możemy używać na obiekcie. Typ mówi nam, jaki rodzaj wartości może być użyty jako argument. Typy uniemożliwiają używanie nieprawidłowych obiektów, metod lub właściwości. Dają nam bezpieczeństwo, a sugestie są dostarczane przez środowisko IDE. Kompilator również korzysta z typów, gdyż są one wykorzystywane do lepszego optymalizowania naszego kodu lub do decydowania, która funkcja powinna zostać wybrana, gdy jej nazwa jest przeciążona. Mimo wszystko, to właśnie programiści są najważniejszymi beneficjentami typów.
 
-Więc czym jest typ? **Można go rozważyć jako zbiór rzeczy, które możemy zrobić z obiektem**. Zwykle jest to zbiór metod i właściwości.
+Więc czym jest typ? **Można o nim myśleć jako o zbiorze określającym funkcjonalności, jakie obiekt zapewnia**. Zwykle jest to zbiór metod i właściwości.
 
 ### Relacja między klasami a typami
 
@@ -51,11 +51,11 @@ Istnieją klasy, które generują znacznie więcej typów: klasy ogólne. Klasa 
 
 ### Klasa kontra typ w praktyce
 
-Dyskusja ta może brzmieć bardzo teoretycznie, ale ma już pewne praktyczne implikacje. Zauważ, że klasy nie mogą być nullowanych, ale typy już tak. Weź pod uwagę początkowy przykład, gdzie poprosiłem Cię, abyś wskazał, gdzie `User` jest typem. Tylko na pozycjach reprezentujących typy można użyć `User?` zamiast `User`.
+Dyskusja o różnicy między klasą a typem może się wydawać bardzo teoretycznie, ale ma praktyczne implikacje. Zauważ, że klasy nie mogą być nullowalne, ale typy już tak. Weź pod uwagę początkowy przykład, gdzie poprosiłem Cię, abyś wskazał, gdzie `User` jest typem. Tylko na pozycjach reprezentujących typy można użyć `User?` zamiast `User`.
 
 ![](typing_system_type_vs_class_nullowanych.png)
 
-Funkcje składowe są zdefiniowane dla klas, więc ich odbiorca nie może być nullowanych ani mieć argumentów typu[^20_4]. Funkcje rozszerzeń są zdefiniowane dla typów, więc mogą być nullowanych lub zdefiniowane dla konkretnego typu ogólnego. Weź pod uwagę funkcję `sum`, która jest rozszerzeniem `Iterable<Int>`, lub funkcję `isNullOrBlank`, która jest rozszerzeniem `String?`.
+Funkcje klas są zdefiniowane dla klas, więc ich odbiorca nie może być nullowany ani określać typu generycznego[^20_4]. Funkcje rozszerzające są zdefiniowane na typach, więc mogą być nullowane lub zdefiniowane dla typu generycznegi. Weź pod uwagę funkcję `sum`, która jest rozszerzeniem `Iterable<Int>`, lub funkcję `isNullOrBlank`, która jest rozszerzeniem `String?`.
 
 ```kotlin
 fun Iterable<Int>.sum(): Int {
@@ -101,12 +101,12 @@ fun main() {
 }
 ```
 
-Dlaczego? Ponieważ istnieje konkretna relacja między tymi typami: `Dog` jest podtypem `Animal`. Zgodnie z regułą, gdy A jest podtypem B, możemy użyć A tam, gdzie oczekiwane jest B. Możemy również powiedzieć, że `Animal` jest nadtypem `Dog`, a podtyp może być użyty tam, gdzie oczekiwany jest nadtyp.
+Dlaczego? Ponieważ istnieje konkretna relacja między tymi typami: `Dog` jest podtypem `Animal`, a więc `Animal` jest nadtypem `Dog`, a podtyp może być używany wszędzie tam, gdzie oczekiwany jest jego nadtyp. Tak więc gdy A jest podtypem B, możemy użyć A tam, gdzie oczekiwane jest B. 
 
 {width: 25%, align: middle}
 ![](typing_system_A_B.png)
 
-Istnieje również relacja między typami nullowanych i non-nullowanych. Non-nullowanych może być używane wszędzie tam, gdzie oczekiwane jest nullowanych.
+Istnieje również relacja między typami nullowanymi i non-nullowanymi. Typ nienullowalny może być używany wszędzie tam, gdzie oczekiwane jest nullowalny wariant.
 
 ```kotlin
 fun petDogIfPresent(dog: Dog?) {}
@@ -122,17 +122,17 @@ fun main() {
 }
 ```
 
-Dzieje się tak, ponieważ wariant non-nullowanych każdego typu jest podtypem wariantu nullowanych.
+Dzieje się tak, ponieważ wariant nienullowalny każdego typu jest podtypem wariantu nullowanego.
 
 {width: 50%, align: middle}
 ![](typing_system_A_B_nullability.png)
 
-Nadklasą wszystkich klas w Kotlinie jest `Any`, co jest podobne do `Object` w Javie. Nadtypem wszystkich typów nie jest `Any`, ale `Any?`. `Any` jest nadtypem wszystkich typów non-nullowanych. Mamy też coś, czego nie ma w Javie i większości innych głównych języków: podtyp wszystkich typów, który nazywa się `Nothing`. Wkrótce o nim porozmawiamy.
+Nadklasą wszystkich klas w Kotlinie jest `Any`, czyli koncept podobny do `Object` w Javie. Nadtypem wszystkich typów nie jest `Any`, ale `Any?`. `Any` jest nadtypem wszystkich typów nienullowalnych. Mamy też coś, czego nie ma w Javie i większości innych popularnych języków: podtyp wszystkich typów, który nazywa się `Nothing`. Wkrótce o nim porozmawiamy.
 
 {width: 50%, align: middle}
 ![](typing_system_A_B_nullability_Any_Nothing.png)
 
-`Any` jest tylko nadtypem typów non-nullowanych. Więc tam, gdzie oczekiwany jest `Any`, typy nullowanych nie będą akceptowane. Ten fakt jest również wykorzystywany do ustawienia górnego ograniczenia parametru typu, aby akceptować tylko typy non-nullowanych[^20_5].
+`Any` jest tylko nadtypem typów nienullowanych. Więc tam, gdzie oczekiwany jest `Any`, typy nullowanych nie będą akceptowane. Ten fakt jest również wykorzystywany do ustawienia górnego ograniczenia parametru typu, aby akceptować tylko typy nienullowalne[^20_5].
 
 ```kotlin
 fun <T : Any> String.parseJson(): T = ...
@@ -150,7 +150,7 @@ Porozmawiajmy o koncepcji, która ma bardzo specjalne miejsce w hierarchii typó
 
 ### Podtyp wszystkich typów: Nothing
 
-`Nothing` jest podtypem wszystkich typów w Kotlinie. Gdybyśmy mieli instancję tego typu, mogłaby być użyta zamiast wszystkiego innego (jak Joker w grze karcianej Rummy). Nic dziwnego, że taka instancja nie istnieje. `Nothing` jest pustym typem (znanym również jako dół typów, zerowy typ, niezamieszkały typ lub nigdy nie występujący typ), co oznacza, że nie ma żadnych wartości. Dosłownie niemożliwe jest stworzenie instancji typu `Nothing`, ale ten typ jest naprawdę bardzo użyteczny. Powiem więcej: niektóre funkcje deklarują `Nothing` jako swój typ wyniku. Prawdopodobnie używałeś takich funkcji już wiele razy. Jakie to są funkcje? Deklarują `Nothing` jako typ wyniku, ale nie mogą go zwrócić, ponieważ ten typ nie ma instancji. Ale co mogą zrobić te funkcje? Trzy rzeczy: muszą działać wiecznie, zakończyć program lub rzucić wyjątek. We wszystkich przypadkach nigdy nie zwracają, więc typ `Nothing` nie tylko jest prawidłowy, ale też naprawdę użyteczny.
+`Nothing` jest podtypem wszystkich typów w Kotlinie. Gdybyśmy mieli instancję tego typu, mogłaby być użyta zamiast wszystkiego innego (jak Joker w grach karcianych). Nic dziwnego, że taka instancja nie istnieje. `Nothing` jest pustym typem (znanym również jako typ zerowy, niezamieszkały lub nigdy nie-występujący[^20_7]), co oznacza, że nie ma żadnych wartości. Dosłownie niemożliwe jest stworzenie instancji typu `Nothing`, ale ten typ jest naprawdę bardzo użyteczny. Powiem więcej: niektóre funkcje deklarują `Nothing` jako typ zwracany. Prawdopodobnie używałeś takich funkcji już wiele razy. Jakie to są funkcje? Deklarują `Nothing` jako typ wyniku, ale nie mogą go zwrócić, ponieważ ten typ nie ma instancji. Co więc mogą zrobić te funkcje? Trzy rzeczy: muszą działać w nieskończoność, zakończyć program lub rzucić wyjątek. We wszystkich tych przypadkach, funkcja nie zwraca wyniku, więc typ `Nothing` nie tylko jest możliwy, ale też naprawdę użyteczny.
 
 ```kotlin
 fun runForever(): Nothing {
@@ -168,7 +168,7 @@ fun fail(): Nothing {
 }
 ```
 
-Nigdy nie znalazłem dobrego przypadku użycia dla funkcji, która działa wiecznie, a zakończenie programu nie jest bardzo powszechne, ale często używamy funkcji, które rzucają wyjątki. Kto nie używał nigdy `TODO()`? Ta funkcja rzuca wyjątek `NotImplementedError`. Istnieje również funkcja `error` z biblioteki standardowej, która rzuca `IllegalStateException`.
+Nigdy nie znalazłem dobrego przypadku użycia funkcji działających w nieskończoność, a zakończenie programu działania nie jest szczególnie częste, ale często używamy funkcji, które rzucają wyjątki. Kto nie używał nigdy `TODO()`? Ta funkcja rzuca wyjątek `NotImplementedError`. Istnieje również funkcja `error` z biblioteki standardowej, która rzuca `IllegalStateException`.
 
 ```kotlin
 inline fun TODO(): Nothing = throw NotImplementedError()
@@ -189,24 +189,24 @@ fun fib(n: Int): Int = TODO()
 fun get(): T = when {
     left != null -> left
     right != null -> right
-    else -> error("Muszą być albo left, albo right")
+    else -> error("Must be either left or right")
 }
 ```
 
 Ten typ wyniku jest istotny. Powiedzmy, że masz warunek if, który zwraca albo `Int`, albo `Nothing`. Jaki powinien być wnioskowany typ? Najbliższy nadtyp zarówno dla `Int`, jak i `Nothing` to `Int`. Dlatego wnioskowany typ będzie `Int`.
 
 ```kotlin
-// wnioskowany typ odpowiedzi to Int
+// typ answer to Int
 val answer = if (timeHasPassed) 42 else TODO()
 ```
 
-Ta sama zasada obowiązuje, gdy używamy operatora Elvisa, wyrażenia when itp. W poniższym przykładzie typ zarówno `name`, jak i `fullName` to `String`, ponieważ zarówno `fail`, jak i `error` deklarują `Nothing` jako swój typ wyniku. To ogromne udogodnienie.
+Ta sama zasada obowiązuje, gdy używamy operatora Elvisa, wyrażenia when itp. W poniższym przykładzie typ zarówno `name`, jak i `fullName` są typu `String`, ponieważ zarówno `fail`, jak i `error` deklarują `Nothing` jako swój typ zwracany. To ogromne udogodnienie.
 
 ```kotlin
 fun processPerson(person: Person?) {
-    // wnioskowany typ name to String
+    // typ name to String
     val name = person?.name ?: fail()
-    // wnioskowany typ fullName to String
+    // typ fullName to String
     val fullName = when {
         !person.middleName.isNullOrBlank() ->
             "$name ${person.middleName} ${person.surname}"
@@ -219,7 +219,7 @@ fun processPerson(person: Person?) {
 }
 ```
 
-### Typ wyniku z return i throw
+### Typ zwracany return i throw
 
 Zacznę ten podrozdział od czegoś dziwnego: czy wiedziałeś, że możesz umieścić `return` lub `throw` po prawej stronie przypisania zmiennej?
 
@@ -234,7 +234,7 @@ To nie ma sensu, ponieważ zarówno `return`, jak i `throw` kończą funkcję, w
 
 ![](typing_system_return_return_type.png)
 
-Kod powyżej jest poprawny z punktu widzenia języka, ponieważ zarówno `return`, jak i `throw` są wyrażeniami, co oznacza, że deklarują one typ wyniku. Tym typem jest `Nothing`.
+Kod powyżej jest poprawny z punktu widzenia języka Kotlin, ponieważ zarówno `return`, jak i `throw` są wyrażeniami, co oznacza, że deklarują one typ zwracany. Tym typem jest `Nothing`.
 
 ```kotlin
 fun main() {
@@ -273,20 +273,20 @@ fun processPerson(person: Person?) {
 }
 ```
 
-Zarówno `return`, jak i `throw` deklarują `Nothing` jako swój typ wyniku. W konsekwencji, Kotlin wywnioskuje `String` jako typ zarówno `name`, jak i `fullName`, ponieważ `String` jest najbliższym supertypem zarówno `String`, jak i `Nothing`.
+Zarówno `return`, jak i `throw` deklarują `Nothing` jako swój typ zwracany. W konsekwencji czego Kotlin wywnioskuje `String` jako typ zarówno `name`, jak i `fullName`, ponieważ `String` jest najbliższym supertypem zarówno `String`, jak i `Nothing`.
 
-Więc teraz możesz powiedzieć, że znasz `Nothing`. Tak jak John Snow.
+Więc teraz możesz powiedzieć, "I know Nothing". Tak jak John Snow.
 
 ![](Nothing_John_Snow.png)
 
-### Kiedy jakiś kod jest nieosiągalny?
+### Kiedy kod jest nieosiągalny?
 
-Gdy element deklaruje `Nothing` jako typ zwracany, oznacza to, że wszystko po jego wywołaniu jest nieosiągalne. To jest uzasadnione: nie ma żadnych instancji `Nothing`, więc nie można ich zwrócić. Oznacza to, że instrukcja, która deklaruje `Nothing` jako swój typ wyniku, nigdy nie zakończy się w normalny sposób, więc kolejne instrukcje są nieosiągalne. Dlatego wszystko po `fail` lub `throw` będzie nieosiągalne.
+Gdy element deklaruje `Nothing` jako typ zwracany, oznacza to, że wszystko po jego wywołaniu jest nieosiągalne. Jest to uzasadnione: nie ma żadnych instancji `Nothing`, więc nie można ich zwrócić. Oznacza to, że instrukcja, która deklaruje `Nothing` jako swój typ wyniku, nigdy nie zakończy się w normalny sposób, więc kolejne instrukcje są nieosiągalne. Dlatego wszystko po `fail` lub `throw` będzie nieosiągalne.
 
 {width: 60%}
 ![](typing_system_fail_throw.png)
 
-Podobnie jest z `return`, `TODO`, `error`, itp. Jeśli nieopcjonalne wyrażenie deklaruje `Nothing` jako swój typ wyniku, wszystko po tym jest nieosiągalne. To prosta zasada, ale przydatna dla kompilatora. Jest również przydatna dla nas, ponieważ daje nam więcej możliwości. Dzięki tej zasadzie możemy użyć `TODO()` w funkcji zamiast zwracać wartość. Wszystko, co deklaruje `Nothing` jako typ wyniku, kończy funkcję (lub działa w nieskończoność), więc ta funkcja nie zakończy się bez wcześniejszego zwrócenia lub rzucenia wyjątku.
+Podobnie jest z `return`, `TODO`, `error`, itp. Jeśli nieopcjonalne wyrażenie deklaruje `Nothing` jako swój typ wyniku, wszystko po tym jest nieosiągalne. To prosta zasada, ale przydatna dla kompilatora. Jest również przydatna dla nas, ponieważ daje nam więcej możliwości. Dzięki tej zasadzie możemy użyć `TODO()` w funkcji, zamiast zwracać wartość. Wszystko, co deklaruje `Nothing` jako typ wyniku, kończy działanie funkcji (lub działa w nieskończoność), co spawia, że kompilator ma pewność, że ta funkcja nie zakończy się bez wcześniejszego zwrócenia wyniku lub rzucenia wyjątku.
 
 ```kotlin
 fun fizzBuzz(): String {
@@ -294,7 +294,7 @@ fun fizzBuzz(): String {
 }
 ```
 
-Chciałbym zakończyć ten temat bardziej zaawansowanym przykładem, który pochodzi z biblioteki Kotlin Coroutines. Istnieje klasa `MutableStateFlow`, która reprezentuje zmienną wartość, której zmiany stanu można obserwować za pomocą metody `collect`. Chodzi o to, że `collect` zawiesza bieżącą korutynę, dopóki to, co obserwuje, nie zostanie zamknięte, ale StateFlow nie może zostać zamknięty. Dlatego ta funkcja `collect` deklaruje `Nothing` jako swój typ wyniku.
+Chciałbym zakończyć ten temat bardziej zaawansowanym przykładem, który pochodzi z biblioteki Kotlin Coroutines. Istnieje klasa `MutableStateFlow`, która reprezentuje zmienną wartość, której zmiany stanu można obserwować za pomocą metody `collect`. Chodzi o to, że `collect` zawiesza bieżącą korutynę, dopóki to, co obserwuje, nie zostanie zamknięte, ale StateFlow nie może zostać zamknięty. Dlatego ta funkcja `collect` deklaruje `Nothing` jako swój typ zwracany.
 
 ```kotlin
 public interface SharedFlow<out T> : Flow<T> {
@@ -305,13 +305,13 @@ public interface SharedFlow<out T> : Flow<T> {
 }
 ```
 
-Jest to bardzo przydatne dla programistów, którzy nie wiedzą, jak działa `collect`. Dzięki typowi wynikowemu IntelliJ informuje ich, że kod, który umieszczają po `collect`, jest nieosiągalny.
+Jest to bardzo przydatne dla programistów, którzy nie wiedzą, jak działa `collect`. Dzięki `Nothing` IntelliJ informuje ich, że kod, który umieszczają po `collect` jest nieosiągalny.
 
 ![SharedFlow nie może być zamknięty, więc jego funkcja `collect` nigdy nie zwróci wartości, dlatego deklaruje `Nothing` jako swój typ wyniku.](stateflow_unreachable.png)
 
-### Typ null
+### Typ wartości null
 
-Przyjrzyjmy się kolejnej osobliwości. Czy wiedziałeś, że możesz przypisać wartość `null` do zmiennej bez ustawiania jawnego typu? Co więcej, taką zmienną można użyć wszędzie tam, gdzie akceptowane jest `null`.
+Przyjrzyjmy się kolejnej osobliwości. Czy wiedziałeś, że możesz przypisać wartość `null` do zmiennej bez ustawiania jawnego typu? Co więcej, taką zmienną można użyć wszędzie tam, gdzie akceptowalny jest `null`.
 
 ```kotlin
 fun main() {
@@ -339,33 +339,32 @@ val b = when {
 }
 ```
 
-W wyrażeniu if szukamy najbliższego supertypu typów z obu gałęzi. Najbliższym supertypem `String` i `Nothing?` jest `String?`. To samo dotyczy wyrażenia when: najbliższym supertypem `String`, `String` i `Nothing?` jest `String?`. Wszystko ma sens.
+W wyrażeniu if szukamy najbliższego nadtypu typów z obu gałęzi. Najbliższym nadtypem `String` i `Nothing?` jest `String?`. To samo dotyczy wyrażenia when: najbliższym nadtypem `String`, `String` i `Nothing?` jest `String?`. Wszystko ma sens.
 
 Z tego samego powodu, kiedy wymagamy `String?`, możemy przekazać zarówno `String`, jak i `null`, którego typem jest `Nothing?`. Jest to jasne, gdy spojrzysz na hierarchię typów. `String` i `Nothing?` są jedynymi niepustymi podtypami `String?`.
 
 ![](Socrates.png)
 
-{pagebreak}
-
 ### Podsumowanie
 
-W tym rozdziale nauczyliśmy się:
-* Klasa jest szablonem do tworzenia obiektów. Typ definiuje oczekiwania i funkcjonalności.
-* Każda klasa generuje typ nullowanych i typ non-nullowanych.
-* Typ nullowanych jest supertypem dla nieoznaczonej wersji tego typu.
-* Supertypem wszystkich typów jest `Any?`.
-* Supertypem typów non-nullowanych jest `Any`.
+W tym rozdziale nauczyliśmy się, że:
+* Klasa jest szablonem do tworzenia obiektów. Typ definiuje oczekiwania wobec wartości i jej funkcjonalności.
+* Każda klasa generuje typ nullowany i typ nienullowalny.
+* Dla każdej klasy i interfejsu typ nullowany jest nadtypem jego typu nienullowalnego.
+* Nadtypem wszystkich typów jest `Any?`.
+* Nadtypem typów nienullowanych jest `Any`.
 * Podtypem wszystkich typów jest `Nothing`.
-* Gdy funkcja deklaruje `Nothing` jako typ zwracany, oznacza to, że zgłosi błąd lub będzie działać w nieskończoność.
+* Gdy funkcja deklaruje `Nothing` jako typ zwracany, oznacza to, że zgłosi błąd, przerwie program lub będzie działać w nieskończoność.
 * Zarówno `throw`, jak i `return` deklarują `Nothing` jako swój typ wyniku.
-* Kompilator Kotlin rozumie, że gdy wyrażenie deklaruje `Nothing` jako typ wyniku, wszystko później jest nieosiągalne.
-* Typem `null` jest `Nothing?`, który jest podtypem wszystkich typów nullowanych.
+* Kompilator Kotlin rozumie, że gdy wyrażenie deklaruje `Nothing` jako typ zwracany, wszystko dalej jest nieosiągalne.
+* Typem `null` jest `Nothing?`, który jest podtypem wszystkich typów nullowalnych.
 
-W następnym rozdziale omówimy generyki i zobaczymy, jak są ważne dla naszego systemu typów.
+W następnym rozdziale omówimy typy generyczne i zobaczymy, jak są ważne dla naszego systemu typów.
 
 [^20_1]: Parametry są również zmiennymi.
-[^20_2]: Z wyjątkiem ustalania, którą funkcję wybrać w przypadku przeciążenia.
-[^20_3]: Wszystko zależy od tego, co mierzymy, ale Python, Java i JavaScript zajmują pierwsze trzy miejsca w większości rankingów. W niektórych są pokonane przez język C, który jest szeroko stosowany w bardzo niskopoziomowym rozwoju, jak rozwój procesorów dla samochodów czy lodówek.
+[^20_2]: Z wyjątkiem ustalania, którą z przeciążonych funkcji wybrać. 
+[^20_3]: Wszystko zależy od tego, co mierzymy, ale Python, Java i JavaScript zajmują pierwsze trzy miejsca w większości rankingów. W niektórych są wyprzedzane przez język C, który jest szeroko stosowany w programach pisanych niskopoziomowo.
 [^20_4]: Argumenty typów i parametry typów będą lepiej wyjaśnione w rozdziale *Generyki*.
 [^20_5]: Wyjaśnię górne granice parametrów typów w rozdziale *Generyki*.
-[^20_6]: Formalnie JavaScript obsługuje słabe typowanie, ale w tym rozdziale omawiamy statyczne typowanie, którego JavaScript nie obsługuje. 
+[^20_6]: Formalnie JavaScript obsługuje słabe typowanie, ale w tym rozdziale omawiamy statyczne typowanie, którego JavaScript nie obsługuje.
+[^20_7]: Także Wielka Stopa, Sasquatch, Yeti itp. 

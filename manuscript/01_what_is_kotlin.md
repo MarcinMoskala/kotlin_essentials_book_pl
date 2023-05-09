@@ -11,14 +11,14 @@ Te opisy mogą być teraz niejasne, ale zobaczysz je wszystkie w praktyce w trak
 
 ### Platformy Kotlin
 
-Kotlin to kompilowany język programowania. Oznacza to, że możesz napisać jakiś kod w Kotlinie, a następnie użyć kompilatora Kotlin, aby wygenerować kod w języku niższego poziomu. Obecnie Kotlin może być kompilowany do bytecode'u JVM (Kotlin/JVM), JavaScript (Kotlin/JS) lub kodu maszynowego (Kotlin/Native).
+Kotlin to kompilowany język programowania. Oznacza to, że możesz napisać jakiś kod w Kotlinie, a następnie użyć kompilatora Kotlin, aby wygenerować kod w języku niższego poziomu. Obecnie Kotlin może być kompilowany do bajtkodu JVM (Kotlin/JVM), JavaScript (Kotlin/JS) lub kodu maszynowego (Kotlin/Native).
 
 {width: 100%}
 ![](kotlin_compile_results.png)
 
 W tej książce chciałbym omówić wszystkie te targety i domyślnie pokazać kod, który działa na wszystkich z nich, ale skupię się na najbardziej popularnym: Kotlin/JVM.
 
-Kotlin/JVM to technologia służąca do kompilowania kodu Kotlin do bytecode'u JVM. Wynik jest prawie identyczny z wynikiem kompilowania kodu Java do bytecode'u JVM. Termin "Kotlin/JVM" używamy również, aby mówić o kodzie, który zostanie skompilowany do bytecode'u JVM.
+Kotlin/JVM to technologia służąca do kompilowania kodu Kotlin do bajtkodu JVM. Wynik jest prawie identyczny z wynikiem kompilowania kodu Java do bytecode'u JVM. Termin "Kotlin/JVM" używamy również, aby mówić o kodzie, który zostanie skompilowany do bytecode'u JVM.
 
 ![](Kotlin_Java_compile.png)
 

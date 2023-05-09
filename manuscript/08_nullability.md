@@ -103,7 +103,7 @@ fun main() {
 
 To nie jest bardzo bezpieczna opcja, ponieważ jeśli się mylimy i wartość `null` znajduje się tam, gdzie jej nie oczekujemy, prowadzi to do wyjątku `NullPointerException`. Dlatego stosujemy `!!` tylko wtedy, gdy rzeczywiście chcemy zobaczyć wyjątek, jeśli wartość jest `null`. Aczkolwiek w takich przypadkach częściej wolimy użyć funkcji, które rzucają bardziej znaczący wyjątek, jak `requireNotNull` lub `checkNotNull`[^08_4]:
 - `requireNotNull`, który przyjmuje wartość nullowalną jako argument i rzuca wyjątek `IllegalArgumentException` jeśli ta wartość jest równa `null`. W przeciwnym razie zwraca tę wartość jako nienullowalną.
-- `checkNotNull`, który przyjmuje wartość nullowalną jako argument i rzuca wyjątek `IllegalStateException` jeśli ta wartość jest równa `null`. W przeciwnym razie zwraca tę wartość jako nie-nullowalną.
+- `checkNotNull`, który przyjmuje wartość nullowalną jako argument i rzuca wyjątek `IllegalStateException` jeśli ta wartość jest równa `null`. W przeciwnym razie zwraca tę wartość jako nienullowalną.
 
 ```kotlin
 fun sendData(dataWrapped: Wrapper<Data>) {
@@ -115,7 +115,7 @@ fun sendData(dataWrapped: Wrapper<Data>) {
 
 ### Smart-casting
 
-Smart-casting działa również dla wartości `null`. W związku z tym, w zakresie sprawdzenia, że wartość nie jest `null`, typ nullowalny jest rzutowany na typ nie-nullowalny.
+Smart-casting działa również dla wartości `null`. W związku z tym, w zakresie sprawdzenia, że wartość nie jest `null`, typ nullowalny jest rzutowany na typ nienullowalny.
 
 ```kotlin
 fun printLengthIfNotNull(str: String?) {
@@ -277,7 +277,7 @@ To, że każda wartość mogła być nullem, jest ogromnym problemem w językach
 
 ### Właściwości lateinit
 
-Są sytuacje, gdy chcemy, aby właściwość klasy miała typ nie-nullowalny, ale nie możemy określić jej wartości podczas tworzenia obiektu. Chodzi przede wszystkim o właściwości, których wartość jest wstrzykiwana lub są tworzone w jednej z pierwszych metod cyklu życia klasy. Uczynienie takich właściwości nullowalnymi wymagałoby ich odpakowania przy każdym użyciu, mimo iż wiedzielibyśmy, że nie mogą mieć one wartości `null`, ponieważ spodziewamy się że ich wartość zostanie wstrzyknięta lub ustawiona odpowiednio wcześniej. Dla takich sytuacji twórcy Kotlinie wprowadzili modyfikator `lateinit`. Gdy go używamy, właściwość nie określa wartości pierwotnej, a przy tym musi mieć typ nie-nullowany. Kotlin spodziewa się, że ustawimy wartość tej właściwości przed jej pierwszym użyciem. Przykłady użycia `lateinit`:
+Są sytuacje, gdy chcemy, aby właściwość klasy miała typ nienullowalny, ale nie możemy określić jej wartości podczas tworzenia obiektu. Chodzi przede wszystkim o właściwości, których wartość jest wstrzykiwana lub są tworzone w jednej z pierwszych metod cyklu życia klasy. Uczynienie takich właściwości nullowalnymi wymagałoby ich odpakowania przy każdym użyciu, mimo iż wiedzielibyśmy, że nie mogą mieć one wartości `null`, ponieważ spodziewamy się że ich wartość zostanie wstrzyknięta lub ustawiona odpowiednio wcześniej. Dla takich sytuacji twórcy Kotlinie wprowadzili modyfikator `lateinit`. Gdy go używamy, właściwość nie określa wartości pierwotnej, a przy tym musi mieć typ nienullowany. Kotlin spodziewa się, że ustawimy wartość tej właściwości przed jej pierwszym użyciem. Przykłady użycia `lateinit`:
 
 ```kotlin
 @AndroidEntryPoint

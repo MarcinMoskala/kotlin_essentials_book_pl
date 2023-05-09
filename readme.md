@@ -58,7 +58,9 @@ Obrazki powinny mieć określoną szerokość w % poprzez użycie atrybutu `widt
 Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielskiego:
 * **accessor** - **akcesor**,
 * **anonymous function** - **funkcja anonimowa**,
-* **bytecode** - **bytecode**,
+* **augmented assignment** - **przypisanie z operatorem arytmetycznym**,
+* **bytecode** - **bajtkod**,
+* **call** - **wywołanie**,
 * **catch excaption** - **łapanie wyjątku**,
 * **companion object** - **companion obiekt**, <- to nie brzmi dobrze, ale nie mam lepszego pomysłu
 * **conditional statement** - **instrukcja warunkowa**,
@@ -84,7 +86,7 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 * **member property** - **właściwość klasy**,
 * **mutable list** - **lista modyfikowalna**, <- nie mam pewności czy nie użyć "lista mutowalna"
 * **not-null assertion** - **assersja not-null**,
-* **not-nullable type** - **typ nie-nullowalny**
+* **not-nullable type** - **typ nienullowalny**
 * **nullable** - **nullowalny**,
 * **nullable type** - **typ nullowalny**
 * **object expression** - **wyrażenie tworzące obiekt**,
@@ -95,6 +97,7 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 * **property** - **właściwość**, <- rozważam "property"
 * **range** - **zakres**,
 * **reference** - **referencja**,
+* **context receiver** - **context receiver**,
 * **safe call** - **wywołanie bezpieczne**,
 * **sealed class** - **klasa sealed**,
 * **set** - **zbiór**,
@@ -102,6 +105,7 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 * **single-expression function** - **funkcja z pojedynczym wyrażeniem**,
 * **smart cast** - **smart cast**,
 * **stacktrace** - **stacktrace**,
+* **star projection** - **star projection**,
 * **statement** - **instrukcja**,
 * **string** - **string**,
 * **string interpolation** - **interpolacja stringa**,
@@ -111,8 +115,11 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 * **try-catch expression** - **wyrażenie try-catch**,
 * **throw exception** - **rzucanie wyjątkiem**,
 * **type** - **typ**,
+* **type argument** - **argument typu**,
+* **type inference** - **wnioskowanie typu**,
+* **type erasure** - **type erasure**,
+* **type parameter** - **parametr typu**,
 * **when-expression** - **wyrażenie when**,
-* **call** - **wywołanie**,
 
 Nazwy własne:
 * **Advanced Kotlin** - **Zaawansowany Kotlin**,

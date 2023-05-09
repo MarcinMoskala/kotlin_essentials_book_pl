@@ -1,4 +1,4 @@
-## Klasy adnotacji
+## Adnotacje
 
 Innym specjalnym rodzajem klasy w Kotlinie są adnotacje, które używamy do dostarczania dodatkowych informacji o elementach naszego kody (takich jak klasy, funkcje, właściwości). Oto przykład klasy, której elementy używają adnotacji `JvmField`, `JvmStatic` oraz `Throws`[^15_2].
 
