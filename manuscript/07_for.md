@@ -3,7 +3,7 @@
 W Javie i innych starszych językach pętla for zwykle ma trzy części: pierwsza inicjuje zmienną przed rozpoczęciem pętli; druga zawiera warunek wykonania bloku kodu; trzecia jest wykonywana po bloku kodu.
 
 ```
-// Javie
+// pętla for w Javie
 for(int i=0; i < 5; i++){
    System.out.println(i);
 }
