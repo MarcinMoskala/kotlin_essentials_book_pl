@@ -1,6 +1,6 @@
 ## Funkcje
 
-Kiedy Andrey Breslav, pierwotny twórca Kotlina, został zapytany o swoją ulubioną funkcjonalność tego języka, odpowiedział bez wahania: funkcje[^06_1]. W końcu funkcje są najważniejszymi elementami naszych programów. Spójrz na aplikacje w rzeczywistym świecie, większość kodu albo definiuje, albo wywołuje funkcje.
+Kiedy Andrey Breslav, pierwotny twórca Kotlina, został zapytany o swoją ulubioną funkcjonalność tego języka, odpowiedział bez wahania: funkcje[^06_1]. W końcu funkcje są najważniejszymi elementami naszych programów. Spójrz na aplikacje w rzeczywistym świecie: większość kodu albo definiuje, albo wywołuje funkcje.
 
 ![Przykładem jest losowa klasa z otwartoźródłowego projektu APKUpdater. Zauważ, że niemal każdy wiersz albo definiuje, albo wywołuje funkcję.](06_example_app.png)
 
@@ -12,7 +12,7 @@ fun <Fun> `fun`(`fun`: Fun): Fun = `fun`
 
 > Jest to tzw. *funkcja tożsamościowa*, czyli funkcja zwracająca swój argument bez żadnych modyfikacji. Posiada ona generyczny parametr typu `Fun`. Parametry generyczne zostaną wyjaśnione w rozdziale *Generyki*.
 
-Zgodnie z konwencją, funkcje nazywamy używając składni lower camelCase[^06_0]. Formalnie możemy używać znaków, podkreślnika `_` oraz cyfr (ale nie na pierwszej pozycji), jednak ogólnie powinniśmy używać tylko znaków.
+Zgodnie z konwencją funkcje nazywamy używając składni lower camelCase[^06_2]. Formalnie możemy używać znaków, podkreślnika `_` oraz cyfr (ale nie na pierwszej pozycji), jednak ogólnie powinniśmy używać tylko znaków.
 
 {width: 50%}
 ![W Kotlin nazywamy funkcje zgodnie z lowerCamelCase.](camelCase.png)
@@ -29,7 +29,7 @@ fun main() {
 }
 ```
 
-Zauważ, że typ parametru jest określony po nazwie zmiennej i dwukropku, a typ wyniku jest określony po dwukropku w nawiasach parametrów. Taka notacja jest typowa dla języków z silnym wsparciem dla wnioskowania o typach, ponieważ łatwiej jest dodawać lub usuwać wyraźne definicje typów.
+Zauważ, że typ parametru jest określony po nazwie zmiennej i dwukropku, a typ wyniku jest określony po dwukropku, przed otwierającym nawiasem klamrowym. Taka notacja jest typowa dla języków z silnym wsparciem dla wnioskowania o typach, ponieważ łatwiej jest dodawać lub usuwać wyraźne definicje typów.
 
 ```kotlin
 val a: Int = 123
@@ -57,7 +57,7 @@ class CartViewModelTests {
 
 ### Funkcje z pojedynczym wyrażeniem
 
-Wiele funkcji w rzeczywistych projektach ma tylko jedno wyrażenie[^06_2], więc używają `return` już w pierwszej linii. Funkcja `square` zdefiniowana powyżej to świetny przykład. W przypadku takich funkcji, zamiast definiować ciało za pomocą nawiasów klamrowych, możemy użyć znaku równości (`=`) i tylko podać wyrażenie obliczające wynik bez podawania `return`. Takie funkcje będziemy nazywali *funkcjami z pojedynczym wyrażeniem*.
+Wiele funkcji w rzeczywistych projektach ma tylko jedno wyrażenie[^06_3], więc używają `return` już w pierwszej linii. Funkcja `square` zdefiniowana powyżej to świetny przykład. W przypadku takich funkcji, zamiast definiować ciało za pomocą nawiasów klamrowych, możemy użyć znaku równości (`=`) i tylko podać wyrażenie obliczające wynik bez podawania `return`. Takie funkcje będziemy nazywali *funkcjami z pojedynczym wyrażeniem*.
 
 ```kotlin
 fun square(x: Double): Double = x * x
@@ -77,7 +77,7 @@ fun findUsers(userFilter: UserFilter): List<User> =
         .filter { userFilter.accepts(it) }
 ```
 
-Kiedy używamy składni funkcji z pojedynczym wyrażeniem, nie musimy określać typu zwracanego, gdyż może zostać on automatycznie wywnioskowany na podstawie typu zwracanego przez wyrażenie. Wciąż jednak możemy określić ten typ, ponieważ często jest on przydatny dla bezpieczeństwa i czytelności kodu[^06_3].
+Kiedy używamy składni funkcji z pojedynczym wyrażeniem, nie musimy określać typu zwracanego, gdyż może zostać on automatycznie wywnioskowany na podstawie typu zwracanego przez wyrażenie. Wciąż jednak możemy określić ten typ, ponieważ często jest on przydatny dla bezpieczeństwa i czytelności kodu[^06_4].
 
 ```kotlin
 fun square(x: Double) = x * x
@@ -90,9 +90,9 @@ fun main() {
 
 ### Funkcje na wszystkich poziomach
 
-Kotlin pozwala nam definiować funkcje na wielu poziomach, co nie jest to oczywiste, ponieważ taka Java pozwala wyłącznie na definiowanie funkcji w klasach. W Kotlinie możemy zdefiniować:
-* funkcje w plikach, poza jakąkolwiek klasą, nazywane **funkcjami pliku**[^06_9],
-* funkcje wewnątrz klas lub obiektów, które nazywać będziemy **funkcjami klasy**[^06_10] (wszystkie funkcje klasy są również **metodami**),
+Kotlin pozwala nam definiować funkcje na wielu poziomach, co nie jest oczywiste; przykładowo Java pozwala wyłącznie na definiowanie funkcji w klasach. W Kotlinie możemy zdefiniować:
+* funkcje w plikach, poza jakąkolwiek klasą, nazywane **funkcjami pliku**[^06_5],
+* funkcje wewnątrz klas lub obiektów, które nazywać będziemy **funkcjami klasy**[^06_6] (wszystkie funkcje klasy są również **metodami**),
 * funkcje wewnątrz funkcji, nazywane **funkcjami lokalnymi** lub **funkcjami zagnieżdżonymi**.
 
 ```kotlin
@@ -217,7 +217,7 @@ fun a(): Unit {
 }
 ```
 
-Oczywiście, `Unit` nie jest tak naprawdę zwracany, wtedy gdy nie jest potrzebny, tak więc wydajność kodu nie jest zagrożona.
+Oczywiście, `Unit` nie jest tak naprawdę zwracany, gdy nie jest potrzebny, więc wydajność kodu nie jest zagrożona.
 
 ### Parametry vararg
 
@@ -243,7 +243,7 @@ fun main() {
 }
 ```
 
-Oznacza to, że parametr vararg przechowuje kolekcję wartości, dlatego nie może mieć typu pojedynczego obiektu. Parametr vararg reprezentuje więc tablicę zadeklarowanego typu, a my możemy iterować po tej tablicy za pomocą pętli for (co zostanie wyjaśnione bardziej szczegółowo w następnym rozdziale).
+Oznacza to, że parametr vararg przechowuje kolekcję wartości, dlatego nie może mieć typu pojedynczego obiektu. Parametr `vararg` reprezentuje więc tablicę zadeklarowanego typu, a my możemy iterować po tej tablicy za pomocą pętli `for` (co zostanie wyjaśnione bardziej szczegółowo w następnym rozdziale).
 
 ```kotlin
 fun concatenate(vararg strings: String): String {
@@ -268,7 +268,7 @@ fun main() {
 }
 ```
 
-Wrócimy do parametrów vararg w rozdziale *Kolekcje*, w sekcji poświęconej tablicom.
+Wrócimy do parametrów `vararg` w rozdziale *Kolekcje*, w sekcji poświęconej tablicom.
 
 ### Nazwane argumenty i domyślne wartości
 
@@ -283,7 +283,7 @@ fun main() {
 }
 ```
 
-W Kotlinie wiele innych funkcji używa opcjonalnej parametryzacji, ale jak to zrobić? Wystarczy umieścić znak równości po parametrze, a następnie określić wartość domyślną.
+W Kotlinie wiele funkcji używa opcjonalnej parametryzacji, ale jak to zrobić? Wystarczy umieścić znak równości po parametrze, a następnie określić wartość domyślną.
 
 ```kotlin
 fun cheer(how: String = "Hello,", who: String = "World") {
@@ -313,7 +313,7 @@ fun main() {
 
 > W Python analogiczny kod wygenerowałby `[1]`, `[1, 1]` oraz `[1, 1, 1]`.
 
-Wywołując funkcję, możemy określić pozycję argumentu za pomocą nazwy parametru, jak w poniższym przykładzie. W ten sposób możemy określić późniejsze opcjonalne pozycje bez określania wcześniejszych pozycji. To są tzw. argumenty nazwane.
+Wywołując funkcję możemy określić pozycję argumentu za pomocą nazwy parametru, jak w poniższym przykładzie. W ten sposób określamy dowolnie wybrane opcjonalne pozycje bez określania pozostałych. To są tzw. argumenty nazwane.
 
 ```kotlin
 fun cheer(how: String = "Hello,", who: String = "World") {
@@ -356,7 +356,7 @@ Uważa się, że stosowanie konwencji nazwanych argumentów jest dobrą praktyk�
 
 ### Przeciążanie funkcji
 
-W Kotlinie możemy zdefiniować funkcje o tej samej nazwie w tym samym zakresie (pliku lub klasie), o ile mają różne typy parametrów lub różną liczbę parametrów. Nazywa się to przeciążaniem funkcji (**overloading**). Kotlin decyduje, którą funkcję wykonać, na podstawie typów określonych argumentów.
+W Kotlinie możemy zdefiniować funkcje o tej samej nazwie w tym samym zakresie (pliku lub klasie), o ile mają różne typy parametrów lub różną liczbę parametrów. Nazywa się to przeciążaniem funkcji (**overloading**). Kotlin decyduje, którą funkcję wykonać na podstawie typów określonych argumentów.
 
 ```kotlin
 fun a(a: Any) = "Any"
@@ -423,11 +423,11 @@ fun main() {
 
 Notacja infiksowa służy tylko dla naszej wygody. Jest to Kotlinowy syntactic sugar, czyli funkcjonalność zaprojektowana tylko po to, aby ułatwić czytanie lub pisanie kodu. 
 
-> W odniesieniu do pozycji operatorów lub funkcji w stosunku do ich operandów oraz argumentów używamy trzech rodzajów pozycji: prefiksowa, infiksu i postfiksowa. Notacja prefiksowa polega na umieszczeniu operatora lub funkcji **przed** operandami lub argumentami[^06_8]. Dobrym przykładem jest plus lub minus umieszczony przed pojedynczą liczbą (jak w `+12` lub `-3,14`). Można by też argumentować, że wywołanie funkcji pliku również używa notacji prefiksowej, ponieważ nazwa funkcji pojawia się przed argumentami (jak w `maxOf(10, 20)`). Notacja infiksowa polega na umieszczeniu operatora lub funkcji **pomiędzy** operandami lub argumentami[^06_6]. Dobrym przykładem jest plus lub minus pomiędzy dwiema liczbami (jak `1 + 2` lub `10 - 7`). Można by też argumentować, że wywołanie metody z argumentami również używa notacji infiksowej, ponieważ nazwa funkcji znajduje się między odbiorcą (obiektem, na którym wywołujemy tę metodę) a argumentami (jak `account.add(money)`). W Kotlin używamy terminu "notacja infiksowa" w bardziej restrykcyjny sposób, odnosząc się do specjalnej notacji używanej dla metod z modyfikatorem `infix`. Notacja postfiksowa polega na umieszczeniu operatora lub funkcji **za** operandami lub argumentami[^06_7]. W nowoczesnym programowaniu notacja przyrostkowa praktycznie nie jest już używana. Można by argumentować, że wywołanie metody bez argumentów to notacja przyrostkowa, jak w `str.uppercase()`.
+> W odniesieniu do pozycji operatorów lub funkcji w stosunku do ich operandów oraz argumentów używamy trzech rodzajów pozycji: prefiksowa, infiksowa i postfiksowa. Notacja prefiksowa polega na umieszczeniu operatora lub funkcji **przed** operandami lub argumentami[^06_7]. Dobrym przykładem jest plus lub minus umieszczony przed pojedynczą liczbą (jak w `+12` lub `-3,14`). Można by też argumentować, że wywołanie funkcji pliku również używa notacji prefiksowej, ponieważ nazwa funkcji pojawia się przed argumentami (jak w `maxOf(10, 20)`). Notacja infiksowa polega na umieszczeniu operatora lub funkcji **pomiędzy** operandami lub argumentami[^06_8]. Dobrym przykładem jest plus lub minus pomiędzy dwiema liczbami (jak `1 + 2` lub `10 - 7`). Można by też argumentować, że wywołanie metody z argumentami również używa notacji infiksowej, ponieważ nazwa funkcji znajduje się między odbiorcą (obiektem, na którym wywołujemy tę metodę) a argumentami (jak `account.add(money)`). W Kotlin używamy terminu "notacja infiksowa" w bardziej restrykcyjny sposób, odnosząc się do specjalnej notacji używanej dla metod z modyfikatorem `infix`. Notacja postfiksowa polega na umieszczeniu operatora lub funkcji **za** operandami lub argumentami[^06_9]. W nowoczesnym programowaniu notacja przyrostkowa praktycznie nie jest już używana. Można by argumentować, że wywołanie metody bez argumentów to notacja przyrostkowa, jak w `str.uppercase()`.
 
 ### Formatowanie funkcji
 
-Gdy deklaracja funkcji (nazwa, parametry i typ wyniku) jest zbyt długa, aby zmieścić się w jednej linii, dzielimy ją tak, aby każda definicja parametru znajdowała się w innej linii, a początek i koniec deklaracji funkcji również były na oddzielnych liniach.
+Gdy deklaracja funkcji (nazwa, parametry i typ wyniku) jest zbyt długa, aby zmieścić się w jednej linii, dzielimy ją tak, aby każda definicja parametru znajdowała się w innej linii, a początek i koniec deklaracji funkcji, wraz z typem zwracanym przez nią, również były na oddzielnych liniach.
 
 ```kotlin
 fun veryLongFunction(
@@ -439,7 +439,7 @@ fun veryLongFunction(
 }
 ```
 
-Klasy są formatowane w ten sam sposób[^06_5]:
+Klasy są formatowane w ten sam sposób[^06_10]:
 
 ```kotlin
 class VeryLongClass(
@@ -451,7 +451,7 @@ class VeryLongClass(
 }
 ```
 
-Gdy wywołanie funkcji[^06_4] jest zbyt długie, formatujemy je w podobny sposób: każdy argument znajduje się w innym wierszu. Istnieją jednak wyjątki od tej zasady, takie jak utrzymanie wielu parametrów vararg w tej samej linii.
+Gdy wywołanie funkcji[^06_11] jest zbyt długie, formatujemy je w podobny sposób: każdy argument znajduje się w innym wierszu. Istnieją jednak wyjątki od tej zasady, takie jak utrzymanie wielu parametrów vararg w tej samej linii.
 
 ```kotlin
 fun makeUser(
@@ -509,16 +509,16 @@ Lubię używać notacji z końcowym przecinkiem, ponieważ ułatwia dodawanie ko
 
 ### Podsumowanie
 
-Jak widać, funkcje w Kotlinie mają wiele potężnych funkcji. Składnia funkcji z pojedynczym wyrażeniem sprawia, że proste funkcje są krótsze. Nazwane argumenty i domyślne wartości pomagają nam poprawić czytelność kody i zmniejszyć liczbę funkcji. Typ wyniku `Unit` sprawia, że każde wywołanie funkcji jest wyrażeniem. Parametry vararg pozwalają na używanie dowolnej liczby argumentów dla jednej pozycji parametru. Notacja infiksowa wprowadza wygodniejszy sposób wywoływania pewnego rodzaju funkcji. Końcowe przecinki minimalizują liczbę zmian w Gicie. Wszystko to jest dla naszej wygody. Czas przejść do kolejnej przydatnej funkcjonalności języka Kotlin, do używania pętli for.
+Jak widać funkcje w Kotlinie oferują wiele potężnych możliwości. Składnia z pojedynczym wyrażeniem sprawia, że proste funkcje są krótsze. Nazwane argumenty i domyślne wartości pomagają nam poprawić czytelność kodu i zmniejszyć liczbę funkcji. Typ wyniku `Unit` sprawia, że każde wywołanie funkcji jest wyrażeniem. Parametry vararg pozwalają na używanie dowolnej liczby argumentów dla jednej pozycji parametru. Notacja infiksowa wprowadza wygodniejszy sposób wywoływania pewnego rodzaju funkcji. Końcowe przecinki minimalizują liczbę zmian w Gicie. Wszystko to jest dla naszej wygody. Czas przejść do kolejnej przydatnej funkcjonalności języka Kotlin, do używania pętli `for`.
 
-[^06_0]: Ta zasada ma pewne wyjątki. Na przykład w przypadku Androida, funkcje Jetpack Compose powinny być nazwane według konwencji UpperCamelCase. Ponadto, testy jednostkowe często są nazwane pełnymi zdaniami otoczony znakami backtick.
 [^06_1]: To było podczas panelu dyskusyjnego na konferencji KotlinConf w Amsterdamie. Źródło: https://youtu.be/heqjfkS4z2I?t=660
-[^06_2]: Przypominam, że wyrażenie to część kodu, która zwraca wartość.
-[^06_3]: Zobacz *Effective Kotlin* *Pozycja 4: Nie eksponuj wywnioskowanych typów*.
-[^06_4]: Wywołanie konstruktora jest również uważane za wywołanie funkcji w Kotlinie.
-[^06_5]: Klasy omówimy w rozdziale *Klasy i interfejsy*.
-[^06_6]: Od łacińskiego słowa infixus, czas przeszły od infigere, które można przetłumaczyć jako "umocowany pomiędzy".
-[^06_7]: Stworzone z przedrostka "post-", który oznacza "po, za", oraz słowa "fix", oznaczające "umocowany w miejscu".
-[^06_8]: Od łacińskiego słowa praefixus, które oznacza "umocowany z przodu".
-[^06_9]: Po angielsku używane jest pojęcie **top-level functions**, ale **funkcje na najwyższym poziomie** brzmi mało intuicyjnie, więc zdecydowałem się używać pojęcia **funkcje pliku", które lepiej oddaje sens tego pojęcia.
-[^06_10]: Po angielsku **member functions**, co często tłumaczy się na **funkcje członkowskie**, które to tłumaczenie uważam za wyjątkowo brzydkie i nie będę go stosował. To, co definiuje elementy określane jako "member" to ich przypisanie do klasy, a więc widzę zasadnym używanie pojęcia "funkcje klasy" jako tłumaczenie "member function", albo "właściwość klasy" jako tłumaczenie "member property".
+[^06_2]: Ta zasada ma pewne wyjątki. Na przykład w przypadku Androida, funkcje Jetpack Compose powinny być nazwane według konwencji UpperCamelCase. Ponadto, testy jednostkowe często są nazwane pełnymi zdaniami otoczony znakami backtick.
+[^06_3]: Przypominam, że wyrażenie to część kodu, która zwraca wartość.
+[^06_4]: Zobacz *Effective Kotlin* *Pozycja 4: Nie eksponuj wywnioskowanych typów*.
+[^06_5]: Po angielsku używane jest pojęcie **top-level functions**, ale **funkcje na najwyższym poziomie** brzmi mało intuicyjnie, więc zdecydowałem się używać pojęcia **funkcje pliku", które lepiej oddaje sens tego pojęcia.
+[^06_6]: Po angielsku **member functions**, co często tłumaczy się na **funkcje członkowskie**, które to tłumaczenie uważam za wyjątkowo brzydkie i nie będę go stosował. To, co definiuje elementy określane jako "member" to ich przypisanie do klasy, a więc widzę zasadnym używanie pojęcia "funkcje klasy" jako tłumaczenie "member function", albo "właściwość klasy" jako tłumaczenie "member property".
+[^06_7]: Od łacińskiego słowa praefixus, które oznacza "umocowany z przodu".
+[^06_8]: Od łacińskiego słowa infixus, czas przeszły od infigere, które można przetłumaczyć jako "umocowany pomiędzy".
+[^06_9]: Stworzone z przedrostka "post-", który oznacza "po, za", oraz słowa "fix", oznaczające "umocowany w miejscu".
+[^06_10]: Klasy omówimy w rozdziale *Klasy i interfejsy*.
+[^06_11]: Wywołanie konstruktora jest również uważane za wywołanie funkcji w Kotlinie.
