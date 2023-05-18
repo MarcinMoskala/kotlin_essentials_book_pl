@@ -1,8 +1,8 @@
 ## Wyjątki
 
-Wyjątek to zazwyczaj niepożądane zdarzenie, które przerywa normalne działanie programu. Może wystąpić, gdy wykonasz niedozwoloną operację. Wyjątki zawierają informacje, które pomagają deweloperom dowiedzieć się, co doprowadziło do tego problemu.
+Wyjątek to zazwyczaj niepożądane zdarzenie, które przerywa działanie programu. Może wystąpić, gdy wykonasz niedozwoloną operację. Wyjątki zawierają informacje, które pomagają deweloperom dowiedzieć się, co doprowadziło do problemu.
 
-Przyjrzyjmy się przykładowi. Gdy podzielisz liczbę całkowitą przez 0, zostanie zgłoszony wyjątek typu `ArithmeticException`. Każdy wyjątek może zawierać wiadomość, która powinna wyjaśnić, co poszło nie tak. W tym przypadku wiadomością będzie "/ przez zero". Każdy wyjątek zawiera również ślad stosu, który to lista wywołań metod, w których środku znajdowała się aplikacja, gdy zgłoszono wyjątek. W tym przypadku obejmuje informacje, że wyjątek został zgłoszony z funkcji `calculate`, która została wywołana z funkcji `printCalculated`, która została wywołana z funkcji `main`. Wyjątek przerywa wykonanie programu, więc polecenia po nim nie zostaną wykonane. W poniższym przykładzie zauważ, że "After" nigdy nie zostaje wydrukowane.
+Przyjrzyjmy się przykładowi. Gdy podzielisz liczbę całkowitą przez 0, zostanie rzucony wyjątek typu `ArithmeticException`. Każdy wyjątek może zawierać wiadomość, która powinna wyjaśnić, co poszło nie tak. W tym przypadku wiadomością będzie "/ by zero". Każdy wyjątek zawiera również stacktrace, czyli listę wywołań metod, określających gdzie znajdowała się aplikacja, gdy rzucony został wyjątek. W tym przypadku obejmuje informacje, że wyjątek został rzucony z funkcji `calculate`, która została wywołana z funkcji `printCalculated`, która została wywołana z funkcji `main`. Wyjątek przerywa wykonanie programu, więc polecenia po nim nie zostaną wykonane. W poniższym przykładzie zauważ, że "After" nigdy nie zostaje wypisane.
 
 ```kotlin
 private fun calculate(): Int {
@@ -14,19 +14,19 @@ private fun printCalculated() {
 }
 
 fun main() {
-    println("Przed")
+    println("Before")
     printCalculated()
-    println("Po")
+    println("After")
 }
 // Przed
-// Wyjątek java.lang.ArithmeticException: / przez zero
+// Wyjątek java.lang.ArithmeticException: / by zero
 //     at PlaygroundKt.calculate(Playground.kt:2)
 //     at PlaygroundKt.printCalculated(Playground.kt:6)
 //     at PlaygroundKt.main(Playground.kt:11)
 //     at PlaygroundKt.main(Playground.kt)
 ```
 
-Jako kolejny przykład możemy przekształcić stringa na liczbę całkowitą za pomocą metody `toInt`, ale działa to tylko wtedy, gdy stringa jest liczbą. Gdy tak nie jest, zobaczymy `NumberFormatException` z wiadomością wyjaśniającą, który stringa został użyty.
+Jako kolejny przykład możemy przekształcić stringa na liczbę całkowitą za pomocą metody `toInt`. Ta operacja działa to tylko wtedy, gdy string jest liczbą. Gdy tak nie jest, zobaczymy `NumberFormatException` z informacją, jaki string został użyty.
 
 ```kotlin
 fun main() {
@@ -36,8 +36,8 @@ fun main() {
     println(i2)
 }
 // 10
-// Wyjątek w wątku "main" java.lang.NumberFormatException:
-// Dla ciągu wejściowego: "ABC"
+// Exception in thread "main" java.lang.NumberFormatException:
+// For input string: "ABC"
 //   at java.base/java.lang.NumberFormatException.
 //   forInputString(NumberFormatException.java:67)
 //   at java.base/java.lang.Integer.parseInt(Integer.java:660)
@@ -52,27 +52,27 @@ Możemy rzucać wyjątki samodzielnie, używając słowa kluczowego `throw` i wa
 
 ```kotlin
 private fun functionThrowing() {
-    throw ArithmeticException("Jakieś pytanie")
+    throw ArithmeticException("Some message")
 }
 
 fun main() {
-    println("Przed")
+    println("Before")
     functionThrowing()
-    println("Po")
+    println("After")
 }
-// Przed
-// Wyjątek w wątku "main" java.lang.ArithmeticException:
-// Jakieś pytanie
+// Before
+// Exception in thread "main" java.lang.ArithmeticException:
+// Some message
 //  at PlaygroundKt.functionThrowing(Playground.kt:2)
 //  at PlaygroundKt.main(Playground.kt:7)
 //  at PlaygroundKt.main(Playground.kt)
 ```
 
-Wyjątki komunikują warunki, których funkcja nie jest przygotowana do obsłużenia lub za które nie jest odpowiedzialna. Nie jest to koniecznie oznaka błędu; to raczej zdarzenie powiadamiające, które może być obsłużone w innym miejscu, które jest skonfigurowane, aby je przechwycić.
+Wyjątki informują, że wystąpiła sytuacja, na którą funkcja nie jest przygotowana, lub której nie akceptuje. Nie jest to koniecznie oznaka błędu; to raczej zdarzenie powiadamiające, które może być obsłużone w innym miejscu, skonfigurowanym, aby rzucony wyjątek przechwycić.
 
 ### Definiowanie wyjątków
 
-Możemy również definiować własne wyjątki. Są to zwykłe klasy lub deklaracje obiektów, które rozszerzają klasę `Throwable`. Każda taka klasa może być rzucona za pomocą `throw`.
+Możemy definiować własne wyjątki. Są to klasy lub deklaracje obiektów, które rozszerzają klasę `Throwable`. Każda instancja wyjątku może być rzucona za pomocą `throw`.
 
 ```kotlin
 class MyException : Throwable("Jakieś pytanie")
@@ -97,28 +97,30 @@ fun main() {
 
 ### Przechwytywanie wyjątków
 
-Tak samo jak wyjątki można rzucać, można je przechwycić za pomocą struktury try-catch, która zawiera blok try i blok catch. Wyjątek zgłoszony w funkcji natychmiast kończy jej wykonanie, a proces powtarza się w funkcji, która wywołała funkcję, w której zgłoszono wyjątek. To się zmienia, gdy wyjątek zostanie zgłoszony wewnątrz bloku try, ponieważ wtedy sprawdzane są jego bloki catch. Każdy blok catch może określić, jakiego rodzaju wyjątki przechwytuje. Pierwszy blok catch, który akceptuje zgłoszony wyjątek, przechwytuje go, a następnie wykonuje swoje ciało. Jeśli wyjątek zostanie przechwycony, wykonanie programu będzie kontynuowane po bloku try.
+Wyjątki można rzucać przy użyciu `throw`, a więc łapiemy je przy pomocy bloku `catch`. Dokładnie potrzebna jest cała struktura try-catch, która zawiera blok try i blok catch. Wyjątek rzucony w funkcji natychmiast kończy jej wykonanie, a proces powtarza się w funkcji, która wywołała tę funkcję, w której rzucony został wyjątek. To się zmienia, gdy wyjątek zostanie rzucony wewnątrz bloku try, ponieważ wtedy sprawdzane są jego bloki catch. Każdy blok catch może określić, jakiego rodzaju wyjątki przechwytuje. Pierwszy blok catch, który akceptuje rzucony wyjątek, przechwytuje go, a następnie wykonuje swoje ciało. Jeśli wyjątek zostanie przechwycony, wykonanie programu będzie kontynuowane po bloku try.
 
 ```kotlin
-class MyException : Throwable("Jakieś pytanie")
+class MyException : Throwable("Wiadomość")
 
 fun someFunction() {
     throw MyException()
-    println("Nie zostanie wydrukowane")
+    println("Nie zostanie wypisane")
 }
 
 fun main() {
     try {
         someFunction()
-        println("Nie zostanie wydrukowane")
+        println("Nie zostanie wypisane")
     } catch (e: MyException) {
         println("Przechwycono $e")
-        // Przechwycono MyException: Jakieś pytanie
     }
+    println("To zostanie wypisane")
 }
+// Przechwycono MyException: Wiadomość
+// To zostanie wypisane
 ```
 
-Zobaczmy try-catch z większą ilością bloków catch w akcji. Pamiętaj, że zawsze wybierany jest pierwszy blok, który akceptuje wyjątek. Blok catch akceptuje wyjątek, jeśli ten wyjątek jest podtypem typu określonego w bloku catch. Zauważ, że wszystkie wyjątki muszą rozszerzać `Throwable`, więc przechwytywanie tego typu oznacza przechwytywanie wszystkich możliwych wyjątków.
+Zobaczmy try-catch z większą liczbą bloków catch w akcji. Pamiętaj, że zawsze wybierany jest pierwszy blok, który akceptuje rzucony wyjątek. Blok catch akceptuje wyjątek, jeśli jest on podtypem typu określonego w bloku catch. Zauważ, że wszystkie wyjątki muszą rozszerzać `Throwable`, więc przechwytywanie tego typu oznacza przechwytywanie wszystkich możliwych wyjątków.
 
 ```kotlin
 import java.lang.NumberFormatException
@@ -170,7 +172,7 @@ fun main() {
 }
 ```
 
-Wyrażenie try-catch może być używane do zapewnienia alternatywnej wartości dla sytuacji, w której występuje problem:
+Wyrażenie try-catch może być używane do zapewnienia alternatywnej wartości w sytuacji, w której występuje problem:
 
 ```kotlin
 import java.io.File
@@ -182,11 +184,11 @@ fun main() {
     } catch (e: FileNotFoundException) {
         ""
     }
-    println(content) // (pusty stringa)
+    println(content) // (pusty string)
 }
 ```
 
-Praktycznym przykładem może być odczytanie ciągu znaków zawierającego obiekt w formacie JSON. Używamy biblioteki Gson, której metoda `fromJson` rzuca wyjątek `JsonSyntaxException`, gdy stringa nie zawiera prawidłowego obiektu JSON. W takich przypadkach wolelibyśmy funkcję zwracającą wartość `null`; możemy to zaimplementować, używając try-catch jako wyrażenia.
+Praktycznym przykładem może być odczytanie ciągu znaków zawierającego obiekt w formacie JSON. Używamy biblioteki Gson, której metoda `fromJson` rzuca wyjątek `JsonSyntaxException`, gdy string nie zawiera prawidłowego obiektu JSON. W takich przypadkach wolelibyśmy funkcję zwracającą wartość `null`; możemy to zaimplementować, używając try-catch jako wyrażenia.
 
 ```kotlin
 fun <T : Any> fromJsonOrNull(
@@ -201,9 +203,9 @@ fun <T : Any> fromJsonOrNull(
 
 ### Blok finally
 
-W strukturze try można również użyć bloku finally, który służy do określenia, co powinno być zawsze wywołane, nawet jeśli wystąpi wyjątek. Ten blok nie przechwytuje żadnych wyjątków; jest używany, aby zagwarantować, że niektóre operacje zostaną wykonane, niezależnie od wyjątków.
+W strukturze try można również użyć bloku finally, który służy do określenia, co powinno być zawsze wywołane, nawet jeśli wystąpi wyjątek. Ten blok nie przechwytuje żadnych wyjątków; jest używany, aby zagwarantować, że pewne operacje zostaną wykonane, niezależnie od wyjątków.
 
-Spójrz na poniższy kod. Wyjątek jest rzucony wewnątrz `someFunction`. Ten wyjątek kończy wykonanie tej funkcji i pomija resztę bloku try. Ponieważ nie mamy bloku catch, ten wyjątek nie zostanie przechwycony, kończąc tym samym wykonanie funkcji `main`. Jednak istnieje także blok finally, którego ciało jest wywoływane nawet jeśli wystąpi wyjątek.
+Spójrz na poniższy kod. Wyjątek jest rzucony wewnątrz `someFunction`. Ten wyjątek kończy wykonanie tej funkcji i pomija resztę bloku try. Ponieważ nie mamy bloku catch, ten wyjątek nie zostanie złapany, a więc zakończy wykonanie funkcji `main`. Jednak istnieje także blok finally, którego ciało jest wywoływane, nawet jeśli wystąpi wyjątek.
 
 ```kotlin
 fun someFunction() {
@@ -221,7 +223,7 @@ fun main() {
 // Blok finally został wywołany
 ```
 
-Blok finally jest również wywoływany, gdy blok try zakończy się bez wyjątku.
+Blok finally jest również wywoływany wtedy, gdy blok try zakończy się bez wyjątku.
 
 ```kotlin
 fun someFunction() {
@@ -248,8 +250,8 @@ Blok finally używamy do wykonywania operacji, które zawsze powinny być wykony
 ### Ważne wyjątki
 
 W Kotlinie zdefiniowano kilka rodzajów wyjątków, które stosujemy w określonych sytuacjach. Najważniejsze z nich to:
-- `IllegalArgumentException` - używamy tego, gdy argument ma nieprawidłową wartość. Na przykład, gdy oczekujesz, że wartość Twojego argumentu będzie większa niż 0, ale tak nie jest.
-- `IllegalStateException` - używamy tego, gdy stan naszego systemu jest niepoprawny. Oznacza to, że wartości właściwości nie są akceptowane przez wywołanie funkcji.
+- `IllegalArgumentException` - używamy tego wyjątku, gdy argument ma nieprawidłową wartość. Na przykład, gdy oczekujemy, że wartość argumentu będzie większa niż 0, ale tak nie jest.
+- `IllegalStateException` - używamy tego wyjątku, gdy stan naszego systemu jest niepoprawny. Oznacza to, że wartości właściwości nie są akceptowane przez wywołanie funkcji.
 
 ```kotlin
 fun findClusters(number: Int) {
@@ -263,27 +265,27 @@ var userName = ""
 
 fun printUserName() {
     if (userName == "") {
-        throw IllegalStateException("Nazwa nie może być pusta")
+        throw IllegalStateException("Missing user name")
     }
     // ...
 }
 ```
 
-W Kotlinie używamy funkcji `require` i `check`, aby zgłosić wyjątek `IllegalArgumentException` i `IllegalStateException`, gdy ich warunki nie są spełnione[^e_1].
+W Kotlinie używamy funkcji `require` i `check`, aby zgłosić wyjątek `IllegalArgumentException` i `IllegalStateException`, gdy określone przez nie warunki nie są spełnione[^e_1].
 
 ```kotlin
 fun pop(num: Int): List<T> {
     require(num <= size)
     // zgłasza IllegalArgumentException, jeśli num > size
     check(isOpen)
-    // zgłasza IllegalStateException, jeśli nie jest otwarty
+    // zgłasza IllegalStateException, jeśli isOpen to false
     val ret = collection.take(num)
     collection = collection.drop(num)
     return ret
 }
 ```
 
-W bibliotece standardowej Kotlin znajduje się również funkcja `error`, która zgłasza wyjątek `IllegalArgumentException` z wiadomością określoną jako argument. Często używana jest jako ciało dla gałęzi w wyrażeniu warunkowym when, po prawej stronie operatora Elvisa lub w wyrażeniu if-else.
+W bibliotece standardowej Kotlin znajduje się również funkcja `error`, która rzuca wyjątek `IllegalArgumentException` z wiadomością określoną jako argument. Często używana jest jako ciało dla gałęzi w wyrażeniu warunkowym when, lub po prawej stronie operatora Elvisa, lub w wyrażeniu if-else.
 
 ```kotlin
 fun makeOperation(
@@ -315,20 +317,20 @@ fun main() {
 
 ### Hierarchia wyjątków
 
-Najważniejsze podtypy klasy `Throwable` to `Error` i `Exception`. Reprezentują one dwa rodzaje wyjątków:
-* Typ `Error` reprezentuje wyjątki, od których nie można się odzyskać i które nie powinny być przechwytywane, przynajmniej nie bez ponownego zgłoszenia ich w bloku catch. Wyjątki, od których nie można się odzyskać, obejmują `OutOfMemoryError`, który jest zgłaszany, gdy brakuje miejsca na stercie JVM.
-* Typ `Exception` reprezentuje wyjątki, od których można się odzyskać za pomocą bloku try-catch. Ta grupa obejmuje `IllegalArgumentException`, `IllegalStateException`, `ArithmeticException` oraz `NumberFormatException`.
+Najważniejsze podtypy `Throwable` to `Error` i `Exception`. Reprezentują one dwa rodzaje wyjątków:
+* Typ `Error` reprezentuje wyjątki, po których dalsze poprawne działanie programu nie powinno być możliwe i które nie powinny być łapane, przynajmniej nie bez ponownego rzucenia ich w bloku catch. Dobrym przykładem jest `OutOfMemoryError`, który jest rzucany, gdy naszemu programowi skończy się pamięć. 
+* Typ `Exception` reprezentuje wyjątki, które można złapać w bloku catch. Ta grupa obejmuje `IllegalArgumentException`, `IllegalStateException`, `ArithmeticException` oraz `NumberFormatException`.
 
 W większości przypadków, gdy definiujemy własne wyjątki, powinniśmy używać nadklasy `Exception`; gdy przechwytujemy wyjątki, powinniśmy zgłaszać tylko podtypy klasy `Exception`.
 
 ![](exception_hierarchy.png)
 
-W Kotlinie nie jesteśmy zmuszeni do łapania żadnych rodzajów wyjątków; w przeciwieństwie do niektórych innych języków, nie ma tu wyjątków sprawdzanych.
+W Kotlinie nie jesteśmy zmuszeni do łapania żadnych rodzajów wyjątków, w przeciwieństwie do niektórych innych języków. 
 
 ### Podsumowanie
 
 W tym rozdziale dowiedzieliśmy się o wyjątkach, które są ważną częścią programowania w Kotlinie. Nauczyliśmy się, jak rzucać, łapać i definiować wyjątki. Dowiedzieliśmy się również o bloku finally oraz hierarchii wyjątków.
 
-Kontynuując tematykę specjalnych rodzajów klas, porozmawiajmy o enumach, które są używane do reprezentowania zestawu wartości instancji obiektów.
+Kontynuując tematykę specjalnych rodzajów klas, porozmawiajmy o enumach, które są używane do reprezentowania zestawu możliwych wartości.
 
-[^e_1]: Ten temat jest lepiej opisany w książce Effective Kotlin, *Pozycja 5: Określ swoje oczekiwania względem argumentów i stanów*.
+[^e_1]: Ten temat jest lepiej opisany w książce Effective Kotlin, *Temat 5: Określ swoje oczekiwania względem argumentów i stanu*.

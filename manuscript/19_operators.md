@@ -1,6 +1,6 @@
 ## Przeładowanie operatorów
 
-W Kotlinie możemy dodać element do listy za pomocą operatora `+`. W ten sam sposób możemy dodać do siebie dwa ciągi znaków. Możemy sprawdzić, czy kolekcja zawiera element, używając operatora `in`. Możemy również dodawać, odejmować lub mnożyć elementy typu `BigDecimal`, który jest klasą JVM używaną do reprezentowania potencjalnie dużych liczb o nieograniczonej precyzji.
+W Kotlinie możemy dodać element do listy za pomocą operatora `+`. W ten sam sposób możemy dodać do siebie dwa ciągi znaków. Możemy sprawdzić, czy kolekcja zawiera element, używając operatora `in`. Możemy również dodawać, odejmować lub mnożyć elementy typu `BigDecimal`, czyli klasy JVM używanej do reprezentowania potencjalnie ogromnych liczb o nieograniczonej precyzji. To wszystko to użycia operatorów.
 
 ```kotlin
 import java.math.BigDecimal
@@ -25,11 +25,11 @@ fun main() {
 }
 ```
 
-Stosowanie operatorów między obiektami jest możliwe dzięki funkcji Kotlin o nazwie *przeładowanie operatorów*, która pozwala na zdefiniowanie specjalnych rodzajów metod, które mogą być używane jako operatory. Zobaczmy to na przykładzie własnej klasy.
+Stosowanie operatorów jest możliwe dzięki funkcjonalności Kotlina o nazwie *przeładowanie operatorów*, która pozwala na zdefiniowanie specjalnych metod, które mogą być używane jako operatory. Zobaczmy to na przykładzie własnej klasy.
 
 ### Przykład przeładowania operatorów
 
-Załóżmy, że musisz reprezentować liczby zespolone w swojej aplikacji. Są to specjalne rodzaje liczb w matematyce, które są reprezentowane przez dwie części: rzeczywistą i urojoną. Liczby zespolone są użyteczne w różnego rodzaju obliczeniach w fizyce i inżynierii.
+Załóżmy, że musisz reprezentować liczby zespolone w swojej aplikacji. Jest to specjalny typ liczb w matematyce, reprezentowany przez dwie części: rzeczywistą i urojoną. Liczby zespolone są użyteczne w różnego rodzaju obliczeniach w fizyce i inżynierii.
 
 ```kotlin
 data class Complex(val real: Double, val imaginary: Double)
@@ -60,31 +60,31 @@ fun main() {
 }
 ```
 
-Użycie operatorów `+` i `-` jest równoznaczne z wywołaniem funkcji `plus` i `minus`. Te dwa można stosować zamiennie.
+Użycie operatorów `+` i `-` jest równoznaczne z wywołaniem funkcji `plus` i `minus`. Te dwie możliwości można stosować zamiennie.
 
 ```kotlin
 c1 + c2 // pod spodem jest c1.plus(c2)
 c1 - c2 // pod spodem jest c1.minus(c2)
 ```
 
-Kotlin definiuje konkretny zestaw operatorów, dla każdego z nich istnieje określona nazwa i liczba obsługiwanych argumentów. Dodatkowo, wszystkie operatory muszą być metodami (czyli albo funkcją członkowską, albo funkcją rozszerzenia), a te metody muszą mieć modyfikator `operator`.
+Kotlin definiuje konkretny zestaw operatorów, dla każdego z nich określona jest nazwa i liczba obsługiwanych argumentów. Dodatkowo wszystkie operatory muszą być metodami oraz mieć modyfikator `operator`.
 
-Dobrze używane operatory mogą pomóc nam poprawić czytelność kodu tak samo, jak źle używane operatory mogą jej zaszkodzić[^18_1]. Przedyskutujmy wszystkie operatory Kotlin.
+Dobrze używane operatory mogą pomóc nam poprawić czytelność kodu tak samo, jak źle używane operatory mogą jej zaszkodzić[^18_1]. Przedyskutujmy wszystkie operatory w Kotlinie.
 
 ### Operatory arytmetyczne
 
-Zacznijmy od operatorów arytmetycznych, takich jak plus czy razy. Te są najłatwiejsze dla kompilatora Kotlin, ponieważ musi tylko przekształcić lewą kolumnę na prawą.
+Zacznijmy od operatorów arytmetycznych, takich jak plus czy razy. Poniższa tabela prezentuje, jak przekształcane jest użycie konkretnych operatorów przez kompilator Kotlina.
 
 | Wyrażenie | Przekształca się na |
-|-----------|--------------------|
-| `a + b`   | `a.plus(b)`        |
-| `a - b`   | `a.minus(b)`       |
-| `a * b`   | `a.times(b)`       |
-| `a / b`   | `a.div(b)`         |
-| `a % b`   | `a.rem(b)`         |
-| `a..b `   | `a.rangeTo(b)`     |
+|-----------|---------------------|
+| `a + b`   | `a.plus(b)`         |
+| `a - b`   | `a.minus(b)`        |
+| `a * b`   | `a.times(b)`        |
+| `a / b`   | `a.div(b)`          |
+| `a % b`   | `a.rem(b)`          |
+| `a..b `   | `a.rangeTo(b)`      |
 
-Zauważ, że `%` przekształca się na `rem`, co jest skrótem od "reszta". Ten operator zwraca resztę pozostałą po podzieleniu jednego operandu przez drugi operand, więc jest podobny do operacji modulo[^18_0].
+Zauważ, że `%` przekształca się na `rem`, co jest skrótem od "remainder", czyli "reszta". Ten operator zwraca resztę pozostałą po podzieleniu jednego operandu przez drugi operand, więc jest podobny do operacji modulo[^18_0].
 
 ```kotlin
 fun main() {
@@ -98,7 +98,7 @@ fun main() {
 }
 ```
 
-Innym interesującym operatorem jest `rangeTo`, dzięki któremu można tworzyć zakres, używając dwóch kropek między dwoma wartościami. Gdy używamy `rangeTo` między dwoma liczbami typu `Int`, wynikiem jest `IntRange`. Aby utworzyć `ClosedRange`, można użyć `..` między dowolnymi dwoma liczbami, które są porównywalne.
+Innym interesującym operatorem jest `rangeTo`, dzięki któremu można utworzyć zakres, używając dwóch kropek między dwoma wartościami. Gdy używamy `rangeTo` między dwoma liczbami typu `Int`, wynikiem jest `IntRange`. Aby utworzyć `ClosedRange`, można użyć `..` między dowolnymi dwoma liczbami, które są porównywalne.
 
 ```kotlin
 fun main() {
@@ -109,7 +109,7 @@ fun main() {
 
 ### Operator rangeUntil
 
-Kotlin 1.7.20 wprowadził eksperymentalne wsparcie dla nowego operatora o nazwie `rangeUntil`, który jest zasadniczo zamiennikiem funkcji `until`. Jest on zaimplementowany za pomocą funkcji `rangeUntil` i można go używać z operatorem `..<`.
+Kotlin 1.7.20 wprowadził eksperymentalne wsparcie dla nowego operatora `..<`, implementowanego poprzez metodę `rangeUntil`, który jest zasadniczo zamiennikiem funkcji `until`. Operator `..<` jest używany do tworzenia zakresu, który nie zawiera ostatniej wartości. Na przykład, `1..10` zawiera 10, ale `1..<10` nie zawiera 10.
 
 ```kotlin
 fun main() {
@@ -128,9 +128,9 @@ fun main() {
 Jednym z moich ulubionych operatorów jest `in`. Wyrażenie `a in b` przekształca się na `b.contains(a)`. Istnieje także `!in`, które przekształca się na negację.
 
 | Wyrażenie | Przekształca się na |
-|-----------|--------------------|
-| `a in b`  | `b.contains(a)`    |
-| `a !in b` | `!b.contains(a)`   |
+|-----------|---------------------|
+| `a in b`  | `b.contains(a)`     |
+| `a !in b` | `!b.contains(a)`    |
 
 Jest kilka sposobów użycia tego operatora. Po pierwsze, dla kolekcji, zamiast sprawdzać, czy lista zawiera element, można sprawdzić, czy element znajduje się na liście.
 
@@ -144,7 +144,7 @@ fun main() {
 }
 ```
 
-Dlaczego by to robić? Głównie dla czytelności. Czy zapytałbyś "Czy lodówka zawiera piwo?" czy "Czy w lodówce jest piwo?"? Użycie operatora `in` daje nam możliwość wyboru.
+Czemu mielibyśmy tak robić? Głównie dla czytelności. Zapytałbyś "Czy lodówka zawiera piwo?", czy raczej "Czy w lodówce jest piwo?"? Wsparcie dla operatora `in` daje nam możliwość wyboru.
 
 Często używamy również operatora `in` razem z zakresami. Wyrażenie `1..10` generuje obiekt typu `IntRange`, który ma metodę `contains`. Dlatego można użyć `in` i zakresu, aby sprawdzić, czy liczba znajduje się w tym zakresie.
 
@@ -188,7 +188,7 @@ public interface Iterable<out T> {
 }
 ```
 
-Można zdefiniować obiekty, które można iterować, ale nie implementują interfejsu `Iterable`. `Map` jest świetnym przykładem. Nie implementuje interfejsu `Iterable`, jednak można iterować po niej używając pętli for. Jak to możliwe? Dzięki operatorowi `iterator`, który jest zdefiniowany jako funkcja rozszerzenia w bibliotece standardowej Kotlin.
+Mogą istnieć obiekty iterowane, które nie implementują interfejsu `Iterable`. `Map` jest świetnym tego przykładem. Nie implementuje interfejsu `Iterable`, jednak można po nim iterować, używając pętli for. Jak to możliwe? Dzięki operatorowi `iterator`, który jest zdefiniowany jako funkcja rozszerzająca w bibliotece standardowej Kotlin.
 
 ```kotlin
 // Część biblioteki standardowej Kotlin
@@ -236,16 +236,16 @@ fun main() {
 
 W Kotlinie występują dwa rodzaje równości:
 
-* Równość strukturalna - sprawdzana za pomocą metody `equals` lub operatora `==` (i jego negowanej wersji `!=`). `a == b` przekłada się na `a.equals(b)` gdy `a` nie jest nullable, w przeciwnym razie przekłada się na `a?.equals(b) ?: (b === null)`. Równość strukturalna jest zwykle preferowana nad równością referencyjną. Metodę `equals` można nadpisać w niestandardowej klasie.
+* Równość strukturalna-sprawdzana za pomocą metody `equals` lub operatora `==` (i jego negowanej wersji `!=`). `a == b` przekłada się na `a.equals(b)` gdy `a` nie jest nullowanych, w przeciwnym razie przekłada się na `a?.equals(b) ?: (b === null)`. Równość strukturalna jest zwykle preferowana nad równością referencyjną. Metodę `equals` można nadpisać w niestandardowej klasie.
 
-* Równość referencyjna - sprawdzana za pomocą operatora `===` (i jego negowanej wersji `!==`); zwraca `true`, gdy obie strony wskazują na ten sam obiekt. `===` i `!==` (sprawdzenia tożsamości) nie są przeciążalne.
+* Równość referencyjna-sprawdzana za pomocą operatora `===` (i jego negowanej wersji `!==`); zwraca `true`, gdy obie strony wskazują na ten sam obiekt. `===` i `!==` (sprawdzenia tożsamości) nie są przeciążalne, a więc zawsze sprawdzają czy dwa obiekty mają ten sam adres w pamięci.
 
 Ponieważ `equals` jest zaimplementowane w `Any`, które jest nadklasą każdej klasy, możemy sprawdzić równość dowolnych dwóch obiektów.
 
-| Wyrażenie | Przekłada się na                   |
-|-----------|-------------------------------------|
-| `a == b`  | `a?.equals(b) ?: (b === null)`      |
-| `a != b`  | `!(a?.equals(b) ?: (b === null))`   |
+| Wyrażenie | Przekłada się na                  |
+|-----------|-----------------------------------|
+| `a == b`  | `a?.equals(b) ?: (b === null)`    |
+| `a != b`  | `!(a?.equals(b) ?: (b === null))` |
 
 ### Operatory porównania
 
@@ -254,17 +254,17 @@ Niektóre klasy mają naturalny porządek, który jest używany domyślnie, gdy 
 ```kotlin
 public interface Comparable<in T> {
     /**
-     * Porównuje ten obiekt z określonym obiektem pod
-     * względem kolejności. Zwraca zero, jeśli ten obiekt
-     * jest równy określonemu obiektowi [other], liczbę
-     * ujemną, jeśli jest mniejszy niż [other] lub liczbę
-     * dodatnią, jeśli jest większy niż [other].
+     * Compares this object with the specified object for
+     * order. Returns zero if this object is equal to the
+     * specified [other] object, a negative number if it's
+     * less than [other], or a positive number if it's
+     * greater than [other].
      */
     public operator fun compareTo(other: T): Int
 }
 ```
 
-W rezultacie istnieje konwencja, że powinniśmy porównywać dwa obiekty za pomocą metody `compareTo`. Jednak bezpośrednie użycie metody `compareTo` nie jest bardzo intuicyjne. Powiedzmy, że widzisz `a.compareTo(b) > 0` w kodzie. Co to oznacza? Kotlin upraszcza to, czyniąc z `compareTo` operatora, który może być zastąpiony intuicyjnymi matematycznymi operatorami porównania: `>`, `<`, `>=` i `<=`.
+W rezultacie istnieje konwencja, że powinniśmy porównywać dwa obiekty za pomocą metody `compareTo`. Jednak bezpośrednie użycie metody `compareTo` nie jest zbyt intuicyjne. Powiedzmy, że widzisz `a.compareTo(b) > 0` w kodzie. Co to oznacza? Kotlin upraszcza to, czyniąc z `compareTo` operator, który może być zastąpiony intuicyjnymi matematycznymi operatorami porównania: `>`, `<`, `>=` i `<=`.
 
 | Wyrażenie | Tłumaczy się na       |
 |-----------|-----------------------|
@@ -292,7 +292,7 @@ fun main() {
 }
 ```
 
-Lubię również porównywać odniesienia czasowe w ten sam sposób.
+Lubię również porównywać odniesienia czasowe w podobny sposób.
 
 ```kotlin
 import java.time.LocalDateTime
@@ -312,14 +312,14 @@ fun main() {
 
 W programowaniu istnieją dwie popularne konwencje pozwalające na pobieranie lub ustawianie elementów w kolekcjach. Pierwsza z nich używa nawiasów kwadratowych, a druga metod `get` i `set`. W Javie pierwszą konwencję stosujemy dla tablic, a drugą dla innych rodzajów kolekcji. W Kotlinie obie konwencje można stosować wymiennie, ponieważ metody `get` i `set` są operatorami, które można używać z nawiasami kwadratowymi.
 
-| Wyrażenie              | Tłumaczy się na          |
-|------------------------|--------------------------|
-| `a[i]`                 | `a.get(i)`               |
-| `a[i, j]`              | `a.get(i, j)`            |
-| `a[i_1, ..., i_n]`     | `a.get(i_1, ..., i_n)`   |
-| `a[i] = b`             | `a.set(i, b)`            |
-| `a[i, j] = b`          | `a.set(i, j, b)`         |
-| `a[i_1, ..., i_n] = b` | `a.set(i_1, ..., i_n, b)`|
+| Wyrażenie              | Tłumaczy się na           |
+|------------------------|---------------------------|
+| `a[i]`                 | `a.get(i)`                |
+| `a[i, j]`              | `a.get(i, j)`             |
+| `a[i_1, ..., i_n]`     | `a.get(i_1, ..., i_n)`    |
+| `a[i] = b`             | `a.set(i, b)`             |
+| `a[i, j] = b`          | `a.set(i, j, b)`          |
+| `a[i_1, ..., i_n] = b` | `a.set(i_1, ..., i_n, b)` |
 
 ```kotlin
 fun main() {
@@ -338,11 +338,11 @@ fun main() {
 }
 ```
 
-Nawiasy kwadratowe są tłumaczone na wywołania `get` i `set` z odpowiednią liczbą argumentów. Warianty funkcji `get` i `set` z większą liczbą argumentów mogą być używane przez biblioteki przetwarzania danych. Na przykład możemy mieć obiekt reprezentujący tabelę i używać nawiasów kwadratowych z dwoma argumentami: współrzędnymi `x` i `y`.
+Nawiasy kwadratowe są tłumaczone do wywołań `get` i `set` z odpowiednią liczbą argumentów. Warianty funkcji `get` i `set` z większą liczbą argumentów mogą być używane przez biblioteki przetwarzania danych. Na przykład możemy mieć obiekt reprezentujący tabelę i używać nawiasów kwadratowych z dwoma argumentami: współrzędnymi `x` i `y`.
 
-### Przypisania rozszerzone
+### Przypisania z operatorem arytmetycznym
 
-Gdy ustawiamy nową wartość dla zmiennej, ta nowa wartość często opiera się na poprzedniej wartości. Na przykład możemy chcieć dodać wartość do poprzedniej. W tym celu wprowadzono przypisania rozszerzone[^18_3]. Na przykład `a += b` to krótsze oznaczenie `a = a + b`. Istnieją podobne oznaczenia dla innych operacji arytmetycznych.
+Gdy ustawiamy nową wartość dla zmiennej, ta nowa wartość często opiera się na poprzedniej wartości. Na przykład możemy chcieć dodać wartość do poprzedniej. W tym celu wprowadzono przypisanie z operatorem arytmetycznym, określane w języku angielskim jako *augmented assignment*[^18_3]. Na przykład `a += b` to krótsza forma `a = a + b`. Istnieją podobne przypisania dla innych operacji arytmetycznych.
 
 | Wyrażenie | Tłumaczy się na |
 |-----------|-----------------|
@@ -352,7 +352,7 @@ Gdy ustawiamy nową wartość dla zmiennej, ta nowa wartość często opiera si�
 | `a /= b`  | `a = a / b`     |
 | `a %= b`  | `a = a % b`     |
 
-Zauważ, że przypisania rozszerzone można używać dla wszystkich typów, które obsługują odpowiednią operację arytmetyczną, w tym dla list czy łańcuchów znaków. Takie przypisania rozszerzone wymagają, aby zmienna była zmienną do odczytu i zapisu, czyli `var`, a wynik operacji matematycznej musi mieć właściwy typ (aby przetłumaczyć `a += b` na `a = a + b`, zmienna `a` musi być `var`, a `a + b` musi być podtypem typu `a`).
+Zauważ, że przypisanie z operatorem arytmetycznym można używać dla wszystkich typów, które obsługują odpowiednią operację arytmetyczną, w tym dla list czy stringów. Takie przypisania wymagają, aby zmienna była `var`, a wynik operacji matematycznej musi mieć właściwy typ (aby przetłumaczyć `a += b` na `a = a + b`, zmienna `a` musi być `var`, a `a + b` musi być podtypem typu `a`).
 
 ```kotlin
 fun main() {
@@ -366,7 +366,7 @@ fun main() {
 }
 ```
 
-Przypisania rozszerzone można stosować w inny sposób: do modyfikowania obiektów zmiennych. Na przykład możemy użyć `+=` do dodania elementu do zmiennej listy. W takim przypadku `a += b` tłumaczy się na `a.plusAssign(b)`.
+Przypisania z operatorem arytmetycznym można stosować jeszcze w inny sposób: do modyfikowania obiektów zmiennych. Na przykład możemy użyć `+=` do dodania elementu do zmiennej listy. W takim przypadku `a += b` tłumaczy się na `a.plusAssign(b)`.
 
 | Wyrażenie | Tłumaczy się na      |
 |-----------|----------------------|
@@ -393,17 +393,17 @@ fun main() {
 }
 ```
 
-Jeśli oba rodzaje rozszerzonego przypisania mogą być zastosowane, domyślnie Kotlin wybiera modyfikację obiektu zmiennego.
+Jeśli oba rodzaje rozszerzonego przypisania mogą być zastosowane, domyślnie Kotlin wybiera modyfikację obiektu modyfikowalnego.
 
 ### Jednoargumentowe operatory przedrostkowe
 
 Plus, minus lub negacja przed pojedynczą wartością to także operator. Operatory używane tylko z jedną wartością nazywane są **operatorami jednoargumentowymi**[^18_4]. Kotlin obsługuje przeciążanie operatorów dla następujących operatorów jednoargumentowych:
 
 | Wyrażenie | Tłumaczenie na   |
-|------------|------------------|
-| `+a`       | `a.unaryPlus()`  |
-| `-a`       | `a.unaryMinus()` |
-| `!a`       | `a.not()`        |
+|-----------|------------------|
+| `+a`      | `a.unaryPlus()`  |
+| `-a`      | `a.unaryMinus()` |
+| `!a`      | `a.not()`        |
 
 Oto przykład przeciążania operatora `unaryMinus`.
 
@@ -414,11 +414,11 @@ operator fun Point.unaryMinus() = Point(-x, -y)
 
 fun main() {
     val point = Point(10, 20)
-    println(-point)  // wyświetla "Point(x=-10, y=-20)"
+    println(-point)  // Point(x=-10, y=-20)
 }
 ```
 
-Operator `unaryPlus` jest często używany jako część Kotlin DSL, które są opisane szczegółowo w następnej książce tej serii, *Funkcyjny Kotlin*.
+Operator `unaryPlus` jest często używany w Kotlinowych DSL-ach, co opisuję szczegółowo w następnej książce tej serii, *Funkcyjny Kotlin*.
 
 ### Inkrementacja i dekrementacja
 
@@ -446,27 +446,27 @@ fun main() {
 }
 ```
 
-Na podstawie metod `inc` i `dec` Kotlin obsługuje przeciążanie inkrementacji i dekrementacji, które powinny inkrementować lub dekrementować niestandardowy obiekt. Nigdy nie widziałem, aby ta funkcja była używana w praktyce, więc myślę, że wystarczy wiedzieć, że istnieje.
+Na podstawie metod `inc` i `dec` Kotlin obsługuje przeciążanie inkrementacji i dekrementacji, które powinny inkrementować lub dekrementować niestandardowy obiekt. Nigdy nie widziałem, przeciążenia tych operacji w praktyce, więc myślę, że wystarczy wiedzieć, że jest to możliwe.
 
 | Wyrażenie | Tłumaczenie na (uproszczone) |
-|------------|------------------------------|
-| `++a`      | `a.inc(); a`                 |
-| `a++`      | `val tmp = a; a.inc(); tmp`  |
-| `--a`      | `a.dec(); a`                 |
-| `a--`      | `val tmp = a; a.dec(); tmp`  |
+|-----------|------------------------------|
+| `++a`     | `a.inc(); a`                 |
+| `a++`     | `val tmp = a; a.inc(); tmp`  |
+| `--a`     | `a.dec(); a`                 |
+| `a--`     | `val tmp = a; a.dec(); tmp`  |
 
 ### Operator invoke
 
 Obiekty z operatorem `invoke` można wywoływać jak funkcje, czyli z nawiasami bezpośrednio po zmiennej reprezentującej ten obiekt. Wywołanie obiektu przekłada się na wywołanie metody `invoke` z takimi samymi argumentami.
 
-| Wyrażenie         | Tłumaczenie na            |
+| Wyrażenie          | Tłumaczenie na            |
 |--------------------|---------------------------|
 | `a()`              | `a.invoke()`              |
 | `a(i)`             | `a.invoke(i)`             |
 | `a(i, j)`          | `a.invoke(i, j)`          |
 | `a(i_1, ..., i_n)` | `a.invoke(i_1, ..., i_n)` |
 
-Operator `invoke` jest używany dla obiektów reprezentujących funkcje, takie jak wyrażenia lambda[^18_2] lub obiekty UseCases z Clean Architecture.
+Operator `invoke` jest używany dla obiektów reprezentujących funkcje, takich jak wyrażenia lambda[^18_2] lub obiekty UseCases z Clean Architecture.
 
 ```kotlin
 class CheerUseCase {
@@ -486,29 +486,29 @@ fun main() {
 }
 ```
 
-### Priorytet
+### Kolejność wywołania operatorów
 
-Jaki jest wynik wyrażenia `1 + 2 * 3`? Odpowiedź brzmi `7`, a nie `9`, ponieważ w matematyce mnożymy przed dodawaniem. Mówimy, że mnożenie ma wyższy priorytet niż dodawanie.
+Jaki jest wynik wyrażenia `1 + 2 * 3`? Odpowiedź brzmi `7`, a nie `9`, ponieważ w matematyce mnożenie wykonuje się przed dodawaniem. Mówimy, że mnożenie ma wyższy priorytet niż dodawanie.
 
-Priorytet jest również niezwykle ważny w programowaniu, ponieważ gdy kompilator ocenia wyrażenie takie jak `1 + 2 == 3`, musi wiedzieć, czy powinien najpierw dodać `1` do `2`, czy porównać `2` i `3`. Poniższa tabela porównuje priorytet wszystkich operatorów, w tym tych, które można przeciążyć, i tych, których nie można.
+Priorytet jest również niezwykle ważny w programowaniu, ponieważ gdy kompilator ewaluuje wyrażenie takie jak `1 + 2 == 3`, musi wiedzieć, czy powinien najpierw dodać `1` do `2`, czy porównać `2` i `3`. Poniższa tabela porównuje priorytety wszystkich operatorów, w tym tych, które można przeciążyć, i tych, których nie można.
 
-| Priorytet | Tytuł           | Symbole                                  |
-|------------|-----------------|------------------------------------------|
-| Najwyższy  | Postfiksowy     | ++, --, . (zwykłe wywołanie), ?. (bezpieczne wywołanie) |
-|            | Prefiksowy      | -, +, ++, --, !                          |
-|            | Rzutowanie typów| as, as?                                  |
-|            | Mnożenie        | *, /, %                                  |
-|            | Dodawanie       | +, -                                     |
-|            | Zakres          | ..                                       |
-|            | Funkcja infiksowa| simpleIdentifier                         |
-|            | Elvis           | ?:                                       |
-|            | Sprawdzenia nazwane| in, !in, is, !is                         |
-|            | Porównanie      | <, >, <=, >=                             |
-|            | Równość         | ==, !=, ===, !==                         |
-|            | Koniunkcja      | &&                                       |
-|            | Alternatywa     | \                                        |\|                  |
-|            | Operator rozprzestrzeniania | *                            |
-| Najniższy  | Przypisanie     | =, +=, -=, *=, /=, %=                    |
+| Priorytet | Tytuł                       | Symbole               |
+|-----------|-----------------------------|-----------------------|
+| Najwyższy | Postfiksowy                 | ++, --, ., ?.         |
+|           | Prefiksowy                  | -, +, ++, --, !       |
+|           | Rzutowanie typów            | as, as?               |
+|           | Mnożenie                    | *, /, %               |
+|           | Dodawanie                   | +, -                  |
+|           | Zakres                      | ..                    |
+|           | Funkcja infiksowa           | simpleIdentifier      |
+|           | Elvis                       | ?:                    |
+|           | Sprawdzenia nazwane         | in, !in, is, !is      |
+|           | Porównanie                  | <, >, <=, >=          |
+|           | Równość                     | ==, !=, ===, !==      |
+|           | Koniunkcja                  | &&                    |
+|           | Alternatywa                 | \|\|                  |
+|           | Operator rozprzestrzeniania | *                     |
+| Najniższy | Przypisanie                 | =, +=, -=, *=, /=, %= |
 
 Czy na podstawie tej tabeli potrafisz przewidzieć, co wydrukuje poniższy kod?
 
@@ -526,14 +526,14 @@ fun main() {
 }
 ```
 
-{pagebreak}
-
 ### Podsumowanie
 
-W Kotlin używamy wielu operatorów, z których wiele można przeciążyć. Można to wykorzystać do poprawy czytelności naszego kodu. Z poznawczego punktu widzenia, używanie intuicyjnego operatora może być ogromną poprawą w porównaniu z używaniem wszędzie metod. Dlatego warto wiedzieć, jakie opcje są dostępne i być otwartym na używanie operatorów zdefiniowanych przez Kotlin stdlib, ale również warto umieć zdefiniować własne operatory.
+W Kotlinie używamy operatorów, z których wiele można przeciążyć. Można to wykorzystać do poprawy czytelności naszego kodu. Z poznawczego punktu widzenia, używanie intuicyjnego operatora może być ogromnym ułatwieniem w porównaniu z używaniem wszędzie metod. Dlatego warto wiedzieć, jakie opcje są dostępne i być otwartym na używanie operatorów zdefiniowanych przez bibliotekę standardową Kotlina, ale również warto umieć zdefiniować własne operatory.
 
-[^18_0]: Ten operator wcześniej nazywał się `mod`, co pochodzi od "modulo", ale teraz ta nazwa jest przestarzała. W matematyce zarówno operacje reszty, jak i modulo działają tak samo dla liczb dodatnich, ale różnica polega na liczbach ujemnych. Wynik -5 reszty 4 to -1, ponieważ -5 = 4 * (-1) + (-1). Wynik -5 modulo 4 to 3, ponieważ -5 = 4 * (-2) + 3. Operator `%` w Kotlinie implementuje zachowanie reszty, dlatego jego nazwa musiała zostać zmieniona z `mod` na `rem`.
-[^18_1]: Więcej na ten temat można znaleźć w *Effective Kotlin*, *Pozycja 12: Znaczenie operatora powinno być zgodne z nazwą funkcji* i *Pozycja 13: Używaj operatorów, aby zwiększyć czytelność*.
-[^18_2]: Więcej o wyrażeniach lambda będzie w kolejnej książce serii, *Functional Kotlin*.
-[^18_3]: Nie jestem pewien, który język wprowadził pierwszy przypisania rozszerzone, ale są one obsługiwane nawet przez tak stare języki jak C.
-[^18_4]: Operatory jednoargumentowe są używane tylko z jedną wartością (operandy). Operatory używane z dwoma wartościami nazywane są operatorami binarnymi; jednak, ponieważ większość operatorów jest binarna, ten typ często traktowany jest jako domyślny. Operatory używane z trzema wartościami nazywane są operatorami trójargumentowymi. Ponieważ w głównych językach programowania istnieje tylko jeden operator trójargumentowy, mianowicie **operator warunkowy**, często nazywany jest **ternarym operatorem**.
+W następnym rozdziale pomówimy wreszcie o systemie typów stosowanych w Kotlinie i dowiemy się czym jest `Nothing`. 
+
+[^18_0]: Ten operator wcześniej nazywał się `mod`, co pochodzi od "modulo", ale teraz ta nazwa jest deprecated. W matematyce zarówno operacje reszty z dzielenia, jak i modulo działają tak samo dla liczb dodatnich, ale różnica polega na liczbach ujemnych. Wynik reszty z dzielenia -5 przez 4 to -1, ponieważ -5 = 4 * (-1) + (-1). Wynik modulo -5 przez 4 to 3, ponieważ -5 = 4 * (-2) + 3. Operator `%` w Kotlinie implementuje zachowanie reszty z dzielenia, dlatego jego nazwa musiała zostać zmieniona z `mod` na `rem`.
+[^18_1]: Więcej na ten temat można znaleźć w *Efektywny Kotlin*, *Pozycja 12: Znaczenie operatora powinno być zgodne z nazwą funkcji* i *Pozycja 13: Używaj operatorów, aby zwiększyć czytelność*.
+[^18_2]: Więcej o wyrażeniach lambda będzie w kolejnej książce serii, *Funkcyjny Kotlin*.
+[^18_3]: Nie jestem pewien, który język wprowadził pierwszy tę konwencję, ale te operatory są obsługiwane nawet przez tak stare języki jak C.
+[^18_4]: Operatory unarne to te używane z tylko jedną wartością (operandem). Operatory używane z dwiema wartościami nazywane są operatorami binarnymi. Operatory używane z trzema wartościami nazywane są operatorami trójargumentowymi, czyli po angielsku "ternary operators". Ponieważ w głównych językach programowania istnieje tylko jeden operator trójargumentowy, mianowicie **operator warunkowy**, często określany jest pojęciem **ternary operator**.
