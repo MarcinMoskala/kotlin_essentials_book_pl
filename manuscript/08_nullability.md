@@ -1,6 +1,6 @@
 ## Nullowalność
 
-Kotlin pierwotnie powstawał jako rozwiązanie problemów Javy, a największym problemem w Javie jest możliwość wystąpienia wartości `null` niemalże wszędzie. W Javie, jak w wielu innych językach, każda zmienna może przyjmować wartość `null`. Każde wywołanie na wartości `null` prowadzi do słynnego `NullPointerException` (NPE). Jest to najpopularniejszy wyjątek w większości projektów napisanych w Javie[^08_0]. Jest tak powszechny, że często nazywany jest "błędem za miliard dolarów" po słynnym przemówieniu Sir Charlesa Antony'ego Richarda Hoare'a, który powiedział: "Nazywam to moim błędem za miliard dolarów. Był to wynalazek null reference w 1965 roku... Doprowadziło to do niezliczonych błędów, podatności i awarii systemów, które przez ostatnie czterdzieści lat prawdopodobnie spowodowały straty rzędu miliarda dolarów".
+Kotlin pierwotnie powstawał jako rozwiązanie problemów Javy, a największym problemem w Javie jest możliwość wystąpienia wartości `null` niemalże wszędzie. W Javie, jak w wielu innych językach, każda referencja do obiektu może przyjmować wartość `null`. Każde wywołanie na wartości `null` prowadzi do słynnego `NullPointerException` (NPE). Jest to najpopularniejszy wyjątek w większości projektów napisanych w Javie[^08_0]. Jest tak powszechny, że często nazywany jest "błędem za miliard dolarów" po słynnym przemówieniu Sir Charlesa Antony'ego Richarda Hoare'a, który powiedział: "Nazywam to moim błędem za miliard dolarów. Był to wynalazek null reference w 1965 roku... Doprowadziło to do niezliczonych błędów, podatności i awarii systemów, które przez ostatnie czterdzieści lat prawdopodobnie spowodowały straty rzędu miliarda dolarów".
 
 Jednym z priorytetów Kotlina było ostateczne rozwiązanie tego problemu, co udało się doskonale. Wprowadzone w nim mechanizmy są tak skuteczne, że zobaczenie `NullPointerException` rzuconego z kodu napisanego w Kotlinie jest niezwykle rzadkie. Wartość `null` przestała być problemem, a programiści Kotlina już się jej nie obawiają. Stała się naszym przyjacielem.
 
@@ -101,15 +101,15 @@ fun main() {
 }
 ```
 
-To nie jest bardzo bezpieczna opcja, ponieważ jeśli się mylimy i wartość `null` znajduje się tam, gdzie jej nie oczekujemy, prowadzi to do wyjątku `NullPointerException`. Dlatego stosujemy `!!` tylko wtedy, gdy rzeczywiście chcemy zobaczyć wyjątek, jeśli wartość jest `null`. Aczkolwiek w takich przypadkach częściej wolimy użyć funkcji, które rzucają bardziej znaczący wyjątek, jak `requireNotNull` lub `checkNotNull`[^08_4]:
+To nie jest bardzo bezpieczna opcja, ponieważ jeśli się mylimy i wartość `null` znajduje się tam, gdzie jej nie oczekujemy, doprowadzi to do wyjątku `NullPointerException`. Dlatego stosujemy `!!` tylko wtedy, gdy rzeczywiście chcemy zobaczyć wyjątek, jeśli wartość jest `null`. Aczkolwiek w takich przypadkach częściej wolimy użyć funkcji, które rzucają bardziej znaczący wyjątek, jak `requireNotNull` lub `checkNotNull`[^08_4]:
 - `requireNotNull`, który przyjmuje wartość nullowalną jako argument i rzuca wyjątek `IllegalArgumentException` jeśli ta wartość jest równa `null`. W przeciwnym razie zwraca tę wartość jako nienullowalną.
 - `checkNotNull`, który przyjmuje wartość nullowalną jako argument i rzuca wyjątek `IllegalStateException` jeśli ta wartość jest równa `null`. W przeciwnym razie zwraca tę wartość jako nienullowalną.
 
 ```kotlin
 fun sendData(dataWrapped: Wrapper<Data>) {
     val data = requireNotNull(dataWrapped.data)
-    val polaczenie = checkNotNull(polaczenia["db"])
-    polaczenie.send(data)
+    val connection = checkNotNull(connections["db"])
+    connection.send(data)
 }
 ```
 
