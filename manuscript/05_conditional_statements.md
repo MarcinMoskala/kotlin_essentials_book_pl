@@ -1,6 +1,6 @@
-## Instrukcje warunkowe: `if`, `when`, `try` oraz `while`
+## Instrukcje warunkowe: if, when, try oraz while
 
-Większość instrukcji warunkowych, takich jak warunek `if` czy pętla `while`, wygląda tak samo w Kotlinie, Javie, C++, JavaScript i w większości innych nowoczesnych języków. Dla przykładu instrukcja `if` jest identyczna we wszystkich tych językach:
+Większość instrukcji warunkowych, takich jak warunek if czy pętla while, wygląda tak samo w Kotlinie, Javie, C++, JavaScript i w większości innych nowoczesnych języków. Dla przykładu instrukcja if jest identyczna we wszystkich tych językach:
 
 ```kotlin
 if (predicate) {
@@ -8,11 +8,11 @@ if (predicate) {
 }
 ```
 
-Jednak warunek `if` w Kotlinie jest bardziej zaawansowany i ma możliwości, których nie obsługują jego poprzednicy. Zakładam, że czytelnicy tej książki mają ogólne doświadczenie w programowaniu, więc skoncentruję się na różnicach, które Kotlin wprowadził w porównaniu z innymi językami programowania.
+Jednak warunek if w Kotlinie jest bardziej zaawansowany i ma możliwości, których nie obsługują jego poprzednicy. Zakładam, że czytelnicy tej książki mają ogólne doświadczenie w programowaniu, więc skoncentruję się na różnicach, które Kotlin wprowadził w porównaniu z innymi językami programowania.
 
 ### Instrukcja if
 
-Zacznijmy od wspomnianej instrukcji `if`. Wykonuje ona swoje ciało, gdy jej warunek jest spełniony (zwraca `true`). Możemy dodatkowo dodać blok `else`, który jest wykonywany, gdy warunek nie jest spełniony (zwraca `false`).
+Zacznijmy od wspomnianej instrukcji if. Wykonuje ona swoje ciało, gdy jej warunek jest spełniony (zwraca `true`). Możemy dodatkowo dodać blok `else`, który jest wykonywany, gdy warunek nie jest spełniony (zwraca `false`).
 
 ```kotlin
 fun main() {
@@ -28,7 +28,7 @@ fun main() {
 }
 ```
 
-Jedną z supermocy Kotlina jest to, że instrukcja `if-else` może być używana jako wyrażenie[^05_1], a więc do zwrócenia wartości w zależności od warunku.
+Jedną z supermocy Kotlina jest to, że instrukcja if-else może być używana jako wyrażenie[^05_1], a więc do zwrócenia wartości w zależności od warunku.
 
 ```kotlin
 val value = if (condition) {
@@ -60,7 +60,7 @@ fun main() {
 }
 ```
 
-Gdy ciało ma tylko jedno wyrażenie, jego wynik jest wynikiem naszego wyrażenia `if-else`. W takim przypadku nie potrzebujemy nawiasów.
+Gdy ciało ma tylko jedno wyrażenie, jego wynik jest wynikiem naszego wyrażenia if-else. W takim przypadku nie potrzebujemy nawiasów.
 
 ```kotlin
 val r: Int = if (one) 1 else 0
@@ -73,7 +73,7 @@ val r: Int = if (one) {
 }
 ```
 
-Sposób użycia instrukcji `if-statement` w Kotlinie jest alternatywą dla operatora trójargumentowego, używanego np. w Java lub JavaScript.
+Sposób użycia instrukcji if-statement w Kotlinie jest alternatywą dla operatora trójargumentowego, używanego np. w Javie lub JavaScript.
 
 ```
 // Java
@@ -87,7 +87,7 @@ const name = user === null ? "" : user.name
 val name = if (user == null) "" else user.name
 ```
 
-Należy zaznaczyć, że `if-else` jest dłuższe niż składnia operatora trójargumentowego. Uważam, że jest to główny powód, dla którego niektórzy deweloperzy chcieliby wprowadzenia operatora trójargumentowego do Kotlina. Jestem jednak przeciwny temu, ponieważ `if-else` jest bardziej czytelne i może być lepiej sformatowane. Co więcej, Kotlin posiada inne narzędzia będące zamiennikami dla niektórych przypadków użycia operatora trójargumentowego: operator Elvisa, rozszerzenia dla typów nullowalnych (takie jak `orEmpty`) czy safe-call. Wszystkie te elementy zostaną wyjaśnione szczegółowo w rozdziale *Nullability*.
+Należy zaznaczyć, że if-else jest dłuższe niż składnia operatora trójargumentowego. Uważam, że jest to główny powód, dla którego niektórzy deweloperzy chcieliby wprowadzenia operatora trójargumentowego do Kotlina. Jestem jednak przeciwny temu, ponieważ if-else jest bardziej czytelne i może być lepiej sformatowane. Co więcej, Kotlin posiada inne narzędzia będące zamiennikami dla niektórych przypadków użycia operatora trójargumentowego: operator Elvisa, rozszerzenia dla typów nullowalnych (takie jak `orEmpty`) czy safe-call. Wszystkie te elementy zostaną wyjaśnione szczegółowo w rozdziale *Nullability*.
 
 ```
 // Java
@@ -99,7 +99,7 @@ val name = user?.name ?: ""
 val name = user?.name.orEmpty()
 ```
 
-Zauważ, że jeśli używasz tzw. instrukcji `if-else-if`, są to po prostu wielokrotnie połączone instrukcje `if-else`.
+Zauważ, że jeśli używasz tzw. instrukcji if-else-if, są to po prostu wielokrotnie połączone instrukcje if-else.
 
 ```kotlin
 fun main() {
@@ -117,7 +117,7 @@ fun main() {
 }
 ```
 
-W rzeczywistości nie ma czegoś takiego jak wyrażenie `if-else-if`, to po prostu jedno wyrażenie `if-else` umieszczone wewnątrz innego.  Można się o tym przekonać w pewnych nietypowych przypadkach, na przykład, gdy na całym wyrażeniu `if-else-if` wykonywana jest jakaś metoda. Spójrz na poniższą zagadkę i spróbuj przewidzieć wynik tego kodu.
+W rzeczywistości nie ma czegoś takiego jak wyrażenie if-else-if, to po prostu jedno wyrażenie if-else umieszczone wewnątrz innego.  Można się o tym przekonać w pewnych nietypowych przypadkach, na przykład, gdy na całym wyrażeniu if-else-if wykonywana jest jakaś metoda. Spójrz na poniższą zagadkę i spróbuj przewidzieć wynik tego kodu.
 
 ```kotlin
 // Funkcja, którą możemy wykonać na dowolnym obiekcie, 
@@ -147,7 +147,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-Odpowiedź **nie** brzmi "ujemna,zero,dodatnia", ponieważ nie istnieje coś takiego jak pojedyncze wyrażenie `if-else-if`, tylko dwie zagnieżdżone instrukcje `if-else`. W związku z tym powyższa implementacja `printNumberSign` daje taki sam wynik, jak poniższa:
+Odpowiedź **nie** brzmi "ujemna,zero,dodatnia", ponieważ nie istnieje coś takiego jak pojedyncze wyrażenie if-else-if, tylko dwie zagnieżdżone instrukcje if-else. W związku z tym powyższa implementacja `printNumberSign` daje taki sam wynik, jak poniższa:
 
 ```kotlin
 fun printNumberSign(num: Int) {
@@ -163,7 +163,7 @@ fun printNumberSign(num: Int) {
 }
 ```
 
-W sytuacji, gdy wywołujemy metodę `print`, jest ona wywoływana tylko na wyniku drugiego wyrażenia `if-else` (tego z "dodatnia" i "zero"). Oznacza to, że powyższy kod wydrukuje ",zero,dodatnia". Jak możemy to naprawić? Moglibyśmy użyć nawiasów, ale zazwyczaj zaleca się, aby w sytuacji, gdy mamy więcej niż jeden warunek, używać instrukcji `when`. Może to pomóc uniknąć błędów, takich jak ten w powyższej zagadce i sprawia, że kod jest bardziej przejrzysty i łatwiejszy do odczytania.
+W sytuacji, gdy wywołujemy metodę `print`, jest ona wywoływana tylko na wyniku drugiego wyrażenia if-else (tego z "dodatnia" i "zero"). Oznacza to, że powyższy kod wydrukuje ",zero,dodatnia". Jak możemy to naprawić? Moglibyśmy użyć nawiasów, ale zazwyczaj zaleca się, aby w sytuacji, gdy mamy więcej niż jeden warunek, używać instrukcji when. Może to pomóc uniknąć błędów, takich jak ten w powyższej zagadce i sprawia, że kod jest bardziej przejrzysty i łatwiejszy do odczytania.
 
 ```kotlin
 fun Any?.print() {
@@ -189,7 +189,7 @@ fun main(args: Array<String>) {
 
 ### Instrukcja when
 
-Instrukcja `when` jest alternatywą dla `if-else-if`. W każdej jego gałęzi określamy predykat i ciało, które powinno zostać wykonane, jeśli dany predykat zwróci `true` (a wcześniejsze predykaty `false`). Działa więc tak samo, jak `if-else-if`, ale jest preferowana ze względu na składnię dostosowaną do wielu warunków.
+Instrukcja when jest alternatywą dla if-else-if. W każdej jego gałęzi określamy predykat i ciało, które powinno zostać wykonane, jeśli dany predykat zwróci `true` (a wcześniejsze predykaty `false`). Działa więc tak samo, jak if-else-if, ale jest preferowana ze względu na składnię dostosowaną do wielu warunków.
 
 ```kotlin
 fun main() {
@@ -212,7 +212,7 @@ fun main() {
 }
 ```
 
-Podobnie jak w przypadku instrukcji `if`, nawiasy klamrowe są potrzebne tylko dla ciał z więcej niż jednym poleceniem.
+Podobnie jak w przypadku instrukcji if, nawiasy klamrowe są potrzebne tylko dla ciał z więcej niż jednym poleceniem.
 
 ```kotlin
 fun main() {
@@ -243,7 +243,7 @@ fun main() {
 }
 ```
 
-Instrukcja `when` często jest używana jako wyrażenie stanowiące ciało funkcji z pojedynczym wyrażeniem[^05_3]:
+Instrukcja when często jest używana jako wyrażenie stanowiące ciało funkcji z pojedynczym wyrażeniem[^05_3]:
 
 ```kotlin
 private fun getEmailErrorId(email: String) = when {
@@ -255,7 +255,7 @@ private fun getEmailErrorId(email: String) = when {
 
 ### Instrukcja when z wartością
 
-Istnieje także inna forma instrukcji `when`. Jeśli dodamy wartość w nawiasach po słowie kluczowym `when`, nasza instrukcja staje się alternatywą dla `switch-case`. Jest jednak znacznie potężniejsza, ponieważ może nie tylko porównywać wartości pod względem równości, ale także sprawdzać, czy obiekt jest danego typu (używając `is`) lub czy obiekt zawiera tę wartość (używając `in`). Każdy przypadek w bloku może mieć wiele wartości, które wystarczy oddzielić przecinkami.
+Istnieje także inna forma instrukcji when. Jeśli dodamy wartość w nawiasach po słowie kluczowym `when`, nasza instrukcja staje się alternatywą dla switch-case. Jest jednak znacznie potężniejsza, ponieważ może nie tylko porównywać wartości pod względem równości, ale także sprawdzać, czy obiekt jest danego typu (używając `is`) lub czy obiekt zawiera tę wartość (używając `in`). Każdy przypadek w bloku może mieć wiele wartości, które wystarczy oddzielić przecinkami.
 
 ```kotlin
 private val magicNumbers = listOf(7, 13)
@@ -287,7 +287,7 @@ fun main() {
 }
 ```
 
-Instrukcja `when` z wartością może być również używana jako wyrażenie, a więc zwracać wartość:
+Instrukcja when z wartością może być również używana jako wyrażenie, a więc zwracać wartość:
 
 ```kotlin
 private val magicNumbers = listOf(7, 13)
@@ -317,11 +317,11 @@ fun main() {
 }
 ```
 
-Należy zauważyć, że gdy używamy `when` jako wyrażenia, jego warunki muszą być wyczerpujące: powinny obejmować wszystkie możliwości lub dostarczyć gałąź `else`, jak w powyższym przykładzie. Jeśli nie są spełnione wszystkie warunki, pokazany jest błąd kompilatora.
+Należy zauważyć, że gdy używamy when jako wyrażenia, jego warunki muszą być wyczerpujące: powinny obejmować wszystkie możliwości lub dostarczyć gałąź else, jak w powyższym przykładzie. Jeśli nie są spełnione wszystkie warunki, pokazany jest błąd kompilatora.
 
-> Kotlin nie obsługuje instrukcji `switch-case`, ponieważ zamiast tego używamy instrukcji `when`.
+> Kotlin nie obsługuje instrukcji switch-case, ponieważ zamiast tego używamy instrukcji when.
 
-W nawiasach konstrukcjiW `when()`, gdzie określamy wartość, możemy również zdefiniować zmienną, a jej wartość zostanie użyta w każdym warunku.
+W nawiasach konstrukcji when(), gdzie określamy wartość, możemy również zdefiniować zmienną, a jej wartość zostanie użyta w każdym warunku.
 
 ```kotlin
 fun showUsers() =
@@ -469,7 +469,7 @@ fun main() {
 }
 ```
 
-Smart-casting jest często używany razem z instrukcją `when`. Kiedy są używane razem, czasami nazywane są Kotlinowym pattern-matchingiem. Więcej przykładów zostanie przedstawionych, gdy omówimy modyfikator `sealed`.
+Smart-casting jest często używany razem z instrukcją when. Kiedy są używane razem, czasami nazywane są Kotlinowym pattern-matchingiem. Więcej przykładów zostanie przedstawionych, gdy omówimy modyfikator sealed.
 
 ```kotlin
 fun handleResponse(response: Result<T>) {
@@ -484,7 +484,7 @@ fun handleResponse(response: Result<T>) {
 
 ### Pętle while i do-while
 
-Ostatnimi strukturami sterującymi, o których musimy wspomnieć, są pętle `while` i `do-while`. Wyglądają i działają dokładnie tak samo, jak w Javie, C++ i wielu innych językach.
+Ostatnimi strukturami sterującymi, o których musimy wspomnieć, są pętle while i do-while. Wyglądają i działają dokładnie tak samo, jak w Javie, C++ i wielu innych językach.
 
 ```kotlin
 fun main() {
@@ -506,7 +506,7 @@ fun main() {
 }
 ```
 
-Mam nadzieję, że nie potrzebują one dalszego wyjaśnienia. Pętle `while` i `do-while` nie mogą być używane jako wyrażenia. Dodam tylko, że zarówno pętle `while`, jak i `do-while` są rzadko używane w Kotlinie. Zamiast tego używamy funkcji przetwarzania kolekcji lub sekwencji, które zostaną omówione w książce *Funkcyjny Kotlin*. Na przykład powyższy kod można zastąpić następującym:
+Mam nadzieję, że nie potrzebują one dalszego wyjaśnienia. Pętle while i do-while nie mogą być używane jako wyrażenia. Dodam tylko, że zarówno pętle while, jak i do-while są rzadko używane w Kotlinie. Zamiast tego używamy funkcji przetwarzania kolekcji lub sekwencji, które zostaną omówione w książce *Funkcyjny Kotlin*. Na przykład powyższy kod można zastąpić następującym:
 
 ```kotlin
 fun main() {
@@ -519,9 +519,9 @@ fun main() {
 
 ### Podsumowanie
 
-Jak widać, Kotlin wprowadził wiele potężnych funkcji do instrukcji warunkowych. Warunki `if` i `when` mogą być używane jako wyrażenia. Instrukcja `when` jest bardziej zaawansowaną alternatywą dla `if-else-if` lub `switch-case`. Obsługiwane jest sprawdzanie typów ze smart-castingiem. To czyni instrukcje warunkowe potężniejszymi niż w innych językach. Teraz zobaczmy, co Kotlin zmienił w funkcjach.
+Jak widać, Kotlin wprowadził wiele potężnych funkcji do instrukcji warunkowych. Warunki if i when mogą być używane jako wyrażenia. Instrukcja when jest bardziej zaawansowaną alternatywą dla if-else-if lub switch-case. Obsługiwane jest sprawdzanie typów ze smart-castingiem. To czyni instrukcje warunkowe potężniejszymi niż w innych językach. Teraz zobaczmy, co Kotlin zmienił w funkcjach.
 
 [^05_1]: Wyrażenie w programowaniu to część kodu, która zwraca wartość.
-[^05_2]: `Unit` to obiekt używany by sygnalizować brak istotnej wartości. Przypomina `void` w Javie.
+[^05_2]: `Unit` to obiekt używany by sygnalizować brak istotnej wartości. Przypomina `Void` w Javie.
 [^05_3]: Funkcja z pojedynczym wyrażeniem to specjalna składnia do implementacji ciał funkcji z jednym wyrażeniem. Zostanie ona omówiona w kolejnym rozdziale.
 [^05_4]: Terminu "code smell" będę używał do opisania praktyk, które nie są wyraźnie błędne, ale uważa się, że powinno się ich unikać.
