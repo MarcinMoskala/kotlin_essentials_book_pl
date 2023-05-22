@@ -1,6 +1,6 @@
-## Moc pętli `for`
+## Moc pętli for
 
-W Javie i innych starszych językach pętla `for` zwykle ma trzy części: pierwsza inicjuje zmienną przed rozpoczęciem pętli; druga zawiera warunek wykonania bloku kodu; trzecia jest wykonywana po bloku kodu.
+W Javie i innych starszych językach pętla for zwykle ma trzy części: pierwsza inicjuje zmienną przed rozpoczęciem pętli; druga zawiera warunek wykonania bloku kodu; trzecia jest wykonywana po bloku kodu.
 
 ```
 // pętla for w Javie
@@ -9,11 +9,11 @@ for(int i=0; i < 5; i++){
 }
 ```
 
-Taki zapis jest jednak dość skomplikowany i łatwo w nim o błąd. Na przykład, gdy ktoś użyje `>` lub `<=` zamiast `<`. Taka mała różnica nie jest łatwa do zauważenia, ale istotnie wpływa na zachowanie tej pętli `for`.
+Taki zapis jest jednak dość skomplikowany i łatwo w nim o błąd. Na przykład, gdy ktoś użyje `>` lub `<=` zamiast `<`. Taka mała różnica nie jest łatwa do zauważenia, ale istotnie wpływa na zachowanie tej pętli for.
 
-Jako alternatywę dla klasycznej pętli `for` wiele języków wprowadziło nowoczesną alternatywę do iterowania po kolekcjach. Dlatego w językach takich jak Java czy JavaScript mamy dwie zupełnie różne rodzaje pętli `for`, obie zdefiniowane tym samym słowem kluczowym. W Kotlinie jest prościej - mamy jedną uniwersalną pętlę `for`, która może być używana do iterowania po kolekcji, mapie, zakresie liczb i wielu innych.
+Jako alternatywę dla klasycznej pętli for wiele języków wprowadziło nowoczesną alternatywę do iterowania po kolekcjach. Dlatego w językach takich jak Java czy JavaScript mamy dwie zupełnie różne rodzaje pętli for, obie zdefiniowane tym samym słowem kluczowym. W Kotlinie jest prościej - mamy jedną uniwersalną pętlę for, która może być używana do iterowania po kolekcji, mapie, zakresie liczb i wielu innych.
 
-Ogólnie rzecz biorąc, pętla `for` jest używana w Kotlinie do iterowania po czymś, co jest iterowalne[^07_1].
+Ogólnie rzecz biorąc, pętla for jest używana w Kotlinie do iterowania po czymś, co jest iterowalne[^07_1].
 
 ![](for_described.jpg)
 
@@ -63,13 +63,13 @@ class Tree(
 }
 ```
 
-Wnioskowany typ zmiennej zdefiniowanej wewnątrz pętli `for` pochodzi z argumentu typu `Iterable`. Gdy iterujemy po `Iterable<User>`, wnioskowany typ elementu będzie `User`. Gdy iterujemy po `Iterable<Long?>`, wnioskowany typ elementu będzie `Long?`. To samo dotyczy wszystkich innych typów.
+Wnioskowany typ zmiennej zdefiniowanej wewnątrz pętli for pochodzi z argumentu typu `Iterable`. Gdy iterujemy po `Iterable<User>`, wnioskowany typ elementu będzie `User`. Gdy iterujemy po `Iterable<Long?>`, wnioskowany typ elementu będzie `Long?`. To samo dotyczy wszystkich innych typów.
 
 Ten mechanizm, oparty na `Iterable`, jest naprawdę potężny i pozwala nam pokryć liczne przypadki użycia, z których jednym z najpopularniejszych jest wykorzystanie *zakresów* do wyrażania progresji.
 
 ### Zakresy
 
-Jeśli umieścisz dwie kropki pomiędzy dwiema liczbami - przykładowo `1..5` - utworzysz `IntRange`, czyli zakres liczb od 1 do 5. `IntRange` implementuje `Iterable<Int>`, więc możemy jej użyć w pętli `for`:
+Jeśli umieścisz dwie kropki pomiędzy dwiema liczbami - przykładowo `1..5` - utworzysz `IntRange`, czyli zakres liczb od 1 do 5. `IntRange` implementuje `Iterable<Int>`, więc możemy jej użyć w pętli for:
 
 ```kotlin
 fun main() {
@@ -167,7 +167,7 @@ fun main() {
 
 ### Przypadki użycia
 
-Programiści z doświadczeniem w starszych językach często używają pętli `for` tam, gdzie powinny być używane nieco bardziej nowoczesne alternatywy. Na przykład, w niektórych projektach można znaleźć pętlę `for`, która służy do iterowania po elementach z indeksami.
+Programiści z doświadczeniem w starszych językach często używają pętli for tam, gdzie powinny być używane nieco bardziej nowoczesne alternatywy. Na przykład, w niektórych projektach można znaleźć pętlę for, która służy do iterowania po elementach z indeksami.
 
 ```kotlin
 fun main() {
@@ -201,7 +201,7 @@ fun main() {
 // [2] Celina
 ```
 
-Po drugie, zamiast iterować po indeksach i znajdować element dla każdego z nich, moglibyśmy zamiast tego iterować po indeksowanych wartościach. Możemy tworzyć indeksowane wartości za pomocą `withIndex` na obiektach iterowalnych. Każda indeksowana wartość zawiera zarówno indeks, jak i wartość. Takie obiekty można destrukturyzować w pętli `for`[^07_2].
+Po drugie, zamiast iterować po indeksach i znajdować element dla każdego z nich, moglibyśmy zamiast tego iterować po indeksowanych wartościach. Możemy tworzyć indeksowane wartości za pomocą `withIndex` na obiektach iterowalnych. Każda indeksowana wartość zawiera zarówno indeks, jak i wartość. Takie obiekty można destrukturyzować w pętli for[^07_2].
 
 ```kotlin
 fun main() {
@@ -291,7 +291,7 @@ fun main() {
 
 ### Podsumowanie
 
-W tym rozdziale nauczyliśmy się korzystać z pętli `for`. W Kotlinie jest naprawdę prosta i potężna, więc warto wiedzieć, jak działa.
+W tym rozdziale nauczyliśmy się korzystać z pętli for. W Kotlinie jest naprawdę prosta i potężna, więc warto wiedzieć, jak działa.
 
 Teraz porozmawiajmy o jednym z najważniejszych ulepszeń, jakie Kotlin wprowadził do świata JVM: dobrym wsparciu dla obsługi wartości `null`.
 
