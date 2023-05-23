@@ -1,13 +1,13 @@
 ## Wprowadzenie
 
-Kotlin to niesamowity język wieloplatformowy, głównie dzięki swojej czytelnej składni, intuicyjnemu i bezpiecznemu dla wartości `null` systemowi typów oraz świetnemu wsparciu narzędzi. Nic dziwnego, że stał się najpopularniejszym językiem do tworzenia aplikacji na Androida i, w przypadku aplikacji backendowych, popularną alternatywą dla Javy. Jest również używany przy przetwarzaniu i analizie danych oraz w programowaniu wieloplatformowych aplikacji na iOS, komputery stacjonarne i strony internetowe. W tej książce nauczysz się najważniejszych funkcji języka Kotlin, które pozwolą Ci właściwie rozpocząć Twoją przygodę z Kotlinem.
+Kotlin to niesamowity język wieloplatformowy, o czytelnej składni, bezpiecznym systemie typów oraz ogromnym wsparciu ze strony narzędzi programistycznych. Nic dziwnego, że Google wybrał go na oficjalny język programowania platformy Android oraz stał się alternatywą dla Javy, przy tworzeniu aplikacji backendowych. Można go także użyć do przetwarzania i analizy danych, programowania aplikacji wieloplatformowych na urządzenia mobilne (iOS, ANdroid), systemy desktopowe oraz przeglądarki internetowe. W tej książce nauczysz się najważniejszych elementów języka Kotlin, które pozwolą Ci na odpowiednie rozpoczącie pracy z tym językiem programowania.
 
 ### Dla kogo jest ta książka?
 
-Ta książka jest dedykowana programistom. Zakładam, że wszyscy programiści wiedzą, czym są funkcje, instrukcje warunkowe if czy ciągi znaków. Niemniej jednak staram się wyjaśnić (przynajmniej w skrócie) wszystkie rzeczy, które mogą nie być jasne dla wszystkich programistów, takie jak klasy, enumy czy listy. Na pewno będzie to dobra książka dla osób używających C, JavaScript czy Matlaba.
+Ta książka jest dedykowana programistom. Zakładam, że wszyscy programiści wiedzą, czym są funkcje, instrukcje warunkowe if czy ciągi znaków. Niemniej jednak staram się wyjaśnić (przynajmniej w skrócie) wszystkie pojęcia, które mogą nie być jasne dla wszystkich programistów, takie jak klasy, enumy czy danych. Na pewno będzie to dobra książka dla osób używających C, JavaScript czy Matlaba.
 
-Ponieważ większość programistów piszących w Kotlinie ma doświadczenie w Javie, czasami odnoszę się do niej i jej platformy, oraz od czasu do czasu przedstawiam elementy specyficzne dla JVM. Za każdym razem, gdy to robię, staram się wyraźnie to zaznaczyć. Zakładam, że niektórzy czytelnicy mogą być głównie zainteresowani używaniem Kotlin/JS lub Kotlin/Native, więc wszystko, co nie jest opisane jako specyficzne dla Javy, powinno być dla nich użyteczne. 
- 
+Ponieważ większość programistów piszących w Kotlinie ma doświadczenie w Javie, czasami odnoszę się do niej i jej platformy, oraz od czasu do czasu przedstawiam elementy specyficzne dla JVM. Za każdym razem, gdy to robię, staram się wyraźnie to zaznaczyć. Zakładam, że niektórzy czytelnicy mogą być głównie zainteresowani używaniem Kotlin/JS lub Kotlin/Native, więc wszystko, co nie jest opisane jako specyficzne dla Javy, powinno być dla nich użyteczne.
+
 ### Co zostanie omówione?
 
 W tej książce omawiam te tematy, które uważam za niezbędne do programowania w języku Kotlin, w tym:
@@ -25,7 +25,7 @@ W tej książce omawiam te tematy, które uważam za niezbędne do programowania
 * system typów,
 * generyki.
 
-Ta książka nie omawia funkcyjnych cech Kotlina, takich jak wyrażenia lambda czy typy funkcyjne. Te tematy są omówione w kontynuacji tej książki: *Functional Kotlin*.
+Ta książka nie omawia funkcyjnych funkcjonalności Kotlina, takich jak wyrażenia lambda czy typy funkcyjne. Te tematy są omówione w kontynuacji tej książki: *Funkcyjny Kotlin*.
 
 ### Język użyty w książce
 
