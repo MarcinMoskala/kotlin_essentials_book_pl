@@ -4,10 +4,10 @@ Kotlin to niesamowity język wieloplatformowy, o czytelnej składni, bezpiecznym
 
 ### Dla kogo jest ta książka?
 
-Ta książka jest dedykowana programistom. Zakładam, że wszyscy programiści wiedzą, czym są funkcje lub metody, instrukcje warunkowe if czy ciągi znaków. Niemniej jednak staram się wyjaśnić (przynajmniej w skrócie) wszystkie pojęcia, które mogą nie być jasne dla wszystkich programistów, takie jak klasy, typy wyliczeniowe (enumy) czy kontenery danych. Na pewno będzie to dobra książka dla osób używających C, JavaScript czy Matlaba.
+Ta książka jest dedykowana programistom. Zakładam, że wszyscy programiści wiedzą, czym są funkcje, instrukcje warunkowe if czy ciągi znaków. Niemniej jednak staram się wyjaśnić (przynajmniej w skrócie) wszystkie pojęcia, które mogą nie być jasne dla wszystkich programistów, takie jak klasy, enumy czy danych. Na pewno będzie to dobra książka dla osób używających C, JavaScript czy Matlaba.
 
-Ponieważ większość programistów piszących w Kotlinie ma doświadczenie w innym języku na platformę JVM, dlatego czasami będę odnosił się do elemntów specyficznych dla najpopularniejszego języka programowania dla tej platformy, czyli Javy. Za każdym razem, gdy to robię, staram się wyraźnie to zaznaczyć. Zakładam, że niektórzy czytelnicy mogą być głównie zainteresowani używaniem Kotlin/JS lub Kotlin/Native, więc wszystko, co nie jest opisane jako specyficzne dla Javy, powinno być dla nich użyteczne. 
- 
+Ponieważ większość programistów piszących w Kotlinie ma doświadczenie w Javie, czasami odnoszę się do niej i jej platformy, oraz od czasu do czasu przedstawiam elementy specyficzne dla JVM. Za każdym razem, gdy to robię, staram się wyraźnie to zaznaczyć. Zakładam, że niektórzy czytelnicy mogą być głównie zainteresowani używaniem Kotlin/JS lub Kotlin/Native, więc wszystko, co nie jest opisane jako specyficzne dla Javy, powinno być dla nich użyteczne.
+
 ### Co zostanie omówione?
 
 W tej książce omawiam te tematy, które uważam za niezbędne do programowania w języku Kotlin, w tym:
@@ -25,7 +25,7 @@ W tej książce omawiam te tematy, które uważam za niezbędne do programowania
 * system typów,
 * generyki.
 
-Książka nie omawia programowania funkcyjnego w Kotlinie, ale możecie je znależć w kontynuacji tej książki: *Functional Kotlin*.
+Ta książka nie omawia funkcyjnych funkcjonalności Kotlina, takich jak wyrażenia lambda czy typy funkcyjne. Te tematy są omówione w kontynuacji tej książki: *Funkcyjny Kotlin*.
 
 ### Język użyty w książce
 
