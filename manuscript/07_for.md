@@ -11,7 +11,7 @@ for(int i=0; i < 5; i++){
 
 Taki zapis jest jednak dość skomplikowany i łatwo w nim o błąd. Na przykład, gdy ktoś użyje `>` lub `<=` zamiast `<`. Taka mała różnica nie jest łatwa do zauważenia, ale istotnie wpływa na zachowanie tej pętli for.
 
-Jako alternatywę dla klasycznej pętli for wiele języków wprowadziło nowoczesną alternatywę do iterowania po kolekcjach. Dlatego w językach takich jak Java czy JavaScript mamy dwie zupełnie różne rodzaje pętli for, obie zdefiniowane tym samym słowem kluczowym. W Kotlinie jest prościej - mamy jedną uniwersalną pętlę for, która może być używana do iterowania po kolekcji, mapie, zakresie liczb i wielu innych.
+Zamiast klasycznej pętli for, wiele języków wprowadziło nowocześniejszą pętlę zaprojektowaną oryginalnie do iterowania po kolekcjach. Dlatego w językach takich jak Java czy JavaScript mamy dwie zupełnie różne rodzaje pętli for, obie zdefiniowane tym samym słowem kluczowym. W Kotlinie jest prościej, mamy jedną uniwersalną pętlę for, która może być używana do iterowania po kolekcji, mapie, zakresie liczb i wielu innych.
 
 Ogólnie rzecz biorąc, pętla for jest używana w Kotlinie do iterowania po czymś, co jest iterowalne[^07_1].
 
