@@ -15,7 +15,7 @@ fun processPerson(person: Person?) {
 }
 ```
 
-System typów daje nam również bardzo wygodne wsparcie dla nullowalności, inteligentnego wnioskowania typów i wiele więcej. W tym rozdziale odkryjemy wiele z tego co mniej doświadczeni programiści uważają za magię Kotlina, a w rzeczywistości jest dość oczywiste i przewidywalne. To jeden z moich ulubionych tematów na warsztatach, ponieważ widzę oszałamiające piękno tego, jak dobrze zaprojektowany jest system typów w Kotlinie, jak wszystkie elementy doskonale się ze sobą łączą i dają nam wspaniałe doświadczenie przy programowaniu. Uważam ten temat za fascynujący, ale postaram się również dodać kilka użytecznych wskazówek, które pokazują, gdzie ta wiedza może być przydatna w praktyce. Mam nadzieję, że odkrywanie tego sprawi ci tyle samo przyjemności, co mnie.
+System typów daje nam również bardzo wygodne wsparcie dla nullowalności, inteligentnego wnioskowania typów i wiele więcej. W tym rozdziale odkryjemy wiele z tego, co mniej doświadczeni programiści uważają za magię Kotlina, a w rzeczywistości jest dość oczywiste i przewidywalne. To jeden z moich ulubionych tematów na warsztatach, ponieważ widzę oszałamiające piękno tego, jak dobrze zaprojektowany jest system typów w Kotlinie, jak wszystkie elementy doskonale się ze sobą łączą i dają nam wspaniałe doświadczenie przy programowaniu. Uważam ten temat za fascynujący, ale postaram się również dodać kilka użytecznych wskazówek, które pokazują, gdzie ta wiedza może być przydatna w praktyce. Mam nadzieję, że odkrywanie tego sprawi ci tyle samo przyjemności, co mnie.
 
 ### Czym jest typ?
 
@@ -55,7 +55,7 @@ Dyskusja o różnicy między klasą a typem może się wydawać bardzo teoretycz
 
 ![](typing_system_type_vs_class_nullable.png)
 
-Funkcje klas są zdefiniowane dla klas, więc ich odbiorca nie może być nullowany ani określać typu generycznego[^20_4]. Funkcje rozszerzające są zdefiniowane na typach, więc mogą być nullowane lub zdefiniowane dla typu generycznegi. Weź pod uwagę funkcję `sum`, która jest rozszerzeniem `Iterable<Int>`, lub funkcję `isNullOrBlank`, która jest rozszerzeniem `String?`.
+Funkcje klas są zdefiniowane dla klas, więc ich odbiorca nie może być nullowany ani określać typu generycznego[^20_4]. Funkcje rozszerzające są zdefiniowane na typach, więc mogą być nullowane lub zdefiniowane dla typu generycznego. Weź pod uwagę funkcję `sum`, która jest rozszerzeniem `Iterable<Int>`, lub funkcję `isNullOrBlank`, która jest rozszerzeniem `String?`.
 
 ```kotlin
 fun Iterable<Int>.sum(): Int {
@@ -286,7 +286,7 @@ Gdy element deklaruje `Nothing` jako typ zwracany, oznacza to, że wszystko po j
 {width: 60%}
 ![](typing_system_fail_throw.png)
 
-Podobnie jest z `return`, `TODO`, `error`, itp. Jeśli nieopcjonalne wyrażenie deklaruje `Nothing` jako swój typ wyniku, wszystko po tym jest nieosiągalne. To prosta zasada, ale przydatna dla kompilatora. Jest również przydatna dla nas, ponieważ daje nam więcej możliwości. Dzięki tej zasadzie możemy użyć `TODO()` w funkcji, zamiast zwracać wartość. Wszystko, co deklaruje `Nothing` jako typ wyniku, kończy działanie funkcji (lub działa w nieskończoność), co spawia, że kompilator ma pewność, że ta funkcja nie zakończy się bez wcześniejszego zwrócenia wyniku lub rzucenia wyjątku.
+Podobnie jest z `return`, `TODO`, `error`, itp. Jeśli nieopcjonalne wyrażenie deklaruje `Nothing` jako swój typ wyniku, wszystko po tym jest nieosiągalne. To prosta zasada, ale przydatna dla kompilatora. Jest również przydatna dla nas, ponieważ daje nam więcej możliwości. Dzięki tej zasadzie możemy użyć `TODO()` w funkcji, zamiast zwracać wartość. Wszystko, co deklaruje `Nothing` jako typ wyniku, kończy działanie funkcji (lub działa w nieskończoność), co sprawia, że kompilator ma pewność, że ta funkcja nie zakończy się bez wcześniejszego zwrócenia wyniku lub rzucenia wyjątku.
 
 ```kotlin
 fun fizzBuzz(): String {
