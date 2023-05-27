@@ -38,7 +38,7 @@ val value = if (condition) {
 }
 ```
 
-Jaka wartość zostanie zwrócona? Dla każdego bloku ciała jest to wynik ostatniego wyrażenia (lub `Unit` dla pustego ciała lub instrukcji nie zwracającej wartości[^05_2]).
+Jaka wartość zostanie zwrócona? Dla każdego bloku ciała jest to wynik ostatniego wyrażenia (lub `Unit` dla pustego ciała lub instrukcji niezwracającej wartości[^05_2]).
 
 ```kotlin
 fun main() {

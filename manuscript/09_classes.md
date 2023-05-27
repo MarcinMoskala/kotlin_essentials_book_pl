@@ -52,7 +52,7 @@ Wewnątrz ciał klas możemy również definiować zmienne. Zmienne zdefiniowane
 * getter - funkcja służąca do pobierania aktualnej wartości pola,
 * setter - funkcja służąca do ustawiania nowych wartości pola.
 
-Ten wzorzec jest bardzo powszechny; w projektach Javy można zobaczyć mnóstwo funkcji getterów i setterów. Są one potrzebne do osiągnięcia enkapsulacji, ale sprawiają że kod jest rozwlekły i mało czytelny. Dlatego twórcy języków wymyślili "właściwości". **Właściwość** to zmienna w klasie, która jest automatycznie enkapsulowana, a więc używa gettera i settera w sposób niejawny. W Kotlinie wszystkie zmienne zdefiniowane wewnątrz klas są właściwościami, a nie polami.
+Ten wzorzec jest bardzo powszechny; w projektach Javy można zobaczyć mnóstwo funkcji getterów i setterów. Są one potrzebne do osiągnięcia enkapsulacji, ale sprawiają, że kod jest rozwlekły i mało czytelny. Dlatego twórcy języków wymyślili "właściwości". **Właściwość** to zmienna w klasie, która jest automatycznie enkapsulowana, a więc używa gettera i settera w sposób niejawny. W Kotlinie wszystkie zmienne zdefiniowane wewnątrz klas są właściwościami, a nie polami.
 
 Niektóre języki, takie jak JavaScript, mają wbudowane wsparcie dla właściwości, ale Javie nie. Dlatego w bajtkodzie Kotlin/JVM generowanym z kodu w Kotlinie zawarte są metody getterów i setterów.
 

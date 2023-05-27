@@ -26,7 +26,7 @@ var person: Person = null // BŁĄD KOMPILACJI,
 var person: Person? = null // OK
 ```
 
-4. Zmienne nullowalne nie mogą być używane bezpośrednio. Muszą być wywyływane w bezpieczny sposób lub wcześniej rzutowane za pomocą jednego z narzędzi przedstawionych później w tym rozdziale.
+4. Zmienne nullowalne nie mogą być używane bezpośrednio. Muszą być wywoływane w bezpieczny sposób lub wcześniej rzutowane za pomocą jednego z narzędzi przedstawionych później w tym rozdziale.
 
 ```kotlin
 person.name // BŁĄD KOMPILACJI,
@@ -61,7 +61,7 @@ fun main() {
 }
 ```
 
-Zauważ, że wynik bezpiecznego wywołania zawsze ma typ nullowalny, ponieważ bezpieczne wywołanie zwraca `null`, gdy jest wywołane na obiekcie `null`. Oznacza to, że wartość `null` propaguje się. Jeśli chcesz dowiedzieć się, jaką długość ma imię użytkownika, wywołanie `user?.name.length` się nie skompiluje. Mimo, że `name` nie jest wartością nullowalną, wynik `user?.name` to `String?`, więc musimy użyć ponownie bezpiecznego wywołania: `user?.name?.length`.
+Zauważ, że wynik bezpiecznego wywołania zawsze ma typ nullowalny, ponieważ bezpieczne wywołanie zwraca `null`, gdy jest wywołane na obiekcie `null`. Oznacza to, że wartość `null` propaguje się. Jeśli chcesz dowiedzieć się, jaką długość ma imię użytkownika, wywołanie `user?.name.length` się nie skompiluje. Mimo że `name` nie jest wartością nullowalną, wynik `user?.name` to `String?`, więc musimy użyć ponownie bezpiecznego wywołania: `user?.name?.length`.
 
 ```kotlin
 class User(val name: String) {
@@ -168,7 +168,7 @@ fun printLengthIfNotNullOrThrow(str: String?) {
 }
 ```
 
-> Smart-casting działa dla `requireNotNull` dzięki Kotlinowym kontraktom, które opisałem w książce *Zaaawansowany Kotlin*.
+> Smart-casting działa dla `requireNotNull` dzięki Kotlinowym kontraktom, które opisałem w książce *Zaawansowany Kotlin*.
 
 ### Operator Elvisa
 
@@ -273,11 +273,11 @@ Te funkcje pomagają nam operować na wartościach nullowanych.
 
 ### `null` to nasz przyjaciel
 
-To, że każda wartość mogła być nullem, jest ogromnym problemem w językach takich jak Java. W efekcie programiści zaczęli unikać unikać wartości `null` i traktować ją jak wroga. Wiele książek dotyczących dobrych praktyk programowania w Javie sugeruje unikanie wartości `null`, na przykład poprzez zastąpienie ich pustymi listami, stringami lub specjalną wartością enuma (patrz "Temat 43. Zwracanie pustych tablic lub kolekcji zamiast wartości null" z bardzo popularnej książki *Java. Efektywne programowanie.* 2nd Edition autorstwa Joshua Blocha). Takie praktyki nie mają sensu w Kotlinie, gdzie mamy dobre wsparcie nullowalności i nie powinniśmy obawiać się wartości `null`. W Kotlinie traktujemy `null` jako naszego przyjaciela, a nie jako błąd[^08_1]. Rozważ funkcję `getUsers`. Istnieje istotna różnica między zwracaniem pustej listy a `null`. Pusta lista powinna być interpretowana jako "wynik to pusta lista użytkowników, ponieważ żadni nie są dostępni". Wynik `null` powinien być interpretowany jako "nie można wyprodukować wyniku, a lista użytkowników pozostaje nieznana". Zapomnij o przestarzałych praktykach dotyczących nullowalności. W Kotlinie wartość `null` to nasz przyjaciel[^08_2].
+To, że każda wartość mogła być nullem, jest ogromnym problemem w językach takich jak Java. W efekcie programiści zaczęli unikać wartości `null` i traktować ją jak wroga. Wiele książek dotyczących dobrych praktyk programowania w Javie sugeruje unikanie wartości `null`, na przykład poprzez zastąpienie ich pustymi listami, stringami lub specjalną wartością enuma (patrz "Temat 43. Zwracanie pustych tablic lub kolekcji zamiast wartości null" z bardzo popularnej książki *Java. Efektywne programowanie.* 2nd Edition autorstwa Joshua Blocha). Takie praktyki nie mają sensu w Kotlinie, gdzie mamy dobre wsparcie nullowalności i nie powinniśmy obawiać się wartości `null`. W Kotlinie traktujemy `null` jako naszego przyjaciela, a nie jako błąd[^08_1]. Rozważ funkcję `getUsers`. Istnieje istotna różnica między zwracaniem pustej listy a `null`. Pusta lista powinna być interpretowana jako "wynik to pusta lista użytkowników, ponieważ żadni nie są dostępni". Wynik `null` powinien być interpretowany jako "nie można wyprodukować wyniku, a lista użytkowników pozostaje nieznana". Zapomnij o przestarzałych praktykach dotyczących nullowalności. W Kotlinie wartość `null` to nasz przyjaciel[^08_2].
 
 ### Właściwości lateinit
 
-Są sytuacje, gdy chcemy, aby właściwość klasy miała typ nienullowalny, ale nie możemy określić jej wartości podczas tworzenia obiektu. Chodzi przede wszystkim o właściwości, których wartość jest wstrzykiwana lub są tworzone w jednej z pierwszych metod cyklu życia klasy. Uczynienie takich właściwości nullowalnymi wymagałoby ich odpakowania przy każdym użyciu, mimo iż wiedzielibyśmy, że nie mogą mieć one wartości `null`, ponieważ spodziewamy się że ich wartość zostanie wstrzyknięta lub ustawiona odpowiednio wcześniej. Dla takich sytuacji twórcy Kotlina wprowadzili modyfikator `lateinit`. Gdy go używamy, właściwość nie określa wartości pierwotnej, a przy tym musi mieć typ nienullowany. Kotlin spodziewa się, że ustawimy wartość tej właściwości przed jej pierwszym użyciem. Przykłady użycia `lateinit`:
+Są sytuacje, gdy chcemy, aby właściwość klasy miała typ nienullowalny, ale nie możemy określić jej wartości podczas tworzenia obiektu. Chodzi przede wszystkim o właściwości, których wartość jest wstrzykiwana lub są tworzone w jednej z pierwszych metod cyklu życia klasy. Uczynienie takich właściwości nullowalnymi wymagałoby ich odpakowania przy każdym użyciu, mimo iż wiedzielibyśmy, że nie mogą mieć one wartości `null`, ponieważ spodziewamy się, że ich wartość zostanie wstrzyknięta lub ustawiona odpowiednio wcześniej. Dla takich sytuacji twórcy Kotlina wprowadzili modyfikator `lateinit`. Gdy go używamy, właściwość nie określa wartości pierwotnej, a przy tym musi mieć typ nienullowany. Kotlin spodziewa się, że ustawimy wartość tej właściwości przed jej pierwszym użyciem. Przykłady użycia `lateinit`:
 
 ```kotlin
 @AndroidEntryPoint
