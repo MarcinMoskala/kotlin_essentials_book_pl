@@ -66,7 +66,7 @@ Słowo kluczowe `this` jest znane jako **receiver** (ang. **receiver**). Typ, kt
 
 ![](207_receiver_type.png)
 
-Funkcje rozszerzające zachowują się bardzo podobnie do funkcji z klas. Kiedy deweloperzy się o tym uczą, często martwią się o bezpieczeństwo obiektów, ale to nie jest problem, ponieważ rozszerzenia nie mają żadnego specjalnego dostępu do elementów klasy. Jedyna różnica między funkcjami rozszerzającymi a zwykłymi funkcjami z dodatkowym parametrem zamiast receivera polega na tym, że są one wywoływane "na" instancji, zamiast z instancją jako standardowym argumentem. Aby zrozumieć to lepiej, przyjrzyjmy się bliżej funkcjom rozszerzącym.
+Funkcje rozszerzające zachowują się bardzo podobnie do funkcji z klas. Kiedy deweloperzy się o tym uczą, często martwią się o bezpieczeństwo obiektów, ale to nie jest problem, ponieważ rozszerzenia nie mają żadnego specjalnego dostępu do elementów klasy. Jedyna różnica między funkcjami rozszerzającymi a zwykłymi funkcjami z dodatkowym parametrem zamiast receivera polega na tym, że są one wywoływane "na" instancji, zamiast z instancją jako standardowym argumentem. Aby zrozumieć to lepiej, przyjrzyjmy się bliżej funkcjom rozszerzającym.
 
 ### Funkcje rozszerzające pod maską
 
@@ -166,7 +166,7 @@ Największa różnica między elementami klasy a rozszerzeniami z punktu widzeni
 
 Dzięki temu, że rozszerzenia muszą być importowane, możemy mieć wiele rozszerzeń o tej samej nazwie dla tego samego typu. To dobrze, ponieważ różne biblioteki mogą dostarczać dodatkowych metod bez powodowania konfliktów. Z drugiej strony, niebezpieczne byłoby posiadanie dwóch rozszerzeń o tej samej nazwie, ale o różnych zachowaniach. Jeśli masz taką sytuację, jest to zapach kodu i wskazówka, że ktoś nadużył możliwości funkcji rozszerzających.
 
-Inną istotną różnicą jest to, że **rozszerzenia nie są wirtualne**, co oznacza, że nie mogą być zredefiniowane w klasach pochodnych. Dlatego jeśli masz rozszerzenie zdefiniowane zarówno dla supertypu, jak i subtypu, kompilator decyduje, która funkcja jest wybierana na podstawie tego, jak zmienna jest typowana, a nie jaka jest jej rzeczywista klasa.
+Inną istotną różnicą jest to, że **rozszerzenia nie są wirtualne**, co oznacza, że nie mogą być zredefiniowane w klasach pochodnych. Dlatego, jeśli masz rozszerzenie zdefiniowane zarówno dla supertypu, jak i subtypu, kompilator decyduje, która funkcja jest wybierana na podstawie tego, jak zmienna jest typowana, a nie jaka jest jej rzeczywista klasa.
 
 ```kotlin
 open class View

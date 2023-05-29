@@ -470,7 +470,7 @@ fun printList(list: List<*>) {
 }
 ```
 
-Star projection nie należy mylić z argumentem typu `Any?`. Aby zrozumieć różnicę, porównajmy `MutableList<Any?>` i `MutableList<*>`. Oba te typy deklarują `Any?` jako generyczny typ wyników z merod. Jednak, gdy dodawane są elementy, `MutableList<Any?>` akceptuje wszystko (`Any?`), ale `MutableList<*>` akceptuje `Nothing`, więc nie akceptuje żadnych wartości.
+Star projection nie należy mylić z argumentem typu `Any?`. Aby zrozumieć różnicę, porównajmy `MutableList<Any?>` i `MutableList<*>`. Oba te typy deklarują `Any?` jako generyczny typ wyników z metod. Jednak, gdy dodawane są elementy, `MutableList<Any?>` akceptuje wszystko (`Any?`), ale `MutableList<*>` akceptuje `Nothing`, więc nie akceptuje żadnych wartości.
 
 ```kotlin
 fun main() {
