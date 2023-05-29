@@ -114,7 +114,7 @@ Ponadto IntelliJ automatycznie sugeruje dodanie pozostałych gałęzi. To sprawi
 
 ![](remaining_branches.png)
 
-Zauważ, że gdy `else` nie jest używane, a my dodajemy kolejną podklasę sealed klasy lub interfejsu, należy dostosować użycie tego wyrażenia `when`, uwzględniając ten nowy typ. Jest to wygodne w lokalnym kodzie, ponieważ zmusza nas do obsługi nowego wariantu w wyczerpujących wyrażeniach `when`. Jest to jednak problem gdy sealed klasa lub interfejs jest częścią publicznego API biblioteki, lub współdzielonego modułu, gdyż dodanie podtypu jest niekompatybilne wstecznie, ponieważ wszystkie moduły używające wyczerpującego `when` muszą obsłużyć jeden więcej możliwy typ.
+Zauważ, że gdy `else` nie jest używane, a my dodajemy kolejną podklasę sealed klasy lub interfejsu, należy dostosować użycie tego wyrażenia `when`, uwzględniając ten nowy typ. Jest to wygodne w lokalnym kodzie, ponieważ zmusza nas do obsługi nowego wariantu w wyczerpujących wyrażeniach `when`. Jest to jednak problem, gdy sealed klasa lub interfejs jest częścią publicznego API biblioteki, lub współdzielonego modułu, gdyż dodanie podtypu jest niekompatybilne wstecznie, ponieważ wszystkie moduły używające wyczerpującego `when` muszą obsłużyć jeden więcej możliwy typ.
 
 ### Sealed vs enum
 
