@@ -13,7 +13,7 @@ W tym rozdziale poznamy podstawowe typy języka Kotlin i ich literały:
 * znaki (`Char`),
 * stringi(`String`).
 
-W Kotlinie istnieją także tablice, który zostaną omówione w rozdziale *Kolekcje*.
+W Kotlinie istnieją także tablice, które zostaną omówione w rozdziale *Kolekcje*.
 
 W Kotlinie wszystkie wartości są traktowane jako obiekty (nie ma typów prymitywnych), więc wszystkie mają metody, a ich typy mogą być używane jako argumenty typów generycznych (to zostanie omówione w rozdziale *Generyki*). Typy reprezentujące liczby, wartości logiczne i znaki mogą być zoptymalizowane przez kompilator Kotlina i używane jako typy prymitywne, ale ta optymalizacja nie ma wpływu na to jak wygląda nasz kod, dlatego nie musisz nawet o tym myśleć.
 
@@ -215,8 +215,8 @@ Kotlin obsługuje również operacje modyfikujące zmienną `var`:
 * `*=`, gdzie `a *= b` jest równoznaczne z `a = a * b`,
 * `/=`, gdzie `a /= b` jest równoznaczne z `a = a / b`,
 * `%=`, gdzie `a %= b` jest równoznaczne z `a = a % b`,
-* post-inkrementacja i pre-inkrementacja `++`, które zwiększają wartość zmiennej o `1`,
-* post-dekrementacja i pre-dekrementacja `--`, które zmniejszają wartość zmiennej o `1`.
+* postinkrementacja i preinkrementacja `++`, które zwiększają wartość zmiennej o `1`,
+* postdekrementacja i predekrementacja `--`, które zmniejszają wartość zmiennej o `1`.
 
 ```kotlin
 fun main() {
@@ -233,22 +233,22 @@ fun main() {
     i %= 4
     println(i) // 1
 
-    // Post-inkrementacja
+    // Postinkrementacja
     // zwiększa wartość i zwraca poprzednią wartość
     println(i++) // 1
     println(i) // 2
 
-    // Pre-inkrementacja
+    // Preinkrementacja
     // zwiększa wartość i zwraca nową wartość
     println(++i) // 3
     println(i) // 3
 
-    // Post-dekrementacja
+    // Postdekrementacja
     // zmniejsza wartość i zwraca poprzednią wartość
     println(i--) // 3
     println(i) // 2
 
-    // Pre-dekrementacja
+    // Predekrementacja
     // zmniejsza wartość i zwraca nową wartość
     println(--i) // 1
     println(i) // 1
@@ -285,7 +285,7 @@ fun main() {
 }
 ```
 
-> Zrozummienie dlaczego wyniki są takie, a nie inne wychodzi poza zakres tej książki, ale dla zainteresowanych spieszę w wyjaśnieniem. W pierwszym przypadku wynik jest nieprecyzyjny, ponieważ liczby zmiennoprzecinkowe są reprezentowane w postaci binarnej, a nie dziesiętnej. W drugim przypadku wynik jest niepoprawny, ponieważ liczba całkowita jest reprezentowana przez 32 bity, a więc 2147483647 to największa możliwa liczba, a dodanie 1 powoduje jej przepełnienie i zmianę bitu reprezentującego znak na przeciwny.
+> Zrozumienie, dlaczego wyniki są takie, a nie inne wychodzi poza zakres tej książki, ale dla zainteresowanych spieszę z wyjaśnieniem. W pierwszym przypadku wynik jest nieprecyzyjny, ponieważ liczby zmiennoprzecinkowe są reprezentowane w postaci binarnej, a nie dziesiętnej. W drugim przypadku wynik jest niepoprawny, ponieważ liczba całkowita jest reprezentowana przez 32 bity, a więc 2147483647 to największa możliwa liczba, a dodanie 1 powoduje jej przepełnienie i zmianę bitu reprezentującego znak na przeciwny.
 
 To standardowy kompromis w programowaniu, z którym w większości przypadków musimy się pogodzić. Jednak są przypadki, gdy potrzebujemy mieć doskonałą precyzję i nieograniczony rozmiar liczby. Na JVM, dla nieograniczonego rozmiaru liczby powinniśmy użyć `BigInteger`, który reprezentuje liczbę bez części dziesiętnej. Dla nieograniczonego rozmiaru i precyzji powinniśmy użyć `BigDecimal`, który reprezentuje liczbę mającą część dziesiętną. Obiekty obu typów można utworzyć za pomocą konstruktorów[^04_2], funkcji fabrycznych (takich jak `valueOf`) lub konwersji z podstawowych typów reprezentujących liczby (metody `toBigDecimal` i `toBigInteger`). Przykłady poniżej. 
 
@@ -359,7 +359,7 @@ W praktyce wartości logiczne są często wynikiem pewnego rodzaju porównania.
 
 #### Porównania
 
-Wartość `Boolean` często jest wynikiem porównania dwóch równości. W Kotlinie sprawdzamy czy obiekty są równe używając podwójnego znaku równości `==`. Aby sprawdzić, czy dwa obiekty nie są równe, używamy znaku nierówności `!=`.
+Wartość `Boolean` często jest wynikiem porównania dwóch równości. W Kotlinie sprawdzamy, czy obiekty są równe używając podwójnego znaku równości `==`. Aby sprawdzić, czy dwa obiekty nie są równe, używamy znaku nierówności `!=`.
 
 ```kotlin
 fun main() {

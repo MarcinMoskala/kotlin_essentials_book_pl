@@ -1,6 +1,6 @@
 ## Wprowadzenie
 
-Kotlin to niesamowity język wieloplatformowy, o czytelnej składni, bezpiecznym systemie typów oraz ogromnym wsparciu ze strony narzędzi programistycznych. Nic dziwnego, że Google wybrał go na oficjalny język programowania platformy Android oraz stał się alternatywą dla Javy, przy tworzeniu aplikacji backendowych. Można go także użyć do przetwarzania i analizy danych, programowania aplikacji wieloplatformowych na urządzenia mobilne (iOS, ANdroid), systemy desktopowe oraz przeglądarki internetowe. W tej książce nauczysz się najważniejszych elementów języka Kotlin, które pozwolą Ci na odpowiednie rozpoczącie pracy z tym językiem programowania.
+Kotlin to niesamowity język wieloplatformowy, o czytelnej składni, bezpiecznym systemie typów oraz ogromnym wsparciu ze strony narzędzi programistycznych. Nic dziwnego, że Google wybrał go na oficjalny język programowania platformy Android oraz stał się alternatywą dla Javy, przy tworzeniu aplikacji backendowych. Można go także użyć do przetwarzania i analizy danych, programowania aplikacji wieloplatformowych na urządzenia mobilne (iOS, Android), systemy desktopowe oraz przeglądarki internetowe. W tej książce nauczysz się najważniejszych elementów języka Kotlin, które pozwolą Ci na odpowiednie rozpoczęcie pracy z tym językiem programowania.
 
 ### Dla kogo jest ta książka?
 
