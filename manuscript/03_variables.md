@@ -2,7 +2,7 @@
 
 Aby zadeklarować zmienną w Kotlinie, zaczynamy od słowa kluczowego `val` lub `var`, następnie podajemy nazwę zmiennej, znak równości i wartość początkową.
 * Słowo kluczowe `var` (od słowa "variable" czyli "zmienna") definiuje *zmienną do odczytu i zapisu* i jest używane do definiowania zmiennych, do których zawsze możesz przypisać inną wartość. 
-* Słowo kluczowe `val` (od słowa "value" czyli "wartość") definiuje *zmienne tylko do odczytu* i jest używane do definiowania wartości, któych wartości określa się tylko raz (choć jeśli wartość ta jest mutowalna, to może się ona wciąż zmienić). 
+* Słowo kluczowe `val` (od słowa "value" czyli "wartość") definiuje *zmienne tylko do odczytu* i jest używane do definiowania wartości, których wartości określa się tylko raz (choć jeśli wartość ta jest mutowalna, to może się ona wciąż zmienić). 
 
 ```kotlin
 fun main() {
