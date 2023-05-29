@@ -26,7 +26,7 @@ fun main() {
 //     at PlaygroundKt.main(Playground.kt)
 ```
 
-Jako kolejny przykład możemy przekształcić stringa na liczbę całkowitą za pomocą metody `toInt`. Ta operacja działa to tylko wtedy, gdy string jest liczbą. Gdy tak nie jest, zobaczymy `NumberFormatException` z informacją, jaki string został użyty.
+Jako kolejny przykład możemy przekształcić stringa na liczbę całkowitą za pomocą metody `toInt`. Ta operacja działa tylko wtedy, gdy string jest liczbą. Gdy tak nie jest, zobaczymy `NumberFormatException` z informacją, jaki string został użyty.
 
 ```kotlin
 fun main() {

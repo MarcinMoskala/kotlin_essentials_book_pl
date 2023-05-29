@@ -14,7 +14,7 @@ W książce użyłem następujących tłumaczeń pojęć z języka angielskiego:
 * enum - ang. enum class, czyli na przykład `enum class Letter { A, B, C }`.
 * funkcja anonimowa - ang. anonymous function, czyli na przykład `val f = fun() { println("A") }`. Funkcje anonimowe są opisane w książce *Funkcyjny Kotlin*.
 * funkcja infixowa - ang. infix function, czyli funkcje z modyfikatorem `infix` pozwalające na umieszczenie wywołania takiej funkcji pomiędzy argumentem i receiverem bez żadnych nawiasów czy kropek. Przykładem jest `1 to "one"` albo `0x01 or 0.10`.
-* funkcja klasy - ang. member function, czyli funkcja zdefiniowana w ciele klasy, a więc będącej metodą. Uwaga, przyjąłem takie tłumaczenie ze względu ze względu na brak lepszego tłumaczenia, ale nie powinno być ono mylone z pojęciem "
+* funkcja klasy - ang. member function, czyli funkcja zdefiniowana w ciele klasy, a więc będącej metodą. Uwaga, przyjąłem takie tłumaczenie ze względu na brak lepszego tłumaczenia, ale nie powinno być ono mylone z pojęciem "
 * funkcje rozszerzające - ang. extension functions.
 * getter - ang. getter, czyli funkcja zwracająca wartość właściwości. 
 * instrukcja - ang. statement. 
@@ -58,6 +58,6 @@ W książce użyłem następujących tłumaczeń pojęć z języka angielskiego:
 * wyrażenie when - ang. when-expression.
 * wywołanie - ang. call.
 * wywołanie bezpieczne - ang. safe call.
-* zakres - ang. range, czyli obiekt reperezentujący zakres wartości, na przykład `1..10`, `10 downTo 1` czy `0 until 5`.
+* zakres - ang. range, czyli obiekt reprezentujący zakres wartości, na przykład `1..10`, `10 downTo 1` czy `0 until 5`.
 * zbiór - ang. set, czyli konkretny typ kolekcji o typie `Set`. 
 * wyrażenie tworzące obiekt - ang. object expression, czyli specjalny zapis do tworzenia obiektów, alternatywa dla klas anonimowych w Javie, na przykład `object : A() {}`.

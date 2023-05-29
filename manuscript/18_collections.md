@@ -64,7 +64,7 @@ fun main() {
 }
 ```
 
-To samo dotyczy kolekcji tylko do odczytu: możemy użyć operatorów lub funkcji przekształacjących, aby utworzyć nową kolekcję z zaktualizowaną wartością, po czym użyć wyniku jako nowa wartość zmiennej.
+To samo dotyczy kolekcji tylko do odczytu: możemy użyć operatorów lub funkcji przekształcających, aby utworzyć nową kolekcję z zaktualizowaną wartością, po czym użyć wyniku jako nowa wartość zmiennej.
 
 ```kotlin
 fun main() {
@@ -137,11 +137,11 @@ fun main() {
 }
 ```
 
-> Istnieją jednak plany, by wprzyszłości zostały wprowadzone literały kolekcji do języka Kotlin.
+> Istnieją jednak plany, by w przyszłości zostały wprowadzone literały kolekcji do języka Kotlin.
 
 Do wszystkich tych typów przekazujemy początkowe elementy jako argumenty. Jedynym wyjątkiem jest mapa, która jest zbiorem par klucz-wartość, więc początkowe pary określamy za pomocą `Pair`, który zwykle tworzymy za pomocą funkcji `to` (jak wyjaśniono w rozdziale *Data klasy*).
 
-Możemy również przekształcić jedną kolekcję w inną. Często można to zrobić za pomocą metody konwerującej, której nazwa zawiera typ, który chcemy osiągnąć, poprzedzony prefiksem `to`.
+Możemy również przekształcić jedną kolekcję w inną. Często można to zrobić za pomocą metody konwertującej, której nazwa zawiera typ, który chcemy osiągnąć, poprzedzony prefiksem `to`.
 
 ```kotlin
 fun main() {

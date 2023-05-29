@@ -89,7 +89,7 @@ fun main() {
 
 W książce *Efektywny Kotlin* poświęciłem oddzielne tematy na implementację własnych metod `equals` i `hashCode`[^11_0], ale w praktyce rzadko musimy to robić. Okazuje się, że we współczesnych projektach prawie wyłącznie operujemy tylko na dwóch rodzajach obiektów:
 * Aktywne obiekty, takie jak usługi, kontrolery, repozytoria itp. Takie klasy nie muszą nadpisywać żadnych metod z `Any`, ponieważ domyślne zachowanie jest dla nich idealne.
-* Obiekty reprezentujące nasz model danych, takie jak `User`, `Payment` itp. Dla takich obiektów używamy modyfikatora `data`, który nadpisuje metody `toString`, `equals` i `hashCode` w wsposób odpowiedni dla klas modelu danych. Modyfikator `data` implementuje również metody `copy` oraz `componentN` (`component1`, `component2` itp.), które nie są dziedziczone i nie mogą być modyfikowane.
+* Obiekty reprezentujące nasz model danych, takie jak `User`, `Payment` itp. Dla takich obiektów używamy modyfikatora `data`, który nadpisuje metody `toString`, `equals` i `hashCode` w sposób odpowiedni dla klas modelu danych. Modyfikator `data` implementuje również metody `copy` oraz `componentN` (`component1`, `component2` itp.), które nie są dziedziczone i nie mogą być modyfikowane.
 
 ```kotlin
 data class Player(
@@ -290,7 +290,7 @@ fun main() {
 }
 ```
 
-Zauważ, że data klasy nie nadają się dla obiektów, które muszą utrzymywać pewne wymogli dla mutowalnych właściwości. Na przykład, w przypadku poniższego przykładu `User`, klasa nie byłaby w stanie zagwarantować, że wartości `name` i `surname` nie są puste, gdyby te zmienne były mutowalne (czyli zdefiniowane za pomocą `var`). Data klasy doskonale nadają się dla niemutowalnych właściwości, których ograniczenia można sprawdzić podczas tworzenia tych obiektów. W poniższym przykładzie możemy być pewni, że wartości `name` i `surname` nie są puste w instancji `User`.
+Zauważ, że data klasy nie nadają się dla obiektów, które muszą utrzymywać pewne wymogi dla mutowalnych właściwości. Na przykład, w przypadku poniższego przykładu `User`, klasa nie byłaby w stanie zagwarantować, że wartości `name` i `surname` nie są puste, gdyby te zmienne były mutowalne (czyli zdefiniowane za pomocą `var`). Data klasy doskonale nadają się dla niemutowalnych właściwości, których ograniczenia można sprawdzić podczas tworzenia tych obiektów. W poniższym przykładzie możemy być pewni, że wartości `name` i `surname` nie są puste w instancji `User`.
 
 ```kotlin
 data class User(
