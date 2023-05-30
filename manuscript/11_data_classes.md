@@ -2,7 +2,7 @@
 
 W Kotlinie mówimy, że wszystkie klasy dziedziczą po nadrzędnej klasie `Any`, która znajduje się na szczycie hierarchii klas[^11_3]. Metody zdefiniowane w `Any` mogą być wywoływane na wszystkich obiektach. Są to metody:
 * `equals` - używana przy porównywaniu dwóch obiektów za pomocą `==`,
-* `hashCode` - używana przez kolekcje, które korzystają z kodów hash trzymanych w nich obiektów,
+* `hashCode` - używana przez kolekcje, które korzystają z algorytmu hash table,
 * `toString` - używana do reprezentacji obiektu jako stringa, np. w szablonie stringa lub funkcji `print`.
 
 Dzięki tym metodom możemy reprezentować dowolny obiekt jako string lub sprawdzić równość dowolnych dwóch obiektów.
@@ -29,7 +29,7 @@ fun main() {
 
 > Prawdę mówiąc, `Any` jest reprezentowane jako klasa, ale powinno być traktowane jako typ. Weź pod uwagę fakt, że `Any` jest także nadrzędnym typem wszystkich interfejsów, mimo że interfejsy nie mogą dziedziczyć po klasach.
 
-Domyślne implementacje `equals`, `hashCode` i `toString` są oparte na tak zwanym kodzie hash tożsamości (`System.identityHashCode()`). Metoda `equals` zwraca `true` tylko wtedy, gdy dla obu obiektów jest taki sam, co oznacza, że po obu stronach jest ten sam obiekt. Metoda `hashCode` zwraca `identityHashCode`. `toString` generuje string, który zaczyna się od nazwy klasy, a następnie znaku małpy "@", a potem `identityHashCode` w notacji szesnastkowej.
+Domyślne implementacje `equals`, `hashCode` i `toString` są mocno oparte na adresie obiektu w pamięci. Metoda `equals` zwraca `true` tylko wtedy, gdy adres obu obiektów jest taki sam, co oznacza, że po obu stronach jest ten sam obiekt. Metoda `hashCode` zamienia ten adres na liczbę. `toString` generuje string, który zaczyna się od nazwy klasy, a następnie znaku małpy "@", a potem skrótu adresu obiektu w notacji szesnastkowej.
 
 ```kotlin
 class A
@@ -105,7 +105,7 @@ Przeanalizujmy wspomniane wcześniej domyślne metody data klasy oraz różnice 
 
 ### Przekształcanie do stringa
 
-Domyślne przekształcenie `toString` generuje string zaczynającego się od nazwy klasy, a następnie zawierającego znak małpy "@" oraz hash kodu tożsamości w reprezentacji szesnastkowej. Celem tego jest wyświetlenie nazwy klasy oraz określenie, czy dwa stringi reprezentują ten sam obiekt, czy nie.
+Domyślne przekształcenie `toString` generuje string zaczynającego się od nazwy klasy, a następnie zawierającego znak małpy "@" oraz hash adresu w reprezentacji szesnastkowej. Celem tego jest wyświetlenie nazwy klasy oraz określenie, czy dwa stringi reprezentują ten sam obiekt, czy nie.
 
 ```kotlin
 class FakeUserRepository
@@ -190,7 +190,7 @@ Kolejną metodą z klasy `Any` jest `hashCode`, która służy do przekształcen
 * być zgodna z `equals`, więc powinna zwracać tę samą wartość `Int` dla równych obiektów, a także zawsze zwracać ten sam kod hashujący dla tego samego obiektu.
 * rozkładać obiekty jak najbardziej równomiernie w zakresie wszystkich możliwych wartości `Int`.
 
-Domyślny `hashCode` opiera się na hashu tożsamości. Kod hashujący generowany przez modyfikator `data` opiera się na kodach hashujących właściwości głównego konstruktora tego obiektu. Gdy dwa obiekty są równe, ich kody hashujący są również równe. 
+Domyślny `hashCode` opiera się na adresie obiektu w pamięci. Kod hashujący generowany przez modyfikator `data` opiera się na kodach hashujących właściwości głównego konstruktora tego obiektu. Gdy dwa obiekty są równe, ich kody hashujący są również równe. 
 
 ```kotlin
 data class Player(
@@ -384,7 +384,7 @@ Musimy być ostrożni z destrukturyzacją. Przydatne jest stosowanie tych samych
 {width: 84%}
 ![](data_fullname.png)
 
-Destrukturyzacja pojedynczej wartości jest bardzo myląca. Zwłaszcza w funkcji lambda, gdzie nawiasy wokół argumentów w wyrażeniach lambda są, w zależności od gramatyki języka programowania, opcjonalne lub wymagane.
+Destrukturyzacja pojedynczej wartości jest bardzo myląca. Zwłaszcza w funkcji lambda, gdzie nawiasy wokół argumentów w wyrażeniach lambda są, w zależności od języka programowania, opcjonalne lub wymagane.
 
 ```kotlin
 data class User(
@@ -418,7 +418,7 @@ data class Dog(
 fun main() {
    val d1 = Dog("Cookie")
    d1.trained = true
-   println(d1) // Dog(name = Cookie)
+   println(d1) // Dog(name=Cookie)
    // więc nic o właściwości trained
 
    val d2 = d1.copy()
