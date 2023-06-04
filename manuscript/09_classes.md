@@ -54,7 +54,7 @@ Wewnątrz ciał klas możemy również definiować zmienne. Zmienne zdefiniowane
 
 Ten wzorzec jest bardzo powszechny; w projektach Javy można zobaczyć mnóstwo funkcji getterów i setterów. Są one potrzebne do osiągnięcia enkapsulacji, ale sprawiają że kod jest rozwlekły i mało czytelny. Dlatego twórcy języków wymyślili "właściwości". **Właściwość** to zmienna w klasie, która jest automatycznie enkapsulowana, a więc używa gettera i settera w sposób niejawny. W Kotlinie wszystkie zmienne zdefiniowane wewnątrz klas są właściwościami, a nie polami.
 
-Niektóre języki, takie jak JavaScript, mają wbudowane wsparcie dla właściwości, ale Javie nie. Dlatego w bajtkodzie Kotlin/JVM generowanym z kodu w Kotlinie zawarte są metody getterów i setterów.
+Niektóre języki, takie jak JavaScript, mają wbudowane wsparcie dla właściwości, ale Java go nie posiada. Dlatego w bajtkodzie Kotlin/JVM generowanym z kodu w Kotlinie zawarte są metody getterów i setterów.
 
 ```kotlin
 // Kod w Kotlin
@@ -373,7 +373,7 @@ fun main() {
 }
 ```
 
-Główny konstruktor jest zwykle używany do określania wartości początkowych dla naszych właściwości. Te właściwości często mają te same nazwy co inne parametry, dlatego Kotlinie wprowadził specjalną notację: możemy definiować właściwości wewnątrz konstruktora głównego. Jeśli przed parametrem konstruktora głównego użyjemy `val` lub `var`, to definiujemy właściwość o takiej samej nazwie jak ten parametr, której wartością będzie wartość tego parametru. Takie parametry nazywamy **właściwościami konstruktora głównego**. 
+Główny konstruktor jest zwykle używany do określania wartości początkowych dla naszych właściwości. Te właściwości często mają te same nazwy co inne parametry, dlatego Kotlin wprowadził specjalną notację: możemy definiować właściwości wewnątrz konstruktora głównego. Jeśli przed parametrem konstruktora głównego użyjemy `val` lub `var`, to definiujemy właściwość o takiej samej nazwie jak ten parametr, której wartością będzie wartość tego parametru. Takie parametry nazywamy **właściwościami konstruktora głównego**. 
 
 ```kotlin
 class User(
@@ -408,7 +408,7 @@ fun main() {
 
 ### Klasy reprezentujące dane w Kotlinie i Javie
 
-Porównując klasy zdefiniowane w Kotlinie i Javie, możemy zauważyć, ile powtarzalnego kodu zostało wyeliminowanego dzięki zwięzłej składni Kotlina. W Javie, aby za reprezentować prostego użytkownika, z imieniem, nazwiskiem i wiekiem, typowa implementacja wygląda następująco:
+Porównując klasy zdefiniowane w Kotlinie i Javie, możemy zauważyć, ile powtarzalnego kodu zostało wyeliminowanego dzięki zwięzłej składni Kotlina. W Javie, typowa implementacja reprezentacji prostego użytkownika, z imieniem, nazwiskiem i wiekiem, wygląda następująco:
 
 ```java
 public final class User {
