@@ -132,11 +132,11 @@ taskNameView.addTextChangedListener(object : TextWatcher {
 })
 ```
 
-Zauważ, że "wyrażenie tworzące obiekt" to lepsza nazwa niż "anonimowa klasa", ponieważ jest to wyrażenie, które tworzy obiekt. Choć faktem jest, że tworzy też anonimową klasę, ale to jest mało istotne z perspektywy programisty.
+Zauważ, że "wyrażenie tworzące obiekt" to trafniejsza nazwa niż "anonimowa klasa", ponieważ jest to wyrażenie, które tworzy obiekt. Choć faktem jest, że tworzy też anonimową klasę, ale to jest mało istotne z perspektywy programisty.
 
 ### Deklaracja obiektu
 
-Jeśli weźmiemy wyrażenie tworzące obiekt i nadamy mu nazwę, otrzymamy **deklarację obiektu**. Ta struktura również tworzy pojedynczy obiekt, ale obiekt ten nie jest anonimowy: ma nazwę, która może być użyta do odwołania się do niego. Zauważ, że jej składnia jest identyczna, jak składnia klasy, tylko że deklaracja obiektu nie ma konstruktora i używa słowa kluczowego `object` zamiast `class`.
+Jeśli weźmiemy wyrażenie tworzące obiekt i nadamy mu nazwę, otrzymamy **deklarację obiektu**. Ta struktura również tworzy pojedynczy, nie anonimowy obiekt: ma on nazwę, która może być użyta do odwołania się do niego. Zauważ, że jej składnia jest identyczna, jak składnia klasy, tylko że deklaracja obiektu nie ma konstruktora i używa słowa kluczowego `object` zamiast `class`.
 
 ```kotlin
 object Point {
@@ -156,7 +156,7 @@ fun main() {
 }
 ```
 
-Deklaracja obiektu to implementacja wzorca singleton[^12_4], więc ta deklaracja tworzy klasę z pojedynczą instancją. Kiedykolwiek chcemy użyć tej klasy, musimy działać na tej pojedynczej instancji. Deklaracje obiektów obsługują wszystkie funkcje, które obsługują klasy; na przykład mogą rozszerzać klasy lub implementować interfejsy.
+Deklaracja obiektu to implementacja wzorca singleton[^12_4], tworzy więc ona klasę z pojedynczą instancją. Kiedykolwiek chcemy jej użyć, musimy działać na tej pojedynczej instancji. Deklaracje obiektów obsługują wszystkie funkcje, które obsługują klasy; na przykład mogą rozszerzać klasy lub implementować interfejsy.
 
 ```kotlin
 data class User(val name: String)
@@ -180,7 +180,7 @@ fun main() {
 
 ### Obiekty towarzyszące
 
-Kiedy wspominam czasy, gdy pracowałem jako programista Java, pamiętam dyskusje na temat tego, jakie funkcjonalności powinny być wprowadzone do tego języka. Często słyszałem pomysł wprowadzenia dziedziczenia dla elementów statycznych. W końcu dziedziczenie jest bardzo ważne w Javie, więc dlaczego nie można go użyć dla elementów statycznych? Kotlin rozwiązał ten problem za pomocą companion obiektów; jednak, aby to było możliwe, musiał najpierw zlikwidować rzeczywiste elementy statyczne, tj. elementy, które są wywoływane na klasach, a nie na obiektach.
+Kiedy wspominam czasy, gdy pracowałem jako programista Javy, pamiętam dyskusje na temat tego, jakie funkcjonalności powinny być wprowadzone do tego języka. Często słyszałem o pomyśle wprowadzenia dziedziczenia dla elementów statycznych. W końcu dziedziczenie jest bardzo ważne w Javie, więc dlaczego nie można go użyć dla elementów statycznych? Kotlin rozwiązał ten problem za pomocą companion obiektów; jednak, aby to było możliwe, musiał najpierw zlikwidować rzeczywiste elementy statyczne, tj. elementy, które są wywoływane na klasach, a nie na obiektach.
 
 ```
 // Java
@@ -241,7 +241,7 @@ val user: User = User.Companion.empty()
 
 W ten sposób osiągnęliśmy składnię, która jest prawie tak wygodna, jak elementy statyczne. Jedyną niedogodnością jest to, że musimy umieścić wszystkie "statyczne" elementy wewnątrz pojedynczego obiektu (w klasie może być tylko jeden companion obiekt). Jest to ograniczenie, ale mamy coś w zamian: obiekty towarzyszące to obiekty, więc mogą rozszerzać klasy lub implementować interfejsy.
 
-Pozwól, że pokażę Ci przykład. Powiedzmy, że reprezentujesz pieniądze w różnych walutach za pomocą różnych klas, takich jak `USD`, `EUR` czy `PLN`. Dla wygody każda z nich definiuje funkcje konstruujące `from`, które upraszczają tworzenie obiektów.
+Pozwól, że pokażę Ci przykład. Powiedzmy, że reprezentujesz pieniądze w różnych walutach za pomocą dedykowanych klas, takich jak `USD`, `EUR` czy `PLN`. Dla wygody każda z nich definiuje funkcje konstruujące `from`, które upraszczają tworzenie obiektów.
 
 ```kotlin
 import java.math.BigDecimal
@@ -362,8 +362,8 @@ Nasza społeczność nadal uczy się korzystać z tych możliwości, ale już te
 // z ramki Kotlin Logging
 class FooWithLogging {
     fun bar(item: Item) {
-        logger.info { "Przedmiot $item" }
         // Logger pochodzi z obiektu towarzyszącego
+        logger.info { "Przedmiot $item" }
     }
 
     companion object : KLogging()
@@ -416,7 +416,7 @@ data class CoroutineName(
 }
 
 // Wyszukiwanie kontekstu według klucza
-val name1 = context[CoroutineName] // Tak, to jest towarzyszący
+val name1 = context[CoroutineName] // Tak, to jest obiekt towarzyszący
 
 // Można również odwoływać się do obiektów towarzyszących przez jego nazwę
 val name2 = context[CoroutineName.Key]
@@ -424,7 +424,7 @@ val name2 = context[CoroutineName.Key]
 
 ### Deklaracje obiektów danych
 
-Od Kotlin 1.8 można używać modyfikatora `data` dla deklaracji obiektów. Generuje on metodę `toString` dla obiektu; ta metoda zwraca nazwę obiektu jako string.
+Począwszy od wersji 1.8 w Kotlinie można używać modyfikatora `data` dla deklaracji obiektów. Generuje on metodę `toString` dla obiektu; ta metoda zwraca nazwę obiektu jako string.
 
 ```kotlin
 data object ABC
@@ -453,7 +453,7 @@ class Product(
 }
 ```
 
-Gdy właściwości companion obiektów lub właściwości na najwyższym poziomie reprezentują stałą wartość (znaną w czasie kompilacji) będącą albo wartością pierwotną, albo `String`[^12_3], możemy dodać modyfikator `const`. Jest to optymalizacja. Wszystkie użycia takich zmiennych zostaną zastąpione ich wartościami w czasie kompilacji.
+Gdy właściwości companion obiektów lub właściwości na najwyższym poziomie reprezentują stałą wartość (znaną w czasie kompilacji), będącą albo wartością pierwotną, albo `String`[^12_3], możemy dodać modyfikator `const`. Jest to optymalizacja. Wszystkie użycia takich zmiennych zostaną zastąpione ich wartościami w czasie kompilacji.
 
 ```kotlin
 data class Product(
@@ -489,12 +489,12 @@ fun boo() {
 
 ### Podsumowanie
 
-W tym rozdziale dowiedzieliśmy się, że obiekty można tworzyć nie tylko z klas, ale także za pomocą wyrażeń tworzących obiekty i deklaracji obiektów. Obie te funkcjonalności mają swoje praktyczne zastosowania. Wyrażenie tworzące obiekt jest używane jako alternatywa dla anonimowych klas w Javie, ale oferuje więcej. Deklaracja obiektu to implementacja wzorca singleton w Kotlinie. Specjalna forma deklaracji obiektu, znana jako companion obiekt, jest używana jako alternatywa dla elementów statycznych, ale z dodatkowym wsparciem dla dziedziczenia. Mamy również modyfikator `const`, który oferuje lepsze wsparcie dla stałych elementów zdefiniowanych na najwyższym poziomie lub w deklaracjach obiektów.
+W tym rozdziale dowiedzieliśmy się, że obiekty można tworzyć nie tylko z klas, ale także za pomocą wyrażeń tworzących obiekty i deklaracji obiektów. Obie te funkcjonalności mają swoje praktyczne zastosowania. Wyrażenie tworzące obiekt jest używane jako alternatywa dla anonimowych klas w Javie, ale oferująca więcej możliwości. Deklaracja obiektu to implementacja wzorca singleton w Kotlinie. Specjalna forma deklaracji obiektu, znana jako companion obiekt, jest używana jako alternatywa dla elementów statycznych, ale z dodatkowym wsparciem dla dziedziczenia. Mamy również modyfikator `const`, który oferuje lepsze wsparcie dla stałych elementów zdefiniowanych na najwyższym poziomie lub w deklaracjach obiektów.
 
 W poprzednim rozdziale omówiliśmy data klasy, ale Kotlin wspiera wiele różnych rodzajów klas. W następnym rozdziale poznamy kolejny ważny rodzaj: wyjątki.
 
 [^12_2]: Ta praktyka jest lepiej opisana w *Effective Kotlin*, *Temat 27: Użyj abstrakcji, aby chronić kod przed zmianami*.
 [^12_3]: Akceptowane typy to `Int`, `Long`, `Double`, `Float`, `Short`, `Byte`, `Boolean`, `Char` i `String`.
 [^12_4]: Wzorzec programowania, w którym klasa jest implementowana tak, aby mogła mieć tylko jedną instancję.
-[^12_5]: UPPER_SNAKE_CASE to konwencja nazewnictwa, w której każdy znak jest pisany wielką literą, a słowa oddzielamy podkreśleniem, jak w nazwie UPPER_SNAKE_CASE. Użycie go dla stałych jest sugerowane w dokumentacji Kotlin w sekcji *Kotlin Coding Convention*.
+[^12_5]: UPPER_SNAKE_CASE to konwencja nazewnictwa, w której każdy znak jest pisany wielką literą, a słowa oddzielamy podkreśleniem, jak w nazwie UPPER_SNAKE_CASE. Użycie go dla stałych jest sugerowane w dokumentacji Kotlina w sekcji *Kotlin Coding Convention*.
 [^12_6]: Nie traktuj ich jako najlepsze praktyki, ale raczej jako przykłady tego, co można zrobić z faktem, że companion obiekty mogą dziedziczyć po klasach i implementować interfejsy.
