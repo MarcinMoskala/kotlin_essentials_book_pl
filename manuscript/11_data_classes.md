@@ -186,7 +186,7 @@ override fun equals(other: Any?): Boolean = other is Player &&
 
 ### Kod hashujący
 
-Kolejną metodą z klasy `Any` jest `hashCode`, która służy do przekształcenia obiektu na wartość `Int`. Dzięki metodzie `hashCode`, instancję obiektu można przechowywać w implementacjach struktury danych hash table (co się tłumaczy także jako "tablica mieszająca"), będących częścią wielu popularnych klas, takich jak `HashSet` i `HashMap`. Najważniejsza zasada implementacji `hashCode` mówi, że powinna ona:
+Kolejną metodą z klasy `Any` jest `hashCode`, która służy do przekształcenia obiektu na wartość `Int`. Dzięki metodzie `hashCode` instancję obiektu można przechowywać w implementacjach struktury danych hash table (co się tłumaczy także jako "tablica mieszająca"), będących częścią wielu popularnych klas, takich jak `HashSet` i `HashMap`. Najważniejsza zasada implementacji `hashCode` mówi, że powinna ona:
 * być zgodna z `equals`, więc powinna zwracać tę samą wartość `Int` dla równych obiektów, a także zawsze zwracać ten sam kod hashujący dla tego samego obiektu.
 * rozkładać obiekty jak najbardziej równomiernie w zakresie wszystkich możliwych wartości `Int`.
 
@@ -290,7 +290,7 @@ fun main() {
 }
 ```
 
-Zauważ, że data klasy nie nadają się dla obiektów, które muszą utrzymywać pewne wymogli dla mutowalnych właściwości. Na przykład, w przypadku poniższego przykładu `User`, klasa nie byłaby w stanie zagwarantować, że wartości `name` i `surname` nie są puste, gdyby te zmienne były mutowalne (czyli zdefiniowane za pomocą `var`). Data klasy doskonale nadają się dla niemutowalnych właściwości, których ograniczenia można sprawdzić podczas tworzenia tych obiektów. W poniższym przykładzie możemy być pewni, że wartości `name` i `surname` nie są puste w instancji `User`.
+Zauważ, że data klasy nie nadają się dla obiektów, które muszą utrzymywać pewne wymogi dla mutowalnych właściwości. Na przykład, w przypadku poniższego przykładu `User`, klasa nie byłaby w stanie zagwarantować, że wartości `name` i `surname` nie są puste, gdyby te zmienne były mutowalne (czyli zdefiniowane za pomocą `var`). Data klasy doskonale nadają się dla niemutowalnych właściwości, których ograniczenia można sprawdzić podczas tworzenia tych obiektów. W poniższym przykładzie możemy być pewni, że wartości `name` i `surname` nie są puste w instancji `User`.
 
 ```kotlin
 data class User(
@@ -326,7 +326,7 @@ fun main() {
 }
 ```
 
-Ten mechanizm opiera się na pozycji, a nie nazwach. Obiekt po prawej stronie znaku równości musi dostarczać funkcji `component1`, `component2`, itp., a zmienne są przypisywane do wyników tych metod.
+Ten mechanizm opiera się na pozycji i kolejności definiowania właściwości, a nie ich nazwach. Obiekt po prawej stronie znaku równości musi dostarczać funkcji `component1`, `component2`, itp., a zmienne są przypisywane do wyników tych metod.
 
 ```kotlin
 val (id, name, pts) = player
@@ -379,12 +379,12 @@ val (name, surname) = elon
 print("To jest $name $surname!") // To jest Elon Reeve!
 ```
 
-Musimy być ostrożni z destrukturyzacją. Przydatne jest stosowanie tych samych nazw jak właściwości głównego konstruktora data klasy. W przypadku nieprawidłowej kolejności zostanie wyświetlone ostrzeżenie IntelliJ/Android Studio. Może być nawet przydatne uaktualnienie tego ostrzeżenia do błędu.
+Musimy być ostrożni z destrukturyzacją. Przydatne jest stosowanie tych samych nazw co właściwości głównego konstruktora data klasy. W przypadku nieprawidłowej kolejności zostanie wyświetlone ostrzeżenie IntelliJ/Android Studio. Może być nawet przydatne uaktualnienie tego ostrzeżenia do błędu.
 
 {width: 84%}
 ![](data_fullname.png)
 
-Destrukturyzacja pojedynczej wartości jest bardzo myląca. Zwłaszcza w funkcji lambda, gdzie nawiasy wokół argumentów w wyrażeniach lambda są w niektórych językach opcjonalne lub wymagane.
+Destrukturyzacja pojedynczej wartości jest bardzo myląca. Zwłaszcza w funkcji lambda, gdzie nawiasy wokół argumentów w wyrażeniach lambda są, w zależności od języka programowania, opcjonalne lub wymagane.
 
 ```kotlin
 data class User(
@@ -428,7 +428,7 @@ fun main() {
 }
 ```
 
-Data klasy powinny przechowywać wszystkie istotne właściwości w swoim głównym konstruktorze. W ciele klasy powinniśmy trzymać tylko nadmiarowe, niemodyfikowalne właściwości, co oznacza właściwości, których wartość jest obliczana na podstawie właściwości głównego konstruktora, takie jak `fullName`, które jest obliczane na podstawie `name` i `surname`. Takie wartości są również ignorowane przez metody data klasy, ale ich wartość zawsze będzie poprawna, ponieważ będzie obliczana podczas tworzenia nowego obiektu.
+Data klasy powinny przechowywać wszystkie istotne właściwości w swoim głównym konstruktorze. W ciele klasy powinniśmy trzymać tylko nadmiarowe, niemodyfikowalne właściwości, co oznacza właściwości, których wartość jest obliczana na podstawie właściwości głównego konstruktora, takie jak `fullName`, czyli właściwość obliczana na podstawie `name` i `surname`. Takie wartości są również ignorowane przez metody data klasy, ale ich wartość zawsze będzie poprawna, ponieważ będzie obliczana podczas tworzenia nowego obiektu.
 
 ```kotlin
 data class FullName(
@@ -499,7 +499,7 @@ fun main() {
 
 Te krotki pozostały, ponieważ są bardzo użyteczne w lokalnych zastosowaniach, takich jak:
 
-* Gdy natychmiast nadajemy wartościom nazwy:
+* Natychmiastowe nadawanie wartościom nazwy:
 
 ```kotlin
 val (description, color) = when {
@@ -509,14 +509,14 @@ val (description, color) = when {
 }
 ```
 
-* Aby reprezentować agregat, który nie jest znany z góry, co jest powszechnym przypadkiem w funkcjach biblioteki standardowej:
+* Reprezentowanie agregatu, który nie jest znany z góry, co jest powszechnym przypadkiem w funkcjach biblioteki standardowej:
 
 ```kotlin
 val (odd, even) = numbers.partition { it % 2 == 1 }
 val map = mapOf(1 to "San Francisco", 2 to "Amsterdam")
 ```
 
-W innych przypadkach preferujemy data klasy. Spójrz na przykład: załóżmy, że potrzebujemy funkcji, która przetwarza pełne imię i nazwisko na imię i nazwisko. Ktoś może reprezentować to imię i nazwisko jako `Pair<String, String>`:
+W innych przypadkach preferujemy użycie data klasy. Spójrz na przykład: załóżmy, że potrzebujemy funkcji, która przetwarza pełne imię i nazwisko na imię i nazwisko. Ktoś może reprezentować to imię i nazwisko jako `Pair<String, String>`:
 
 ```kotlin
 fun String.parseName(): Pair<String, String>? {
@@ -567,7 +567,7 @@ fun main() {
 }
 ```
 
-To prawie nic nie kosztuje i znacznie poprawia funkcję:
+To prawie nic nie kosztuje i znacznie poprawia czytelność i czystość kodu:
 
 * Typ zwracany tej funkcji jest łatwiejszy do zinterpretowania.
 
