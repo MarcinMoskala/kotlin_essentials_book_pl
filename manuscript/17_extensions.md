@@ -66,7 +66,7 @@ Słowo kluczowe `this` jest znane jako **receiver** (ang. **receiver**). Typ, kt
 
 ![](207_receiver_type.png)
 
-Funkcje rozszerzające zachowują się bardzo podobnie do funkcji z klas. Kiedy deweloperzy się o tym uczą, często martwią się o bezpieczeństwo obiektów, ale to nie jest problem, ponieważ rozszerzenia nie mają żadnego specjalnego dostępu do elementów klasy. Jedyna różnica między funkcjami rozszerzającymi a zwykłymi funkcjami z dodatkowym parametrem zamiast receivera polega na tym, że są one wywoływane "na" instancji, zamiast z instancją jako standardowym argumentem. Aby zrozumieć to lepiej, przyjrzyjmy się bliżej funkcjom rozszerzącym.
+Funkcje rozszerzające zachowują się bardzo podobnie do funkcji z klas. Kiedy deweloperzy się o nich uczą, często martwią się o bezpieczeństwo obiektów, ale to nie jest problem, ponieważ rozszerzenia nie mają żadnego specjalnego dostępu do elementów klasy. Jedyna różnica między funkcjami rozszerzającymi a zwykłymi funkcjami z dodatkowym parametrem zamiast receivera polega na tym, że są one wywoływane "na" instancji, zamiast z instancją jako standardowym argumentem. Aby zrozumieć to lepiej, przyjrzyjmy się bliżej funkcjom rozszerzającym.
 
 ### Funkcje rozszerzające pod maską
 
@@ -162,11 +162,11 @@ var User.burthday: Date?
 
 ### Rozszerzenia kontra elementy klasy
 
-Największa różnica między elementami klasy a rozszerzeniami z punktu widzenia użytkowania polega na tym, że **rozszerzenia muszą być importowane**. Z tego powodu mogą być umieszczone w dowolnym pakiecie czy nawet w innym module niż ten, w którym zdefiniowany jest rozszerzany typ. Ten fakt jest wykorzystywany, gdy nie mamy kontroli nad typem, do którego chcemy dodać funkcję lub właściwość. Jest również wykorzystywany w projektach mających na celu oddzielenie danych i zachowań. Właściwości z polami muszą być umieszczone w klasie, ale metody można umieścić oddzielnie, o ile mają dostęp do publicznego API klasy.
+Największa różnica między elementami klasy a rozszerzeniami z punktu widzenia użytkownika polega na tym, że **rozszerzenia muszą być importowane**. Z tego powodu mogą być umieszczone w dowolnym pakiecie czy nawet w innym module niż ten, w którym zdefiniowany jest rozszerzany typ. Ten fakt jest wykorzystywany, gdy nie mamy kontroli nad typem, do którego chcemy dodać funkcję lub właściwość. Jest również wykorzystywany w projektach mających na celu oddzielenie danych i zachowań. Właściwości z polami muszą być umieszczone w klasie, ale metody można umieścić oddzielnie, o ile mają dostęp do publicznego API klasy.
 
-Dzięki temu, że rozszerzenia muszą być importowane, możemy mieć wiele rozszerzeń o tej samej nazwie dla tego samego typu. To dobrze, ponieważ różne biblioteki mogą dostarczać dodatkowych metod bez powodowania konfliktów. Z drugiej strony, niebezpieczne byłoby posiadanie dwóch rozszerzeń o tej samej nazwie, ale o różnych zachowaniach. Jeśli masz taką sytuację, jest to zapach kodu i wskazówka, że ktoś nadużył możliwości funkcji rozszerzających.
+Dzięki temu, że rozszerzenia muszą być importowane, możemy mieć wiele rozszerzeń o tej samej nazwie dla tego samego typu. To dobrze, ponieważ różne biblioteki mogą dostarczać dodatkowe metody bez powodowania konfliktów. Z drugiej strony, niebezpieczne byłoby posiadanie dwóch rozszerzeń o tej samej nazwie, ale o różnych zachowaniach. Jeśli widzisz taką sytuację, jest to *code smell* i wskazówka, że ktoś nadużył możliwości funkcji rozszerzających.
 
-Inną istotną różnicą jest to, że **rozszerzenia nie są wirtualne**, co oznacza, że nie mogą być zredefiniowane w klasach pochodnych. Dlatego jeśli masz rozszerzenie zdefiniowane zarówno dla supertypu, jak i subtypu, kompilator decyduje, która funkcja jest wybierana na podstawie tego, jak zmienna jest typowana, a nie jaka jest jej rzeczywista klasa.
+Inną istotną różnicą jest to, że **rozszerzenia nie są wirtualne**, co oznacza, że nie mogą być zredefiniowane w klasach pochodnych. Co za tym idzie, jeśli masz rozszerzenie zdefiniowane zarówno dla supertypu, jak i subtypu, kompilator decyduje, która funkcja jest wybierana na podstawie tego, jak zmienna jest typowana, a nie jaka jest jej rzeczywista klasa.
 
 ```kotlin
 open class View
@@ -252,7 +252,7 @@ fun Iterable<Int>.sum(): Int {
 }
 ```
 
-Ostatnia ważna różnica polega na tym, że **rozszerzenia nie są wymieniane jako elementy w referencji do klasy**. Dlatego nie są uwzględniane przez procesory adnotacji; dlatego też, gdy przetwarzamy klasę za pomocą przetwarzania adnotacji, nie możemy wyodrębnić elementów, które powinny być przetworzone w rozszerzeniach. Z drugiej strony, jeśli wyodrębnimy elementy nieistotne jako rozszerzenia, nie musimy się martwić, że zostaną one zauważone przez te procesory. Nie musimy ich ukrywać, ponieważ i tak nie są w klasie, którą rozszerzają.
+Ostatnia ważna różnica polega na tym, że **rozszerzenia nie są wymieniane jako elementy w referencji do klasy**. To powoduje, że nie są uwzględniane przez procesory adnotacji; dlatego też, gdy przetwarzamy klasę za pomocą przetwarzania adnotacji, nie możemy wyodrębnić elementów, które powinny być przetworzone w rozszerzeniach. Z drugiej strony, jeśli wyodrębnimy elementy nieistotne jako rozszerzenia, nie musimy się martwić, że zostaną one zauważone przez te procesory. Nie musimy ich ukrywać, ponieważ i tak nie są w klasie, którą rozszerzają.
 
 ### Funkcje rozszerzeń dla deklaracji obiektów
 
@@ -316,7 +316,7 @@ fun View.hide() {
 }
 ```
 
-Jednak istnieją także przypadki, gdy wolimy używać rozszerzeń zamiast definiowania elementów w klasie. Weźmy pod uwagę interfejs `Iterable`, który zawiera tylko jedną funkcję, `iterator`; jednak ma wiele metod, które są zdefiniowane w bibliotece standardowej jako rozszerzenia[^16_1], takie jak `onEach` czy `joinToString`. Fakt, że są one zdefiniowane jako rozszerzenia, pozwala zachować minimalistyczny, zwięzły interfejs. Ma to sens, takie jak `onEach` czy `joinToString` nie są esencjonalną częścią interfejsu `Iterable`, ale są raczej pewnymi narzędziami, które mogą być używane z każdym iterowalnym typem.
+Jednak istnieją także przypadki, gdy wolimy używać rozszerzeń zamiast definiowania elementów w klasie. Weźmy pod uwagę interfejs `Iterable`, który zawiera tylko jedną funkcję, `iterator`.  Ma za to wiele metod, które są zdefiniowane w bibliotece standardowej jako rozszerzenia[^16_1], takie jak `onEach` czy `joinToString`. Fakt, że są one tak zdefiniowane, pozwala zachować minimalistyczny, zwięzły interfejs. Ma to sens, ponieważ `onEach` czy `joinToString` nie są esencjonalną częścią interfejsu `Iterable`, ale są raczej pewnymi narzędziami, które mogą być używane z każdym iterowalnym typem.
 
 ```kotlin
 interface Iterable<out T> {
@@ -379,7 +379,7 @@ class ProductJson(
 )
 ```
 
-Instancje `Product` są używane w twojej aplikacji, a instancje `ProductJson` są używane w API. Te obiekty muszą być oddzielone, ponieważ na przykład nie chcesz zmieniać odpowiedzi API, gdy zmieniasz nazwę właściwości w klasie wewnętrznej. Jednak często musimy przekształcać pomiędzy `Product` a `ProductJson`. W tym celu możemy zdefiniować funkcję klasy `toProduct`.
+Instancje `Product` są używane w twojej aplikacji, a instancje `ProductJson` są używane w API. Te obiekty muszą być oddzielone, ponieważ zdecydowałeś wcześniej, że nie chcesz zmieniać odpowiedzi API, gdy zmieniasz nazwę właściwości w klasie wewnętrznej. Często jednak musimy przekształcać pomiędzy `Product` a `ProductJson`. W tym celu możemy zdefiniować funkcję klasy `toProduct`.
 
 ```kotlin
 class ProductJson(
