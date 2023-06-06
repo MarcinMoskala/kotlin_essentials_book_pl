@@ -1,6 +1,6 @@
 ## Sealed klasy i interfejsy
 
-Klasy i interfejsy w Kotlinie nie służą tylko do reprezentowania zestawu operacji lub danych; możemy również używać klas i dziedziczenia do reprezentowania hierarchii. Na przykład, powiedzmy, że wysyłasz żądanie sieciowe; w rezultacie albo otrzymujesz żądane dane, albo żądanie kończy się niepowodzeniem z informacjami o tym, co poszło nie tak. Te dwa możliwe rezultaty można przedstawić za pomocą dwóch klas implementujących interfejs:
+Klasy i interfejsy w Kotlinie nie służą tylko do reprezentowania zestawu operacji lub danych; posługując się dziedziczeniem, możemy również reprezentować hierarchie. Na przykład, powiedzmy, że wysyłasz żądanie sieciowe; w rezultacie albo otrzymujesz żądane dane, albo żądanie kończy się niepowodzeniem z informacjami o tym, co poszło nie tak. Te dwa możliwe rezultaty można przedstawić za pomocą dwóch klas implementujących interfejs:
 
 ```kotlin
 interface Result
@@ -26,7 +26,7 @@ when (result) {
 }
 ```
 
-Problem polega na tym, że przy użyciu zwykłego interfejsu lub klasy abstrakcyjnej nie ma gwarancji, że zdefiniowane podklasy są wszystkimi możliwymi podtypami tego interfejsu lub klasy abstrakcyjnej. Ktoś może zdefiniować inną klasę i sprawić, że będzie ona implementować lub rozszerzać `Result`. Ktoś może nawet użyć do tego wyrażenia tworzącego obiekt.
+Problem polega na tym, że przy użyciu zwykłego interfejsu lub klasy abstrakcyjnej nie ma gwarancji, że zdefiniowane podklasy są wszystkimi możliwymi podtypami tego interfejsu lub klasy abstrakcyjnej.Ktoś może zdefiniować inną klasę i sprawić, że będzie ona implementować lub rozszerzać `Result`. Ktoś może nawet użyć do tego wyrażenia tworzącego obiekt.
 
 ```kotlin
 class FakeSuccess : Result
@@ -35,7 +35,7 @@ val res1: Result = FakeSuccess()
 val res2: Result = object : Result {}
 ```
 
-Hierarchia, której podklasy nie są znane z góry, nazywana jest hierarchią nieograniczoną. Dla `Result` wolelibyśmy zdefiniować hierarchię ograniczoną, co robimy, używając modyfikatora `sealed` przed klasą lub interfejsem[^14_0][^14_3].
+Hierarchia, której podklasy nie są znane z góry, nazywana jest hierarchią nieograniczoną. Dla `Result` wolelibyśmy zdefiniować hierarchię ograniczoną. Aby osiągnąć ten cel używamy modyfikatora `sealed` przed klasą lub interfejsem[^14_0][^14_3].
 
 ```kotlin
 sealed interface Result
@@ -49,13 +49,13 @@ class Success(val data: String) : Result()
 class Failure(val exception: Throwable) : Result()
 ```
 
-> Gdy używamy modyfikatora `sealed` przed klasą, sprawia to, że klasa staje się już abstrakcyjna, więc nie używamy dodatkowo modyfikatora `abstract`.
+> Gdy używamy modyfikatora `sealed` przed klasą sprawia to, że klasa staje się już abstrakcyjna, więc nie używamy dodatkowo modyfikatora `abstract`.
 
 Wszystkie podklasy sealed klasy lub interfejsu muszą spełniać kilka wymagań:
 * muszą być zdefiniowane w tym samym pakiecie i module, co ich rodzic,
 * nie mogą być lokalne ani zdefiniowane za pomocą wyrażenia tworzącego obiekt.
 
-Oznacza to, że gdy używasz modyfikatora `sealed`, kontrolujesz, jakie podklasy ma klasa lub interfejs. Klienci Twojej biblioteki lub modułu nie mogą dodać własnych bezpośrednich podklas[^14_2]. Nikt nie może po cichu dodać lokalnej klasy ani wyrażenia obiektu, które rozszerza sealed klasę lub interfejs. Kotlin uczynił to niemożliwym. Hierarchia podklas jest ograniczona.
+Oznacza to, że używając modyfikatora `sealed` kontrolujesz, jakie podklasy ma klasa lub interfejs. Klienci Twojej biblioteki lub modułu nie mogą dodać własnych bezpośrednich podklas[^14_2]. Nikt nie może po cichu dodać lokalnej klasy ani wyrażenia obiektu, które rozszerza sealed klasę lub interfejs. Kotlin uczynił to niemożliwym. Hierarchia podklas jest ograniczona.
 
 > Sealed interfejsy zostały wprowadzone w nowszych wersjach Kotlina, aby umożliwić klasom uczestnictwo w wielu różnych ograniczonych hierarchiach (można rozszerzać tylko jedną klasę, ale implementować wiele interfejsów). Relacja między sealed klasą i interfejsem jest podobna do relacji między klasą abstrakcyjną a interfejsem. Mocą klas jest to, że mogą przechowywać stan (właściwości nieabstrakcyjne) i kontrolować otwartość swoich elementów (mogą mieć metody i właściwości końcowe). Mocą interfejsów jest to, że klasa może dziedziczyć tylko z jednej klasy, ale może implementować wiele interfejsów.
 
@@ -104,7 +104,7 @@ fun handle(response: Response<String>) {
     val text = when (response) {
         is Success -> "Sukces z ${response.value}"
         is Failure -> "Błąd"
-        // else nie jest potrzebne tutaj
+        // else nie jest tutaj potrzebne
     }
     print(text)
 }
@@ -118,7 +118,7 @@ Zauważ, że gdy `else` nie jest używane, a my dodajemy kolejną podklasę seal
 
 ### Sealed vs enum
 
-Enumy reprezentują zestaw wartości. Sealed klasy lub interfejsy reprezentują zestaw typów. To istotna różnica. Klasa to coś więcej niż wartość. Może mieć wiele instancji i może być nośnikiem danych. Pomyśl o `Response`: gdyby była enumem, nie mogłaby przechowywać `value` ani `error`. Podklasy seled klasy lub interfejsy mogą przechowywać różne dane, podczas gdy enum to tylko zestaw wartości.
+Enumy reprezentują zestaw wartości. Sealed klasy lub interfejsy reprezentują zestaw typów. To istotna różnica. Klasa to coś więcej niż wartość. Może mieć wiele instancji i może być nośnikiem danych. Pomyśl o `Response`: gdyby była enumem, nie mogłaby przechowywać `value` ani `error`. Podklasy sealed klasy lub interfejsy mogą przechowywać różne dane, podczas gdy enum to tylko zestaw wartości.
 
 ### Przypadki użycia
 
@@ -174,7 +174,7 @@ Sealed klasy oraz interfejsy powinny być używane do reprezentowania ograniczon
 
 Następnie omówimy ostatni specjalny rodzaj klasy, który służy do definiowania dodatkowych informacji o elementach naszego kodu: adnotacje.
 
-[^14_0]: Ograniczone hierarchie są używane do reprezentowania wartości, które mogą przyjmować kilka różnych, ale stałych typów. W innych językach, ograniczone hierarchie mogą być reprezentowane przez sumę typów, koprodukty lub unie oznakowane.
+[^14_0]: Ograniczone hierarchie są używane do reprezentowania wartości, które mogą przyjmować kilka różnych, ale stałych typów. W innych językach ograniczone hierarchie mogą być reprezentowane przez sumę typów, koprodukty lub unie oznakowane.
 [^14_1]: Wymaga to zależności `kotlin-reflect`. Więcej o refleksji w *Zaawansowany Kotlin*.
 [^14_2]: Nadal można deklarować klasę abstrakcyjną lub interfejs jako podklasę sealed klasy, lub interfejsu i z niej już klient będzie mógł dziedziczyć w innym module.
 [^14_3]: Słowo "sealed" można przetłumaczyć jako "zapieczętowany", tak jak pieczętowało się niegdyś koperty przed wysłaniem.  
