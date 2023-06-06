@@ -97,7 +97,7 @@ fun main() {
 
 ### Przechwytywanie wyjątków
 
-Wyjątki można rzucać przy użyciu `throw`, a więc łapiemy je przy pomocy bloku `catch`. Dokładnie potrzebna jest cała struktura try-catch, która zawiera blok try i blok catch. Wyjątek rzucony w funkcji natychmiast kończy jej wykonanie, a proces powtarza się w funkcji, która wywołała tę funkcję, w której rzucony został wyjątek. To się zmienia, gdy wyjątek zostanie rzucony wewnątrz bloku try, ponieważ wtedy sprawdzane są jego bloki catch. Każdy blok catch może określić, jakiego rodzaju wyjątki przechwytuje. Pierwszy blok catch, który akceptuje rzucony wyjątek, przechwytuje go, a następnie wykonuje swoje ciało. Jeśli wyjątek zostanie przechwycony, wykonanie programu będzie kontynuowane po bloku try.
+Wyjątki można rzucać przy użyciu `throw`, a łapiemy je przy pomocy bloku `catch`, więc potrzebna jest cała struktura try-catch, która zawiera blok try i blok catch. Wyjątek rzucony w funkcji natychmiast kończy jej wykonanie, a proces powtarza się w funkcji, która ją wywołała i w której rzucony został wyjątek. To się zmienia, gdy wyjątek zostanie rzucony wewnątrz bloku try, ponieważ wtedy sprawdzane są jego bloki catch. Każdy blok catch może określić, jakiego rodzaju wyjątki przechwytuje. Pierwszy blok catch, który akceptuje rzucony wyjątek, przechwytuje go, a następnie wykonuje swoje ciało. Jeśli wyjątek zostanie przechwycony, wykonanie programu będzie kontynuowane po bloku try.
 
 ```kotlin
 class MyException : Throwable("Wiadomość")
@@ -120,7 +120,7 @@ fun main() {
 // To zostanie wypisane
 ```
 
-Zobaczmy try-catch z większą liczbą bloków catch w akcji. Pamiętaj, że zawsze wybierany jest pierwszy blok, który akceptuje rzucony wyjątek. Blok catch akceptuje wyjątek, jeśli jest on podtypem typu określonego w bloku catch. Zauważ, że wszystkie wyjątki muszą rozszerzać `Throwable`, więc przechwytywanie tego typu oznacza przechwytywanie wszystkich możliwych wyjątków.
+Zobaczmy try-catch z większą liczbą bloków catch w akcji. Pamiętaj, że zawsze wybierany jest pierwszy blok, który akceptuje rzucony wyjątek. Blok catch akceptuje wyjątek, jeśli jest on podtypem typu określonego w bloku catch. Zauważ, że wszystkie wyjątki muszą rozszerzać `Throwable`, więc przechwytywanie tego typu oznacza przechwytywanie wszystkich możliwych wyjątków. Z tego powodu stosując więcej niż jeden block catch, ważne jest zachowanie odpowiedniej kolejności przechwytywania: od najbardziej do najmniej szczegółowego wyjątku.
 
 ```kotlin
 import java.lang.NumberFormatException
@@ -203,9 +203,9 @@ fun <T : Any> fromJsonOrNull(
 
 ### Blok finally
 
-W strukturze try można również użyć bloku finally, który służy do określenia, co powinno być zawsze wywołane, nawet jeśli wystąpi wyjątek. Ten blok nie przechwytuje żadnych wyjątków; jest używany, aby zagwarantować, że pewne operacje zostaną wykonane, niezależnie od wyjątków.
+W strukturze try można również użyć bloku finally. Jego zadaniem jest określenie, co powinno być zawsze wywołane, nawet jeśli wystąpi wyjątek. Ten blok nie przechwytuje żadnych wyjątków; jest używany, aby zagwarantować, że pewne operacje zostaną wykonane, niezależnie od wyjątków.
 
-Spójrz na poniższy kod. Wyjątek jest rzucony wewnątrz `someFunction`. Ten wyjątek kończy wykonanie tej funkcji i pomija resztę bloku try. Ponieważ nie mamy bloku catch, ten wyjątek nie zostanie złapany, a więc zakończy wykonanie funkcji `main`. Jednak istnieje także blok finally, którego ciało jest wywoływane, nawet jeśli wystąpi wyjątek.
+Spójrz na poniższy kod. Wyjątek jest rzucony wewnątrz `someFunction`, czym kończy wykonanie funkcji i pomija resztę bloku try. Ponieważ nie mamy bloku catch, ten wyjątek nie zostanie złapany, a więc zakończy wykonanie funkcji `main`. Jednak istnieje także blok finally, którego ciało jest wywoływane, nawet jeśli wystąpi wyjątek.
 
 ```kotlin
 fun someFunction() {
@@ -285,7 +285,7 @@ fun pop(num: Int): List<T> {
 }
 ```
 
-W bibliotece standardowej Kotlin znajduje się również funkcja `error`, która rzuca wyjątek `IllegalArgumentException` z wiadomością określoną jako argument. Często używana jest jako ciało dla gałęzi w wyrażeniu warunkowym when, lub po prawej stronie operatora Elvisa, lub w wyrażeniu if-else.
+W bibliotece standardowej Kotlin znajduje się również funkcja `error`, która rzuca wyjątek `IllegalArgumentException` z wiadomością określoną jako argument. Często używana jest jako ciało dla gałęzi w wyrażeniu warunkowym when, a także po prawej stronie operatora Elvisa lub w wyrażeniu if-else.
 
 ```kotlin
 fun makeOperation(
@@ -318,10 +318,10 @@ fun main() {
 ### Hierarchia wyjątków
 
 Najważniejsze podtypy `Throwable` to `Error` i `Exception`. Reprezentują one dwa rodzaje wyjątków:
-* Typ `Error` reprezentuje wyjątki, po których dalsze poprawne działanie programu nie powinno być możliwe i które nie powinny być łapane, przynajmniej nie bez ponownego rzucenia ich w bloku catch. Dobrym przykładem jest `OutOfMemoryError`, który jest rzucany, gdy naszemu programowi skończy się pamięć. 
+* Typ `Error` reprezentuje wyjątki, po których dalsze, poprawne działanie programu nie powinno być możliwe i które nie powinny być obsługiwane, a przynajmniej nie bez ponownego rzucenia ich w bloku catch. Dobrym przykładem jest `OutOfMemoryError`, który jest rzucany, gdy naszej aplikacji skończy się pamięć. 
 * Typ `Exception` reprezentuje wyjątki, które można złapać w bloku catch. Ta grupa obejmuje `IllegalArgumentException`, `IllegalStateException`, `ArithmeticException` oraz `NumberFormatException`.
 
-W większości przypadków, gdy definiujemy własne wyjątki, powinniśmy używać nadklasy `Exception`; gdy przechwytujemy wyjątki, powinniśmy zgłaszać tylko podtypy klasy `Exception`.
+W większości przypadków do definiowania własnych wyjątków powinniśmy używać nadklasy `Exception`; gdy przechwytujemy wyjątki, powinniśmy zgłaszać tylko podtypy klasy `Exception`.
 
 ![](exception_hierarchy.png)
 
