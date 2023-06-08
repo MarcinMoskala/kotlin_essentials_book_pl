@@ -4,9 +4,9 @@ Kolekcje, czyli klasy i typy reprezentujące grupę elementów, okazały się je
 
 * `List`, który reprezentuje uporządkowaną kolekcję elementów. Te same elementy mogą wystąpić wiele razy. Do elementów listy można się odnieść przy użyciu indeksów (liczb całkowitych z zerem na początku reprezentujących pozycje elementów). Przykładem może być lista utworów w kolejce: ważna jest kolejność utworów, a każdy utwór może wystąpić w wielu miejscach.
 
-* `Set`, który reprezentuje kolekcję unikalnych elementów. Odzwierciedla matematyczną abstrakcję zbioru: grupę obiektów bez powtórzeń. Zbiory mogą nie szanować kolejności elementów (jednak domyślny zbiór używany przez Kotlina zachowuje kolejność elementów). Przykładem może być zbiór wygrywających numerów w loterii: muszą być unikalne, a ich kolejność nie ma znaczenia.
+* `Set`, który reprezentuje kolekcję unikalnych elementów. Odzwierciedla matematyczną abstrakcję zbioru: grupę obiektów bez powtórzeń. Zbiory nie muszą szanować kolejności elementów (ale domyślny zbiór używany przez Kotlin zachowuje kolejność elementów). Przykładem może być zbiór wygrywających numerów w loterii: muszą być unikalne, a ich kolejność nie ma znaczenia.
 
-* `Map` (znany jako słownik w niektórych innych językach), który reprezentuje zbiór par klucz-wartość. Klucze muszą być unikalne i każdy z nich wskazuje na dokładnie jedną wartość. Wiele kluczy może być powiązanych z tymi samymi wartościami. Mapy są przydatne do wyrażania logicznych połączeń między elementami.
+* `Map` (znany także jako słownik w niektórych innych językach), który reprezentuje zbiór par klucz-wartość. Klucze muszą być unikalne i każdy z nich wskazuje na dokładnie jedną wartość. Wiele kluczy może być powiązanych z tymi samymi wartościami. Mapy są przydatne do wyrażania logicznych połączeń między elementami.
 
 Istnieją również tablice, które zwykle uważane są za niskopoziomowe prymitywy używane przez inne kolekcje "pod spodem".
 
@@ -18,7 +18,7 @@ W Kotlinie istnieje cała hierarchia interfejsów, która służy do reprezentow
 
 ![Relacje między interfejsami reprezentującymi kolekcje. Niebieskie elementy są tylko do odczytu. Pomarańczowe elementy są modyfikowalne. Klasy takie jak `ArrayList` czy `HashSet` implementują warianty modyfikowalne, ale można je rzutować na wersje tylko do odczytu.](collections_interfaces.png)
 
-Na szczycie hierarchii znajduje się `Iterable`, który reprezentuje sekwencję elementów, po której można iterować. Możemy iterować po obiektach `Iterable` używając pętli for, dzięki jej metodzie `iterator`.
+Na szczycie hierarchii znajduje się `Iterable`. Reprezentuje on sekwencję elementów, po której można iterować używając pętli for, dzięki jej metodzie `iterator`.
 
 ```kotlin
 interface Iterable<out T> {
@@ -46,7 +46,7 @@ Rzeczywiste klasy używane podczas pracy z kolekcjami są zależne od platformy.
 
 ### Typy modyfikowalne i tylko do odczytu
 
-Różnica między modyfikowalnymi i tylko do odczytu interfejsami jest bardzo ważna. Na przykład funkcja `listOf` zwraca `List`, który reprezentuje kolekcję tylko do odczytu. `List` nie ma żadnych funkcji, które pozwalałyby na jego modyfikację (funkcje takie jak `add` czy `remove`). Oznacza to, że obiekt kolekcji nie może ulec zmianie, ale to nie oznacza, że zmienna `var` o typie `List` nie może ulec zmianie.
+Różnica między interfejsami modyfikowalnymi i tylko do odczytu jest bardzo ważna. Na przykład funkcja `listOf` zwraca `List`, który reprezentuje kolekcję tylko do odczytu. `List` nie ma żadnych funkcji, które pozwalałyby na jego modyfikację (funkcje takie jak `add` czy `remove`). Oznacza to, że obiekt kolekcji nie może ulec zmianie, ale to nie oznacza, że zmienna `var` o typie `List` nie może ulec zmianie.
 
 Podobnie jest z `Int` czy `String`. Oba te typy są niemutowalne, więc nie mogą się zmieniać wewnętrznie; jednak możemy zmieniać wartości zmiennych typu `Int` czy `String` za pomocą operatorów, takich jak plus czy minus.
 
@@ -78,7 +78,7 @@ fun main() {
 }
 ```
 
-W przeciwieństwie do list tylko do odczytu, listy modyfikowalne mogą być modyfikowane wewnętrznie. Więc jeśli utworzysz kolekcję za pomocą funkcji `mutableListOf`, wynikowy obiekt to `MutableList`, który obsługuje operacje takie jak `add`, `clear` czy `remove`.
+W przeciwieństwie do list tylko do odczytu, listy modyfikowalne mogą być modyfikowane wewnętrznie. Jeśli więc utworzysz kolekcję za pomocą funkcji `mutableListOf`, wynikowy obiekt to `MutableList`, który obsługuje operacje takie jak `add`, `clear` czy `remove`.
 
 ```kotlin
 fun main() {
@@ -89,9 +89,9 @@ fun main() {
 }
 ```
 
-Można łatwo przekształcić między listą modyfikowalną a listą tylko do odczytu za pomocą `toList` i `toMutableList`. Jednak często nie musisz jawnie przekształcać z `MutableList` na `List`. `MutableList` jest podtypem `List`, więc `MutableList` może być używana jako `List`.
+Można łatwo przekształcić listę modyfikowalną w listę tylko do odczytu za pomocą `toList` i `toMutableList`. Jednak często nie musisz jawnie przekształcać z `MutableList` na `List`. `MutableList` jest podtypem `List`, więc `MutableList` może być używana jako `List`.
 
-W nadchodzących sekcjach zobaczymy najważniejsze operatory do modyfikacji kolekcji tylko do odczytu oraz metody, które można użyć do modyfikacji modyfikowalnych kolekcji.
+W nadchodzących sekcjach zobaczymy najważniejsze operatory do modyfikacji kolekcji tylko do odczytu oraz metody, które można użyć do manipulowania modyfikowalnymi kolekcjami.
 
 ### Tworzenie kolekcji
 
@@ -137,11 +137,11 @@ fun main() {
 }
 ```
 
-> Istnieją jednak plany, by wprzyszłości zostały wprowadzone literały kolekcji do języka Kotlin.
+> Istnieją jednak plany, aby w przyszłości wprowadzić literały kolekcji do języka Kotlin.
 
 Do wszystkich tych typów przekazujemy początkowe elementy jako argumenty. Jedynym wyjątkiem jest mapa, która jest zbiorem par klucz-wartość, więc początkowe pary określamy za pomocą `Pair`, który zwykle tworzymy za pomocą funkcji `to` (jak wyjaśniono w rozdziale *Data klasy*).
 
-Możemy również przekształcić jedną kolekcję w inną. Często można to zrobić za pomocą metody konwerującej, której nazwa zawiera typ, który chcemy osiągnąć, poprzedzony prefiksem `to`.
+Możemy również przekształcić jedną kolekcję w inną. Często można to zrobić za pomocą metody konwertującej, której nazwa zawiera typ, który chcemy osiągnąć, poprzedzony prefiksem `to`.
 
 ```kotlin
 fun main() {
@@ -207,7 +207,7 @@ fun main() {
 }
 ```
 
-Od początku istnienia języka Kotlin trwają dyskusje, który z tych dwóch podejść powinna być preferowana. Pierwsze daje większą swobodę[^17_2], ale drugie jest uważane za bardziej wydajne[^17_3].
+Od początku istnienia języka Kotlin trwają dyskusje, które z tych dwóch podejść powinno być preferowane. Pierwsze daje większą swobodę[^17_2], ale drugie jest uważane za bardziej wydajne[^17_3].
 
 Możesz również użyć operatora `+=` do dodawania elementu lub kolekcji do zmiennej `var`, która wskazuje na listę tylko do odczytu, lub do modyfikacji zmiennej `val`, która wskazuje na modyfikowalną listę.
 
@@ -223,7 +223,7 @@ fun main() {
 }
 ```
 
-Jednak używanie `+=` dla list tylko do odczytu powoduje ostrzeżenie, że w tle została utworzona nowa kolekcja, co może prowadzić do problemów z wydajnością, gdy mamy do czynienia z dużymi listami.
+Zauważ, że używanie `+=` dla list tylko do odczytu powoduje pojawienie się ostrzeżenia, że w tle została utworzona nowa kolekcja. Może to prowadzić do problemów z wydajnością, gdy mamy do czynienia z dużymi listami.
 
 ![](plusAssign.png)
 
@@ -282,7 +282,7 @@ fun main() {
 }
 ```
 
-Możesz znaleźć indeks elementu, używając metody `indexOf`. Zwraca ona `-1`, gdy na liście nie ma pasującego elementu.
+Aby znaleźć indeks elementu, użyj metody `indexOf`. Zwraca ona `-1`, gdy na liście nie ma pasującego elementu.
 
 ```kotlin
 fun main() {
@@ -307,7 +307,7 @@ fun main() {
 
 #### Sprawdzanie, czy lista zawiera element
 
-Można sprawdzić, czy lista zawiera element, używając metody `contains` lub operatora `in`. Są to synonimy.
+Do sprawdzenia, czy lista zawiera element, używa się metody `contains` lub operatora `in`. Są to synonimy.
 
 ```kotlin
 fun main() {
@@ -331,7 +331,7 @@ fun main() {
 
 #### Iterowanie po liście
 
-Możesz przeiterować po liście używając pętli for. Wystarczy umieścić listę po prawej stronie `in`.
+Do iterowania po liście używa się pętli for. Wystarczy umieścić listę po prawej stronie `in`.
 
 ```kotlin
 fun main() {
@@ -348,11 +348,11 @@ To są najbardziej podstawowe operacje na listach. Więcej z nich omówimy w kol
 
 ### Zbiory
 
-Używamy **zborów**[^17_8] zamiast list gdy:
+Używamy **zbiorów**[^17_8] zamiast list gdy:
 1. chcemy zapewnić, że elementy w naszej kolekcji są unikalne (zbiory przechowują tylko unikalne elementy),
 2. często szukamy elementu w kolekcji (znalezienie elementów w secie jest znacznie bardziej efektywne niż na liście[^17_6]).
 
-Sety są dość podobne do list, dlatego używa się podobnych metod do operacji na nich. Jednak zbiory nie traktują porządku tak poważnie jak listy, a niektóre rodzaje zbiorów w ogóle nie szanują porządku. Dlatego nie możemy odnosić się do elementów po indeksie.
+Sety są dość podobne do list, dlatego używa się podobnych metod do operacji na nich. Jednak zbiory nie traktują porządku tak poważnie, jak listy, a niektóre rodzaje zbiorów w ogóle nie szanują porządku. Dlatego nie możemy odnosić się do elementów po indeksie.
 
 Tworzymy zbiór, używając funkcji `setOf`; następnie określamy jego wartości za pomocą argumentów.
 
@@ -376,7 +376,7 @@ fun main() {
 
 #### Modyfikowanie zbiorów
 
-Możesz dodawać elementy do zbioru tylko do odczytu w ten sam sposób, jak do listy tylko do odczytu: używając plusa lub minusa.
+Dodawanie elementów do zbioru tylko do odczytu przeprowadza się w ten sam sposób, jak do listy tylko do odczytu: używając plusa lub minusa.
 
 ```kotlin
 fun main() {
@@ -392,7 +392,7 @@ fun main() {
 }
 ```
 
-Możesz również użyć modyfikowalnego zbioru i jego metod `add`, `addAll` lub `remove`.
+Alternatywą jest użycie modyfikowalnego zbioru i jego metod `add`, `addAll` lub `remove`.
 
 ```kotlin
 fun main() {
@@ -493,7 +493,7 @@ fun main() {
 
 #### Sprawdzanie, czy zbiór zawiera element
 
-Można sprawdzić, czy zbiór zawiera określony element, używając metody `contains` lub operatora `in`. Są to synonimy.
+Użyj metody `contains` lub operatora `in`, aby sprawdzić, czy zbiór zawiera określony element. Są to synonimy.
 
 ```kotlin
 fun main() {
@@ -517,7 +517,7 @@ fun main() {
 
 #### Iterowanie po zbiorach
 
-Można iterować po zbiorze za pomocą pętli for. Wystarczy umieścić zbiór po prawej stronie `in`.
+Podobnie jak w przypadku listy, po zbiorze iterujemy za pomocą pętli for. Wystarczy umieścić zbiór po prawej stronie `in`.
 
 ```kotlin
 fun main() {
@@ -530,10 +530,10 @@ fun main() {
 
 ### Mapy
 
-Mapy służą do przechowywania powiązań między kluczami a ich wartościami. Na przykład:
-* Od identyfikatora użytkownika do obiektu reprezentującego tego użytkownika.
-* Od adresu strony internetowej do jej adresu IP.
-* Od nazwy konfiguracji do danych przechowywanych w tej konfiguracji.
+Mapy służą do przechowywania powiązań między kluczami a ich wartościami, takich jak:
+* identyfikator użytkownika do obiektu reprezentującego tego użytkownika.
+* adres strony internetowej do jej adresu IP.
+* nazwa konfiguracji do danych przechowywanych w tej konfiguracji.
 
 ```kotlin
 class CachedApiArticleRepository(
@@ -668,7 +668,7 @@ fun main() {
 
 #### Sprawdzanie rozmiaru mapy
 
-Możesz sprawdzić, ile wpisów masz w mapie, używając właściwości `size`.
+W celu sprawdzenia, ile wpisów posiadasz w mapie, używasz właściwości `size`.
 
 ```kotlin
 fun main() {
@@ -679,7 +679,7 @@ fun main() {
 
 #### Iterowanie po mapach
 
-Możesz iterować po mapie używając pętli for. Iterator zwraca wpisy o typie `Entry`, z których każdy zawiera właściwości `key` i `value`, reprezentujące odpowiednio klucz i wartość wpisu.
+Tak samo, jak w przypadku list i zbiorów, używamy pętli for aby iterować po mapie. Iterator zwraca wpisy o typie `Entry`, z których każdy zawiera właściwości `key` i `value`, reprezentujące odpowiednio klucz i wartość wpisu.
 
 ```kotlin
 fun main() {
@@ -692,7 +692,7 @@ fun main() {
 // B is for Bob
 ```
 
-Możesz również zdestrukturyzować każdy wpis na dwie zmienne reprezentujące kolejno klucz i wartość. Kotlin obsługuje destrukturyzację w pętli for jak na poniższym przykładzie.
+Zamiast używać `Entry` mamy również opcję, aby zdestrukturyzować każdy wpis na dwie zmienne reprezentujące kolejno klucz i wartość. Kotlin obsługuje destrukturyzację w pętli for jak w poniższym przykładzie.
 
 ```kotlin
 fun main() {
@@ -727,13 +727,13 @@ fun main() {
 
 **Tablica** to nisko-poziomowa struktura danych, która ściśle wiąże się z organizacją danych w pamięci. Pamięć naszego komputera przypomina wielki parking, gdzie każde miejsce oznaczone jest kolejnym numerem. Tablica przypomina rezerwację na kilka przyległych miejsc. Dzięki takiej rezerwacji łatwo iterować po samochodach, które posiadamy. Również łatwo znaleźć samochód o konkretnym indeksie.
 
-Załóżmy, że tablica zaczyna się na pozycji 1024 w pamięci, a my chcemy znaleźć element o indeksie 100 w tablicy. Wiemy również, że każdy element zajmuje 4 pozycje (tablica rezerwuje stałą ilość miejsca dla swoich elementów, która w większości przypadków to rozmiar referencji pamięci). To proste zadanie: nasz element zaczyna się na pozycji 1024 + 100 * 4 = 1424. Jak więc widać, nie musimy szukać samochody o konkretnym indeksie, doskonale wiemy, gdzie on jest. Dlatego dostęp do elementu na określonej pozycji to bardzo prosta i wydajna operacja, co jest dużą zaletą korzystania z tablic.
+Załóżmy, że tablica zaczyna się na pozycji 1024 w pamięci, a my chcemy znaleźć element o indeksie 100 w tablicy. Wiemy również, że każdy element zajmuje 4 pozycje (tablica rezerwuje stałą ilość miejsca dla swoich elementów, która w większości przypadków to rozmiar referencji pamięci). To proste zadanie: nasz element zaczyna się na pozycji 1024 + 100 * 4 = 1424. Jak więc widać, nie musimy szukać samochodu o konkretnym indeksie, gdyż doskonale wiemy, gdzie on jest. Dlatego dostęp do elementu na określonej pozycji to bardzo prosta i wydajna operacja, co jest dużą zaletą korzystania z tablic.
 
 Korzystanie z tablic bezpośrednio jest trudniejsze niż z innych rodzajów kolekcji. Mają stały rozmiar, ograniczoną liczbę operacji, nie implementują żadnego interfejsu i nie nadpisują metod `toString`, `equals` ani `hashCode`. Jednak tablice są używane przez wiele innych struktur danych "pod maską". Na przykład, gdy używasz `mutableListOf` w Kotlin/JVM, wynikowy obiekt to `ArrayList`, który przechowuje elementy w tablicy. Dlatego wyszukiwanie elementu po indeksie w domyślnej liście jest tak wydajne. `ArrayList` ma więc zalety tablic, ale oferuje znacznie więcej. Tablice mają stały rozmiar, więc nie można dodać więcej elementów, niż pozwala ich rozmiar ściśle zdefiniowany. Gdy dodajesz element do `ArrayList`, a jego wewnętrzna tablica jest już pełna, tworzona jest większa tablica (rezerwowane jest miejsce w pamięci), która następnie wypełniana jest poprzednimi wartościami. Korzystanie z list jest więc wydajniejsze, a więc preferowane domyślnie. Korzystanie z tablic ograniczamy do wydajnościowo kluczowych części naszych aplikacji[^17_4].
 
 Tablice są również używane przez domyślne implementacje `Set` i `Map`, które stosujemy w Kotlin/JVM. Oba opierają się na algorytmie hash table, który musi używać tablicy, aby działać wydajnie.
 
-Niemniej jednak zobaczmy, jak można używać tablic bezpośrednio. Tworzymy tablicę za pomocą funkcji `arrayOf`. Tworzy to instancję klasy `Array` oraz typ `Array<T>`, gdzie `T` to typ elementów. Aby uzyskać element o określonym indeksie, możemy użyć nawiasów kwadratowych lub metody `get`. Aby zmodyfikować element w określonej pozycji, można użyć nawiasów kwadratowych lub metody `set`. Można również uzyskać rozmiar tablicy, używając właściwości `size` lub iterując po tablicy za pomocą pętli for.
+Niemniej jednak zobaczmy, jak można używać tablic bezpośrednio. Tworzymy tablicę za pomocą funkcji `arrayOf`. Rezultatem jest instancja klasy `Array` oraz typ `Array<T>`, gdzie `T` to typ elementów. Aby uzyskać element o określonym indeksie, możemy użyć nawiasów kwadratowych lub metody `get`. Aby zmodyfikować element w określonej pozycji, można użyć nawiasów kwadratowych lub metody `set`. Można również uzyskać rozmiar tablicy, używając właściwości `size`, a także iterować po tablicy za pomocą pętli for.
 
 ```kotlin
 fun main() {
@@ -803,7 +803,7 @@ fun main() {
 
 #### Tablice typów prostych
 
-Niektóre rodzaje wartości w Kotlinie, takie jak `Int` czy `Char`, mogą być reprezentowane w prostszy sposób niż zwykły obiekt. Ta forma jest znana jako typ prosty (primitive) i jest optymalizacją, która nie wpływa na używanie wartości; jednak sprawia, że wartości prymitywne zajmują mniej pamięci, a ich użycie jest bardziej wydajne. Problem polega na tym, że typów prostych nie można przechowywać w zwykłych kolekcjach, ale można je przechowywać w specjalnych tablicach. Dla każdej wartości, która ma formę prymitywną, istnieje dedykowany typ tablicy. Oto one:
+Niektóre rodzaje wartości w Kotlinie, takie jak `Int` czy `Char`, mogą być reprezentowane w prostszy sposób niż zwykły obiekt. Ta forma jest znana jako typ prosty (primitive) i jest optymalizacją, która nie wpływa na używanie wartości; sprawia jednak, że wartości prymitywne zajmują mniej miejsca pamięci, a ich użycie jest bardziej wydajne. Problem polega na tym, że typów prostych nie można przechowywać w zwykłych kolekcjach, ale można je przechowywać w specjalnych tablicach. Dla każdej wartości, która ma formę prymitywną, istnieje dedykowany typ tablicy. Oto one:
 * `IntArray`, która reprezentuje tablicę prymitywnych wartości `Int`.
 * `LongArray`, która reprezentuje tablicę prymitywnych wartości `Long`.
 * `DoubleArray`, która reprezentuje tablicę prymitywnych wartości `Double`.
@@ -830,7 +830,7 @@ fun main() {
 }
 ```
 
-Tablice prymitywów nie są często używane w większości rzeczywistych projektów. Są one traktowane jako niskopoziomowe optymalizacje wydajności lub użycia pamięci, stosowane tam, gdzie wydajność ma duże znaczenie[^17_5].
+Tablice prymitywów nie są często używane na codzień. Są one traktowane jako niskopoziomowe optymalizacje wydajności lub użycia pamięci, stosowane tam, gdzie wydajność ma duże znaczenie[^17_5].
 
 #### Parametry vararg 
 
@@ -869,7 +869,7 @@ fun <T> setOf(vararg elements: T): Set<T> =
     else emptySet()
 ```
 
-Można również rozłożyć tablicę na argumenty vararg, używając symbolu `*`.
+W celu rozłożenia tablicy na argumenty vararg używamy symbolu `*`.
 
 ```kotlin
 fun main() {
@@ -888,11 +888,11 @@ W tym rozdziale omówiliśmy najważniejsze rodzaje kolekcji używane w Kotlinie
 
 * `List` reprezentuje uporządkowaną kolekcję elementów. Jest to najbardziej podstawowy sposób przechowywania kolekcji elementów.
 * `Set` reprezentuje kolekcję unikalnych elementów. Używamy go, gdy chcemy się upewnić, że elementy w naszej kolekcji są unikalne, lub gdy często szukamy określonego elementu.
-* `Map` to zestaw par klucz-wartość. Używamy go do przechowywania powiązań między kluczami a wartościami.
+* `Map` to zestaw par klucz-wartość. Używamy go do przechowywania powiązań pomiędzy kluczami a wartościami.
 
-Mamy również tablice, ale one są rzadko używane bezpośrednio w Kotlinie, ponieważ preferujemy korzystanie z innych rodzajów kolekcji. 
+Mamy również tablice, ale w Kotlinie są one rzadko używane bezpośrednio, ponieważ preferujemy korzystanie z innych rodzajów kolekcji. 
 
-Jeśli zastanawiało Cię, dlaczego operator `in` i metoda `contain` zwracają zawsze dokładnie taką samą wartość, to wyjaśnione to zostanie już w następnym rozdziale. 
+Jeśli zastanawiało Cię, dlaczego operator `in` i metoda `contain` zwracają zawsze dokładnie taką samą wartość, to wyjaśnienie czeka na Ciebie już w następnym rozdziale. 
 
 [^17_0]: Ten temat jest omówiony w książce *Effective Kotlin*, szczególnie w *Item 27: Use abstraction to protect code against changes*.
 [^17_1]: Domyślna wartość jest obliczana przez argument funkcyjny, taki jak wyrażenie lambda; opiszemy to w kolejnej książce *Funkcyjny Kotlin*.
@@ -901,5 +901,5 @@ Jeśli zastanawiało Cię, dlaczego operator `in` i metoda `contain` zwracają z
 [^17_4]: Zobacz *Effective Kotlin*, *Item 55: Consider Arrays with primitives for performance-critical processing*.
 [^17_5]: Zobacz *Effective Kotlin*, *Item 55: Consider Arrays with primitives for performance-critical processing*.
 [^17_6]: Domyślny zestaw opiera się na algorytmie hash table, który sprawia, że znalezienie elementu o prawidłowo zaimplementowanej metodzie `hashCode` jest naprawdę szybkie. Czas tej operacji nie zależy od liczby elementów w zestawie (ma więc złożoność `O(1)`). Szczegóły dotyczące działania tego algorytmu tablic mieszających znajdują się w *Effective Kotlin* *Item 43: Respect the contract of hashCode*.
-[^17_7]: Domyślna mapa oparta jest na algorytmie hahs table, co sprawia, że znalezienie elementu po kluczu jest naprawdę szybkie (gdy klucz ten ma właściwie zaimplementowaną metodę `hashCode`). Czas tej operacji nie zależy od liczby wpisów w mapie (czyli ma złożoność `O(1)`). Aby dowiedzieć się więcej o tym, jak działa algorytm tablicy mieszającej, zobacz *Effective Kotlin* *Item 43: Respect the contract of hashCode*.
+[^17_7]: Domyślna mapa oparta jest na algorytmie hash table, co sprawia, że znalezienie elementu po kluczu jest naprawdę szybkie (gdy klucz ten ma właściwie zaimplementowaną metodę `hashCode`). Czas tej operacji nie zależy od liczby wpisów w mapie (czyli ma złożoność `O(1)`). Aby dowiedzieć się więcej o tym, jak działa algorytm tablicy mieszającej, zobacz *Effective Kotlin* *Item 43: Respect the contract of hashCode*.
 [^17_8]: Słowo "zbiór" jest tutaj tłumaczeniem słowa "set" i reprezentuje konkretny typ kolekcji. 
