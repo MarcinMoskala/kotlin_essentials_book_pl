@@ -1,4 +1,4 @@
-## Generyki
+## Typy generyczne
 
 Java została pierwotnie zaprojektowana tak, że wszystkie listy miały ten sam typ `List`, zamiast konkretnych list z określonymi parametrami typów, takimi jak `List<String>` czy `List<Int>`. Typ `List` w Javie akceptuje wszystkie rodzaje wartości; gdy prosisz o wartość na określonej pozycji, typem wyniku jest `Object` (który w Javie jest nadtypem wszystkich typów).
 
@@ -14,7 +14,7 @@ for(int i = 0; i < names.size(); i++){
 }
 ```
 
-Trudno się używa takich list. Stanowczo preferujemy listy z określonymi typami elementów. Dopiero wtedy możemy być pewni, że nasza lista zawiera elementy właściwego typu i dopiero wtedy nie musimy jawnie rzutować tych elementów, gdy pobieramy je z listy. To był jeden z głównych powodów wprowadzenia typów generycznych w wersji 5 Javy. W Kotlinie nie mamy tego problemu, ponieważ został on zaprojektowany z obsługą typów generycznych od samego początku, a wszystkie listy są generyczne, więc muszą określić, jakie rodzaje elementów akceptują. Generyki są ważną cechą większości nowoczesnych języków programowania, dlatego w tym rozdziale omówimy, czym są i jak używamy ich w Kotlinie.
+Takie listy używa się dość trudno. Stanowczo preferujemy listy z określonymi typami elementów. Dopiero wtedy możemy być pewni, że zawierają one elementy właściwego typu i dopiero wtedy nie musimy jawnie rzutować tych elementów, gdy pobieramy je z listy. Ta trudność była jednym z głównych powodów wprowadzenia typów generycznych do Javy 5. W Kotlinie nie mamy tego problemu, ponieważ został on zaprojektowany z obsługą typów generycznych od samego początku, a wszystkie listy są generyczne, więc trzeba z góry określić rodzaj elementów, jaki akceptują. Generyki są ważną cechą większości nowoczesnych języków programowania i w tym rozdziale omówimy, czym są i jak używamy ich w Kotlinie.
 
 W Kotlinie mamy trzy rodzaje elementów generycznych:
 * funkcje generyczne,
@@ -25,7 +25,7 @@ Omówmy je kolejno.
 
 ### Funkcje generyczne
 
-Tak jak możemy przekazać wartość jako argument do parametru, możemy przekazać typ jako **argument typu** do **parametru typu**. Aby to zrobić, funkcja musi zdefiniować jeden lub więcej parametr typu w nawiasach ostrokątnych zaraz po słowie kluczowym `fun`. Zgodnie z tą konwencją, nazwy parametrów typu pisane są wielkimi literami. Gdy funkcja definiuje parametr typu, jej wywołanie musi określić argumenty typu. Parametr typu jest symbolem zastępczym dla konkretnego typu; argument typu to rzeczywisty typ używany podczas wywoływania funkcji. Aby jawnie określić argumenty typu, używamy również nawiasów ostrokątnych.
+Tak jak możemy przekazać wartość jako argument do parametru, możemy przekazać typ jako **argument typu** do **parametru typu**. Aby to zrobić, funkcja musi zdefiniować co najmniej jeden parametr typu w nawiasach ostrokątnych zaraz po słowie kluczowym `fun`. Zgodnie z tą konwencją, nazwy parametrów typu pisane są wielkimi literami. Gdy funkcja definiuje parametr typu, jej wywołanie musi określić argument typu. Parametr typu jest symbolem zastępczym dla konkretnego typu; argument typu to rzeczywisty typ używany podczas wywoływania funkcji. Aby jawnie określić argumenty typu, używamy również nawiasów ostrokątnych.
 
 ```kotlin
 fun <T> a() {} // T to parametr typu
@@ -173,7 +173,7 @@ fun main() {
 }
 ```
 
-Gdy używasz parametrów typu w klasach lub funkcjach, możesz uczynić je nullowalnymi, dodając znak zapytania. Zobacz poniższy przykład. Typ `T` może być, ale nie musi być nullowany, w zależności od argumentu typu, ale typ `T?` zawsze jest nullowany. Możemy przypisać wartość `null` do zmiennych typu `T?`. Nullowanych parametr typu `T?` musi zostać rozpakowany przed użyciem go jako `T`.
+Gdy używasz parametrów typu w klasach lub funkcjach, możesz uczynić je nullowalnymi, dodając znak zapytania. Zobacz poniższy przykład. Typ `T` może, ale nie musi być nullowalny, w zależności od argumentu typu, ale typ `T?` zawsze jest nullowalny. Możemy przypisać wartość `null` do zmiennych typu `T?`. Nullowalny parametr typu `T?` musi zostać rozpakowany przed użyciem go jako `T`.
 
 ```kotlin
 class Box<T> {
@@ -183,7 +183,7 @@ class Box<T> {
 }
 ```
 
-Można wyrazić również przeciwność. Ponieważ parametr typu może reprezentować typ nullowany, możemy określić zdecydowanie nienullowalną wersję tego typu, dodając `& Any` po parametrze typu. W poniższym przykładzie metoda `orThrow` może być wywoływana dla dowolnej wartości, ale nawet jeśli jej argument typu jest nullowany, zawsze typ zwracany będzie nienullowany.
+Można wyrazić również przeciwność. Ponieważ parametr typu może reprezentować typ nullowalny, możemy określić zdecydowanie nienullowalną wersję tego typu, dodając `& Any` po parametrze typu. W poniższym przykładzie metoda `orThrow` może być wywoływana dla dowolnej wartości, ale nawet jeśli jej argument typu jest nullowalny, zawsze typ zwracany będzie nienullowalny.
 
 ```kotlin
 fun <T> T.orThrow(): T & Any = this ?: throw Error()
@@ -224,7 +224,7 @@ interface List<out E> : Collection<E> {
 
 ![Dla `List<String>`, metody takie jak `filter` mogą wywnioskować `String` jako parametr wyrażenia lambda.](list_suggestions.png)
 
-Generyczne interfejsy mogą być implementowane przez zarówno zwykłe jak i generyczne klasy. Powiedzmy, że mamy klasę `Dog`, która implementuje `Consumer<DogFood>`, jak pokazano w poniższym fragmencie. Interfejs `Consumer` oczekuje metody `consume` z parametrem typu `T`. Oznacza to, że nasz `Dog` musi nadpisać metodę `consume` z argumentem typu `DogFood`. Musi to być `DogFood`, ponieważ implementujemy `Consumer<DogFood>` i typ parametru metody `consume` musi pasować do użytego argumentu typu `DogFood`. Ponieważ `Dog` implementuje `Consumer<DogFood>`, instancja `Dog` może być rzutowana do `Consumer<DogFood>`.
+Generyczne interfejsy mogą być implementowane przez zarówno zwykłe, jak i generyczne klasy. Powiedzmy, że mamy klasę `Dog`, która implementuje `Consumer<DogFood>`, jak pokazano w poniższym fragmencie. Interfejs `Consumer` oczekuje metody `consume` z parametrem typu `T`. Oznacza to, że nasz `Dog` musi nadpisać metodę `consume` z argumentem typu `DogFood`. Musi to być `DogFood`, ponieważ implementujemy `Consumer<DogFood>` i typ parametru metody `consume` musi pasować do użytego argumentu typu `DogFood`. Ponieważ `Dog` implementuje `Consumer<DogFood>`, instancja `Dog` może być rzutowana do `Consumer<DogFood>`.
 
 ```kotlin
 interface Consumer<T> {
@@ -260,7 +260,7 @@ fun main() {
 }
 ```
 
-Spójrz jeszcze na bardziej praktyczny przykład klasy niegenerycznej, dziedziczącej po klasie generycznej: `MessageListAdapter`, który dziedziczy po `ArrayAdapter<String>`.
+Spójrz jeszcze na bardziej praktyczny przykład klasy niegenerycznej `MessageListAdapter`, dziedziczącej po klasie generycznej `ArrayAdapter<String>`.
 
 ```kotlin
 class MessageListAdapter(
@@ -391,7 +391,7 @@ Ograniczenia parametrów typu są również używane dla klas generycznych. Rozw
 class ListAdapter<T : ItemAdaper>(/*...*/) { /*...*/ }
 ```
 
-Ważnym wynikiem posiadania ograniczenia jest to, że instancje tego typu mogą korzystać ze wszystkich metod oferowanych przez określony nadtyp. W ten sposób, gdy `T` jest ograniczone jako podtyp `Iterable<Int>`, wiemy, że możemy iterować po instancjach typu `T`, a elementy zwracane przez iterator będą typu `Int`. Instancje mają typ generyczny `T` ograniczony jako podtyp `Comparable<T>`, wiemy, że te instance możemy ze sobą porównywać. Innym popularnym wyborem dla ograniczenia jest `Any`, co oznacza, że typ może być dowolnym typem nienullowalnym.
+Ważnym wynikiem posiadania ograniczenia jest to, że instancje tego typu mogą korzystać ze wszystkich metod oferowanych przez określony nadtyp. W ten sposób, gdy `T` jest ograniczone jako podtyp `Iterable<Int>`, wiemy, że możemy iterować po instancjach typu `T`, a elementy zwracane przez iterator będą typu `Int`. Kiedy instancje mają typ generyczny `T` ograniczony jako podtyp `Comparable<T>`, wiemy, że możemy je ze sobą porównywać. Innym popularnym wyborem dla ograniczenia jest `Any`, co oznacza, że typ może być dowolnym typem nienullowalnym.
 
 ```kotlin
 fun <T : Iterable<Int>> T.count(): Int {
@@ -446,7 +446,7 @@ fun main() {
 
 ### Star projection
 
-W niektórych przypadkach nie chcemy podać konkretnego argumentu typu. W takich sytuacjach możemy użyć star projection, czyli znaku `*`, który zastępuje argument typu i akceptuje dowolny typ. Istnieją dwie typowe sytuacje, w których jest to przydatne. Pierwsza to sprawdzenie, czy zmienna jest listą. W tym przypadku należy użyć sprawdzenia `is List<*>`. Użycie konkretnego argumentu typu, jak `List<Int>`, byłoby to i tak kompilowane do `List`, ze względu na type erasure. Oznacza to, że lista stringów przeszłaby sprawdzenie `is List<Int>`. Takie sprawdzenie byłoby mylące i jest niedozwolone w Kotlinie. Zamiast tego musisz użyć `is List<*>`. Podobnie z innymi typami generycznymi. 
+W niektórych przypadkach nie chcemy podać konkretnego argumentu typu. W takich sytuacjach możemy użyć star projection, czyli znaku `*`, który zastępuje argument typu i akceptuje dowolny typ. Istnieją dwie typowe sytuacje, w których jest to przydatne. Pierwsza to sprawdzenie, czy zmienna jest listą. W tym przypadku należy użyć sprawdzenia `is List<*>`. Użycie konkretnego argumentu typu, jak `List<Int>`, byłoby to i tak kompilowane do `List`, ze względu na type erasure. Oznacza to, że lista stringów przeszłaby sprawdzenie `is List<Int>`. Takie sprawdzenie byłoby mylące i jest niedozwolone w Kotlinie. Zamiast tego musisz użyć `is List<*>`. Podobnie jest z innymi typami generycznymi. 
 
 ```kotlin
 fun main() {
@@ -456,7 +456,7 @@ fun main() {
 }
 ```
 
-Star projection można również stosować, określając typy zmiennych. Możesz użyć `List<*>`, gdy chcesz wyrazić, że chcesz listy, bez względu na typ jej elementów. Gdy pobierasz elementy z takiej listy, mają one typ `Any?`, który jest nadrzędnym typem wszystkich typów.
+Star projection można również stosować, określając typy zmiennych. Możesz użyć `List<*>`, gdy chcesz wyrazić, że oczekujesz listy bez względu na typ jej elementów. Gdy pobierasz elementy z takiej listy, mają one typ `Any?`, który jest nadrzędnym typem wszystkich typów.
 
 ```kotlin
 fun printSize(list: List<*>) {
@@ -470,7 +470,7 @@ fun printList(list: List<*>) {
 }
 ```
 
-Star projection nie należy mylić z argumentem typu `Any?`. Aby zrozumieć różnicę, porównajmy `MutableList<Any?>` i `MutableList<*>`. Oba te typy deklarują `Any?` jako generyczny typ wyników z merod. Jednak, gdy dodawane są elementy, `MutableList<Any?>` akceptuje wszystko (`Any?`), ale `MutableList<*>` akceptuje `Nothing`, więc nie akceptuje żadnych wartości.
+Nie należy mylić star projection z argumentem typu `Any?`. Aby zrozumieć różnicę, porównajmy `MutableList<Any?>` i `MutableList<*>`. Oba te typy deklarują `Any?` jako generyczny typ wyników z metod. Jednak, gdy dodawane są elementy, `MutableList<Any?>` akceptuje wszystko (`Any?`), ale `MutableList<*>` akceptuje `Nothing`, więc nie akceptuje żadnych wartości.
 
 ```kotlin
 fun main() {
@@ -490,8 +490,8 @@ Typ określony przez star projection jest interpretowany jako `Any?` we wszystki
 
 ### Podsumowanie
 
-Dla wielu programistów generyki wydają się tak trudne i przerażające, ale tak naprawdę są dość proste i intuicyjne. Możemy uczynić element generycznym, poprzez dodanie parametrów typu. Takie parametry typu mogą być używane wewnątrz tego elementu. Ten mechanizm pozwala na uogólnienie algorytmów i klas, tak aby mogły być używane z różnymi typami. Dobrze jest rozumieć, jak działają generyki, dlatego ten rozdział przedstawił prawie wszystkie ich kluczowe aspekty. Jednakże są jeszcze inne, takie jak modyfikatory wariancji (`out` i `in`), ale do nich wrócimy w książce *Zaawansowany Kotlin*.
+Dla wielu programistów generyki wydają się trudne i przerażające, ale w rzeczywistości są dość proste i intuicyjne. Możemy uczynić element generycznym poprzez dodanie parametrów typu. Takie parametry typu mogą być używane wewnątrz tego elementu. Ten mechanizm pozwala na uogólnienie algorytmów i klas, tak aby mogły być używane z różnymi typami. Dobrze jest rozumieć, jak działają generyki, dlatego ten rozdział przedstawił prawie wszystkie ich kluczowe aspekty. Jednakże są jeszcze inne, takie jak modyfikatory wariancji (`out` i `in`), ale do nich wrócimy w książce *Zaawansowany Kotlin*.
 
-[^21_1]: Używam JVM jako odniesienia, ponieważ jest to najbardziej popularny target dla Kotlina, ale także dlatego, że był pierwszym targetem, więc wiele mechanizmów Kotlina zostało zaprojektowanych pod niego. Jednakże, jeśli chodzi o brak wsparcia dla argumentów typu na niskim poziomie, inne platformy nie są lepsze. Na przykład JavaScript nie obsługuje w ogóle typów generycznych.
+[^21_1]: Używam JVM jako odniesienia, ponieważ nie tylko jest to najbardziej popularny, ale przede wszystkim pierwszy target dla Kotlina, stąd wiele jego mechanizmów zostało zaprojektowanych pod JVM. Warto zaznaczyć, że jeśli chodzi o brak wsparcia dla argumentów typu na niskim poziomie, inne platformy nie są lepsze. Na przykład JavaScript nie obsługuje w ogóle typów generycznych.
 [^21_2]: Odwołania do klasy i typu są wyjaśnione w książce *Zaawansowany Kotlin*.
 [^21_3]: Modyfikator `reified` jest wyjaśniony w książce *Funkcyjny Kotlin*.
