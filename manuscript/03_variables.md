@@ -2,7 +2,7 @@
 
 Aby zadeklarować zmienną w Kotlinie, zaczynamy od słowa kluczowego `val` lub `var`, następnie podajemy nazwę zmiennej, znak równości i wartość początkową.
 * Słowo kluczowe `var` (od słowa "variable" czyli "zmienna") definiuje *zmienną do odczytu i zapisu* i jest używane do definiowania zmiennych, do których zawsze możesz przypisać inną wartość. 
-* Słowo kluczowe `val` (od słowa "value" czyli "wartość") definiuje *zmienne tylko do odczytu* i jest używane do definiowania wartości, któych wartości określa się tylko raz (choć jeśli wartość ta jest mutowalna, to może się ona wciąż zmienić). 
+* Słowo kluczowe `val` (od słowa "value" czyli "wartość") definiuje *zmienne tylko do odczytu* i jest używane do definiowania wartości, których wartości określa się tylko raz (choć jeśli wartość ta jest mutowalna, to ta wartość wciąż może się zmienić wewnętrznie, co nie zmiania faktu, że zmienna będzie cały czas wskazywała na ten sam obiekt). 
 
 ```kotlin
 fun main() {
@@ -17,7 +17,7 @@ fun main() {
 }
 ```
 
-Zmienne możemy nazywać za pomocą wielkich i małych liter, podkreślenia `_` i cyfr (ale cyfry nie są dozwolone na pierwszej pozycji). Zmienne nazywamy zgodnie z konwencją camelCase; oznacza to, że nazwa zmiennej zaczyna się od małej litery, a następnie zamiast używać spacji, każde kolejne słowo zaczyna się wielką literą.
+Zmienne możemy nazywać za pomocą wielkich i małych liter, podkreślenia `_` i cyfr (ale cyfry nie są dozwolone na pierwszej pozycji). Zmienne nazywamy zgodnie z konwencją camelCase; oznacza to, że nazwa zmiennej zaczyna się od małej litery, a następnie, zamiast używać spacji, każde kolejne słowo zaczyna się wielką literą.
 
 {width: 50%}
 ![W Kotlin nazywamy zmienne używając camelCase.](camelCase.png)
@@ -50,11 +50,11 @@ fun main() {
 }
 ```
 
-Możemy założyć, że zmienna powinna być zwykle zainicjalizowana przy użyciu znaku równości po jej deklaracji (jak w `val a = 10`). Co więc może znajdować się po prawej stronie znaku równości? Może to być dowolne wyrażenie, tj. fragment kodu zwracający wartość. Oto najczęstsze rodzaje wyrażeń w języku Kotlin:
+Możemy założyć, że zmienna powinna być zainicjalizowana przy użyciu znaku równości po jej deklaracji (jak w `val a = 10`). Co więc może znajdować się po prawej stronie znaku równości? Może to być dowolne wyrażenie, tj. fragment kodu zwracający wartość. Oto rodzaje wyrażeń w języku Kotlin:
 * wartość dosłowna, jak `1` czy `"ABC"`[^03_2],
 * instrukcja warunkowa użyta jako wyrażenie, jak wyrażenie `if`, wyrażenie `when` czy wyrażenie `try-catch`[^03_3].
-* wywołanie konstruktora[^03_4],
-* wywołanie funkcji[^03_5],
+* wywołanie konstruktora tworzące obiekt[^03_4],
+* wywołanie funkcji zwracające jej wynik[^03_5],
 * wyrażenie tworzące obiekt lub użycie deklaracji obiektu[^03_6],
 * literał funkcyjny, jak wyrażenie lambda, funkcja anonimowa lub referencja do funkcji[^03_7],
 * referencja do elementu[^03_8].

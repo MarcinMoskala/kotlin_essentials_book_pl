@@ -31,6 +31,7 @@ class Test {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
+            println("Hello, World")
         }
     }
 }
@@ -50,19 +51,19 @@ fun main() {
 }
 ```
 
-Wszystko, co musisz zrobić, aby uruchomić funkcję `main` w IntelliJ (najpopularniejszym IDE Kotlina), to kliknąć zielony trójkąt, który pojawia się po lewej stronie funkcji `main`, znany jako "gutter icon". 
+Wszystko, co musisz zrobić, aby uruchomić funkcję `main` w IntelliJ (najpopularniejszym IDE Kotlina), to kliknąć zielony trójkąt, który pojawia się po lewej stronie funkcji `main` (znany jako "gutter icon"). 
 
 {width: 100%}
 ![](main_run.png)
 
 ### Szablony dynamiczne (Live templates)
 
-Jeśli zdecydujesz się przetestować lub przećwiczyć materiał z tej książki[^02_3], prawdopodobnie będziesz często pisać funkcję `main`. Na pomoc przychodzą nam *szablony dynamiczne* (live templates). Jest to funkcjonalność IntelliJ, która sugeruje użycie szablonu, gdy zaczynasz wpisywać jego nazwę w odpowiednim kontekście. Czyli jeśli zaczniesz wpisywać "main" lub "maina" (dla main z argumentami) w pliku Kotlin, zostanie Ci pokazana sugestia, która oferuje całą funkcję `main`.
+Jeśli zdecydujesz się przetestować lub przećwiczyć materiał z tej książki[^02_3], prawdopodobnie często będziesz pisać funkcję `main`. Na pomoc przychodzą nam *szablony dynamiczne* (live templates). Jest to funkcjonalność IntelliJ, która sugeruje użycie szablonu, gdy zaczynasz wpisywać jego nazwę w odpowiednim kontekście. Czyli jeśli zaczniesz wpisywać "main" lub "maina" (dla main z argumentami) w pliku Kotlin, zostanie Ci pokazana sugestia, która oferuje całą funkcję `main`.
 
 {width: 100%}
 ![](main_template.png)
 
-W większości moich warsztatów używałem tego szablonu setki razy. Kiedy tylko chcę pokazać coś nowego z kodowaniem na żywo, otwieram plik "Playground.kt", zaznaczam całą jego zawartość (Ctrl/command + A), wpisuję "main", potwierdzam szablon dynamiczny klawiszem Enter i mam idealną przestrzeń do pokazania, jak coś działa.
+Na większości moich warsztatów używałem tego szablonu setki razy. Kiedy tylko chcę pokazać coś nowego z kodowaniem na żywo, otwieram plik "Playground.kt", zaznaczam całą jego zawartość (Ctrl/command + A), wpisuję "main", potwierdzam szablon dynamiczny klawiszem Enter i mam idealną przestrzeń do pokazania, jak coś działa.
 
 Polecam, abyś przetestował to teraz. Otwórz dowolny projekt Kotlin (najlepiej, jeśli masz dedykowany projekt do zabawy z Kotlinem), utwórz nowy plik (możesz go nazwać "Test" lub "Playground") i dodaj funkcję `main` posługując się szablonem dynamicznym "maina". Użyj funkcji `print` z dowolnym tekstem i uruchom kod przyciskiem "Uruchom".
 
@@ -107,7 +108,7 @@ Istnieją propozycje stworzenia podobnego narzędzia, aby pokazywać kod JavaScr
 
 ### Podsumowanie
 
-Nauczyliśmy się korzystać z funkcji `main` i łatwo je tworzyć przy pomocy szablonów dynamicznych. Dowiedzieliśmy się też jak sprawdzić, jak nasz kod Kotlin wyglądałby, gdyby był napisany w Javie. To chyba niezły początek naszej przygody, więc bez zbędnych ceregieli chodźmy dalej.
+Nauczyliśmy się korzystać z funkcji `main` i jak łatwo ją stworzyć przy pomocy szablonów dynamicznych. Dowiedzieliśmy się też jak sprawdzić, jak nasz kod Kotlin wyglądałby, gdyby był napisany w Javie. To chyba niezły początek naszej przygody, więc bez zbędnych ceregieli chodźmy dalej.
 
 [^02_0]: Funkcja `println` jest niejawnie importowana z pakietu biblioteki standardowej `kotlin.io`.
 [^02_2]: Niektóre rozdziały tej książki można również znaleźć online na stronie Kt. Academy. Przykłady w nich zawarte można uruchomić i modyfikować dzięki funkcji Kotlin Playground.
