@@ -3,12 +3,12 @@
 Większość instrukcji warunkowych, takich jak warunek if czy pętla while, wygląda tak samo w Kotlinie, Javie, C++, JavaScript i w większości innych nowoczesnych języków. Dla przykładu instrukcja if jest identyczna we wszystkich tych językach:
 
 ```kotlin
-if (predicate) {
+if (warunek) {
     // ciało
 }
 ```
 
-Jednak warunek if w Kotlinie jest bardziej zaawansowany i ma możliwości, których nie obsługują poprzednicy Kotlina. Zakładam, że czytelnicy tej książki mają ogólne doświadczenie w programowaniu, więc skoncentruję się na różnicach, które Kotlin wprowadził w porównaniu z innymi językami programowania.
+Jednak instrukcja if w Kotlinie jest bardziej zaawansowana i ma możliwości, których nie obsługują poprzednicy Kotlina. Zakładam, że czytelnicy tej książki mają ogólne doświadczenie w programowaniu, więc skoncentruję się na różnicach, które Kotlin wprowadził w porównaniu z innymi językami programowania.
 
 ### Instrukcja if
 
@@ -28,7 +28,7 @@ fun main() {
 }
 ```
 
-Jedną z supermocy Kotlina jest to, że instrukcja if-else może być używana jako wyrażenie[^05_1], a więc do zwrócenia w zależności od warunku.
+Jedną z supermocy Kotlina jest to, że instrukcja if-else może być używana jako wyrażenie[^05_1], a więc do zwrócenia wyniku wybranego ciała.
 
 ```kotlin
 val value = if (condition) {
@@ -38,7 +38,7 @@ val value = if (condition) {
 }
 ```
 
-Jaka wartość zostanie zwrócona? Dla każdego bloku ciała jest to wynik ostatniego wyrażenia (lub `Unit` dla pustego ciała lub instrukcji nie zwracającej wartości[^05_2]).
+Jaka wartość zostanie zwrócona? Dla każdego bloku ciała jest to wynik ostatniego wyrażenia (lub `Unit` dla pustego ciała lub instrukcji niezwracającej wartości[^05_2]).
 
 ```kotlin
 fun main() {
@@ -51,7 +51,7 @@ fun main() {
 
     val superuser = true
     val hasAccess: Boolean = if (superuser) {
-        println("Dzień dobry, panie Adminie")
+        println("Dzień dobry Panie Administratorze")
         true
     } else {
         false
@@ -78,6 +78,7 @@ Sposób użycia instrukcji if-statement jest alternatywą w Kotlinie dla operato
 ```
 // Java
 final String name = user == null ? "" : user.name
+
 // JavaScript
 const name = user === null ? "" : user.name
 ```
@@ -92,7 +93,9 @@ Należy zaznaczyć, że if-else jest dłuższe niż składnia operatora trójarg
 ```
 // Java
 String name = user == null ? "" : user.name
+```
 
+```kotlin
 // Kotlin
 val name = user?.name ?: ""
 // lub
@@ -117,7 +120,7 @@ fun main() {
 }
 ```
 
-W rzeczywistości nie ma czegoś takiego jak wyrażenie if-else-if, to po prostu jedno wyrażenie if-else umieszczone wewnątrz innego.  Można się o tym przekonać w pewnych nietypowych przypadkach, na przykład, gdy na całym wyrażeniu if-else-if wykonywana jest jakaś metoda. Spójrz na poniższą zagadkę i spróbuj przewidzieć wynik tego kodu.
+W rzeczywistości nie ma czegoś takiego jak wyrażenie if-else-if, to po prostu jedno wyrażenie if-else umieszczone wewnątrz innego. Można się o tym przekonać w pewnych nietypowych przypadkach, na przykład, gdy na całym wyrażeniu if-else-if wykonywana jest jakaś metoda. Spójrz na poniższą zagadkę i spróbuj przewidzieć wynik tego kodu.
 
 ```kotlin
 // Funkcja, którą możemy wykonać na dowolnym obiekcie, 
@@ -396,7 +399,7 @@ fun main() {
 }
 ```
 
-Ogólnie unikamy używania `as` gdy nie jest ono konieczne, ponieważ uważamy, że rzutowanie w dół mało bezpieczne. Rozważ powyższy przykład. Co, jeśli ktoś zmieni `123` na `3.14`? Obie wartości są typu `Number`, więc kod będzie kompilować się bez żadnych problemów czy ostrzeżeń. Ale `3.14` to `Double`, a nie `Int`, i rzutowanie nie jest możliwe! W związku z tym powyższy kod zakończy się błędem z wyjątkiem `ClassCastException`.
+Ogólnie unikamy używania `as` gdy nie jest ono konieczne, ponieważ uważamy, że rzutowanie w dół jest mało bezpieczne. Rozważ powyższy przykład. Co, jeśli ktoś zmieni `123` na `3.14`? Obie wartości są typu `Number`, więc kod będzie kompilować się bez żadnych problemów czy ostrzeżeń. Ale `3.14` to `Double`, a nie `Int`, i rzutowanie nie jest możliwe! W związku z tym powyższy kod zakończy się błędem z wyjątkiem `ClassCastException`.
 
 ```kotlin
 var i: Number = 3.14
@@ -407,7 +410,7 @@ fun main() {
 }
 ```
 
-Istnieją dwa popularne sposoby radzenia sobie z tego typu problemami. Pierwszy to użycie jednej z wielu alternatyw Kotlin do bezpiecznego rzutowania naszej wartości. Jednym z przykładów jest użycie rzutowania inteligentnego (smart-casting), które zostanie opisane w kolejnej sekcji. Innym przykładem jest funkcja konwersji, taka jak metoda `toInt`, która przekształca `Number` na `Int` (i ewentualnie traci część dziesiętną).
+Istnieją dwa popularne sposoby radzenia sobie z tego typu problemami. Pierwszy to użycie jednej z funkcjonalności Kotlina do bezpiecznej konwersji wartości. Jednym z przykładów jest użycie rzutowania inteligentnego (smart-casting), które zostanie opisane w kolejnej sekcji. Innym przykładem jest funkcja konwersji, taka jak metoda `toInt`, która przekształca `Number` na `Int` (i ewentualnie traci część dziesiętną).
 
 ```kotlin
 var i: Number = 3.14
@@ -435,7 +438,7 @@ W Kotlinie uważamy `as?` za bezpieczniejszą opcję niż `as`, ale zbyt częste
 
 ### Smart-casting
 
-Kotlin ma potężną funkcję o nazwie smart-casting, która pozwala na automatyczne rzutowanie typów, gdy kompilator może być pewien, że zmienna jest określonego typu. Spójrz na poniższy przykład:
+Kotlin ma potężną funkcjonalność o nazwie smart-casting, która pozwala na automatyczne rzutowanie typów, gdy kompilator może być pewien, że zmienna jest określonego typu. Spójrz na poniższy przykład:
 
 ```kotlin
 fun convertToInt(num: Number): Int =
@@ -443,7 +446,7 @@ fun convertToInt(num: Number): Int =
     else num.toInt()
 ```
 
-Funkcja `convertToInt` konwertuje argument typu `Number` na `Int` w następujący sposób: jeśli argument jest już typu `Int`, jest on zwracany; w przeciwnym razie jest konwertowany za pomocą metody `toInt`. Zauważ, że aby ten kod się skompilował, `num` wewnątrz pierwszego bloku musi być typu `Int`. W większości języków taka wartość musiałaby być rzutowana, ale w Kotlinie dzieje się to automatycznie. Spójrz na kolejny przykład:
+Funkcja `convertToInt` konwertuje argument typu `Number` na `Int` w następujący sposób: jeśli argument jest już typu `Int`, jest on zwracany; w przeciwnym razie jest konwertowany za pomocą metody `toInt`. Zauważ, że aby ten kod się skompilował, `num` w pierwszym ciele warunku musi być typu `Int`. W większości języków taka wartość musiałaby być rzutowana, ale w Kotlinie dzieje się to automatycznie. Spójrz na kolejny przykład:
 
 ```kotlin
 fun lengthIfString(a: Any): Int {
@@ -454,7 +457,7 @@ fun lengthIfString(a: Any): Int {
 }
 ```
 
-Wewnątrz predykatu warunku if sprawdziliśmy, czy `a` jest typu `String`. Ciało tego wyrażenia zostanie wykonane tylko wtedy, gdy sprawdzenie typu zakończy się powodzeniem. Dlatego wewnątrz tego bloku kompilator uznaje, że `a` jest typu `String`, dlatego możemy sprawdzić długość tekstu. Taka konwersja, z `Any` na `String`, jest wykonana niejawnie przez kompilator Kotlin. Może się to zdarzyć tylko wtedy, gdy Kotlin jest pewien, że żaden inny wątek nie może zmienić naszej właściwości, więc kiedy jest to stała lub lokalna zmienna. Nie zadziała to dla nielokalnych właściwości `var`, ponieważ w takich przypadkach nie ma gwarancji, że nie zostały one zmodyfikowane między sprawdzeniem a użyciem (np. przez inny wątek).
+Wewnątrz predykatu warunku if sprawdziliśmy, czy `a` jest typu `String`. Ciało tego wyrażenia zostanie wykonane tylko wtedy, gdy sprawdzenie typu zakończy się powodzeniem. Dlatego wewnątrz tego bloku kompilator uznaje, że `a` jest typu `String`, dlatego możemy sprawdzić długość tekstu. Taka konwersja, z `Any` na `String`, jest wykonana niejawnie przez kompilator Kotlina. Może się to zdarzyć tylko wtedy, gdy Kotlin jest pewien, że żaden inny wątek nie może zmienić naszej właściwości, więc kiedy jest to stała lub zmienna lokalna. Nie zadziała to dla nielokalnych właściwości `var`, ponieważ w takich przypadkach nie ma gwarancji, że nie zostały one zmodyfikowane między sprawdzeniem a użyciem (np. przez inny wątek).
 
 ```kotlin
 var obj: Any = "AAA"
@@ -462,14 +465,14 @@ var obj: Any = "AAA"
 fun main() {
     if (obj is String) {
         // println(obj.length) nie zostanie skompilowany,
-        // ponieważ `obj` może być zmodyfikowany przez jakiś
+        // ponieważ obj może być zmodyfikowany przez jakiś
         // inny wątek, więc Kotlin nie może być pewien,
         // czy w tym momencie jest jeszcze typu String
     }
 }
 ```
 
-Smart-casting jest często używany razem z instrukcją when. Kiedy są używane razem, czasami nazywane są Kotlinowym pattern-matchingiem. Więcej przykładów zostanie przedstawionych, gdy omówimy modyfikator sealed.
+Smart-casting jest często używany razem z instrukcją when. Kiedy są używane razem, czasami nazywane są Kotlinowym pattern-matchingiem. Więcej przykładów zostanie przedstawionych, gdy omówimy modyfikator `sealed`.
 
 ```kotlin
 fun handleResponse(response: Result<T>) {
@@ -519,9 +522,9 @@ fun main() {
 
 ### Podsumowanie
 
-Jak widać, Kotlin wprowadził wiele potężnych funkcji do instrukcji warunkowych. Warunki if i when mogą być używane jako wyrażenia. Instrukcja when jest bardziej zaawansowaną alternatywą dla if-else-if lub switch-case. Obsługiwane jest sprawdzanie typów ze smart-castingiem. To czyni instrukcje warunkowe potężniejszymi niż w innych językacj. Teraz zobaczmy, co Kotlin zmienił w funkcjach.
+Jak widać, Kotlin wprowadził wiele potężnych funkcji do instrukcji warunkowych. Warunki if i when mogą być używane jako wyrażenia. Instrukcja when jest bardziej zaawansowaną alternatywą dla if-else-if lub switch-case. Obsługiwane jest sprawdzanie typów ze smart-castingiem. To czyni instrukcje warunkowe potężniejszymi niż w innych językach. Teraz zobaczmy, co Kotlin zmienił w funkcjach.
 
-[^05_1]: Wyrażenie w programowaniu to część kodu, która zwraca wartość.
+[^05_1]: "Wyrażenie" w programowaniu to część kodu, która zwraca wartość.
 [^05_2]: `Unit` to obiekt używany by sygnalizować brak istotnej wartości. Przypomina `Void` w Javie.
 [^05_3]: Funkcja z pojedynczym wyrażeniem to specjalna składnia do implementacji ciał funkcji z jednym wyrażeniem. Zostanie ona omówiona w kolejnym rozdziale.
 [^05_4]: Terminu "code smell" będę używał do opisania praktyk, które nie są wyraźnie błędne, ale uważa się, że powinno się ich unikać.

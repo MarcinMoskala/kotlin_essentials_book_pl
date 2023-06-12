@@ -13,11 +13,11 @@ W tym rozdziale poznamy podstawowe typy języka Kotlin i ich literały:
 * znaki (`Char`),
 * stringi(`String`).
 
-W Kotlinie istnieją także tablice, który zostaną omówione w rozdziale *Kolekcje*.
+W Kotlinie istnieją także tablice, które zostaną omówione w rozdziale *Kolekcje*.
 
-W Kotlinie wszystkie wartości są traktowane jako obiekty (nie ma typów prymitywnych), więc wszystkie mają metody, a ich typy mogą być używane jako argumenty typów generycznych (to zostanie omówione w rozdziale *Generyki*). Typy reprezentujące liczby, wartości logiczne i znaki mogą być zoptymalizowane przez kompilator Kotlina i używane jako typy prymitywne, ale ta optymalizacja nie ma wpływu na to jak wygląda nasz kod, dlatego nie musisz nawet o tym myśleć.
+W Kotlinie wszystkie wartości są traktowane jako obiekty (nie ma typów prymitywnych), więc wszystkie mają metody, a ich typy mogą być używane jako argumenty typów generycznych (to zostanie omówione w rozdziale *Typy generyczne*). Typy reprezentujące liczby, wartości logiczne i znaki mogą być zoptymalizowane przez kompilator Kotlina i używane jako typy prymitywne, ale ta optymalizacja nie ma wpływu na to, jak wygląda nasz kod, dlatego nie musisz nawet o tym myśleć.
 
-Zacznijmy omawiać podstawowe typy i literały w języku Kotlin, jeden po drugim.
+Zacznijmy jeden po drugim omawiać podstawowe typy i literały w języku Kotlin.
 
 ### Liczby
 
@@ -175,7 +175,7 @@ fun main() {
 
 > Zauważ, że poprawny wynik `1.4 / 2.5` powinien wynosić `0.56`, a nie `0.5599999999999999`. Ten problem zostanie rozwiązany wkrótce.
 
-Zauważ, że gdy dzielimy `Int` przez `Int`, wynik jest również `Int`, więc część dziesiętna jest tracona.
+Gdy dzielimy `Int` przez `Int`, wynik jest również `Int`, więc część dziesiętna jest tracona.
 
 ```kotlin
 fun main() {
@@ -285,9 +285,9 @@ fun main() {
 }
 ```
 
-> Zrozummienie dlaczego wyniki są takie, a nie inne wychodzi poza zakres tej książki, ale dla zainteresowanych spieszę w wyjaśnieniem. W pierwszym przypadku wynik jest nieprecyzyjny, ponieważ liczby zmiennoprzecinkowe są reprezentowane w postaci binarnej, a nie dziesiętnej. W drugim przypadku wynik jest niepoprawny, ponieważ liczba całkowita jest reprezentowana przez 32 bity, a więc 2147483647 to największa możliwa liczba, a dodanie 1 powoduje jej przepełnienie i zmianę bitu reprezentującego znak na przeciwny.
+> Zrozumienie dlaczego wyniki są takie a nie inne wychodzi poza zakres tej książki, ale dla zainteresowanych spieszę z wyjaśnieniem. W pierwszym przypadku wynik jest nieprecyzyjny, ponieważ liczby zmiennoprzecinkowe są reprezentowane w postaci binarnej, a nie dziesiętnej. W drugim przypadku wynik jest niepoprawny, ponieważ liczba całkowita jest reprezentowana przez 32 bity, a więc 2147483647 to największa możliwa liczba, a dodanie 1 powoduje jej przepełnienie i zmianę bitu reprezentującego znak na przeciwny.
 
-To standardowy kompromis w programowaniu, z którym w większości przypadków musimy się pogodzić. Jednak są przypadki, gdy potrzebujemy mieć doskonałą precyzję i nieograniczony rozmiar liczby. Na JVM, dla nieograniczonego rozmiaru liczby powinniśmy użyć `BigInteger`, który reprezentuje liczbę bez części dziesiętnej. Dla nieograniczonego rozmiaru i precyzji powinniśmy użyć `BigDecimal`, który reprezentuje liczbę mającą część dziesiętną. Obiekty obu typów można utworzyć za pomocą konstruktorów[^04_2], funkcji fabrycznych (takich jak `valueOf`) lub konwersji z podstawowych typów reprezentujących liczby (metody `toBigDecimal` i `toBigInteger`). Przykłady poniżej. 
+To standardowy kompromis w programowaniu, z którym w większości języków musimy się pogodzić. Jednak są przypadki, gdy potrzebujemy mieć doskonałą precyzję i nieograniczony rozmiar liczby. Na JVM, dla nieograniczonego rozmiaru liczby powinniśmy użyć `BigInteger`, który reprezentuje liczbę bez części dziesiętnej. Dla nieograniczonego rozmiaru i precyzji powinniśmy użyć `BigDecimal`, który reprezentuje liczbę mającą część dziesiętną. Obiekty obu typów można utworzyć za pomocą konstruktorów[^04_2], funkcji fabrycznych (takich jak `valueOf`) lub konwersji z podstawowych typów reprezentujących liczby (metody `toBigDecimal` i `toBigInteger`). Przykłady poniżej. 
 
 ```kotlin
 import java.math.BigDecimal
@@ -569,5 +569,5 @@ W tym rozdziale poznaliśmy podstawowe typy używane w języku Kotlin oraz liter
 
 Mamy więc podstawy do korzystania z Kotlina. Przejdźmy do bardziej skomplikowanych struktur sterujących, które określają, jak zachowuje się nasz kod.
 
-[^04_1]: W języku angielskim istnieje rozdzielenie na operację "modulo" oraz "remainder", gdzie różnica między nimi jest w wyniku dla liczb ujemnych. Tutaj poprzez resztę z dzielenia rozumiemy operację określaną w języku angielskim jako "remainder". Tak więc reszta z dzielenia -5 przez 4 to -1, ponieważ -5 = 4 * (-1) + (-1). Wynik -5 modulo 4 to 3, ponieważ -5 = 4 * (-2) + 3.
+[^04_1]: W języku angielskim istnieje rozdzielenie na operację "modulo" oraz "remainder", gdzie różnica między nimi jest w wyniku dla liczb ujemnych. Tutaj poprzez resztę z dzielenia rozumiemy operację określaną w języku angielskim jako "remainder". Tak więc reszta z dzielenia -5 przez 4 to -1, ponieważ -5 = 4 * (-1) + (-1). Wynik -5 modulo 4 to 3, ponieważ -5 = 4 * (-2) + 3. Reszta z dzielenia zawsze ma taki sam znak jak liczba dzielona. Wynik modulo zawsze ma taki sam znak jak liczba, przez którą dzielimy.
 [^04_2]: Konstruktory zostaną omówione w rozdziale *Klasy*.
