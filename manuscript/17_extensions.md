@@ -300,7 +300,7 @@ class Telephone {
 }
 ```
 
-Tego typu funkcje rozszerzające są uważane za złą praktykę i powinniśmy unikać ich stosowania, jeśli nie mamy ku temu dobrego powodu. Aby uzyskać bardziej szczegółowe wyjaśnienie, zobacz [*Effective Kotlin*, *Temat 46: Unikaj definiowania funkcji rozszerzających wewnątrz klas*](https://kt.academy/article/ek-member-extensions).
+Tego typu funkcje rozszerzające są uważane za złą praktykę i powinniśmy unikać ich stosowania, jeśli nie mamy ku temu dobrego powodu. Aby uzyskać bardziej szczegółowe wyjaśnienie, zobacz [*Effective Kotlin*, *Temat 46: Unikaj definiowania funkcji rozszerzających wewnątrz klas*](kt.academy/article/ek-member-extensions).
 
 ### Przypadki użycia
 
@@ -442,4 +442,4 @@ W tym rozdziale poznaliśmy rozszerzenia - potężną funkcjonalność Kotlina, 
 
 W następnym rozdziale w końcu przedstawimy kolekcje, a więc omówimy listy, sety, mapy i tablice.
 
-[^16_1]: Roman Elizarov (obecny leader zespołu rozwijającego język Kotlin) określa to pojęciem extension-oriented design. Źródło: https://elizarov.medium.com/extension-oriented-design-13f4f27deaee
+[^16_1]: Roman Elizarov (obecny leader zespołu rozwijającego język Kotlin) określa to pojęciem extension-oriented design. Źródło: elizarov.medium.com/extension-oriented-design-13f4f27deaee

@@ -26,7 +26,7 @@ fun main() {
 //     at PlaygroundKt.main(Playground.kt)
 ```
 
-Jako kolejny przykład możemy przekształcić stringa na liczbę całkowitą za pomocą metody `toInt`. Ta operacja działa to tylko wtedy, gdy string jest liczbą. Gdy tak nie jest, zobaczymy `NumberFormatException` z informacją, jaki string został użyty.
+Jako kolejny przykład możemy przekształcić stringa na liczbę całkowitą za pomocą metody `toInt`. Ta operacja działa tylko wtedy, gdy string jest liczbą. Gdy tak nie jest, rzucony zostanie wyjątek `NumberFormatException` z informacją, jaki string został użyty.
 
 ```kotlin
 fun main() {
@@ -97,7 +97,7 @@ fun main() {
 
 ### Przechwytywanie wyjątków
 
-Wyjątki można rzucać przy użyciu `throw`, a łapiemy je przy pomocy bloku `catch`, więc potrzebna jest cała struktura try-catch, która zawiera blok try i blok catch. Wyjątek rzucony w funkcji natychmiast kończy jej wykonanie, a proces powtarza się w funkcji, która ją wywołała i w której rzucony został wyjątek. To się zmienia, gdy wyjątek zostanie rzucony wewnątrz bloku try, ponieważ wtedy sprawdzane są jego bloki catch. Każdy blok catch może określić, jakiego rodzaju wyjątki przechwytuje. Pierwszy blok catch, który akceptuje rzucony wyjątek, przechwytuje go, a następnie wykonuje swoje ciało. Jeśli wyjątek zostanie przechwycony, wykonanie programu będzie kontynuowane po bloku try.
+Wyjątki rzucamy przy użyciu słówka `throw`, a łapiemy je przy pomocy bloku `catch` w konstrukcji try-catch. Aby złapać wyjątek, potrzebna jest cała struktura try-catch, która zawiera blok try i blok catch. Wyjątek rzucony w funkcji natychmiast kończy jej wykonanie, a proces powtarza się w funkcji, która ją wywołała i w której rzucony został wyjątek. To się zmienia, gdy wyjątek zostanie rzucony wewnątrz bloku try, ponieważ wtedy sprawdzane są jego bloki catch. Każdy blok catch może określić, jakiego rodzaju wyjątki przechwytuje. Pierwszy blok catch, który akceptuje rzucony wyjątek, przechwytuje go, a następnie wykonuje swoje ciało. Jeśli wyjątek zostanie przechwycony, wykonanie programu będzie kontynuowane po bloku try.
 
 ```kotlin
 class MyException : Throwable("Wiadomość")
@@ -120,7 +120,7 @@ fun main() {
 // To zostanie wypisane
 ```
 
-Zobaczmy try-catch z większą liczbą bloków catch w akcji. Pamiętaj, że zawsze wybierany jest pierwszy blok, który akceptuje rzucony wyjątek. Blok catch akceptuje wyjątek, jeśli jest on podtypem typu określonego w bloku catch. Zauważ, że wszystkie wyjątki muszą rozszerzać `Throwable`, więc przechwytywanie tego typu oznacza przechwytywanie wszystkich możliwych wyjątków. Z tego powodu stosując więcej niż jeden block catch, ważne jest zachowanie odpowiedniej kolejności przechwytywania: od najbardziej do najmniej szczegółowego wyjątku.
+Zobaczmy w akcji try-catch z większą liczbą bloków catch. Pamiętaj, że zawsze wybierany jest pierwszy blok, który akceptuje rzucony wyjątek. Blok catch akceptuje wyjątek, jeśli jest on podtypem typu określonego w bloku catch. Wszystkie wyjątki muszą rozszerzać `Throwable`, więc przechwytywanie tego typu oznacza przechwytywanie wszystkich możliwych wyjątków. Z tego powodu stosując więcej niż jeden block catch, ważne jest zachowanie odpowiedniej kolejności przechwytywania: od najbardziej do najmniej szczegółowego wyjątku.
 
 ```kotlin
 import java.lang.NumberFormatException
@@ -172,7 +172,7 @@ fun main() {
 }
 ```
 
-Wyrażenie try-catch może być używane do zapewnienia alternatywnej wartości w sytuacji, w której występuje problem:
+Wyrażenie try-catch może być używane do zapewnienia alternatywnej wartości w sytuacji, w której występuje problem. W poniższym kodzie próbujemy odczytać zawartość pliku, który nie istnieje, więc funkcja `readText` rzuci wyjątek `FileNotFoundException`. My ten wyjątek przechwytujemy, po czym zwracamy pusty string. W ten sposób możemy kontynuować działanie programu.
 
 ```kotlin
 import java.io.File
@@ -271,7 +271,7 @@ fun printUserName() {
 }
 ```
 
-W Kotlinie używamy funkcji `require` i `check`, aby zgłosić wyjątek `IllegalArgumentException` i `IllegalStateException`, gdy określone przez nie warunki nie są spełnione[^e_1].
+W Kotlinie używamy funkcji `require` i `check`, aby odpowiednio zgłosić wyjątki `IllegalArgumentException` i `IllegalStateException`, gdy określone przez te funkcje warunki nie są spełnione[^e_1].
 
 ```kotlin
 fun pop(num: Int): List<T> {

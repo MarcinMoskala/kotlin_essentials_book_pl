@@ -36,7 +36,7 @@ Teraz gdy zrozumieliśmy związek między Kotlinem a Javą, czas obalić pewne n
 
 ### Środowisko IDE dla Kotlin
 
-Najpopularniejszymi środowiskami IDE (zintegrowane środowisko programistyczne) dla Kotlin są IntelliJ IDEA oraz Android Studio. Można jednak również korzystać z Kotlina w innych edytorach, takich jak VS Code, Eclipse, Vim, Emacs, Sublime Text i wielu innych. Można też pisać kod w Kotlinie online, na przykład, korzystając z oficjalnego IDE online, które można znaleźć pod tym linkiem [play.kotlinlang.org](https://play.kotlinlang.org/).
+Najpopularniejszymi środowiskami IDE (zintegrowane środowisko programistyczne) dla Kotlin są IntelliJ IDEA oraz Android Studio. Można jednak również korzystać z Kotlina w innych edytorach, takich jak VS Code, Eclipse, Vim, Emacs, Sublime Text i wielu innych. Można też pisać kod w Kotlinie online, na przykład, korzystając z oficjalnego IDE online, które można znaleźć pod tym linkiem [play.kotlinlang.org](play.kotlinlang.org/).
 
 ### Gdzie używamy Kotlina?
 
@@ -54,7 +54,7 @@ Coraz więcej programistów używa Kotlina do przetwarzania danych i analityki. 
 
 Jak widać, już teraz można zrobić wiele rzeczy w języku Kotlin, a z każdym rokiem pojawia się coraz więcej możliwości. Jestem pewien, że znajdziesz dobre sposoby na zastosowanie swojej nowej wiedzy po przeczytaniu tej książki.
 
-[^01_1]: Źródło: https://techcrunch.com/2022/08/18/five-years-later-google-is-still-all-in-on-kotlin/
-[^01_2]: Źródło: https://developer.android.com/kotlin/first
+[^01_1]: Źródło: techcrunch.com/2022/08/18/five-years-later-google-is-still-all-in-on-kotlin/
+[^01_2]: Źródło: developer.android.com/kotlin/first
 [^01_3]: W chwili obecnej dojrzałość tych targetów różni się.
 [^01_4]: Zostanie to wyjaśnione w rozdziale *Data klasy*.

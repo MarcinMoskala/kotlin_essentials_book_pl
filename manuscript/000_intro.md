@@ -33,7 +33,7 @@ Kiedy zacząłem czytać "poprawne" tłumaczenie innej swojej książki, nieraz 
 
 W tej książce chciałbym złamać to błędne koło. Przy jej tłumaczeniu postawiłem **wyłącznie** na pragmatyzm. Starałem się używać języka, który jest używany przez programistów, a nie formalnie poprawnych tłumaczeń. Bardzo często oznacza to używanie anglicyzmów. Będę na przykład mówił o stringach, data klasach, enumach, sealed klasach itd. Tam jednak, gdzie znaczenie polskiego słowa wydaje mi się dostatecznie zrozumiałe, będę używał polskiego słowa. Na przykład, będę mówił o klasach, interfejsach, dziedziczeniu itd. W wielu miejscach miałem niemały dylemat, jakiego pojęcia użyć. I tak mówię o "rozszerzeniach" a nie "extensionach" głównie ze względu na to, że zdecydowałem się używać pojęcia "funkcje" a nie "functions", a "funkcje rozszerzające" brzmią znacznie lepiej niż "funkcje typu extension". Być może nie zgodzisz się ze wszystkimi moimi decyzjami, zapewne niejeden skrytykuje kalanie języka ojczystego licznymi anglicyzmami, ale mam nadzieję, że reszta czytelników doceni pragmatyzm, którym kierowałem się przy pisaniu tej książki.
 
-Lista tłumaczeń pojęć, jakich zdecydowałem się używać w tej książce, znajduje się w readme repozytorium tej książki, pod adresem [https://github.com/MarcinMoskala/kotlin_essentials_book_pl](https://github.com/MarcinMoskala/kotlin_essentials_book_pl). 
+Lista tłumaczeń pojęć, jakich zdecydowałem się używać w tej książce, znajduje się w readme repozytorium tej książki, pod adresem [github.com/MarcinMoskala/kotlin_essentials_book_pl](github.com/MarcinMoskala/kotlin_essentials_book_pl). 
 
 ### Seria Kotlin dla programistów
 

@@ -82,12 +82,14 @@ Właściwość `doctorRepository` jest oznaczona jako `Mock`, co sprawia, że pr
 
 Przetwarzanie adnotacji jest lepiej opisane w *Zaawansowane Kotlin*, w rozdziale *Przetwarzanie adnotacji* oraz *Kotlin Symbol Processing* gdzie pokazuję jak pisać różnego rodzaju procesory adnotacji. 
 
+Adnotacje takie jak `Throws`, `JvmField` i `JvmStatic` są częścią biblioteki standardowej Kotlina i wpływają na działanie kompilatora. O nich również więcej będzie w książce *Zaawansowane Kotlin*, w rozdziale *Interoperacyjność z Javą*.
+
 ### Meta-adnotacje
 
 Adnotacje, które służą do oznaczania innych adnotacji, są znane jako meta-adnotacje. W bibliotece standardowej Kotlina są cztery kluczowe meta-adnotacje:
 * `Target` wskazuje rodzaje elementów kodu, które są możliwymi celami adnotacji. Jako argumenty przyjmuje wartości wyliczenia `AnnotationTarget`, które obejmują wartości takie jak `CLASS`, `PROPERTY`, `FUNCTION`, itp.
-* `Retention` określa, czy adnotacja jest przechowywana w binarnym wyniku kompilacji i jest widoczna dla refleksji. Domyślnie obie wartości są prawdziwe.
-* `Repeatable` określa, że adnotacja może być stosowana dwa lub więcej razy dla pojedynczego elementu kodu.
+* `Retention` określa, czy adnotacja jest przechowywana w binarnym wyniku kompilacji i jest widoczna dla refleksji. Domyślnie obie wartości są określone jako `true`.
+* `Repeatable` określa, że adnotacja może być stosowana więcej niż raz razy dla pojedynczego elementu kodu.
 * `MustBeDocumented` określa, że adnotacja jest częścią publicznego API i dlatego powinna być uwzględniona w wygenerowanej dokumentacji dla elementu, do którego adnotacja jest stosowana.
 
 Oto przykłady użycia niektórych z tych adnotacji:
@@ -115,7 +117,7 @@ class User @JvmOverloads constructor(
 )
 ```
 
-### Listy literalne
+### Literał listy
 
 Gdy określamy adnotację z wartością tablicy, możemy użyć specjalnej składni zwanej "literałem tablicy". Oznacza to, że zamiast używać `arrayOf`, możemy zadeklarować tablicę za pomocą nawiasów kwadratowych.
 
@@ -138,9 +140,8 @@ Ten zapis jest dozwolony tylko dla adnotacji i aktualnie nie działa przy defini
 
 ### Podsumowanie
 
-Adnotacje służą do opisywania naszego kodu. Mogą być interpretowane przez procesory adnotacji lub przez klasy używające refleksji w czasie wykonywania. Narzędzia i biblioteki wykorzystują to do automatyzacji niektórych działań dla nas. Adnotacje same w sobie są prostą funkcjonalności, ale w połączeniu z procesorami adnotacji, dają one niesamowite możliwości[^15_3].
+Adnotacje służą do opisywania naszego kodu. Mogą być interpretowane przez procesory adnotacji lub przez klasy używające refleksji w czasie wykonywania. Narzędzia i biblioteki wykorzystują to do automatyzacji niektórych działań dla nas. Adnotacje same w sobie są prostą funkcjonalności, ale w połączeniu z procesorami adnotacji, dają one niesamowite możliwości.
 
-Przejdźmy teraz do słynnej funkcjonalności Kotlin, która daje nam możliwość rozszerzenia dowolnego typu o metody lub właściwości: rozszerzenia.
+Przejdźmy teraz do słynnej funkcjonalności Kotlin, która daje nam możliwość rozszerzenia dowolnego typu o metody lub właściwości: pomówmy o rozszerzeniach.
 
 [^15_2]: Adnotacje `JvmField`, `JvmStatic` i `Throws` są opisane w książce *Zaawansowany Kotlin* i służą do dostosowywania sposobu, w jaki elementy Kotlin mogą być używane w kodzie Java.
-[^15_3]: W książce *Zaawansowany Kotlin* zobaczymy, jak można zaimplementować różne procesory adnotacji i co można z nimi zrobić.

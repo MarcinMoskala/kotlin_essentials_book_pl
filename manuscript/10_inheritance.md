@@ -1,10 +1,10 @@
 ## Dziedziczenie
 
-Starożytni filozofowie zauważyli, że otaczające nas obiekty i stworzenia można skategoryzować na klasy o wspólnych cechach. Arystoteles dokonał nawet dość precyzyjnej kategoryzacji dla znanych mu zwierząt na rodzaje. Na przykład wszystkie ssaki mają włosy lub futro, są stałocieplne i karmią swoje młode mlekiem[^10_0]. Podobnie jednak można powiedzieć, że wszystkie kubki do kawy albo suszarki do włosów mają wspólne cechy. W programowaniu reprezentujemy takie relacje za pomocą **dziedziczenia**.
+Starożytni filozofowie zauważyli, że otaczające nas obiekty i stworzenia można podzielić na klasy o wspólnych cechach. Arystoteles dokonał nawet dość precyzyjnej kategoryzacji dla znanych mu zwierząt na rodzaje. Na przykład wszystkie ssaki mają włosy lub futro, są stałocieplne i karmią swoje młode mlekiem[^10_0]. Podobnie jednak można powiedzieć, że wszystkie kubki do kawy albo suszarki do włosów mają wspólne cechy. W programowaniu reprezentujemy takie relacje za pomocą **dziedziczenia**.
 
-Gdy klasa dziedziczy z innej klasy, posiada wszystkie jej funkcje i właściwości. Klasa, która dziedziczy, jest znana jako **podklasa** klasy, z której dziedziczy, zwaną **superklasą**. Nazywane są również **dzieckiem** i **rodzicem**.
+Gdy klasa dziedziczy z innej klasy, posiada wszystkie jej funkcje i właściwości. Klasa, która dziedziczy, jest znana jako **podklasa** klasy, z której dziedziczy, zwanej **nadklasą**. Nazywane są również **dzieckiem** i **rodzicem**.
 
-W Kotlinie wszystkie klasy są domyślnie zamknięte, co oznacza, że nie można z nich dziedziczyć. Aby otworzyć klasę, używamy słowa kluczowego `open`, co pozwala na dziedziczenie z niej. Aby dziedziczyć z klasy, umieszczamy dwukropek po głównym konstruktorze (lub po nazwie klasy, jeśli nie definiujemy głównego konstruktora), a następnie wywołujemy konstruktor superklasy. W poniższym przykładzie klasa `Dog` dziedziczy po klasie `Mammal`. Ponieważ `Mammal` nie ma określonego konstruktora, używamy jego konstruktora domyślnego, a więc wywołujemy go bez argumentów (`Mammal()`). W ten sposób klasa `Dog` dziedziczy wszystkie właściwości i metody z klasy `Mammal`.
+W Kotlinie wszystkie klasy są domyślnie zamknięte, co oznacza, że nie można z nich dziedziczyć. Aby otworzyć klasę, używamy słowa kluczowego `open`, co pozwala na dziedziczenie z niej. Aby dziedziczyć z klasy, umieszczamy dwukropek po głównym konstruktorze (lub po nazwie klasy, jeśli nie definiujemy głównego konstruktora), a następnie wywołujemy konstruktor nadklasy. W poniższym przykładzie klasa `Dog` dziedziczy po klasie `Mammal`. Ponieważ `Mammal` nie ma określonego konstruktora, używamy jego konstruktora domyślnego, a więc wywołujemy go bez argumentów (`Mammal()`). W ten sposób klasa `Dog` dziedziczy wszystkie właściwości i metody z klasy `Mammal`.
 
 ```kotlin
 open class Mammal {
@@ -60,7 +60,7 @@ open class Mammal {
 }
 
 class Human : Mammal() {
-    open override val hasFur = false
+    override val hasFur = false
     
     override fun feedYoung() {
         if (canFeed) {
@@ -118,7 +118,7 @@ fun main() {
 
 ### Wywołanie `super`
 
-Gdy klasa rozszerza inną klasę, przejmuje zachowanie z nadklasy, ale także dodaje pewne zachowanie specyficzne dla podklasy. Dlatego nadpisywanie metod często wymaga uwzględnienia zachowania metod, które są nadpisywane. W tym celu przydatne jest wywołanie implementacji nadklasy w tych metodach podklasy. Robimy to za pomocą słowa kluczowego `super`, po którym następuje kropka, a następnie wywołujemy metodę, którą chcemy nadpisać.
+Gdy klasa rozszerza inną klasę, przejmuje zachowanie z nadklasy, ale także dodaje pewne zachowanie specyficzne dla podklasy. Dlatego nadpisywanie metod często wymaga uwzględnienia użycia metod, które są nadpisywane. W tym celu przydatne jest wywołanie implementacji nadklasy w tych metodach podklasy. Robimy to za pomocą słowa kluczowego `super`, po którym następuje kropka, a następnie wywołujemy metodę, którą chcemy nadpisać.
 
 Spójrz na klasy `Dog` i `BorderCollie`, które są przedstawione w poniższym przykładzie. Domyślne zachowanie dla psa to merdanie ogonem, gdy widzi psiego przyjaciela. Border Collie powinny zachowywać się tak samo, ale dodatkowo się kłaść. W tym przypadku, aby wywołać implementację nadklasy, musimy użyć `super.seeFriend()`.
 
@@ -209,7 +209,7 @@ fun main() {
 }
 ```
 
-Klasa abstrakcyjna może również mieć metody nieabstrakcyjne, które mają swoje ciało. Takie metody mogą być używane przez inne metody. Dlatego klasy abstrakcyjne mogą być używane jako szablony z częściową implementacją dla innych klas. Spójrz na poniższą klasę abstrakcyjną `CoffeeMachine`, która określa, jak przygotować latte lub doppio, ale potrzebuje podklasy, która przesłoni metody `prepareEspresso` i `addMilk`. Jest to więc pewnego rodzaju szablon dla klas reprezentujących ekspresy do kawy, dostarcza implementację tylko dla niektórych metod i oczekuje zdefiniowanie innych. 
+Klasa abstrakcyjna może również mieć metody nieabstrakcyjne, które mają swoje ciało. Takie metody mogą być używane przez inne metody. Dlatego klasy abstrakcyjne mogą być używane jako szablony z częściową implementacją dla innych klas. Spójrz na poniższą klasę abstrakcyjną `CoffeeMachine`, która określa, jak przygotować latte lub doppio, ale potrzebuje podklasy, która nadpisze abstrakcyjne metody `prepareEspresso` i `addMilk`. Jest to więc pewnego rodzaju szablon dla klas reprezentujących ekspresy do kawy, dostarcza implementację tylko dla niektórych metod i wymagający zdefiniowania innych. 
 
 ```kotlin
 abstract class CoffeeMachine {
@@ -241,7 +241,7 @@ interface CoffeeMaker {
 }
 ```
 
-Gdy klasa implementuje interfejs, musi ona zastąpić wszystkie elementy zdefiniowane przez ten interfejs. Dzięki temu możemy traktować instancję klasy jako instancję interfejsu. Interfejsy implementujemy podobnie do rozszerzania klas, ale bez wywoływania konstruktora, ponieważ interfejsy nie mogą mieć konstruktorów.
+Gdy klasa implementuje interfejs, musi ona zastąpić wszystkie elementy zdefiniowane przez ten interfejs. Dzięki temu możemy traktować instancję klasy jako instancję interfejsu. Interfejsy implementujemy podobnie do rozszerzania klas, ale bez wywoływania konstruktora, ponieważ interfejsy nie mogą mieć konstruktorów. 
 
 ```kotlin
 class User(val id: Int, val name: String)
@@ -287,7 +287,7 @@ class User(
 }
 ```
 
-Właściwość tylko do odczytu `val` może zostać zastąpiona właściwością do odczytu i zapisu `var`. Wynika to z faktu, że właściwość `val` oczekuje gettera, a właściwość `var` dostarcza gettera oraz settera.
+Właściwość tylko do odczytu `val` może zostać nadpisana właściwością do odczytu i zapisu `var`. Wynika to z faktu, że właściwość `val` oczekuje gettera, a właściwość `var` dostarcza gettera oraz settera.
 
 ```kotlin
 interface Named {
@@ -320,7 +320,7 @@ class Mug : Drinkable, Spillable {
 }
 ```
 
-Interfejsy mogą określać domyślne ciała dla swoich metod. Takie metody nie muszą (ale mogą) być implementowane przez podklasy.
+Interfejsy mogą określać domyślne ciała dla swoich metod. Takie metody nie muszą (ale mogą) być implementowane przez klasy implementujące takie interfejsy.
 
 ```kotlin
 class User(val id: Int, val name: String)
@@ -415,13 +415,13 @@ fun main() {
 Projektując nasze klasy, staramy się ujawnić jak najmniej informacji[^10_3]. Jeśli nie ma powodu, dla którego element miałby być widoczny[^10_4], wolimy go ukryć. Dlatego, jeśli nie ma dobrego powodu, aby mieć mniej restrykcyjny typ widoczności, dobrym zwyczajem jest nadanie klasom i elementom jak najbardziej restrykcyjnej widoczności. Robimy to za pomocą modyfikatorów widoczności.
 
 Dla elementów klasy możemy użyć 4 modyfikatorów widoczności:
-* `public` (domyślny) - widoczny wszędzie przez funkcję mogących zobaczyć deklarującą klasę.
-* `private` - widoczny tylko przez funkcje tej samej klasie.
-* `protected` - widoczny tylko przez funkcje tej samej klasie i jej podklasach.
-* `internal` - widoczny wewnątrz tego samego modułu dla funkcji mogących zobaczyć deklarującą klasę.
+* `public` (domyślny) - widoczny wszędzie przez funkcje mogące zobaczyć deklarującą klasę.
+* `private` - widoczny tylko przez funkcje tej samej klasy.
+* `protected` - widoczny tylko przez funkcje tej samej klasy i jej podklas.
+* `internal` - widoczny wewnątrz tego samego modułu przez funkcje mogące zobaczyć deklarującą klasę.
 
-Elementy na najwyższym poziomie mają 3 modyfikatory widoczności:
-* `public` (domyślny) - przez wszystkie funkcje. 
+Elementy plików mają 3 modyfikatory widoczności:
+* `public` (domyślny) - widoczny przez wszystkie funkcje. 
 * `private` - widoczny przez funkcje w tym samym pliku.
 * `internal` - widoczny przez funkcje wewnątrz tego samego modułu.
 
@@ -638,7 +638,7 @@ Zamiast używać klas do reprezentowania hierarchii, możemy również używać 
 
 [^10_0]: Ciekawostką dla właścicieli psów czy kotów jest to, że, podobnie jak wszystkie ssaki, mają one pępek; jednak często nie jest łatwo go znaleźć, ponieważ jest mały i czasami ukryty pod futrem.
 [^10_3]: Głębsze wyjaśnienie powodów stojących za tą ogólną zasadą programowania przedstawione jest w *Efektywny Kotlin*, *Temat 30: Minimalizuj widoczność elementów*.
-[^10_4]: Widoczność określa, gdzie można używać elementu. Jeśli element nie jest widoczny, nie będzie sugerowany przez IDE i nie można go używać.
+[^10_4]: Widoczność określa, gdzie można używać danego elementu. Jeśli element nie jest widoczny, nie będzie sugerowany przez IDE i nie można go używać.
 [^10_5]: Jednakże widziałem przypadki, gdy zespoły używały modyfikatora widoczności `internal` jako substytutu dla modyfikatora package-private w Java. Pomimo że ma on inne zachowanie, niektórzy programiści traktują ten modyfikator jako formę dokumentacji, która powinna być interpretowana jako "ten element nie powinien być używany w różnych pakietach". Nie jestem fanem takich praktyk. 
-[^10_6]: Domyślne metody sprawiają, że interfejsy są czymś więcej niż to co uważano za interfejs w tradycyjnym ujęciu. Umożliwiają one interfejsom definiowanie zachowań, które są dziedziczone przez klasy implementujące te interfejsy. Koncepcja, która reprezentuje zbiór metod, które można wykorzystać do rozszerzenia funkcjonalności klasy, jest znana w programowaniu jako **trait**. Dlatego we wczesnych wersjach Kotlina używaliśmy słowa kluczowego `trait` zamiast słowa kluczowego `interface`. Jednak wersja 8 Javy wprowadziła domyślne ciała dla metod interfejsów, więc twórcy Kotlina założyli, że społeczność JVM poszerzyła znaczenie pojęcia interfejsu i dlatego teraz używamy słowa kluczowego `interface`. Koncepcja traitów jest używana w Kotlinie. Przykład można znaleźć w moim artykule *Traits for testing in Kotlin*, który można znaleźć pod adresem `http://kt.academy/article/traits-testing`.
+[^10_6]: Domyślne metody sprawiają, że interfejsy są czymś więcej niż to, co uważano za interfejs w tradycyjnym ujęciu. Umożliwiają one interfejsom definiowanie zachowań, które są dziedziczone przez klasy implementujące te interfejsy. Koncepcja, która reprezentuje zbiór metod, które można wykorzystać do rozszerzenia funkcjonalności klasy, jest znana w programowaniu jako **trait**. Dlatego we wczesnych wersjach Kotlina używaliśmy słowa kluczowego `trait` zamiast słowa kluczowego `interface`. Jednak wersja 8 Javy wprowadziła domyślne ciała dla metod interfejsów, więc twórcy Kotlina założyli, że społeczność JVM poszerzyła znaczenie pojęcia interfejsu i dlatego teraz używamy słowa kluczowego `interface`. Koncepcja traitów jest używana w Kotlinie. Przykład można znaleźć w moim artykule *Traits for testing in Kotlin*, który można znaleźć pod adresem `kt.academy/article/traits-testing`.
 

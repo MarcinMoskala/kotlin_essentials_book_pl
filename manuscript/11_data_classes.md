@@ -27,7 +27,7 @@ fun main() {
 }
 ```
 
-> Prawdę mówiąc, `Any` jest reprezentowane jako klasa, ale powinno być traktowane jako typ. Weź pod uwagę fakt, że `Any` jest także nadrzędnym typem wszystkich interfejsów, mimo że interfejsy nie mogą dziedziczyć po klasach.
+> Prawdę mówiąc, `Any` jest reprezentowane jako klasa, ale powinno być raczej traktowane jako typ. Chociażby dlatego, że `Any` jest także nadrzędnym typem wszystkich interfejsów, mimo że interfejsy nie mogą dziedziczyć po klasach.
 
 Domyślne implementacje `equals`, `hashCode` i `toString` są mocno oparte na adresie obiektu w pamięci. Metoda `equals` zwraca `true` tylko wtedy, gdy adres obu obiektów jest taki sam, co oznacza, że po obu stronach jest ten sam obiekt. Metoda `hashCode` zamienia ten adres na liczbę. `toString` generuje string, który zaczyna się od nazwy klasy, a następnie znaku małpy "@", a potem skrótu adresu obiektu w notacji szesnastkowej.
 
@@ -88,8 +88,8 @@ fun main() {
 ```
 
 W książce *Efektywny Kotlin* poświęciłem oddzielne tematy na implementację własnych metod `equals` i `hashCode`[^11_0], ale w praktyce rzadko musimy to robić. Okazuje się, że we współczesnych projektach prawie wyłącznie operujemy tylko na dwóch rodzajach obiektów:
-* Aktywne obiekty, takie jak usługi, kontrolery, repozytoria itp. Takie klasy nie muszą nadpisywać żadnych metod z `Any`, ponieważ domyślne zachowanie jest dla nich idealne.
-* Obiekty reprezentujące nasz model danych, takie jak `User`, `Payment` itp. Dla takich obiektów używamy modyfikatora `data`, który nadpisuje metody `toString`, `equals` i `hashCode` w wsposób odpowiedni dla klas modelu danych. Modyfikator `data` implementuje również metody `copy` oraz `componentN` (`component1`, `component2` itp.), które nie są dziedziczone i nie mogą być modyfikowane.
+* Aktywne obiekty, takie jak usługi (services), kontrolery, repozytoria itp. Takie klasy nie muszą nadpisywać żadnych metod z `Any`, ponieważ domyślne zachowanie jest dla nich odpowiednie.
+* Obiekty reprezentujące nasz model danych, takie jak `User`, `Payment` itp. Dla takich obiektów używamy modyfikatora `data`, który nadpisuje metody `toString`, `equals` i `hashCode` w sposób odpowiedni dla klas modelu danych. Modyfikator `data` implementuje również metody `copy` oraz `componentN` (`component1`, `component2` itp.), które nie są dziedziczone i nie mogą być modyfikowane.
 
 ```kotlin
 data class Player(
@@ -113,13 +113,15 @@ class FakeUserRepository
 fun main() {
    val repository1 = FakeUserRepository()
    val repository2 = FakeUserRepository()
+   val repository1ref = repository1
+   
    println(repository1) // np. FakeUserRepository@8efb846
-   println(repository1) // np. FakeUserRepository@8efb846
-   println(repository2) // np. FakeUserRepository@2a84aee7
+   println(repository2) // np. FakeUserRepository@2a84aee7 
+   println(repository1ref) // np. FakeUserRepository@8efb846
 }
 ```
 
-Dzięki modyfikatorowi `data`, kompilator generuje `toString`, który wyświetla nazwę klasy, a następnie pary z nazwą i wartością dla każdej właściwości konstruktora głównego. Zakładamy, że klasy modelu danych są reprezentowane przez ich właściwości konstruktora głównego, więc wszystkie te właściwości wraz z ich wartościami są wyświetlane podczas przekształcania na string. Jest to przydatne przy loggowaniu i debugowania.
+Dzięki modyfikatorowi `data`, kompilator generuje `toString`, który wyświetla nazwę klasy, a następnie pary z nazwą i wartością dla każdej właściwości konstruktora głównego. Zakładamy, że klasy modelu danych są reprezentowane przez ich właściwości konstruktora głównego, więc wszystkie te właściwości wraz z ich wartościami są wyświetlane podczas przekształcania na string. Jest to przydatne przy loggowaniu i do debugowania.
 
 ```kotlin
 data class Player(
@@ -155,9 +157,9 @@ fun main() {
 }
 ```
 
-Klasy z modyfikatorem `data` reprezentują zbiór danych; uważa się je za równe innym instancjom, jeśli:
-* obie są tej samej klasy,
-* wartości właściwości głównego konstruktora są równe.
+Klasy z modyfikatorem `data` reprezentują zbiór danych; dwa obiekty tej klasy uważa się je za równe jeśli:
+* obie są dokładnie tej samej klasy,
+* ich wartości właściwości głównego konstruktora są równe.
 
 ```kotlin
 data class Player(
@@ -176,10 +178,11 @@ fun main() {
 Tak wygląda uproszczona implementacja metody `equals` generowanej przez modyfikator `data` dla klasy `Player`:
 
 ```kotlin
-override fun equals(other: Any?): Boolean = other is Player &&
-   other.id == this.id &&
-   other.name == this.name &&
-   other.points == this.points
+override fun equals(other: Any?): Boolean = 
+    other is Player &&
+        other.id == this.id &&
+        other.name == this.name &&
+        other.points == this.points
 ```
 
 > Implementacja własnej metody `equals` opisana jest w *Efektywny Kotlin*, *Temat 42: Szanuj kontrakt metody equals*.
@@ -187,10 +190,10 @@ override fun equals(other: Any?): Boolean = other is Player &&
 ### Kod hashujący
 
 Kolejną metodą z klasy `Any` jest `hashCode`, która służy do przekształcenia obiektu na wartość `Int`. Dzięki metodzie `hashCode` instancję obiektu można przechowywać w implementacjach struktury danych hash table (co się tłumaczy także jako "tablica mieszająca"), będących częścią wielu popularnych klas, takich jak `HashSet` i `HashMap`. Najważniejsza zasada implementacji `hashCode` mówi, że powinna ona:
-* być zgodna z `equals`, więc powinna zwracać tę samą wartość `Int` dla równych obiektów, a także zawsze zwracać ten sam kod hashujący dla tego samego obiektu.
+* być zgodna z `equals`, więc powinna zwracać tą samą wartość `Int` dla równych obiektów, a także zawsze zwracać ten sam kod hashujący dla tego samego obiektu.
 * rozkładać obiekty jak najbardziej równomiernie w zakresie wszystkich możliwych wartości `Int`.
 
-Domyślny `hashCode` opiera się na adresie obiektu w pamięci. Kod hashujący generowany przez modyfikator `data` opiera się na kodach hashujących właściwości głównego konstruktora tego obiektu. Gdy dwa obiekty są równe, ich kody hashujący są również równe. 
+Domyślny `hashCode` opiera się na adresie obiektu w pamięci. Kod hashujący generowany przez modyfikator `data` opiera się na kodach hashujących właściwości głównego konstruktora tego obiektu. Gdy dwa obiekty są równe, ich kody hashujące również muszą być równe. 
 
 ```kotlin
 data class Player(
@@ -213,8 +216,8 @@ Aby dowiedzieć się więcej o algorytmie tablicy mieszającej oraz implementacj
 Kolejną metodą generowaną przez modyfikator `data` jest `copy`, który służy do tworzenia nowej instancji klasy, ale z konkretną modyfikacją. Idea jest bardzo prosta: jest to funkcja z parametrami dla każdej właściwości głównego konstruktora, ale każdy z tych parametrów ma wartość domyślną, tj. bieżącą wartość powiązanej właściwości.
 
 ```kotlin
-// Oto jak wygląda metoda copy generowana przez modyfikator data
-// dla klasy Person "pod kopułą"
+// Oto jak "pod maską" wygląda metoda copy generowana 
+// przez modyfikator data dla klasy Person
 fun copy(
    id: Int = this.id,
    name: String = this.name,
@@ -245,12 +248,12 @@ fun main() {
 }
 ```
 
-Zauważ, że `copy` tworzy płytką kopię obiektu; jeśli więc nasz obiekt przechowuje zmienny stan, zmiana w jednym obiekcie będzie również zmianą we wszystkich jego kopiach.
+Zauważ, że `copy` tworzy płytką kopię obiektu; jeśli więc nasz obiekt przechowuje zmienny stan, wszystkie kopie będą się odnosiły do tego samego zmiennego obiektu. 
 
 ```kotlin
 data class StudentGrades(
    val studentId: String,
-   // Zły zapach kodu: Unikaj stosowania obiektów zmiennych w klasach data
+   // Źle: Nie używaj obiektów mutowalnych w klasach data
    val grades: MutableList<Int>
 )
 
@@ -308,7 +311,7 @@ data class User(
 
 ### Destrukturyzacja
 
-Kotlin obsługuje funkcję destrukturyzacji opartej na pozycji, która pozwala przypisać wiele zmiennych do składników pojedynczego obiektu. W tym celu umieszczamy nazwy naszych zmiennych w nawiasach okrągłych, po czym używamy przypisania. 
+Kotlin ma wsparcie dla destrukturyzacji opartej na pozycji. Polega to na tym, że na podstawie wartości pojedynczego obiektu definiujemy wartości wielu zmiennych. Aby dokonać destrukturyzcaji, musimy użyć słowa kluczowego `val` lub `var` przed nawiasami okrągłymi, w których określamy zmienne, które chcemy zdefiniować.
 
 ```kotlin
 data class Player(
@@ -342,7 +345,7 @@ To są obecnie wszystkie funkcjonalności, które dostarcza modyfikator `data`. 
 
 ### Kiedy i jak powinniśmy używać destrukturyzacji?
 
-Dekonstrukcja oparta na pozycji ma swoje zalety i wady. Największą zaletą jest to, że możemy nadawać zmiennym dowolne nazwy, więc możemy użyć nazw takich jak `kraj` i `miasto` w poniższym przykładzie. Możemy też dekonstruować wszystko, co dostarcza funkcji `componentN`. Obejmuje to `List` i `Map.Entry`, które mają zdefiniowane funkcje `componentN` jako rozszerzenia:
+Destrukturyzacja oparta na pozycji ma swoje zalety i wady. Największą zaletą jest to, że możemy nadawać zmiennym dowolne nazwy, więc możemy użyć nazw takich jak `country` i `city` w poniższym przykładzie. Możemy też dekonstruować wszystko, co dostarcza funkcji `componentN`. Obejmuje to `List` i `Map.Entry`, które mają zdefiniowane funkcje `componentN` jako rozszerzenia:
 
 ```kotlin
 fun main() {
@@ -352,20 +355,20 @@ fun main() {
     // Hiszpania Maroko Indie
 
     val trip = mapOf(
-        "Hiszpania" to "Gran Canaria",
+        "Hiszpanii" to "Gran Canaria",
         "Maroko" to "Taghazout",
-        "Indie" to "Rishikesh"
+        "Indiach" to "Rishikesh"
     )
     for ((country, city) in trip) {
         println("Odwiedziliśmy $city w $country")
         // Odwiedziliśmy Gran Canaria w Hiszpanii
-        // Odwiedziliśmy Taghazout w Maroku
+        // Odwiedziliśmy Taghazout w Maroko
         // Odwiedziliśmy Rishikesh w Indiach
     }
 }
 ```
 
-Z drugiej strony, destrukturyzacja oparta na pozycji jest niebezpieczna. Gdy kolejność lub liczba elementów w klasie danych ulegnie zmianie, musimy dostosować wszystkie destrukturyzacje. Korzystając z tej funkcjonalności, łatwo jest wprowadzić błędy do naszego kodu, gdy ulega zmianie kolejność właściwości głównego konstruktora.
+Z drugiej strony, destrukturyzacja oparta na pozycji jest niebezpieczna. Gdy kolejność lub liczba elementów w klasie danych ulegnie zmianie, musimy dostosować wszystkie destrukturyzacje tych obiektów. Korzystając z tej funkcjonalności, łatwo jest wprowadzić błędy do naszego kodu, gdy ulega zmianie kolejność właściwości głównego konstruktora.
 
 ```kotlin
 data class FullName(
@@ -384,7 +387,7 @@ Musimy być ostrożni z destrukturyzacją. Przydatne jest stosowanie tych samych
 {width: 84%}
 ![](data_fullname.png)
 
-Destrukturyzacja pojedynczej wartości jest bardzo myląca. Zwłaszcza w funkcji lambda, gdzie nawiasy wokół argumentów w wyrażeniach lambda są, w zależności od języka programowania, opcjonalne lub wymagane.
+Destrukturyzacja pojedynczej wartości jest bardzo myląca. Zwłaszcza w wyrażeniach lambda[^11_4], gdzie nawiasy wokół argumentów w niektórych językach programowania są opcjonalne lub wymagane.
 
 ```kotlin
 data class User(
@@ -411,7 +414,8 @@ Ideą stojącą za data klasami jest to, że reprezentują one zestaw danych; ic
 data class Dog(
    val name: String,
 ) {
-   // Zła praktyka, unikaj zmiennych właściwości w klasach danych
+   // Zła praktyka, unikaj
+   // zmiennych właściwości w klasach danych
    var trained = false
 }
 
@@ -428,7 +432,7 @@ fun main() {
 }
 ```
 
-Data klasy powinny przechowywać wszystkie istotne właściwości w swoim głównym konstruktorze. W ciele klasy powinniśmy trzymać tylko nadmiarowe, niemodyfikowalne właściwości, co oznacza właściwości, których wartość jest obliczana na podstawie właściwości głównego konstruktora, takie jak `fullName`, czyli właściwość obliczana na podstawie `name` i `surname`. Takie wartości są również ignorowane przez metody data klasy, ale ich wartość zawsze będzie poprawna, ponieważ będzie obliczana podczas tworzenia nowego obiektu.
+Data klasy powinny przechowywać wszystkie istotne właściwości w swoim głównym konstruktorze. W ciele klasy powinniśmy trzymać tylko nadmiarowe właściwości, czyli właściwości, których wartość jest obliczana na podstawie właściwości głównego konstruktora, takie jak `fullName`, czyli właściwość obliczana na podstawie `name` i `surname`. Takie wartości są również ignorowane przez metody data klasy, ale ich wartość zawsze będzie poprawna, ponieważ będzie obliczana podczas tworzenia nowego obiektu.
 
 ```kotlin
 data class FullName(
@@ -516,7 +520,7 @@ val (odd, even) = numbers.partition { it % 2 == 1 }
 val map = mapOf(1 to "San Francisco", 2 to "Amsterdam")
 ```
 
-W innych przypadkach preferujemy użycie data klasy. Spójrz na przykład: załóżmy, że potrzebujemy funkcji, która przetwarza pełne imię i nazwisko na imię i nazwisko. Ktoś może reprezentować to imię i nazwisko jako `Pair<String, String>`:
+W innych przypadkach preferujemy użycie data klasy. Na przykład załóżmy, że potrzebujemy funkcji, która przetwarza pełne imię i nazwisko na imię i nazwisko. Ktoś może reprezentować to imię i nazwisko jako `Pair<String, String>`:
 
 ```kotlin
 fun String.parseName(): Pair<String, String>? {
@@ -579,10 +583,11 @@ Jeśli nie chcesz, aby ta klasa miała szerszy zakres, możesz ograniczyć jej w
 
 ### Podsumowanie
 
-W tym rozdziale poznaliśmy `Any`, które jest nadklasą wszystkich klas. Dowiedzieliśmy się także o metodach zdefiniowanych przez `Any`: `equals`, `hashCode` i `toString`. Poznaliśmy również dwa główne typy obiektów. Zwykłe obiekty są uważane za unikalne i nie ujawniają swoich szczegółów. Obiekty data klasy, które tworzyliśmy przy pomocy modyfikatora `data`, reprezentują zbiory danych. Są równe, gdy przechowują te same dane. Po przekształceniu na string wyświetlają wszystkie swoje dane. Dodatkowo obsługują destrukturyzację i tworzenie kopii za pomocą metody `copy`. Dwie generyczne data klasy w Kotlinie to `Pair` i `Triple`, ale (z wyjątkiem pewnych przypadków) wolimy używać lepiej nazwanych klas danych zamiast nich. Ponadto, ze względów bezpieczeństwa, gdy destrukturyzujemy klasę danych, wolimy dopasować nazwy zmiennych do nazw parametrów.
+W tym rozdziale poznaliśmy `Any`, które jest nadklasą wszystkich klas. Dowiedzieliśmy się także o metodach zdefiniowanych przez `Any`: `equals`, `hashCode` i `toString`. Poznaliśmy również dwa główne typy obiektów. Zwykłe obiekty są uważane za unikalne i nie ujawniają swoich szczegółów. Obiekty data klasy, które tworzyliśmy przy pomocy modyfikatora `data`, reprezentują zbiory danych. Są równe, gdy przechowują te same dane. Po przekształceniu na string wyświetlają wszystkie swoje dane. Dodatkowo obsługują destrukturyzację i tworzenie kopii za pomocą metody `copy`. Dwie generyczne data klasy w Kotlinie to `Pair` i `Triple`, ale (z wyjątkiem pewnych przypadków) wolimy używać lepiej nazwanych data klas zamiast nich. Ponadto, ze względów bezpieczeństwa, gdy destrukturyzujemy data klasę, wolimy dopasować nazwy zmiennych do nazw parametrów.
 
 Teraz przejdźmy do rozdziału poświęconego specjalnej składni Kotlina, która pozwala nam tworzyć obiekty bez definiowania klasy.
 
 [^11_0]: Są to *Temat 42: Szanuj kontrakt equals* oraz *Temat 43: Szanuj kontrakt hashCode*.
 [^11_2]: Kotlin miał wsparcie dla tupli, gdy był jeszcze w wersji beta. Mogliśmy zdefiniować krotkę za pomocą nawiasów i zestawu typów, takich jak `(Int, String, String, Long)`. To, co osiągnęliśmy, zachowywało się podobnie jak data klasy, ale było znacznie mniej czytelne. Korzystanie z tupli jest kuszące, ale korzystanie z data klas jest prawie zawsze lepsze. Dlatego tuple zostały usunięte, a pozostały tylko `Pair` i `Triple`.
 [^11_3]: Więc `Any` jest analogiczne do `Object` w Javie, JavaScripcie lub C#. W C++ nie ma bezpośredniego odpowiednika.
+[^11_4]: O wyrażeniach lambda więcej w książce *Funkcyjny Kotlin*. 

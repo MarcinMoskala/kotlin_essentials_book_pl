@@ -508,7 +508,7 @@ Lubię używać trailing comma, ponieważ ułatwia dodawanie kolejnego elementu 
 
 Jak widać, funkcje w Kotlinie oferują wiele potężnych możliwości. Składnia z pojedynczym wyrażeniem sprawia, że proste funkcje są krótsze. Nazwane argumenty i domyślne wartości pomagają nam poprawić czytelność kodu i zmniejszyć liczbę funkcji. Typ wyniku `Unit` sprawia, że każde wywołanie funkcji jest wyrażeniem. Parametry vararg pozwalają na używanie dowolnej liczby argumentów dla jednej pozycji parametru. Notacja infiksowa wprowadza wygodniejszy sposób wywoływania pewnego rodzaju funkcji. Trailing comma pomaga zmniejszyć liczbę zmian w Gicie. Wszystko to jest dla naszej wygody. Czas przejść do kolejnej przydatnej funkcjonalności języka Kotlin, czyli do używania pętli `for`.
 
-[^06_1]: To było podczas panelu dyskusyjnego na konferencji KotlinConf w Amsterdamie. Źródło: https://youtu.be/heqjfkS4z2I?t=660
+[^06_1]: To było podczas panelu dyskusyjnego na konferencji KotlinConf w Amsterdamie. Źródło: youtu.be/heqjfkS4z2I?t=660
 [^06_2]: Ta zasada ma pewne wyjątki. Na przykład w przypadku Androida, funkcje Jetpack Compose powinny być nazwane według konwencji UpperCamelCase. Ponadto, testy jednostkowe często są nazwane pełnymi zdaniami otoczonymi odwrotnym apostrofem.
 [^06_3]: Przypominam, że wyrażenie to część kodu, która zwraca wartość.
 [^06_4]: Zobacz *Efektywny Kotlin* *Temat 4: Nie udostępniaj wywnioskowanych typów*.

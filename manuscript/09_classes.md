@@ -1,6 +1,6 @@
 ## Klasy
 
-Spójrz na świat wokół siebie, a prawdopodobnie zauważysz mnóstwo obiektów. Może to być książka, czytnik Ebooków, monitor lub kubek kawy. Jesteśmy otoczeni obiektami. Ta obserwacja prowadzi do wniosku, że żyjemy w świecie obiektów, a zatem nasze programy powinny być zbudowane w ten sam sposób. To jest koncepcyjna podstawa programowania obiektowego. Nie wszyscy podzielają ten światopogląd, niektórzy wolą widzieć świat jako miejsce możliwych działań[^09_0], co jest podstawą programowania funkcyjnego. Niezależnie od tego, które podejście preferujemy, klasy i obiekty są ważnymi strukturami w programowaniu Kotlin i omówimy je w tym rozdziale. 
+Spójrz na świat wokół siebie, a prawdopodobnie zauważysz mnóstwo obiektów. Może to być książka, czytnik Ebooków, monitor lub kubek kawy. Jesteśmy otoczeni obiektami. Ta obserwacja prowadzi do wniosku, że żyjemy w świecie obiektów, a zatem nasze programy powinny być zbudowane w ten sam sposób. To jest koncepcyjna podstawa programowania obiektowego. Nie wszyscy podzielają ten światopogląd, niektórzy wolą widzieć świat jako miejsce możliwych działań[^09_0], co jest podstawą programowania funkcyjnego. Niezależnie od tego, które podejście preferujemy, klasy i obiekty są ważnymi strukturami w programowaniu w Kotlinie i omówimy je w tym rozdziale. 
 
 Klasa to szablon, który służy do tworzenia obiektu o konkretnych cechach. Aby utworzyć klasę w Kotlinie, używamy słowa kluczowego `class`, a następnie określamy jej nazwę. To dosłownie wszystko, czego potrzebujemy, aby utworzyć najprostszą klasę, ponieważ ciało klasy jest opcjonalne. Aby utworzyć obiekt, który jest instancją klasy, używamy konstruktora, czyli nazwy klasy z nawiasami okrągłymi. W przeciwieństwie do innych języków, takich jak C++ czy Javie, w Kotlinie nie używamy słowa kluczowego `new`.
 
@@ -42,7 +42,7 @@ fun main() {
 }
 ```
 
-Wszystkie metody zdefiniowane w ciele klasy nazywać będziemy metodami klasy. Są one również **metodami**, choć metodami są również funkcje rozszerzające.
+Wszystkie funkcje zdefiniowane w ciele klasy nazywać będziemy funkcje klasy. Są one również **metodami**, choć metodami są również funkcje rozszerzające, o których pomówimy później.
 
 Koncepcyjnie rzecz biorąc, metody reprezentują to, co obiekt może robić. Na przykład, ekspres do kawy powinien być w stanie produkować kawę, co możemy reprezentować za pomocą metody `makeCoffee` w klasie `CoffeeMachine`. W ten sposób klasy z metodami pomagają nam modelować świat.
 
@@ -52,7 +52,7 @@ Wewnątrz ciał klas możemy również definiować zmienne. Zmienne zdefiniowane
 * getter - funkcja służąca do pobierania aktualnej wartości pola,
 * setter - funkcja służąca do ustawiania nowych wartości pola.
 
-Ten wzorzec jest bardzo powszechny; w projektach Javy można zobaczyć mnóstwo funkcji getterów i setterów. Są one potrzebne do osiągnięcia enkapsulacji, ale sprawiają że kod jest rozwlekły i mało czytelny. Dlatego twórcy języków wymyślili "właściwości". **Właściwość** to zmienna w klasie, która jest automatycznie enkapsulowana, a więc używa gettera i settera w sposób niejawny. W Kotlinie wszystkie zmienne zdefiniowane wewnątrz klas są właściwościami, a nie polami.
+Ten wzorzec jest bardzo powszechny; w projektach Javy można zobaczyć mnóstwo funkcji getterów i setterów. Są one potrzebne do osiągnięcia enkapsulacji, ale sprawiają, że kod jest rozwlekły i mało czytelny. Dlatego twórcy języków wymyślili "właściwości". **Właściwość** to zmienna w klasie, która jest automatycznie enkapsulowana, a więc używa gettera i settera w sposób niejawny. W Kotlinie wszystkie zmienne zdefiniowane wewnątrz klas są właściwościami, a nie polami.
 
 Niektóre języki, takie jak JavaScript, mają wbudowane wsparcie dla właściwości, ale Java go nie posiada. Dlatego w bajtkodzie Kotlin/JVM generowanym z kodu w Kotlinie zawarte są metody getterów i setterów.
 
@@ -189,7 +189,7 @@ fun main() {
 
 Settery mogą mieć bardziej ograniczoną widoczność niż właściwości, co pokażemy w kolejnym rozdziale.
 
-Jeśli niestandardowe akcesory właściwości nie używają słowa kluczowego `field`, pole nie zostanie wygenerowane dla właściwości. Na przykład możemy zdefiniować właściwość reprezentującą pełne imię i nazwisko, które jest obliczane na podstawie imienia i nazwiska. Taka właściwość nie zawiera pola.
+Jeśli niestandardowe akcesory właściwości nie używają słowa kluczowego `field`, pole nie zostanie wygenerowane dla właściwości. Na przykład możemy zdefiniować właściwość reprezentującą pełne imię i nazwisko, które jest obliczane na właściwości reprezentujących imię i nazwisko. Właściwość definiowana przez getter, który nie odnosi się do `field` nie zawiera pola i nie musi określać swojej wartości.
 
 ```kotlin
 class User {
@@ -287,7 +287,7 @@ class User {
 
 > W powyższym getterze używam `let` oraz referencji do konstruktora. Oba te elementy Kotlinie są wyjaśnione w książce **Funkcyjny Kotlin**.
 
-Taka właściwość `birthdate` może być również zdefiniowana jako funkcja rozszerzenia, co zostało przedstawione w rozdziale *Rozszerzenia*.
+Taka właściwość `birthdate` może być również zdefiniowana jako funkcja rozszerzająca, co zostało przedstawione w rozdziale *Rozszerzenia*.
 
 ### Konstruktory
 
@@ -299,7 +299,7 @@ class A
 val a = A()
 ```
 
-Aby zdefiniować nasz niestandardowy konstruktor, klasyczny sposób polega na użyciu słowa kluczowego `constructor` w ciele klasy, a następnie zdefiniowaniu jego parametrów i ciała.
+Aby zdefiniować konstruktor, klasyczny sposób (znany ze starszych języków programowania) polega na użyciu słowa kluczowego `constructor` w ciele klasy, a następnie zdefiniowaniu jego parametrów i ciała.
 
 ```kotlin
 class User {
@@ -391,7 +391,7 @@ fun main() {
 }
 ```
 
-W praktyce rzadko używamy innych rodzajów konstruktorów niż konstruktor główny, a w nim większość parametrów określamy jako właściwości. Także często definiujemy konstruktory główne z domyślnymi wartościami. W poniższym przykładzie tworzymy instancję `User` bez podawania argumentu `surname`, więc podczas tworzenia obiektu zostanie użyta określona przez nas wartość domyślna.
+W praktyce rzadko używamy innych rodzajów konstruktorów niż konstruktor główny, a w nim większość parametrów określamy jako właściwości. Także często definiujemy konstruktor główny z domyślnymi wartościami. W poniższym przykładzie tworzymy instancję `User` bez podawania argumentu `surname`, więc podczas tworzenia obiektu zostanie użyta określona przez nas wartość domyślna.
 
 ```kotlin
 class User(
@@ -408,7 +408,7 @@ fun main() {
 
 ### Klasy reprezentujące dane w Kotlinie i Javie
 
-Porównując klasy zdefiniowane w Kotlinie i Javie, możemy zauważyć, ile powtarzalnego kodu zostało wyeliminowanego dzięki zwięzłej składni Kotlina. W Javie, typowa implementacja reprezentacji prostego użytkownika, z imieniem, nazwiskiem i wiekiem, wygląda następująco:
+Porównując klasy zdefiniowane w Kotlinie i Javie, możemy zauważyć, ile powtarzalnego kodu zostało wyeliminowanego dzięki zwięzłej składni Kotlina. W Javie typowa implementacja reprezentacji prostego użytkownika, z imieniem, nazwiskiem i wiekiem, wygląda następująco:
 
 ```java
 public final class User {
@@ -454,7 +454,7 @@ class User(
 )
 ```
 
-Wynik kompilacji jest praktycznie taki sam. Gettery i konstruktory są obecne. Jeśli w to nie wierzysz, sprawdź sam (jak przedstawiłem w sekcji *Co kryje się pod maską na JVM?* w rozdziale *Twój pierwszy program w Kotlinie*). Kotlin to zwięzły, ale potężny język.
+Wynik kompilacji jest praktycznie taki sam. Gettery i konstruktory są obecne. Jeśli w to nie wierzysz, sprawdź sam (jak przedstawiłem w sekcji *Co kryje się pod maską na JVM?*, w rozdziale *Twój pierwszy program w Kotlinie*). Kotlin to zwięzły, ale potężny język.
 
 ### Klasy wewnętrzne
 
@@ -524,5 +524,5 @@ class FileTreeWalk(
 
 Jak widać, w Kotlinie możemy definiować klasy za pomocą naprawdę zwięzłej składni, a wynik jest bardzo czytelny. Główny konstruktor to niesamowity wynalazek, podobnie jak fakt, że w Kotlinie używamy właściwości zamiast pól. Dowiedziałeś się także o klasach wewnętrznych. Wszystko pięknie, ale jeszcze nie poruszyliśmy tematu dziedziczenia, które jest jakże ważne dla programistów piszących w stylu obiektowym. Omówimy je wraz z interfejsami i klasami abstrakcyjnymi w następnym rozdziale.
 
-[^09_0]: Zobacz artykuł "Object-oriented or functional? Two ways to see the world", link: https://kt.academy/article/oop-vs-fp
+[^09_0]: Zobacz artykuł "Object-oriented or functional? Two ways to see the world", link: kt.academy/article/oop-vs-fp
 

@@ -106,7 +106,7 @@ numbers = [1, 2, 3] // lista liczb
 names = {"Alex", "Barbara"} // zbiór stringów
 ```
 
-W Kotlinie rolę tę pełnią funkcje na najwyższym poziomie. Zgodnie z konwencją, ich nazwy zaczynają się od nazwy typu, który produkują (zaczynając od małej litery) i kończą się na przyrostku `Of`. Oto kilka przykładów.
+W Kotlinie rolę tę pełnią funkcje plików. Zgodnie z konwencją, ich nazwy zaczynają się od nazwy typu, który produkują (zaczynając od małej litery) i kończą się na przyrostku `Of`. Oto kilka przykładów.
 
 ```kotlin
 fun main() {

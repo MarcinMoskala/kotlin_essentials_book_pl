@@ -102,6 +102,7 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 * **sealed class** - **klasa sealed**,
 * **set** - **zbiór**,
 * **setter** - **setter**,
+* **secondary constructor** - **konstruktor wtórny**,
 * **single-expression function** - **funkcja z pojedynczym wyrażeniem**,
 * **smart cast** - **smart cast**,
 * **stacktrace** - **stacktrace**,

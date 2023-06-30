@@ -1,6 +1,6 @@
 ## Obiekty
 
-Czym jest obiekt? To pytanie, którym często zaczynam tę sekcję na moich warsztatach, i zazwyczaj dostaję natychmiastową odpowiedź: "Instancją klasy". To prawda, a więc jak tworzymy obiekty? Jednym ze sposobów jest proste użycie konstruktorów.
+Czym jest obiekt? To pytanie, którym często zaczynam tę sekcję na moich warsztatach i zazwyczaj dostaję natychmiastową odpowiedź: "Instancją klasy". To prawda, a więc jak tworzymy obiekty? Jednym ze sposobów jest proste użycie konstruktorów.
 
 ```kotlin
 class A
@@ -19,7 +19,7 @@ Aby utworzyć pusty obiekt za pomocą wyrażenia, używamy słowa kluczowego `ob
 val instance = object {}
 ```
 
-Pusty obiekt nie rozszerza żadnych klas (oprócz `Any`, które jest rozszerzane przez wszystkie obiekty w Kotlinie), nie implementuje żadnych interfejsów i nie ma niczego w swoim ciele. Mimo to jest przydatny. Jego moc tkwi w unikalności: taki obiekt równa się tylko sobie. Dlatego doskonale nadaje się do użycia jako rodzaj tokena lub blokady synchronizacji.
+Pusty obiekt nie rozszerza żadnych klas (oprócz `Any`, rozszerzanego przez wszystkie obiekty w Kotlinie), nie implementuje żadnych interfejsów i nie ma niczego w swoim ciele. Mimo to jest przydatny. Jego moc tkwi w unikalności: taki obiekt równa się tylko sobie. Dlatego doskonale nadaje się do użycia jako rodzaj tokena lub klucza synchronizacji.
 
 ```kotlin
 class Box {
@@ -44,7 +44,7 @@ Pusty obiekt można również utworzyć przy pomocy konstruktora `Any`, więc `A
 private val NOT_SET = Any()
 ```
 
-Jednak obiekty utworzone za pomocą wyrażeń tworzących obiekt nie muszą być puste. Mogą mieć ciała, rozszerzać klasy, implementować interfejsy itp. Składnia jest taka sama jak dla klas, ale deklaracje obiektów używają słowa kluczowego `object` zamiast `class` i nie powinny definiować nazwy ani konstruktora.
+Jednak obiekty utworzone za pomocą wyrażeń tworzących obiekt nie muszą być puste. Mogą mieć ciała, rozszerzać klasy, implementować interfejsy itp. Składnia jest taka sama jak dla klas, ale deklaracje obiektów używają słowa kluczowego `object` zamiast `class` i nie mogą definiować nazwy ani konstruktora.
 
 ```kotlin
 data class User(val name: String)
@@ -132,11 +132,11 @@ taskNameView.addTextChangedListener(object : TextWatcher {
 })
 ```
 
-Zauważ, że "wyrażenie tworzące obiekt" to trafniejsza nazwa niż "anonimowa klasa", ponieważ jest to wyrażenie, które tworzy obiekt. Choć faktem jest, że tworzy też anonimową klasę, ale to jest mało istotne z perspektywy programisty.
+Zauważ, że "wyrażenie tworzące obiekt" to trafniejsza nazwa niż "anonimowa klasa", ponieważ jest to wyrażenie, które tworzy obiekt. Choć faktem jest, że tworzy też anonimową klasę, ale to jest detal implementacyjny, mało istotny z perspektywy programisty.
 
 ### Deklaracja obiektu
 
-Jeśli weźmiemy wyrażenie tworzące obiekt i nadamy mu nazwę, otrzymamy **deklarację obiektu**. Ta struktura również tworzy pojedynczy, nie anonimowy obiekt: ma on nazwę, która może być użyta do odwołania się do niego. Zauważ, że jej składnia jest identyczna, jak składnia klasy, tylko że deklaracja obiektu nie ma konstruktora i używa słowa kluczowego `object` zamiast `class`.
+Jeśli weźmiemy wyrażenie tworzące obiekt i nadamy mu nazwę, otrzymamy **deklarację obiektu**. Ta struktura również tworzy pojedynczy obiekt, aczkolwiek obiekt ten ma nazwę, która może być użyta do odwołania się do niego. Zauważ, że składnia deklaracji obiektu jest identyczna, jak składnia deklaracji klasy, tylko że deklaracja obiektu nie ma konstruktora i używa słowa kluczowego `object` zamiast `class`.
 
 ```kotlin
 object Point {
@@ -156,7 +156,7 @@ fun main() {
 }
 ```
 
-Deklaracja obiektu to implementacja wzorca singleton[^12_4], tworzy więc ona klasę z pojedynczą instancją. Kiedykolwiek chcemy jej użyć, musimy działać na tej pojedynczej instancji. Deklaracje obiektów obsługują wszystkie funkcje, które obsługują klasy; na przykład mogą rozszerzać klasy lub implementować interfejsy.
+Deklaracja obiektu to implementacja wzorca singleton[^12_4], tworzy więc ona klasę z pojedynczą instancją. Kiedykolwiek chcemy jej użyć, musimy działać na tej pojedynczej instancji. Deklaracje obiektów obsługują wszystkie funkcjonalności, które obsługują klasy; na przykład mogą rozszerzać klasy lub implementować interfejsy.
 
 ```kotlin
 data class User(val name: String)
@@ -178,7 +178,7 @@ fun main() {
 }
 ```
 
-### Obiekty towarzyszące
+### Companion obiekty
 
 Kiedy wspominam czasy, gdy pracowałem jako programista Javy, pamiętam dyskusje na temat tego, jakie funkcjonalności powinny być wprowadzone do tego języka. Często słyszałem o pomyśle wprowadzenia dziedziczenia dla elementów statycznych. W końcu dziedziczenie jest bardzo ważne w Javie, więc dlaczego nie można go użyć dla elementów statycznych? Kotlin rozwiązał ten problem za pomocą companion obiektów; jednak, aby to było możliwe, musiał najpierw zlikwidować rzeczywiste elementy statyczne, tj. elementy, które są wywoływane na klasach, a nie na obiektach.
 
@@ -209,7 +209,7 @@ class User {
 val user: User = User.Producer.empty()
 ```
 
-To nie jest tak wygodne, jak elementy statyczne, ale możemy to poprawić. Jeśli użyjemy słowa kluczowego `companion` przed deklaracją obiektu zdefiniowaną w klasie, wówczas możemy wywoływać te metody obiektu niejawnie "w klasie".
+To nie jest tak wygodne, jak elementy statyczne, ale możemy to poprawić. Jeśli użyjemy słowa kluczowego `companion` przed deklaracją obiektu zdefiniowaną w klasie, wówczas możemy wywoływać te metody obiektu niejawnie przy użyciu nazwy klasy. A więc `User.Producer.empty()` może być zastąpione przez `User.empty()`.
 
 ```kotlin
 class User {
@@ -224,7 +224,7 @@ val user: User = User.empty()
 val user: User = User.Producer.empty()
 ```
 
-Obiekty z modyfikatorem `companion` nie muszą mieć wyraźnej nazwy. Ich domyślna nazwa to `Companion`.
+Obiekty z modyfikatorem `companion` nie muszą mieć określonej nazwy. Ich domyślna nazwa to `Companion`.
 
 ```kotlin
 class User {
@@ -239,7 +239,7 @@ val user: User = User.empty()
 val user: User = User.Companion.empty()
 ```
 
-W ten sposób osiągnęliśmy składnię, która jest prawie tak wygodna, jak elementy statyczne. Jedyną niedogodnością jest to, że musimy umieścić wszystkie "statyczne" elementy wewnątrz pojedynczego obiektu (w klasie może być tylko jeden companion obiekt). Jest to ograniczenie, ale mamy coś w zamian: obiekty towarzyszące to obiekty, więc mogą rozszerzać klasy lub implementować interfejsy.
+W ten sposób osiągnęliśmy składnię, która jest prawie tak wygodna, jak elementy statyczne. Jedyną niedogodnością jest to, że musimy umieścić wszystkie "statyczne" elementy wewnątrz pojedynczego obiektu (w klasie może być tylko jeden companion obiekt). Jest to ograniczenie, ale mamy coś w zamian: obiekty companion to obiekty, więc mogą rozszerzać klasy lub implementować interfejsy.
 
 Pozwól, że pokażę Ci przykład. Powiedzmy, że reprezentujesz pieniądze w różnych walutach za pomocą dedykowanych klas, takich jak `USD`, `EUR` czy `PLN`. Dla wygody każda z nich definiuje funkcje konstruujące `from`, które upraszczają tworzenie obiektów.
 
@@ -302,7 +302,7 @@ fun main() {
 }
 ```
 
-Powtarzające się funkcje do tworzenia obiektów z różnych typów można wyodrębnić do abstrakcyjnej klasy `MoneyMaker`, którą może być rozszerzana przez companion obiekty różnych walut. Ta klasa może oferować szereg metod do tworzenia waluty. W ten sposób wykorzystujemy dziedziczenie companion obiektów do wyodrębnienia wzorca, który jest wspólny dla wszystkich companion obiektów klas reprezentujących pieniądze.
+Powtarzające się funkcje do tworzenia obiektów z różnych typów można wyodrębnić do abstrakcyjnej klasy `MoneyMaker`, która może być rozszerzana przez companion obiekty różnych walut. Ta klasa może oferować szereg metod do tworzenia waluty. W ten sposób wykorzystujemy dziedziczenie companion obiektów do wyodrębnienia wzorca, który jest wspólny dla wszystkich companion obiektów klas reprezentujących pieniądze.
 
 ```kotlin
 import java.math.BigDecimal
@@ -358,26 +358,26 @@ fun main() {
 Nasza społeczność nadal uczy się korzystać z tych możliwości, ale już teraz można znaleźć wiele przykładów w projektach i bibliotekach. Oto kilka interesujących przykładów[^12_6]:
 
 ```kotlin
-// Korzystanie z dziedziczenia obiektów towarzyszących do rejestrowania
-// z ramki Kotlin Logging
+// Korzystanie z dziedziczenia companion obiektów 
+// przy użyciu biblioteki Kotlin Logging
 class FooWithLogging {
     fun bar(item: Item) {
-        // Logger pochodzi z obiektu towarzyszącego
+        // logger pochodzi z companion obiektu
         logger.info { "Przedmiot $item" }
     }
 
     companion object : KLogging()
-    // towarzyszący dziedziczy właściwość logger
+    // companion obiekt dziedziczy właściwość logger
 }
 ```
 
 ```kotlin
-// Przykład specyficzny dla Androida dotyczący użycia abstrakcyjnej fabryki
-// dla obiektu towarzyszącego
+// Przykład specyficzny dla Androida, dotyczący użycia 
+// abstrakcyjnej fabryki dla companion obiektu
 class MainActivity : Activity() {
     //...
 
-    // Używanie obiektu towarzyszącego jako fabryki
+    // Używanie companion obiektu jako fabryki
     companion object : ActivityFactory() {
         override fun getIntent(context: Context): Intent =
             Intent(context, MainActivity::class.java)
@@ -398,12 +398,12 @@ abstract class ActivityFactory {
     }
 }
 
-// Użycie wszystkich elementów towarzyszących fabryki Activity
+// Użycie wszystkich elementów fabryki Activity
 val intent = MainActivity.getIntent(context)
 MainActivity.start(context)
 MainActivity.startForResult(activity, requestCode)
 
-// W kontekstach na Kotlin Coroutines obiekty towarzyszące są
+// W kontekstach na Kotlin Coroutines companion obiekty są
 // używane jako klucze do identyfikowania kontekstów
 data class CoroutineName(
     val name: String
@@ -416,9 +416,11 @@ data class CoroutineName(
 }
 
 // Wyszukiwanie kontekstu według klucza
-val name1 = context[CoroutineName] // Tak, to jest obiekt towarzyszący
+val name1 = context[CoroutineName] // Tak, 
+// to jest companion obiekt
 
-// Można również odwoływać się do obiektów towarzyszących przez jego nazwę
+// Można również odwoływać się do companion obiektów
+// przez jego nazwę
 val name2 = context[CoroutineName.Key]
 ```
 
@@ -453,7 +455,7 @@ class Product(
 }
 ```
 
-Gdy właściwości companion obiektów lub właściwości na najwyższym poziomie reprezentują stałą wartość (znaną w czasie kompilacji), będącą albo wartością pierwotną, albo `String`[^12_3], możemy dodać modyfikator `const`. Jest to optymalizacja. Wszystkie użycia takich zmiennych zostaną zastąpione ich wartościami w czasie kompilacji.
+Gdy właściwości companion obiektów lub właściwości plików reprezentują stałą wartość (znaną w czasie kompilacji), będącą albo wartością prymitywną, albo typu `String`[^12_3], to możemy dodać modyfikator `const`. Jest to optymalizacja. Wszystkie użycia takich zmiennych zostaną zastąpione ich wartościami w czasie kompilacji.
 
 ```kotlin
 data class Product(
@@ -470,7 +472,7 @@ data class Product(
 }
 ```
 
-Takie właściwości można również używać w adnotacjach:
+Właściwości z modyfikatorem `const` można również używać w adnotacjach:
 
 ```kotlin
 private const val OUTDATED_API: String =
@@ -489,7 +491,7 @@ fun boo() {
 
 ### Podsumowanie
 
-W tym rozdziale dowiedzieliśmy się, że obiekty można tworzyć nie tylko z klas, ale także za pomocą wyrażeń tworzących obiekty i deklaracji obiektów. Obie te funkcjonalności mają swoje praktyczne zastosowania. Wyrażenie tworzące obiekt jest używane jako alternatywa dla anonimowych klas w Javie, ale oferująca więcej możliwości. Deklaracja obiektu to implementacja wzorca singleton w Kotlinie. Specjalna forma deklaracji obiektu, znana jako companion obiekt, jest używana jako alternatywa dla elementów statycznych, ale z dodatkowym wsparciem dla dziedziczenia. Mamy również modyfikator `const`, który oferuje lepsze wsparcie dla stałych elementów zdefiniowanych na najwyższym poziomie lub w deklaracjach obiektów.
+W tym rozdziale dowiedzieliśmy się, że obiekty można tworzyć nie tylko z klas, ale także za pomocą wyrażeń tworzących obiekty i deklaracji obiektów. Obie te funkcjonalności mają swoje praktyczne zastosowania. Wyrażenie tworzące obiekt jest używane jako alternatywa dla anonimowych klas w Javie, ale oferująca więcej możliwości. Deklaracja obiektu to implementacja wzorca singleton w Kotlinie. Specjalna forma deklaracji obiektu, znana jako companion obiekt, jest używana jako alternatywa dla elementów statycznych, ale z dodatkowym wsparciem dla dziedziczenia. Mamy również modyfikator `const`, który oferuje lepsze wsparcie dla stałych elementów zdefiniowanych w plikach lub w deklaracjach obiektów.
 
 W poprzednim rozdziale omówiliśmy data klasy, ale Kotlin wspiera wiele różnych rodzajów klas. W następnym rozdziale poznamy kolejny ważny rodzaj: wyjątki.
 
