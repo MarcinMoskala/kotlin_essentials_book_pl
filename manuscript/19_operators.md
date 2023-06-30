@@ -63,8 +63,8 @@ fun main() {
 Użycie operatorów `+` i `-` jest równoznaczne z wywołaniem funkcji `plus` i `minus`. Obie opcje można stosować zamiennie.
 
 ```kotlin
-c1 + c2 // pod spodem jest c1.plus(c2)
-c1 - c2 // pod spodem jest c1.minus(c2)
+c1 + c2 // kompilowane do c1.plus(c2)
+c1 - c2 // kompilowane do c1.minus(c2)
 ```
 
 Kotlin definiuje konkretny zestaw operatorów, dla każdego z nich określona jest nazwa i liczba obsługiwanych argumentów. Dodatkowo wszystkie operatory muszą być metodami oraz mieć modyfikator `operator`.
@@ -84,7 +84,7 @@ Zacznijmy od operatorów arytmetycznych, takich jak plus czy razy. Poniższa tab
 | `a % b`   | `a.rem(b)`          |
 | `a..b `   | `a.rangeTo(b)`      |
 
-Zauważ, że `%` przekształca się na `rem`, co jest skrótem od "remainder", czyli "reszta". Ten operator zwraca resztę pozostałą po podzieleniu jednego operandu przez drugi operand, więc jest podobny do operacji modulo[^18_0].
+Zauważ, że `%` przekształca się na `rem`, co jest skrótem od "remainder", czyli "reszta". Ten operator zwraca resztę pozostałą po podzieleniu jednego operandu[^18_5] przez drugi operand, więc jest podobny do operacji modulo[^18_0].
 
 ```kotlin
 fun main() {
@@ -292,7 +292,7 @@ fun main() {
 }
 ```
 
-Lubię również porównywać odniesienia czasowe w podobny sposób.
+Lubię również porównywać odniesienia czasowe w podobny sposób (choć taka praktyka może być uważana za kontrowersyjną).
 
 ```kotlin
 import java.time.LocalDateTime
@@ -425,10 +425,10 @@ Operator `unaryPlus` jest często używany w Kotlinowych DSL-ach, co opisuję sz
 W ramach wielu algorytmów używanych w starszych językach często musieliśmy dodawać lub odejmować wartość `1` od zmiennej, dlatego wynaleziono inkrementację i dekrementację. Operator `++` służy do dodawania `1` do zmiennej; więc jeśli `a` jest liczbą całkowitą, to `a++` przekłada się na `a = a + 1`. Operator `--` służy do odejmowania `1` od zmiennej; więc jeśli `a` jest liczbą całkowitą, to `a--` przekłada się na `a = a - 1`.
 
 Zarówno inkrementacja, jak i dekrementacja mogą być używane przed lub po zmiennej, a to determinuje wartość zwracaną przez tę operację.
-* Jeśli użyjesz `++` **przed** zmienną, nazywa się to **preinkrementacja**; inkrementuje zmienną, a następnie zwraca wynik tej operacji.
-* Jeśli użyjesz `++` **po** zmiennej, nazywa się to **postinkrementacja**; inkrementuje zmienną, ale zwraca wartość przed operacją.
-* Jeśli użyjesz `--` **przed** zmienną, nazywa się to **predekrementacja**; dekrementuje zmienną, a następnie zwraca wynik tej operacji.
-* Jeśli użyjesz `--` **po** zmiennej, nazywa się to **postdekrementacja**; dekrementuje zmienną, ale zwraca wartość przed operacją.
+* Jeśli użyjesz `++` **przed** zmienną, jest to **preinkrementacja**; inkrementuje zmienną, a następnie zwraca wynik tej operacji.
+* Jeśli użyjesz `++` **po** zmiennej, jest to **postinkrementacja**; inkrementuje zmienną, ale zwraca wartość przed operacją.
+* Jeśli użyjesz `--` **przed** zmienną, jest to **predekrementacja**; dekrementuje zmienną, a następnie zwraca wynik tej operacji.
+* Jeśli użyjesz `--` **po** zmiennej, jest to **postdekrementacja**; dekrementuje zmienną, ale zwraca wartość przed operacją.
 
 ```kotlin
 fun main() {
@@ -528,12 +528,13 @@ fun main() {
 
 ### Podsumowanie
 
-W Kotlinie używamy operatorów, z których wiele można przeciążyć i wykorzystać do poprawy czytelności naszego kodu. Z poznawczego punktu widzenia, używanie intuicyjnego operatora może być ogromnym ułatwieniem w porównaniu z wszechobecnym stosowaniem metod. Dlatego warto wiedzieć, jakie opcje są dostępne i być otwartym na używanie operatorów zdefiniowanych przez bibliotekę standardową Kotlina, ale również warto umieć zdefiniować własne operatory.
+W Kotlinie używamy operatorów, z których wiele można przeciążyć i wykorzystać do poprawy czytelności naszego kodu. Z poznawczego punktu widzenia, używanie intuicyjnego operatora może być ogromnym ułatwieniem w porównaniu z wszechobecnym stosowaniem metod. Dlatego warto wiedzieć, jakie opcje są dostępne i być otwartym na używanie operatorów zdefiniowanych przez bibliotekę standardową Kotlina. Możemy też definiować własne operatory. Bądź jednak ostrożny, bo nieintuicyjne operatory mogą znacznie utrudniać czytanie kodu.
 
 W następnym rozdziale pomówimy wreszcie o systemie typów stosowanych w Kotlinie i dowiemy się czym jest `Nothing`. 
 
-[^18_0]: Ten operator wcześniej nazywał się `mod`, co pochodzi od "modulo", ale teraz ta nazwa jest deprecated. W matematyce zarówno operacje reszty z dzielenia, jak i modulo działają tak samo dla liczb dodatnich, ale różnica polega na liczbach ujemnych. Wynik reszty z dzielenia -5 przez 4 to -1, ponieważ -5 = 4 * (-1) + (-1). Wynik modulo -5 przez 4 to 3, ponieważ -5 = 4 * (-2) + 3. Operator `%` w Kotlinie implementuje zachowanie reszty z dzielenia, dlatego jego nazwa musiała zostać zmieniona z `mod` na `rem`.
-[^18_1]: Więcej na ten temat można znaleźć w *Efektywny Kotlin*, *Pozycja 12: Znaczenie operatora powinno być zgodne z nazwą funkcji* i *Pozycja 13: Używaj operatorów, aby zwiększyć czytelność*.
+[^18_0]: Ten operator wcześniej nazywał się `mod`, co pochodzi od "modulo", ale teraz ta nazwa jest deprecated. W matematyce operacje reszty z dzielenia i modulo działają tak samo dla liczb dodatnich, ale różnica ujawnia się dla liczb ujemnych. Wynik reszty z dzielenia -5 przez 4 to -1, ponieważ -5 = 4 * (-1) + (-1). Wynik modulo -5 przez 4 to 3, ponieważ -5 = 4 * (-2) + 3. Operator `%` w Kotlinie implementuje zachowanie reszty z dzielenia, dlatego jego nazwa musiała zostać zmieniona z `mod` na `rem`.
+[^18_1]: Więcej na ten temat można znaleźć w *Efektywny Kotlin*, *Temat 12: Znaczenie operatora powinno być zgodne z nazwą funkcji* i *Temat 13: Używaj operatorów, aby zwiększyć czytelność*.
 [^18_2]: Więcej o wyrażeniach lambda będzie w kolejnej książce serii, *Funkcyjny Kotlin*.
-[^18_3]: Nie jestem pewien, który język wprowadził pierwszy tę konwencję, ale te operatory są obsługiwane nawet przez tak stare języki, jak C.
-[^18_4]: Operatory unarne to te używane z tylko jedną wartością (operandem). Operatory używane z dwiema wartościami nazywane są operatorami binarnymi. Operatory używane z trzema wartościami nazywane są operatorami trójargumentowymi, czyli po angielsku "ternary operators". Ponieważ w głównych językach programowania istnieje tylko jeden operator trójargumentowy, mianowicie **operator warunkowy**, często określany jest pojęciem **ternary operator**.
+[^18_3]: Nie jestem pewien, który język wprowadził pierwszy tę konwencję, ale te operatory są obsługiwane nawet przez tak stare języki jak C.
+[^18_4]: Operatory unarne to te używane z tylko jedną wartością (operandem). Operatory używane z dwiema wartościami nazywane są operatorami binarnymi. Operatory używane z trzema wartościami nazywane są operatorami trójargumentowymi, czyli po angielsku "ternary operators". Ponieważ w głównych językach programowania istnieje tylko jeden operator trójargumentowy, mianowicie **operator warunkowy**, często określany jest pojęciem **ternary operator**. W Kotlinie jednak on nie funkcjonuje i zamianst niego używamy `if` i `else`. 
+[^18_5]: Operandem nazywamy wartość stojącą po jednej ze stron operatora. 

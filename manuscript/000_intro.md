@@ -23,7 +23,7 @@ W tej książce omawiam te tematy, które uważam za niezbędne do programowania
 * kolekcje,
 * przeciążanie operatorów,
 * system typów,
-* generyki.
+* typy generyczne.
 
 Ta książka nie omawia funkcyjnych cech Kotlina, takich jak wyrażenia lambda czy typy funkcyjne. Te tematy są omówione w kontynuacji tej książki: *Funkcyjny Kotlin*.
 

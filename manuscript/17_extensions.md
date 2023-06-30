@@ -41,7 +41,7 @@ fun main() {
 
 > Zarówno funkcje elementów, jak i funkcje rozszerzające nazywane są metodami.
 
-Funkcje rozszerzające można definiować na typach, którymi nie definiujemy sami, na przykład `String`. Daje nam to możliwość rozszerzania zewnętrznych interfejsów API o nasze własne funkcje.
+Funkcje rozszerzające można definiować na typach, których nie definiujemy sami, na przykład `String`. Daje nam to możliwość rozszerzania zewnętrznych interfejsów API o nasze własne funkcje.
 
 ```kotlin
 fun String.remove(value: String) = this.replace(value, "")
@@ -52,7 +52,7 @@ fun main() {
 }
 ```
 
-Spójrz na powyższy przykład. Zdefiniowaliśmy funkcję rozszerzenia `remove` na `String`, więc musimy wywołać tę funkcję na obiekcie typu `String`. Wewnątrz funkcji odwołujemy się do tego obiektu za pomocą słowa kluczowego `this`, tak jak wewnątrz funkcji klasy. Słowo kluczowe `this` można również używać niejawnie.
+Spójrz na powyższy przykład. Zdefiniowaliśmy funkcję rozszerzającą `remove` na `String`, więc musimy wywołać tę funkcję na obiekcie typu `String`. Wewnątrz funkcji odwołujemy się do tego obiektu za pomocą słowa kluczowego `this`, tak jak wewnątrz funkcji klasy. Słowo kluczowe `this` można również używać niejawnie.
 
 ```kotlin
 // jawne this
@@ -62,7 +62,7 @@ fun String.remove(value: String) = this.replace(value, "")
 fun String.remove(value: String) = replace(value, "")
 ```
 
-Słowo kluczowe `this` jest znane jako **receiver** (ang. **receiver**). Typ, który rozszerzamy za pomocą funkcji rozszerzenia, nazywany jest **typem receivera** (**receiver type**).
+Słowo kluczowe `this` jest znane jako **receiver**. Typ, który rozszerzamy za pomocą funkcji rozszerzenia, nazywany jest **typem receivera** (**receiver type**).
 
 ![](207_receiver_type.png)
 
@@ -70,7 +70,7 @@ Funkcje rozszerzające zachowują się bardzo podobnie do funkcji z klas. Kiedy 
 
 ### Funkcje rozszerzające pod maską
 
-Aby zrozumieć funkcje rozszerzające, użyjmy ponownie opcji "Tools > Kotlin > Show Kotlin Bytecode" i "Decompile" (jak wyjaśniono w rozdziale *Twój pierwszy program w Kotlinie* w sekcji *Co kryje się pod maską na JVM?*). Skompilujemy i zdekompilujemy do Java naszą definicję funkcji `remove` oraz jej wywołanie:
+Aby zrozumieć funkcje rozszerzające, użyjmy ponownie narzędzia "Tools > Kotlin > Show Kotlin Bytecode" i przycisku "Decompile" (jak wyjaśniłem w rozdziale *Twój pierwszy program w Kotlinie* w sekcji *Co kryje się pod maską na JVM?*). Skompilujemy i zdekompilujemy do Java naszą definicję funkcji `remove` oraz jej wywołanie:
 
 ```kotlin
 fun String.remove(value: String) = this.replace(value, "")
@@ -134,15 +134,15 @@ Właściwości rozszerzające są bardzo popularne w Androidzie, gdzie dostęp d
 ```kotlin
 val Context.inflater: LayoutInflater
     get() = getSystemService(Context.LAYOUT_INFLATER_SERVICE)
-    as LayoutInflater
+        as LayoutInflater
 
 val Context.notificationManager: NotificationManager
     get() = getSystemService(Context.NOTIFICATION_SERVICE)
-            as NotificationManager
+        as NotificationManager
 
 val Context.alarmManager: AlarmManager
     get() = getSystemService(Context.ALARM_SERVICE)
-            as AlarmManager
+        as AlarmManager
 ```
 
 Właściwości rozszerzające mogą definiować zarówno gettera, jak i settera. Oto właściwość rozszerzenia, która dostarcza inną reprezentację daty urodzenia użytkownika:
@@ -150,13 +150,13 @@ Właściwości rozszerzające mogą definiować zarówno gettera, jak i settera.
 ```kotlin
 class User {
     // ...
-    var birthdayMillis: Long? = null
+    var birthdateMillis: Long? = null
 }
 
-var User.burthday: Date?
-    get() = birthdayMillis?.let(::Date)
+var User.birthdate: Date?
+    get() = birthdateMillis?.let(::Date)
     set(value) {
-        birthdayMillis = value?.time
+        birthdateMillis = value?.time
     }
 ```
 
@@ -166,7 +166,7 @@ Największa różnica między elementami klasy a rozszerzeniami z punktu widzeni
 
 Dzięki temu, że rozszerzenia muszą być importowane, możemy mieć wiele rozszerzeń o tej samej nazwie dla tego samego typu. To dobrze, ponieważ różne biblioteki mogą dostarczać dodatkowe metody bez powodowania konfliktów. Z drugiej strony, niebezpieczne byłoby posiadanie dwóch rozszerzeń o tej samej nazwie, ale o różnych zachowaniach. Jeśli widzisz taką sytuację, jest to *code smell* i wskazówka, że ktoś nadużył możliwości funkcji rozszerzających.
 
-Inną istotną różnicą jest to, że **rozszerzenia nie są wirtualne**, co oznacza, że nie mogą być zredefiniowane w klasach pochodnych. Co za tym idzie, jeśli masz rozszerzenie zdefiniowane zarówno dla supertypu, jak i subtypu, kompilator decyduje, która funkcja jest wybierana na podstawie tego, jak zmienna jest typowana, a nie jaka jest jej rzeczywista klasa.
+Inną istotną różnicą jest to, że **rozszerzenia nie są wirtualne**, co oznacza, że nie mogą być zredefiniowane w klasach pochodnych. Co za tym idzie, jeśli masz rozszerzenie zdefiniowane zarówno dla nadtypu, jak i podtypu, kompilator decyduje, która funkcja jest wybierana na podstawie tego, jak zmienna jest typowana, a nie jaka jest jej rzeczywista klasa.
 
 ```kotlin
 open class View
@@ -232,7 +232,7 @@ fun main() {
 }
 ```
 
-Kolejną konsekwencją tego, czym są rozszerzenia, jest to, że **definiujemy rozszerzenia dla typów, a nie dla klas**. Daje nam to większą swobodę. Na przykład możemy zdefiniować rozszerzenie dla typu nullowalnych lub generycznych:
+Kolejną konsekwencją tego, czym są rozszerzenia, jest to, że **definiujemy rozszerzenia dla typów, a nie dla klas**. Daje nam to większą swobodę. Na przykład możemy zdefiniować rozszerzenie dla typów nullowalnych lub generycznych:
 
 ```kotlin
 inline fun CharSequence?.isNullOrBlank(): Boolean {
@@ -271,7 +271,7 @@ fun main() {
 }
 ```
 
-Aby zdefiniować funkcję rozszerzenia na companion obiekcie, musimy użyć rzeczywistej nazwy tego obiektu. Jeśli ta nazwa nie jest ustawiona jawnie, domyślną jest "Companion". Aby zdefiniować funkcję rozszerzającą companion obiekt, taki obiekt musi istnieć. Dlatego niektóre klasy definiują companion obiekty bez ciał.
+Aby zdefiniować funkcję rozszerzenia dla companion obiektu, musimy użyć rzeczywistej nazwy tego obiektu. Jeśli ta nazwa nie jest ustawiona jawnie, domyślną jest "Companion". Aby zdefiniować funkcję rozszerzającą companion obiekt, taki obiekt musi istnieć. Dlatego niektóre klasy definiują companion obiekty bez ciał.
 
 ```kotlin
 class A {
@@ -288,7 +288,7 @@ fun main() {
 }
 ```
 
-### Funkcji rozszerzające zdefiniowane wewnątrz klas
+### Funkcje rozszerzające zdefiniowane wewnątrz klas
 
 Możliwe jest definiowanie funkcji rozszerzających wewnątrz klas.
 

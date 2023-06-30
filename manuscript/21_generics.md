@@ -14,7 +14,7 @@ for(int i = 0; i < names.size(); i++){
 }
 ```
 
-Takie listy używa się dość trudno. Stanowczo preferujemy listy z określonymi typami elementów. Dopiero wtedy możemy być pewni, że zawierają one elementy właściwego typu i dopiero wtedy nie musimy jawnie rzutować tych elementów, gdy pobieramy je z listy. Ta trudność była jednym z głównych powodów wprowadzenia typów generycznych do Javy 5. W Kotlinie nie mamy tego problemu, ponieważ został on zaprojektowany z obsługą typów generycznych od samego początku, a wszystkie listy są generyczne, więc trzeba z góry określić rodzaj elementów, jaki akceptują. Generyki są ważną cechą większości nowoczesnych języków programowania i w tym rozdziale omówimy, czym są i jak używamy ich w Kotlinie.
+Takie listy używa się dość trudno. Jako programiści, wolimy mieć listy z określonymi typami elementów. Dopiero wtedy możemy być pewni, że zawierają one elementy właściwego typu i dopiero wtedy nie musimy jawnie rzutować tych elementów, gdy pobieramy je z listy. Umożliwienie tego było jednym z głównych powodów wprowadzenia typów generycznych do Javy 5. W Kotlinie nie mamy tego problemu, ponieważ został on zaprojektowany z obsługą typów generycznych od samego początku, a wszystkie listy są generyczne, więc trzeba z góry określić rodzaj elementów, jaki akceptują. Typy generyczne są ważną cechą większości nowoczesnych języków programowania i w tym rozdziale omówimy, czym są i jak używamy ich w Kotlinie.
 
 W Kotlinie mamy trzy rodzaje elementów generycznych:
 * funkcje generyczne,
@@ -64,7 +64,7 @@ fun main() {
 }
 ```
 
-W jaki sposób parametry typu mogą być przydatne? Używamy ich głównie do określenia związku między typami argumentów oraz typem wyniku. Możemy, na przykład, możemy wyrazić, że typ wyniku jest taki sam jak typ argumentu lub że oczekujemy dwóch argumentów tego samego typu.
+W jaki sposób parametry typu mogą być przydatne? Używamy ich głównie do określenia związku między typami argumentów oraz typem wyniku. Dla przykładu możemy wyrazić, że typ wyniku jest taki sam jak typ argumentu lub że oczekujemy dwóch argumentów tego samego typu.
 
 ```kotlin
 import kotlin.random.Random
@@ -84,13 +84,13 @@ fun main() {
 }
 ```
 
-Parametry typu dla funkcji są przydatne dla kompilatora, ponieważ pozwalają mu sprawdzać i poprawnie wnioskować typy; sprawia to, że nasze programy są bezpieczniejsze, a programowanie staje się przyjemniejsze dla programistów. Chronią nas one przed używaniem niedozwolonych operacji i pozwalają naszemu IDE dawać lepsze sugestie.
+Parametry typu w funkcji są przydatne dla kompilatora, ponieważ pozwalają mu sprawdzać i poprawnie wnioskować typy; sprawia to, że nasze programy są bezpieczniejsze, a programowanie staje się przyjemniejsze dla programistów. Chronią nas one przed używaniem niedozwolonych operacji i pozwalają naszemu IDE dawać lepsze sugestie.
 
-W książce *Funkcjonalny Kotlin* zobaczysz wiele przykładów funkcji generycznych, zwłaszcza do przetwarzania kolekcji. Takie funkcje są naprawdę ważne i przydatne. Na razie wróćmy do początkowej motywacji wprowadzenia generyków: porozmawiajmy o klasach generycznych.
+W książce *Funkcyjny Kotlin* zobaczysz wiele przykładów funkcji generycznych, zwłaszcza do przetwarzania kolekcji. Takie funkcje są naprawdę ważne i przydatne. Na razie wróćmy do początkowej motywacji wprowadzenia generyków: porozmawiajmy o klasach generycznych.
 
 ### Klasy generyczne
 
-Klasy możemy uczynić generycznymi, określając parametr typu po nazwie klasy. Taki parametr typu można używać na całym obszarze klasy, zwłaszcza do określania właściwości, parametrów i typów wyników. Parametr typu jest określany, gdy definiujemy instancję, po czym pozostaje niezmieniony. Dzięki temu, gdy zadeklarujesz `ValueWithHistory<String>` i następnie wywołasz `setValue` w poniższym przykładzie, musisz użyć obiektu typu `String`; gdy wywołasz `currentValue`, obiekt wynikowy będzie miał typ `String`; a gdy wywołasz `history`, jego wynik będzie typu `List<String>`. To samo dotyczy wszystkich innych możliwych argumentów typu.
+Klasy możemy uczynić generycznymi, określając parametr typu po nazwie klasy. Taki parametr typu można używać w ciele klasy, zwłaszcza do określania właściwości, parametrów i typów wyników. Parametr typu jest określany, gdy definiujemy instancję, po czym pozostaje niezmieniony. Dzięki temu, gdy zadeklarujesz `ValueWithHistory<String>` i następnie wywołasz `setValue` w poniższym przykładzie, musisz użyć obiektu typu `String`; gdy wywołasz `currentValue`, obiekt wynikowy będzie miał typ `String`; a gdy wywołasz `history`, jego wynik będzie typu `List<String>`. To samo dotyczy wszystkich innych możliwych argumentów typu.
 
 ```kotlin
 class ValueWithHistory<T>(
@@ -112,7 +112,7 @@ fun main() {
     val letter = ValueWithHistory<String>("A")
     // Typem letter jest ValueWithHistory<String>
     letter.setValue("B")
-    // letter.setValue(123) <- to nie zostanie skompilowane
+    // letter.setValue(123) <- to nie zostałoby skompilowane
     val l = letter.currentValue() // typem l jest String
     println(l) // B
     val h = letter.history() // typem h jest List<String>
@@ -127,14 +127,14 @@ val letter = ValueWithHistory("A")
 // Typem letter jest ValueWithHistory<String>
 ```
 
-Argumenty typu mogą być również wnioskowane z typów zmiennych. Powiedzmy, że chcemy użyć `Any` jako argumentu typu. Możemy to określić, określając typ zmiennej `letter` jako `ValueWithHistory<Any>`.
+Argumenty typu mogą być również wnioskowane z typów zmiennych. Powiedzmy, że chcemy użyć `Any` jako argumentu typu. Możemy to określić typ zmiennej `letter` jako `ValueWithHistory<Any>`. Wtedy argument typu będzie wnioskowany jako `Any`.
 
 ```kotlin
 val letter: ValueWithHistory<Any> = ValueWithHistory("A")
 // Typem letter jest ValueWithHistory<Any>
 ```
 
-Jak wspomniałem we wstępie do tego rozdziału, najważniejszym powodem wprowadzenia generyków było stworzenie kolekcji z określonymi typami elementów. Weźmy pod uwagę klasę `ArrayList` z biblioteki standardowej (stdlib). Jest ona generyczna, więc gdy tworzymy instancję z tej klasy, musimy określić typy elementów. Dzięki temu Kotlin chroni nas, oczekując tylko wartości z akceptowanymi typami, które mają być dodane do listy, jak również typ ten jest określony, gdy zwracamy lub operujemy na elementach listy.
+Jak wspomniałem we wstępie do tego rozdziału, najważniejszym powodem wprowadzenia typów generycznych było stworzenie kolekcji z określonymi typami elementów. Weźmy pod uwagę klasę `ArrayList` z biblioteki standardowej (stdlib). Jest ona generyczna, więc gdy tworzymy instancję z tej klasy, musimy określić typy elementów. Dzięki temu Kotlin chroni nas, oczekując tylko wartości z akceptowanymi typami, które mają być dodane do listy, jak również typ ten jest określony, gdy zwracamy lub operujemy na elementach listy.
 
 ```kotlin
 fun main() {
@@ -385,7 +385,7 @@ fun main() {
 }
 ```
 
-Ograniczenia parametrów typu są również używane dla klas generycznych. Rozważ poniższą klasę `ListAdapter`, która oczekuje argumentu typu będącego podtypem `ItemAdaper`.
+Ograniczenia parametrów typu są również używane przez klasy generyczne. Rozważ poniższą klasę `ListAdapter`, która oczekuje argumentu typu będącego podtypem `ItemAdaper`.
 
 ```kotlin
 class ListAdapter<T : ItemAdaper>(/*...*/) { /*...*/ }
@@ -446,7 +446,7 @@ fun main() {
 
 ### Star projection
 
-W niektórych przypadkach nie chcemy podać konkretnego argumentu typu. W takich sytuacjach możemy użyć star projection, czyli znaku `*`, który zastępuje argument typu i akceptuje dowolny typ. Istnieją dwie typowe sytuacje, w których jest to przydatne. Pierwsza to sprawdzenie, czy zmienna jest listą. W tym przypadku należy użyć sprawdzenia `is List<*>`. Użycie konkretnego argumentu typu, jak `List<Int>`, byłoby to i tak kompilowane do `List`, ze względu na type erasure. Oznacza to, że lista stringów przeszłaby sprawdzenie `is List<Int>`. Takie sprawdzenie byłoby mylące i jest niedozwolone w Kotlinie. Zamiast tego musisz użyć `is List<*>`. Podobnie jest z innymi typami generycznymi. 
+W niektórych przypadkach nie chcemy podać konkretnego argumentu typu. W takich sytuacjach możemy użyć star projection, czyli znaku `*`, który zastępuje argument typu i akceptuje dowolny typ. Istnieją dwie typowe sytuacje, w których jest to przydatne. Pierwsza to sprawdzenie, czy zmienna jest listą. W tym przypadku należy użyć sprawdzenia `is List<*>`. Użycie konkretnego argumentu typu, jak `List<Int>`, byłoby i tak kompilowane do `List`, ze względu na type erasure. Oznacza to, że lista stringów przeszłaby sprawdzenie `is List<Int>`. Takie sprawdzenie byłoby mylące i jest niedozwolone w Kotlinie. Zamiast tego musisz użyć `is List<*>`. Podobnie jest z innymi typami generycznymi. 
 
 ```kotlin
 fun main() {
@@ -492,6 +492,6 @@ Typ określony przez star projection jest interpretowany jako `Any?` we wszystki
 
 Dla wielu programistów generyki wydają się trudne i przerażające, ale w rzeczywistości są dość proste i intuicyjne. Możemy uczynić element generycznym poprzez dodanie parametrów typu. Takie parametry typu mogą być używane wewnątrz tego elementu. Ten mechanizm pozwala na uogólnienie algorytmów i klas, tak aby mogły być używane z różnymi typami. Dobrze jest rozumieć, jak działają generyki, dlatego ten rozdział przedstawił prawie wszystkie ich kluczowe aspekty. Jednakże są jeszcze inne, takie jak modyfikatory wariancji (`out` i `in`), ale do nich wrócimy w książce *Zaawansowany Kotlin*.
 
-[^21_1]: Używam JVM jako odniesienia, ponieważ nie tylko jest to najbardziej popularny, ale przede wszystkim pierwszy target dla Kotlina, stąd wiele jego mechanizmów zostało zaprojektowanych pod JVM. Warto zaznaczyć, że jeśli chodzi o brak wsparcia dla argumentów typu na niskim poziomie, inne platformy nie są lepsze. Na przykład JavaScript nie obsługuje w ogóle typów generycznych.
+[^21_1]: Używam JVM jako odniesienia, ponieważ jest to najbardziej popularny target dla Kotlina, ale także dlatego, że Kotlin był pierwotnie projektowany pod tę platformę. Warto zaznaczyć, że jeśli chodzi o brak wsparcia dla argumentów typu na niskim poziomie, inne platformy nie są lepsze. Na przykład JavaScript nie obsługuje w ogóle typów generycznych.
 [^21_2]: Odwołania do klasy i typu są wyjaśnione w książce *Zaawansowany Kotlin*.
 [^21_3]: Modyfikator `reified` jest wyjaśniony w książce *Funkcyjny Kotlin*.

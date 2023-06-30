@@ -24,4 +24,4 @@ Książka skupia się na kluczowych funkcjonalnościach języka Kotlin, takich j
 * kolekcje,
 * przeciążanie operatorów,
 * system typów,
-* generyki.
+* typy generyczne.
