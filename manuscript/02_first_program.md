@@ -106,6 +106,39 @@ Jeśli masz doświadczenie z Javy, zapamiętaj to narzędzie, ponieważ może po
 
 Istnieją propozycje stworzenia podobnego narzędzia, aby pokazywać kod JavaScript generowany z kodu Kotlin, gdy naszym targetem jest Kotlin/JS. Jednak w momencie pisania tej książki najlepszym, co możesz zrobić, jest samodzielne otwieranie wygenerowanych plików.
 
+### Pakiety i importowanie
+
+Kiedy nasz projekt ma więcej niż jeden plik, potrzebujemy pakietów, aby utrzymywać jakiś porządek. Pakiety są sposobem grupowania plików i unikania konfliktów nazw.
+
+Plik może określić pakiet na początku pliku za pomocą słowa kluczowego `package`.
+
+```kotlin
+package com.marcinmoskala.domain.model
+
+class User(val name: String)
+```
+
+Jeśli nie określimy pakietu, plik znajdzie się w pakiecie domyślnym. W prawdziwych projektach zaleca się, aby ścieżka pakietu była taka sama jak ścieżka katalogu w naszych plikach źródłowych, podzielona przecinkami. Pakiet może również zawierać domenę firmy w odwrotnej kolejności, np. `com.marcinmoskala`. Nazwy pakietów piszemy małymi literami.
+
+Jeśli chcemy użyć funkcji lub klasy z innego pakietu, musimy go zaimportować. Importy są deklarowane po deklaracji pakietu i przed deklaracjami elementów[^02_7] pliku. Najpierw określają nazwę pakietu, a następnie nazwę importowanego elementu. Możemy również użyć znaku `*` do zaimportowania wszystkich elementów.
+
+```kotlin
+package com.marcinmoskala.domain
+
+import com.marcinmoskala.domain.model.User
+// albo 
+import com.marcinmoskala.domain.model.*
+
+fun useUser() {
+    val user = User("Marcin")
+    // ...
+}
+```
+
+Najważniejsze elementy biblioteki standardowej Kotlina oraz Javy są importowane domyślnie. Na przykład możemy użyć funkcji `println` bez importowania jej.
+
+Programiści Kotlina rzadko myślą o importach, ponieważ IntelliJ zarządza nimi automatycznie. Kiedy użyjesz elementu za pomocą sugestii IntelliJ, automatycznie doda on odpowiedniu import. Jeśli używasz elementu, który nie jest zaimportowany, IntelliJ zaproponuje jego zaimportowanie. Jeśli chcesz usunąć nieużywane importy, możesz użyć akcji "Optimize Imports" (Ctrl/command + Alt + O). To też jest powodem, dla którego zdecydowałem się nie pokazywać importów w większości przykładów w tej książce.
+
 ### Podsumowanie
 
 Nauczyliśmy się korzystać z funkcji `main` i jak łatwo ją stworzyć przy pomocy szablonów dynamicznych. Dowiedzieliśmy się też jak sprawdzić, jak nasz kod Kotlin wyglądałby, gdyby był napisany w Javie. To chyba niezły początek naszej przygody, więc bez zbędnych ceregieli chodźmy dalej.
@@ -115,3 +148,4 @@ Nauczyliśmy się korzystać z funkcji `main` i jak łatwo ją stworzyć przy po
 [^02_3]: Cieszę się, gdy ludzie próbują podważyć to, czego nauczałem. Bądź sceptyczny i weryfikuj to, czego się nauczyłeś; to świetny sposób na naukę czegoś nowego i pogłębienie zrozumienia.
 [^02_5]: To nie zawsze działa, ponieważ dekompilator nie jest doskonały, ale i tak jest bardzo pomocny.
 [^02_6]: Więcej na ten temat w książce *Zaawansowany Kotlin*, rozdział *Interoperacyjność Kotlin i Java*.
+[^02_7]: Poprzez elementy w kontekście Kotlina mamy na myśli klasy, funkcje, właściwości, obiekty, interfejsy, enumy, itp. Wszystkie typy elementów omówimy w kolejnych rozdziałach. 
