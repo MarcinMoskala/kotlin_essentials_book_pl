@@ -1,4 +1,4 @@
-## Instrukcje warunkowe: if, when, try oraz while
+## Instrukcje warunkowe
 
 Większość instrukcji warunkowych, takich jak warunek if czy pętla while, wygląda tak samo w Kotlinie, Javie, C++, JavaScript i w większości innych nowoczesnych języków. Dla przykładu instrukcja if jest identyczna we wszystkich tych językach:
 
@@ -410,7 +410,7 @@ fun main() {
 }
 ```
 
-Istnieją dwa popularne sposoby radzenia sobie z tego typu problemami. Pierwszy to użycie jednej z funkcjonalności Kotlina do bezpiecznej konwersji wartości. Jednym z przykładów jest użycie rzutowania inteligentnego (smart-casting), które zostanie opisane w kolejnej sekcji. Innym przykładem jest funkcja konwersji, taka jak metoda `toInt`, która przekształca `Number` na `Int` (i ewentualnie traci część dziesiętną).
+Istnieją dwa popularne sposoby radzenia sobie z tego typu problemami. Pierwszy to użycie jednej z funkcjonalności Kotlina do bezpiecznej konwersji wartości. Jednym z przykładów jest użycie smart castingu, które zostanie opisane w kolejnej sekcji. Innym przykładem jest funkcja konwersji, taka jak metoda `toInt`, która przekształca `Number` na `Int` (i ewentualnie traci część dziesiętną).
 
 ```kotlin
 var i: Number = 3.14
@@ -434,11 +434,11 @@ fun main() {
 }
 ```
 
-W Kotlinie uważamy `as?` za bezpieczniejszą opcję niż `as`, ale zbyt częste używanie obu tych operatorów jest uważane za code smell[^05_4]. Opiszmy smart-casting, który jest ich popularną alternatywą.
+W Kotlinie uważamy `as?` za bezpieczniejszą opcję niż `as`, ale zbyt częste używanie obu tych operatorów jest uważane za code smell[^05_4]. Opiszmy smart casting, który jest ich popularną alternatywą.
 
-### Smart-casting
+### Smart casting
 
-Kotlin ma potężną funkcjonalność o nazwie smart-casting, która pozwala na automatyczne rzutowanie typów, gdy kompilator może być pewien, że zmienna jest określonego typu. Spójrz na poniższy przykład:
+Kotlin ma potężną funkcjonalność o nazwie smart casting, która pozwala na automatyczne rzutowanie typów, gdy kompilator może być pewien, że zmienna jest określonego typu. Spójrz na poniższy przykład:
 
 ```kotlin
 fun convertToInt(num: Number): Int =
@@ -472,15 +472,15 @@ fun main() {
 }
 ```
 
-Smart-casting jest często używany razem z instrukcją when. Kiedy są używane razem, czasami nazywane są Kotlinowym pattern-matchingiem. Więcej przykładów zostanie przedstawionych, gdy omówimy modyfikator `sealed`.
+Smart casting jest często używany razem z instrukcją when. Kiedy są używane razem, czasami nazywane są Kotlinowym pattern-matchingiem. Więcej przykładów zostanie przedstawionych, gdy omówimy modyfikator `sealed`.
 
 ```kotlin
 fun handleResponse(response: Result<T>) {
     when (response) {
         is Success<*> -> showMessages(response.data) 
-        // response smart-castowane na Success
+        // response smart castowane na Success
         is Failure -> showError(response.throwable)
-        // response smart-castowane na Failure
+        // response smart castowane na Failure
     }
 }
 ```
@@ -522,7 +522,7 @@ fun main() {
 
 ### Podsumowanie
 
-Jak widać, Kotlin wprowadził wiele potężnych funkcji do instrukcji warunkowych. Warunki if i when mogą być używane jako wyrażenia. Instrukcja when jest bardziej zaawansowaną alternatywą dla if-else-if lub switch-case. Obsługiwane jest sprawdzanie typów ze smart-castingiem. To czyni instrukcje warunkowe potężniejszymi niż w innych językach. Teraz zobaczmy, co Kotlin zmienił w funkcjach.
+Jak widać, Kotlin wprowadził wiele potężnych funkcji do instrukcji warunkowych. Warunki if i when mogą być używane jako wyrażenia. Instrukcja when jest bardziej zaawansowaną alternatywą dla if-else-if lub switch-case. Obsługiwane jest sprawdzanie typów ze smart castingiem. To czyni instrukcje warunkowe potężniejszymi niż w innych językach. Teraz zobaczmy, co Kotlin zmienił w funkcjach.
 
 [^05_1]: "Wyrażenie" w programowaniu to część kodu, która zwraca wartość.
 [^05_2]: `Unit` to obiekt używany by sygnalizować brak istotnej wartości. Przypomina `Void` w Javie.

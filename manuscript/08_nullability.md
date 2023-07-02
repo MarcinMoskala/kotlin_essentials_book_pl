@@ -33,7 +33,7 @@ person.name // BŁĄD KOMPILACJI,
 // typ person jest nullowanych, więc nie możemy go używać bezpośrednio
 ```
 
-Dzięki wszystkim tym mechanizmom zawsze wiemy, co może być `null`, a co nie. Dzięki temu używamy typów nullowalnych i wartości `null` tylko wtedy, gdy tego potrzebujemy, czyli gdy istnieje ku temu jakiś powód. W takich przypadkach programiści są zmuszeni do jawnej obsługi wartości `null`. We wszystkich innych przypadkach nie ma takiej potrzeby. Jest to doskonałe rozwiązanie, ale potrzebne są dobre narzędzia, aby poradzić sobie z nullowalnością w sposób wygodny dla programistów. Kotlin zapewnia takie narzędzia, w tym bezpieczne wywołania, asercje not-null, inteligentne rzutowanie czy operator Elvisa. Omówmy je po kolei.
+Dzięki wszystkim tym mechanizmom zawsze wiemy, co może być `null`, a co nie. Dzięki temu używamy typów nullowalnych i wartości `null` tylko wtedy, gdy tego potrzebujemy, czyli gdy istnieje ku temu jakiś powód. W takich przypadkach programiści są zmuszeni do jawnej obsługi wartości `null`. We wszystkich innych przypadkach nie ma takiej potrzeby. Jest to doskonałe rozwiązanie, ale potrzebne są dobre narzędzia, aby poradzić sobie z nullowalnością w sposób wygodny dla programistów. Kotlin zapewnia takie narzędzia, w tym bezpieczne wywołania, asercje not-null, smart casting czy operator Elvisa. Omówmy je po kolei.
 
 ### Bezpieczne wywołania
 
@@ -111,40 +111,40 @@ fun sendData(dataWrapped: Wrapper<Data>) {
 }
 ```
 
-### Smart-casting
+### Smart casting
 
-Smart-casting działa również dla wartości `null`. W związku z tym, w zakresie, w którym pewne jest, że wartość nie jest `null`, typ nullowalny jest rzutowany na typ nienullowalny.
+Smart casting działa również dla wartości `null`. W związku z tym, w zakresie, w którym pewne jest, że wartość nie jest `null`, typ nullowalny jest rzutowany na typ nienullowalny.
 
 ```kotlin
 fun printLengthIfNotNull(str: String?) {
     if (str != null) {
-        println(str.length) // str smart-castowane do String
+        println(str.length) // str smart castowane do String
     }
 }
 ```
 
-Smart-casting działa również, gdy używamy `return` lub `throw`.
+Smart casting działa również, gdy używamy `return` lub `throw`.
 
 ```kotlin
 fun printLengthIfNotNull(str: String?) {
     if (str == null) return
-    println(str.length) // str smart-castowane do String
+    println(str.length) // str smart castowane do String
 }
 ```
 
 ```kotlin
 fun printLengthIfNotNullOrThrow(str: String?) {
     if (str == null) throw Error()
-    println(str.length) // str smart-castowane do String
+    println(str.length) // str smart castowane do String
 }
 ```
 
-Smart-casting jest dość inteligentny i działa w różnych przypadkach, takich jak po `&&` i `||` w wyrażeniach logicznych.
+Smart casting jest dość inteligentny i działa w różnych przypadkach, takich jak po `&&` i `||` w wyrażeniach logicznych.
 
 ```kotlin
 fun printLengthIfNotNull(str: String?) {
     if (str != null && str.length > 0) {
-        // str w wyrażeniu powyżej smart-castowane do String
+        // str w wyrażeniu powyżej smart castowane do String
         // ...
     }
 }
@@ -153,7 +153,7 @@ fun printLengthIfNotNull(str: String?) {
 ```kotlin
 fun printLengthIfNotNull(str: String?) {
     if (str == null || str.length == 0) {
-        // str w wyrażeniu powyżej smart-castowane do String
+        // str w wyrażeniu powyżej smart castowane do String
         // ...
     }
 }
@@ -161,12 +161,12 @@ fun printLengthIfNotNull(str: String?) {
 
 ```kotlin
 fun printLengthIfNotNullOrThrow(str: String?) {
-    requireNotNull(str) // str smart-castowane do String
+    requireNotNull(str) // str smart castowane do String
     println(str.length)
 }
 ```
 
-> Smart-casting działa dla `requireNotNull` dzięki Kotlinowym kontraktom, które opisałem w książce *Zaawansowany Kotlin*.
+> Smart casting działa dla `requireNotNull` dzięki Kotlinowym kontraktom, które opisałem w książce *Zaawansowany Kotlin*.
 
 ### Operator Elvisa
 
@@ -347,7 +347,7 @@ fun main() {
 
 ### Podsumowanie
 
-Kotlin oferuje potężne wsparcie dla nullowalności, które sprawia, że `null` przestaje być zagrożeniem, a staje się bezpieczny i prawdziwie użyteczny. System wsparcia obejmuje system typów, który rozróżnia, co jest nullowalne a co nie. Zmienne, które są nullowanye, muszą być używane bezpiecznie; do tego możemy użyć bezpiecznych wywołań, asercji not-null, smart-castingu czy operatora Elvisa. Teraz przejdźmy wreszcie do klas. Używaliśmy ich już wiele razy, ale dopiero teraz mamy wszystko, czego potrzebujemy, aby dobrze je omówić.
+Kotlin oferuje potężne wsparcie dla nullowalności, które sprawia, że `null` przestaje być zagrożeniem, a staje się bezpieczny i prawdziwie użyteczny. System wsparcia obejmuje system typów, który rozróżnia, co jest nullowalne a co nie. Zmienne, które są nullowanye, muszą być używane bezpiecznie; do tego możemy użyć bezpiecznych wywołań, asercji not-null, smart castingu czy operatora Elvisa. Teraz przejdźmy wreszcie do klas. Używaliśmy ich już wiele razy, ale dopiero teraz mamy wszystko, czego potrzebujemy, aby dobrze je omówić.
 
 [^08_0]: Na przykład badanie OverOps potwierdza, że `NullPointerException` jest najczęstszym wyjątkiem w 70% projektów Java.
 [^08_1]: Zobacz artykuł "Null is your friend, not a mistake" (link kt.academy/l/re-null) autorstwa Romana Elizarova, obecnego kierownika zespołu tworzącego język Kotlin.
