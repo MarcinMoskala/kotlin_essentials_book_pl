@@ -67,9 +67,11 @@ fun main() {
 
 To tłumaczenie wiele zawdzięcza osobom, które zgodziły się poświęcić swój wolny czas by pomóc mi w poprawieniu języka tłumaczenia. Najważniejsze osoby to:
 
+Maciej Dura
 
+Daniel Mroczka - pierwszy program napisał w wieku 10 lat na 8-bitowym C64 i od tego czasu nie wyobraża sobie innego zajęcia. Zawodowo programuje w Javie od blisko 20 lat. Pasjonat nowych technologii oraz tworzenia działającego i użytecznego oprogramowania. Motto życiowe: work smart not hard.
 
-Książka również przeszła przez profesjonalną korektę językową przeprowadzoną przez XXX. 
+Książka również przeszła przez profesjonalną korektę językową, której dokonała Dominika Jamroga. 
 
 {pagebreak}
 
