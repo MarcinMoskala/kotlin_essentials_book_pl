@@ -62,8 +62,9 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 * **bytecode** - **bajtkod**,
 * **call** - **wywołanie**,
 * **catch excaption** - **łapanie wyjątku**,
-* **companion object** - **companion obiekt**, <- to nie brzmi dobrze, ale nie mam lepszego pomysłu
+* **companion object** - **companion obiekt**,
 * **conditional statement** - **instrukcja warunkowa**,
+* **context receiver** - **context receiver**,
 * **data class** - **klasa data**,
 * **destructuring** - **destrukturyzacja**,
 * **enum class** - **enum**,
@@ -84,7 +85,7 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 * **list** - **lista**,
 * **member function** - **funkcja klasy**,
 * **member property** - **właściwość klasy**,
-* **mutable list** - **lista modyfikowalna**, <- nie mam pewności czy nie użyć "lista mutowalna"
+* **mutable list** - **lista modyfikowalna**,
 * **not-null assertion** - **assersja not-null**,
 * **not-nullable type** - **typ nienullowalny**
 * **nullable** - **nullowalny**,
@@ -122,10 +123,11 @@ Na ten moment przyjąłem następujące tłumaczenia pojęć z języka angielski
 * **type parameter** - **parametr typu**,
 * **when-expression** - **wyrażenie when**,
 
-Nazwy własne:
+Other Books
 * **Advanced Kotlin** - **Zaawansowany Kotlin**,
 * **Functional Kotlin** - **Funkcyjny Kotlin**,
 * **Kotlin Essentials** - **Kotlin dla programistów**,
+* **Effective Kotlin** - **Efektywny Kotlin**,
 
 Jestem otwarty na wszelkie propozycje zmian. 
 Dodawajcie proszę inne nieoczywiste tłumaczenia. 
