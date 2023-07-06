@@ -136,7 +136,7 @@ Zauważ, że "wyrażenie tworzące obiekt" to trafniejsza nazwa niż "anonimowa 
 
 ### Deklaracja obiektu
 
-Jeśli weźmiemy wyrażenie tworzące obiekt i nadamy mu nazwę, otrzymamy **deklarację obiektu**. Ta struktura również tworzy pojedynczy obiekt, aczkolwiek obiekt ten ma nazwę, która może być użyta do odwołania się do niego. Zauważ, że składnia deklaracji obiektu jest identyczna, jak składnia deklaracji klasy, tylko że deklaracja obiektu nie ma konstruktora i używa słowa kluczowego `object` zamiast `class`.
+Jeśli weźmiemy wyrażenie tworzące obiekt i nadamy mu nazwę, otrzymamy **deklarację obiektu**. Ta struktura również tworzy pojedynczy obiekt, aczkolwiek obiekt ten ma nazwę, która może być użyta do odwołania się do niego. Zauważ, że składnia deklaracji obiektu jest identyczna jak składnia deklaracji klasy, tylko że deklaracja obiektu nie ma konstruktora i używa słowa kluczowego `object` zamiast `class`.
 
 ```kotlin
 object Point {
@@ -156,7 +156,7 @@ fun main() {
 }
 ```
 
-Deklaracja obiektu to implementacja wzorca singleton[^12_4], tworzy więc ona klasę z pojedynczą instancją. Kiedykolwiek chcemy jej użyć, musimy działać na tej pojedynczej instancji. Deklaracje obiektów obsługują wszystkie funkcjonalności, które obsługują klasy; na przykład mogą rozszerzać klasy lub implementować interfejsy.
+Deklaracja obiektu to implementacja wzorca singleton[^12_4], tworzy więc klasę z pojedynczą instancją. Kiedykolwiek chcemy jej użyć, musimy działać na tej pojedynczej instancji. Deklaracje obiektów obsługują wszystkie funkcjonalności, które obsługują klasy; na przykład mogą rozszerzać klasy lub implementować interfejsy.
 
 ```kotlin
 data class User(val name: String)
@@ -438,7 +438,7 @@ fun main() {
 
 ### Stałe wartości
 
-Powszechną praktyką jest wyodrębnianie stałych wartości jako właściwości companion obiektów i nazywanie ich używając UPPER_SNAKE_CASE[^12_5]. W ten sposób nazywamy te wartości i upraszczamy ich zmiany w przyszłości. Nadajemy stałym wartościom charakterystyczne nazwy, aby było jasne, że reprezentują stałą[^12_2].
+Powszechną praktyką jest wyodrębnianie stałych wartości jako właściwości companion obiektów i nazywanie ich, używając UPPER_SNAKE_CASE[^12_5]. W ten sposób nazywamy te wartości i upraszczamy ich zmiany w przyszłości. Nadajemy stałym wartościom charakterystyczne nazwy, aby było jasne, że reprezentują stałą[^12_2].
 
 ```kotlin
 class Product(

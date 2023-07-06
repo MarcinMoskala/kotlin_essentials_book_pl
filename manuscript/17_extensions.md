@@ -70,7 +70,7 @@ Funkcje rozszerzające zachowują się bardzo podobnie do funkcji z klas. Kiedy 
 
 ### Funkcje rozszerzające pod maską
 
-Aby zrozumieć funkcje rozszerzające, użyjmy ponownie narzędzia "Tools > Kotlin > Show Kotlin Bytecode" i przycisku "Decompile" (jak wyjaśniłem w rozdziale *Twój pierwszy program w Kotlinie* w sekcji *Co kryje się pod maską na JVM?*). Skompilujemy i zdekompilujemy do Java naszą definicję funkcji `remove` oraz jej wywołanie:
+Aby zrozumieć funkcje rozszerzające, użyjmy ponownie narzędzia "Tools > Kotlin > Show Kotlin Bytecode" i przycisku "Decompile" (jak wyjaśniłem w rozdziale *Twój pierwszy program w Kotlinie*, w sekcji *Co kryje się pod maską na JVM?*). Skompilujemy i zdekompilujemy do Java naszą definicję funkcji `remove` oraz jej wywołanie:
 
 ```kotlin
 fun String.remove(value: String) = this.replace(value, "")
@@ -316,7 +316,7 @@ fun View.hide() {
 }
 ```
 
-Jednak istnieją także przypadki, gdy wolimy używać rozszerzeń zamiast definiowania elementów w klasie. Weźmy pod uwagę interfejs `Iterable`, który zawiera tylko jedną funkcję, `iterator`.  Ma za to wiele metod, które są zdefiniowane w bibliotece standardowej jako rozszerzenia[^16_1], takie jak `onEach` czy `joinToString`. Fakt, że są one tak zdefiniowane, pozwala zachować minimalistyczny, zwięzły interfejs. Ma to sens, ponieważ `onEach` czy `joinToString` nie są esencjonalną częścią interfejsu `Iterable`, ale są raczej pewnymi narzędziami, które mogą być używane z każdym iterowalnym typem.
+Jednak istnieją także przypadki, gdy wolimy używać rozszerzeń zamiast definiowania elementów w klasie. Weźmy pod uwagę interfejs `Iterable`, który zawiera tylko jedną funkcję, `iterator`.  Ma za to wiele metod, które są zdefiniowane w bibliotece standardowej jako rozszerzenia[^17_1], takie jak `onEach` czy `joinToString`. Fakt, że są one tak zdefiniowane, pozwala zachować minimalistyczny, zwięzły interfejs. Ma to sens, ponieważ `onEach` czy `joinToString` nie są esencjonalną częścią interfejsu `Iterable`, ale są raczej pewnymi narzędziami, które mogą być używane z każdym iterowalnym typem.
 
 ```kotlin
 interface Iterable<out T> {
@@ -442,4 +442,4 @@ W tym rozdziale poznaliśmy rozszerzenia - potężną funkcjonalność Kotlina, 
 
 W następnym rozdziale w końcu przedstawimy kolekcje, a więc omówimy listy, sety, mapy i tablice.
 
-[^16_1]: Roman Elizarov (obecny leader zespołu rozwijającego język Kotlin) określa to pojęciem extension-oriented design. Źródło: elizarov.medium.com/extension-oriented-design-13f4f27deaee
+[^17_1]: Roman Elizarov (obecny lider zespołu rozwijającego język Kotlin) określa to pojęciem extension-oriented design. Źródło: elizarov.medium.com/extension-oriented-design-13f4f27deaee

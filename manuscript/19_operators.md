@@ -69,7 +69,7 @@ c1 - c2 // kompilowane do c1.minus(c2)
 
 Kotlin definiuje konkretny zestaw operatorów, dla każdego z nich określona jest nazwa i liczba obsługiwanych argumentów. Dodatkowo wszystkie operatory muszą być metodami oraz mieć modyfikator `operator`.
 
-Dobrze używane operatory mogą pomóc nam poprawić czytelność kodu tak samo, jak źle używane operatory mogą jej zaszkodzić[^18_1]. Przedyskutujmy wszystkie operatory w Kotlinie.
+Dobrze używane operatory mogą pomóc nam poprawić czytelność kodu tak samo jak źle używane operatory mogą jej zaszkodzić[^19_1]. Przedyskutujmy wszystkie operatory w Kotlinie.
 
 ### Operatory arytmetyczne
 
@@ -84,7 +84,7 @@ Zacznijmy od operatorów arytmetycznych, takich jak plus czy razy. Poniższa tab
 | `a % b`   | `a.rem(b)`          |
 | `a..b `   | `a.rangeTo(b)`      |
 
-Zauważ, że `%` przekształca się na `rem`, co jest skrótem od "remainder", czyli "reszta". Ten operator zwraca resztę pozostałą po podzieleniu jednego operandu[^18_5] przez drugi operand, więc jest podobny do operacji modulo[^18_0].
+Zauważ, że `%` przekształca się na `rem`, co jest skrótem od "remainder", czyli "reszta". Ten operator zwraca resztę pozostałą po podzieleniu jednego operandu[^19_5] przez drugi operand, więc jest podobny do operacji modulo[^19_0].
 
 ```kotlin
 fun main() {
@@ -236,7 +236,7 @@ fun main() {
 
 W Kotlinie występują dwa rodzaje równości:
 
-* Równość strukturalna: sprawdzana za pomocą metody `equals` lub operatora `==` (i jego negowanej wersji `!=`). `a == b` przekłada się na `a.equals(b)` gdy `a` nie jest nullowalne, w przeciwnym razie przekłada się na `a?.equals(b) ?: (b === null)`. Równość strukturalna jest zwykle preferowana nad równością referencyjną. Metodę `equals` można nadpisać w niestandardowej klasie.
+* Równość strukturalna: sprawdzana za pomocą metody `equals` lub operatora `==` (i jego negowanej wersji `!=`). `a == b` przekłada się na `a.equals(b)`, gdy `a` nie jest nullowalne, w przeciwnym razie przekłada się na `a?.equals(b) ?: (b === null)`. Równość strukturalna jest zwykle preferowana nad równością referencyjną. Metodę `equals` można nadpisać w niestandardowej klasie.
 
 * Równość referencyjna: sprawdzana za pomocą operatora `===` (i jego negowanej wersji `!==`); zwraca `true`, gdy obie strony wskazują na ten sam obiekt. `===` i `!==` (sprawdzenia tożsamości) nie są przeciążalne, a więc zawsze sprawdzają, czy dwa obiekty mają ten sam adres w pamięci.
 
@@ -342,7 +342,7 @@ Nawiasy kwadratowe są tłumaczone do wywołań `get` i `set` z odpowiednią lic
 
 ### Przypisania z operatorem arytmetycznym
 
-Gdy ustawiamy nową wartość dla zmiennej, ta nowa wartość często opiera się na poprzedniej wartości. Załóżmy, że chcemy dodać wartość do poprzedniej. W tym celu wprowadzono przypisanie z operatorem arytmetycznym, określane w języku angielskim jako *augmented assignment*[^18_3]. Na przykład `a += b` to krótsza forma `a = a + b`. Istnieją podobne przypisania dla innych operacji arytmetycznych.
+Gdy ustawiamy nową wartość dla zmiennej, często opiera się ona na poprzedniej wartości. Załóżmy, że chcemy dodać wartość do poprzedniej. W tym celu wprowadzono przypisanie z operatorem arytmetycznym, określane w języku angielskim jako *augmented assignment*[^19_3]. Na przykład `a += b` to krótsza forma `a = a + b`. Istnieją podobne przypisania dla innych operacji arytmetycznych.
 
 | Wyrażenie | Tłumaczy się na |
 |-----------|-----------------|
@@ -352,7 +352,7 @@ Gdy ustawiamy nową wartość dla zmiennej, ta nowa wartość często opiera si�
 | `a /= b`  | `a = a / b`     |
 | `a %= b`  | `a = a % b`     |
 
-Zauważ, że przypisanie z operatorem arytmetycznym można używać dla wszystkich typów, które obsługują odpowiednią operację arytmetyczną, w tym dla list czy stringów. Takie przypisania wymagają, aby zmienna była `var`, a wynik operacji matematycznej musi mieć właściwy typ (aby przetłumaczyć `a += b` na `a = a + b`, zmienna `a` musi być `var`, a `a + b` musi być podtypem typu `a`).
+Zauważ, że przypisania z operatorem arytmetycznym można używać dla wszystkich typów, które obsługują odpowiednią operację arytmetyczną, w tym dla list czy stringów. Takie przypisania wymagają, aby zmienna była `var`, a wynik operacji matematycznej musi mieć właściwy typ (aby przetłumaczyć `a += b` na `a = a + b`, zmienna `a` musi być `var`, a `a + b` musi być podtypem typu `a`).
 
 ```kotlin
 fun main() {
@@ -393,11 +393,11 @@ fun main() {
 }
 ```
 
-Jeśli oba rodzaje rozszerzonego przypisania mogą być zastosowane, domyślnie Kotlin wybiera modyfikację obiektu modyfikowalnego.
+Jeśli oba rodzaje rozszerzonego przypisania mogą być zastosowane, Kotlin domyślnie wybiera modyfikację obiektu modyfikowalnego.
 
 ### Jednoargumentowe operatory przedrostkowe
 
-Plus, minus lub negacja przed pojedynczą wartością to także operator. Operatory używane tylko z jedną wartością nazywane są **operatorami jednoargumentowymi**[^18_4]. Kotlin obsługuje przeciążanie operatorów dla następujących operatorów jednoargumentowych:
+Plus, minus lub negacja przed pojedynczą wartością to także operator. Operatory używane tylko z jedną wartością nazywane są **operatorami jednoargumentowymi**[^19_4]. Kotlin obsługuje przeciążanie operatorów dla następujących operatorów jednoargumentowych:
 
 | Wyrażenie | Tłumaczenie na   |
 |-----------|------------------|
@@ -418,7 +418,7 @@ fun main() {
 }
 ```
 
-Operator `unaryPlus` jest często używany w Kotlinowych DSL-ach, co opisuję szczegółowo w następnej książce tej serii, *Funkcyjny Kotlin*.
+Operator `unaryPlus` jest często używany w Kotlinowych DSL-ach, co opisuję szczegółowo w następnej książce tej serii – *Funkcyjny Kotlin*.
 
 ### Inkrementacja i dekrementacja
 
@@ -466,7 +466,7 @@ Obiekty z operatorem `invoke` można wywoływać jak funkcje, czyli z nawiasami 
 | `a(i, j)`          | `a.invoke(i, j)`          |
 | `a(i_1, ..., i_n)` | `a.invoke(i_1, ..., i_n)` |
 
-Operator `invoke` jest używany dla obiektów reprezentujących funkcje, takich jak wyrażenia lambda[^18_2] lub obiekty UseCases z Clean Architecture.
+Operator `invoke` jest używany dla obiektów reprezentujących funkcje, takich jak wyrażenia lambda[^19_2] lub obiekty UseCases z Clean Architecture.
 
 ```kotlin
 class CheerUseCase {
@@ -528,13 +528,13 @@ fun main() {
 
 ### Podsumowanie
 
-W Kotlinie używamy operatorów, z których wiele można przeciążyć i wykorzystać do poprawy czytelności naszego kodu. Z poznawczego punktu widzenia, używanie intuicyjnego operatora może być ogromnym ułatwieniem w porównaniu z wszechobecnym stosowaniem metod. Dlatego warto wiedzieć, jakie opcje są dostępne i być otwartym na używanie operatorów zdefiniowanych przez bibliotekę standardową Kotlina. Możemy też definiować własne operatory. Bądź jednak ostrożny, bo nieintuicyjne operatory mogą znacznie utrudniać czytanie kodu.
+W Kotlinie używamy operatorów, z których wiele można przeciążyć i wykorzystać do poprawy czytelności naszego kodu. Z poznawczego punktu widzenia używanie intuicyjnego operatora może być ogromnym ułatwieniem w porównaniu z wszechobecnym stosowaniem metod. Dlatego warto wiedzieć, jakie opcje są dostępne i być otwartym na używanie operatorów zdefiniowanych przez bibliotekę standardową Kotlina. Możemy też definiować własne operatory. Bądź jednak ostrożny, bo nieintuicyjne operatory mogą znacznie utrudniać czytanie kodu.
 
 W następnym rozdziale pomówimy wreszcie o systemie typów stosowanych w Kotlinie i dowiemy się czym jest `Nothing`. 
 
-[^18_0]: Ten operator wcześniej nazywał się `mod`, co pochodzi od "modulo", ale teraz ta nazwa jest deprecated. W matematyce operacje reszty z dzielenia i modulo działają tak samo dla liczb dodatnich, ale różnica ujawnia się dla liczb ujemnych. Wynik reszty z dzielenia -5 przez 4 to -1, ponieważ -5 = 4 * (-1) + (-1). Wynik modulo -5 przez 4 to 3, ponieważ -5 = 4 * (-2) + 3. Operator `%` w Kotlinie implementuje zachowanie reszty z dzielenia, dlatego jego nazwa musiała zostać zmieniona z `mod` na `rem`.
-[^18_1]: Więcej na ten temat można znaleźć w *Efektywny Kotlin*, *Temat 12: Znaczenie operatora powinno być zgodne z nazwą funkcji* i *Temat 13: Używaj operatorów, aby zwiększyć czytelność*.
-[^18_2]: Więcej o wyrażeniach lambda będzie w kolejnej książce serii, *Funkcyjny Kotlin*.
-[^18_3]: Nie jestem pewien, który język wprowadził pierwszy tę konwencję, ale te operatory są obsługiwane nawet przez tak stare języki jak C.
-[^18_4]: Operatory unarne to te używane z tylko jedną wartością (operandem). Operatory używane z dwiema wartościami nazywane są operatorami binarnymi. Operatory używane z trzema wartościami nazywane są operatorami trójargumentowymi, czyli po angielsku "ternary operators". Ponieważ w głównych językach programowania istnieje tylko jeden operator trójargumentowy, mianowicie **operator warunkowy**, często określany jest pojęciem **ternary operator**. W Kotlinie jednak on nie funkcjonuje i zamianst niego używamy `if` i `else`. 
-[^18_5]: Operandem nazywamy wartość stojącą po jednej ze stron operatora. 
+[^19_0]: Ten operator wcześniej nazywał się `mod`, co pochodzi od "modulo", ale teraz ta nazwa jest deprecated. W matematyce operacje reszty z dzielenia i modulo działają tak samo dla liczb dodatnich, ale różnica ujawnia się dla liczb ujemnych. Wynik reszty z dzielenia -5 przez 4 to -1, ponieważ -5 = 4 * (-1) + (-1). Wynik modulo -5 przez 4 to 3, ponieważ -5 = 4 * (-2) + 3. Operator `%` w Kotlinie implementuje zachowanie reszty z dzielenia, dlatego jego nazwa musiała zostać zmieniona z `mod` na `rem`.
+[^19_1]: Więcej na ten temat można znaleźć w *Efektywny Kotlin*, *Temat 12: Znaczenie operatora powinno być zgodne z nazwą funkcji* i *Temat 13: Używaj operatorów, aby zwiększyć czytelność*.
+[^19_2]: Więcej o wyrażeniach lambda będzie w kolejnej książce serii – *Funkcyjny Kotlin*.
+[^19_3]: Nie jestem pewien, który język wprowadził pierwszy tę konwencję, ale te operatory są obsługiwane nawet przez tak stare języki jak C.
+[^19_4]: Operatory unarne to te używane z tylko jedną wartością (operandem). Operatory używane z dwiema wartościami nazywane są operatorami binarnymi. Operatory używane z trzema wartościami nazywane są operatorami trójargumentowymi, czyli po angielsku "ternary operators". Ponieważ w głównych językach programowania istnieje tylko jeden operator trójargumentowy, mianowicie **operator warunkowy**, często określany jest pojęciem **ternary operator**. W Kotlinie jednak on nie funkcjonuje i zamiast niego używamy `if` i `else`. 
+[^19_5]: Operandem nazywamy wartość stojącą po jednej ze stron operatora.

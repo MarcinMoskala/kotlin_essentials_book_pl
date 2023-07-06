@@ -124,11 +124,11 @@ fun main() {
     for (i in 1..10 step 3) {
         print("$i ")
     } // 1 4 7 10 
-    
+
     for (i in 1 until 10 step 3) {
         print("$i ")
     } // 1 4 7 
-    
+
     for (i in 10 downTo 1 step 3) {
         print("$i ")
     } // 10 7 4 1 
@@ -138,6 +138,7 @@ fun main() {
 ### Break oraz continue
 
 Wewnątrz pętli możemy użyć słów kluczowych `break` i `continue`:
+
 * `break` - kończy najbliższą otaczającą pętlę.
 * `continue` - przechodzi do następnego kroku najbliższej otaczającej pętli.
 

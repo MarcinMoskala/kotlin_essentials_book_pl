@@ -329,7 +329,7 @@ W Kotlinie nie jesteśmy zmuszeni do łapania żadnych rodzajów wyjątków, w p
 
 ### Podsumowanie
 
-W tym rozdziale dowiedzieliśmy się o wyjątkach, które są ważną częścią programowania w Kotlinie. Nauczyliśmy się, jak rzucać, łapać i definiować wyjątki. Dowiedzieliśmy się również o bloku finally oraz hierarchii wyjątków.
+Z tego rozdziału dowiedzieliśmy się o wyjątkach, które są ważną częścią programowania w Kotlinie. Nauczyliśmy się, jak rzucać, łapać i definiować wyjątki. Dowiedzieliśmy się również o bloku finally oraz hierarchii wyjątków.
 
 Kontynuując tematykę specjalnych rodzajów klas, porozmawiajmy o enumach, które są używane do reprezentowania zestawu możliwych wartości.
 

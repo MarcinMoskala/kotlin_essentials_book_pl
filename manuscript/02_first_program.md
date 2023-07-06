@@ -56,7 +56,7 @@ Wszystko, co musisz zrobić, aby uruchomić funkcję `main` w IntelliJ (najpopul
 {width: 100%}
 ![](main_run.png)
 
-### Szablony dynamiczne (Live templates)
+### Szablony dynamiczne
 
 Jeśli zdecydujesz się przetestować lub przećwiczyć materiał z tej książki[^02_3], prawdopodobnie często będziesz pisać funkcję `main`. Na pomoc przychodzą nam *szablony dynamiczne* (live templates). Jest to funkcjonalność IntelliJ, która sugeruje użycie szablonu, gdy zaczynasz wpisywać jego nazwę w odpowiednim kontekście. Czyli jeśli zaczniesz wpisywać "main" lub "maina" (dla main z argumentami) w pliku Kotlin, zostanie Ci pokazana sugestia, która oferuje całą funkcję `main`.
 
@@ -65,13 +65,13 @@ Jeśli zdecydujesz się przetestować lub przećwiczyć materiał z tej książk
 
 Na większości moich warsztatów używałem tego szablonu setki razy. Kiedy tylko chcę pokazać coś nowego z kodowaniem na żywo, otwieram plik "Playground.kt", zaznaczam całą jego zawartość (Ctrl/command + A), wpisuję "main", potwierdzam szablon dynamiczny klawiszem Enter i mam idealną przestrzeń do pokazania, jak coś działa.
 
-Polecam, abyś przetestował to teraz. Otwórz dowolny projekt Kotlin (najlepiej, jeśli masz dedykowany projekt do zabawy z Kotlinem), utwórz nowy plik (możesz go nazwać "Test" lub "Playground") i dodaj funkcję `main` posługując się szablonem dynamicznym "maina". Użyj funkcji `print` z dowolnym tekstem i uruchom kod przyciskiem "Uruchom".
+Polecam, abyś przetestował to teraz. Otwórz dowolny projekt Kotlin (najlepiej, jeśli masz dedykowany projekt do zabawy z Kotlinem), utwórz nowy plik (możesz go nazwać "Test" lub "Playground") i dodaj funkcję `main`, posługując się szablonem dynamicznym "maina". Użyj funkcji `print` z dowolnym tekstem i uruchom kod przyciskiem "Uruchom".
 
 ### Co kryje się pod maską na JVM?
 
 Najważniejszym targetem Kotlina jest JVM (Java Virtual Machine). W JVM każdy element musi znajdować się w klasie. Możesz zatem zastanawiać się, jak to możliwe, że nasza funkcja "main" może być uruchomiona w JVM, skoro nie jest w żadnej klasie. Spróbujmy to wyjaśnić. Po drodze nauczymy się, jak sprawdzić, jak nasz kod w Kotlinie wyglądałby, gdyby był napisany w Javie. Ta możliwość jest niesamowitą pomocą przy nauce Kotlina.
 
-Zacznijmy od otwarcia lub uruchomienia projektu Kotlin w IntelliJ lub Android Studio. Stwórz nowy plik Kotlin o nazwie "Playground". W środku tego pliku użyj szablonu dynamicznego "maina" aby utworzyć główną funkcję z argumentami i dodać `println("Hello, World")` w środku.
+Zacznijmy od otwarcia lub uruchomienia projektu Kotlin w IntelliJ lub Android Studio. Stwórz nowy plik Kotlin o nazwie "Playground". W środku tego pliku użyj szablonu dynamicznego "maina", aby utworzyć główną funkcję z argumentami i dodać `println("Hello, World")` w środku.
 
 {width: 100%}
 ```kotlin
@@ -108,9 +108,7 @@ Istnieją propozycje stworzenia podobnego narzędzia, aby pokazywać kod JavaScr
 
 ### Pakiety i importowanie
 
-Kiedy nasz projekt ma więcej niż jeden plik, potrzebujemy pakietów, aby utrzymywać jakiś porządek. Pakiety są sposobem grupowania plików i unikania konfliktów nazw.
-
-Plik może określić pakiet na początku pliku za pomocą słowa kluczowego `package`.
+Kiedy nasz projekt ma więcej niż jeden plik, potrzebujemy pakietów, aby utrzymywać jakiś porządek. Pakiety są sposobem grupowania plików i unikania konfliktów nazw. Plik może określić pakiet na początku pliku za pomocą słowa kluczowego `package`.
 
 ```kotlin
 package com.marcinmoskala.domain.model
@@ -118,7 +116,7 @@ package com.marcinmoskala.domain.model
 class User(val name: String)
 ```
 
-Jeśli nie określimy pakietu, plik znajdzie się w pakiecie domyślnym. W prawdziwych projektach zaleca się, aby ścieżka pakietu była taka sama jak ścieżka katalogu w naszych plikach źródłowych, podzielona przecinkami. Pakiet może również zawierać domenę firmy w odwrotnej kolejności, np. `com.marcinmoskala`. Nazwy pakietów piszemy małymi literami.
+Jeśli nie określimy pakietu, plik znajdzie się w pakiecie domyślnym. W prawdziwych projektach zaleca się, aby ścieżka pakietu była taka sama jak ścieżka katalogu w naszych plikach źródłowych. Pakiet może również zawierać domenę firmy w odwrotnej kolejności, np. `com.marcinmoskala`. Nazwy pakietów piszemy małymi literami.
 
 Jeśli chcemy użyć funkcji lub klasy z innego pakietu, musimy go zaimportować. Importy są deklarowane po deklaracji pakietu i przed deklaracjami elementów[^02_7] pliku. Najpierw określają nazwę pakietu, a następnie nazwę importowanego elementu. Możemy również użyć znaku `*` do zaimportowania wszystkich elementów.
 
@@ -137,7 +135,7 @@ fun useUser() {
 
 Najważniejsze elementy biblioteki standardowej Kotlina oraz Javy są importowane domyślnie. Na przykład możemy użyć funkcji `println` bez importowania jej.
 
-Programiści Kotlina rzadko myślą o importach, ponieważ IntelliJ zarządza nimi automatycznie. Kiedy użyjesz elementu za pomocą sugestii IntelliJ, automatycznie doda on odpowiedniu import. Jeśli używasz elementu, który nie jest zaimportowany, IntelliJ zaproponuje jego zaimportowanie. Jeśli chcesz usunąć nieużywane importy, możesz użyć akcji "Optimize Imports" (Ctrl/command + Alt + O). To też jest powodem, dla którego zdecydowałem się nie pokazywać importów w większości przykładów w tej książce.
+Programiści Kotlina rzadko myślą o importach, ponieważ IntelliJ zarządza nimi automatycznie. Kiedy użyjesz elementu za pomocą sugestii IntelliJ, automatycznie doda on odpowiedni import. Jeśli używasz elementu, który nie jest zaimportowany, IntelliJ zaproponuje jego zaimportowanie. Jeśli chcesz usunąć nieużywane importy, możesz użyć akcji "Optimize Imports" (Ctrl/command + Alt + O). To też jest powodem, dla którego zdecydowałem się nie pokazywać importów w większości przykładów w tej książce.
 
 ### Podsumowanie
 

@@ -1,6 +1,6 @@
 ## Adnotacje
 
-Innym specjalnym rodzajem klasy w Kotlinie są adnotacje, które używamy do dostarczania dodatkowych informacji o elementach naszego kody (takich jak klasy, funkcje, właściwości). Oto przykład klasy, której elementy używają adnotacji `JvmField`, `JvmStatic` oraz `Throws`[^15_2].
+Innym specjalnym rodzajem klasy w Kotlinie są adnotacje, które używamy do dostarczania dodatkowych informacji o elementach naszego kody (takich jak klasy, funkcje, właściwości). Oto przykład klasy, której elementy używają adnotacji `JvmField`, `JvmStatic` oraz `Throws`[^16_2].
 
 ```kotlin
 import java.math.BigDecimal
@@ -80,7 +80,7 @@ class DoctorServiceTest {
 
 Właściwość `doctorRepository` jest oznaczona jako `Mock`, co sprawia, że procesor biblioteki Mockito w specjalnie wygenerowanej klasie generuje kod, który ustawia wartość właściwości `doctorRepository` na nowo stworzony obiekty typu mock. Oczywiście, ta wygenerowana klasa nie będzie działać sama z siebie, ponieważ musi być uruchomiona. Właśnie po to jest `MockitoAnnotations.initMocks(this)`: używa refleksji, aby wywołać tę wygenerowaną klasę.
 
-Przetwarzanie adnotacji jest lepiej opisane w *Zaawansowane Kotlin*, w rozdziale *Przetwarzanie adnotacji* oraz *Kotlin Symbol Processing* gdzie pokazuję jak pisać różnego rodzaju procesory adnotacji. 
+Przetwarzanie adnotacji jest lepiej opisane w *Zaawansowane Kotlin*, w rozdziale *Przetwarzanie adnotacji* oraz *Kotlin Symbol Processing*, gdzie pokazuję jak pisać różnego rodzaju procesory adnotacji. 
 
 Adnotacje takie jak `Throws`, `JvmField` i `JvmStatic` są częścią biblioteki standardowej Kotlina i wpływają na działanie kompilatora. O nich również więcej będzie w książce *Zaawansowane Kotlin*, w rozdziale *Interoperacyjność z Javą*.
 
@@ -89,7 +89,7 @@ Adnotacje takie jak `Throws`, `JvmField` i `JvmStatic` są częścią biblioteki
 Adnotacje, które służą do oznaczania innych adnotacji, są znane jako meta-adnotacje. W bibliotece standardowej Kotlina są cztery kluczowe meta-adnotacje:
 * `Target` wskazuje rodzaje elementów kodu, które są możliwymi celami adnotacji. Jako argumenty przyjmuje wartości wyliczenia `AnnotationTarget`, które obejmują wartości takie jak `CLASS`, `PROPERTY`, `FUNCTION`, itp.
 * `Retention` określa, czy adnotacja jest przechowywana w binarnym wyniku kompilacji i jest widoczna dla refleksji. Domyślnie obie wartości są określone jako `true`.
-* `Repeatable` określa, że adnotacja może być stosowana więcej niż raz razy dla pojedynczego elementu kodu.
+* `Repeatable` określa, że adnotacja może być stosowana więcej niż raz dla pojedynczego elementu kodu.
 * `MustBeDocumented` określa, że adnotacja jest częścią publicznego API i dlatego powinna być uwzględniona w wygenerowanej dokumentacji dla elementu, do którego adnotacja jest stosowana.
 
 Oto przykłady użycia niektórych z tych adnotacji:
@@ -140,8 +140,8 @@ Ten zapis jest dozwolony tylko dla adnotacji i aktualnie nie działa przy defini
 
 ### Podsumowanie
 
-Adnotacje służą do opisywania naszego kodu. Mogą być interpretowane przez procesory adnotacji lub przez klasy używające refleksji w czasie wykonywania. Narzędzia i biblioteki wykorzystują to do automatyzacji niektórych działań dla nas. Adnotacje same w sobie są prostą funkcjonalności, ale w połączeniu z procesorami adnotacji, dają one niesamowite możliwości.
+Adnotacje służą do opisywania naszego kodu. Mogą być interpretowane przez procesory adnotacji lub przez klasy używające refleksji w czasie wykonywania. Narzędzia i biblioteki wykorzystują to do automatyzacji niektórych działań dla nas. Adnotacje same w sobie są prostą funkcjonalnością, ale w połączeniu z procesorami adnotacji, dają one niesamowite możliwości.
 
 Przejdźmy teraz do słynnej funkcjonalności Kotlin, która daje nam możliwość rozszerzenia dowolnego typu o metody lub właściwości: pomówmy o rozszerzeniach.
 
-[^15_2]: Adnotacje `JvmField`, `JvmStatic` i `Throws` są opisane w książce *Zaawansowany Kotlin* i służą do dostosowywania sposobu, w jaki elementy Kotlin mogą być używane w kodzie Java.
+[^16_2]: Adnotacje `JvmField`, `JvmStatic` i `Throws` są opisane w książce *Zaawansowany Kotlin* i służą do dostosowywania sposobu, w jaki elementy Kotlin mogą być używane w kodzie Java.

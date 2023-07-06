@@ -1,8 +1,8 @@
 ## Klasy
 
-Spójrz na świat wokół siebie, a prawdopodobnie zauważysz mnóstwo obiektów. Może to być książka, czytnik Ebooków, monitor lub kubek kawy. Jesteśmy otoczeni obiektami. Ta obserwacja prowadzi do wniosku, że żyjemy w świecie obiektów, a zatem nasze programy powinny być zbudowane w ten sam sposób. To jest koncepcyjna podstawa programowania obiektowego. Nie wszyscy podzielają ten światopogląd, niektórzy wolą widzieć świat jako miejsce możliwych działań[^09_0], co jest podstawą programowania funkcyjnego. Niezależnie od tego, które podejście preferujemy, klasy i obiekty są ważnymi strukturami w programowaniu w Kotlinie i omówimy je w tym rozdziale. 
+Spójrz na świat wokół siebie, a prawdopodobnie zauważysz mnóstwo obiektów. Może to być książka, czytnik e-booków, monitor lub kubek kawy. Jesteśmy otoczeni obiektami. Ta obserwacja prowadzi do wniosku, że żyjemy w świecie obiektów, a zatem nasze programy powinny być zbudowane w ten sam sposób. To jest koncepcyjna podstawa programowania obiektowego. Nie wszyscy podzielają ten światopogląd, niektórzy wolą widzieć świat jako miejsce możliwych działań[^09_0], co jest podstawą programowania funkcyjnego. Niezależnie od tego, które podejście preferujemy, klasy i obiekty są ważnymi strukturami w programowaniu w Kotlinie i omówimy je w tym rozdziale.
 
-Klasa to szablon, który służy do tworzenia obiektu o konkretnych cechach. Aby utworzyć klasę w Kotlinie, używamy słowa kluczowego `class`, a następnie określamy jej nazwę. To dosłownie wszystko, czego potrzebujemy, aby utworzyć najprostszą klasę, ponieważ ciało klasy jest opcjonalne. Aby utworzyć obiekt, który jest instancją klasy, używamy konstruktora, czyli nazwy klasy z nawiasami okrągłymi. W przeciwieństwie do innych języków, takich jak C++ czy Javie, w Kotlinie nie używamy słowa kluczowego `new`.
+Klasa to szablon, który służy do tworzenia obiektu o konkretnych cechach. Aby utworzyć klasę w Kotlinie, używamy słowa kluczowego `class`, a następnie określamy jej nazwę. To dosłownie wszystko, czego potrzebujemy, aby utworzyć najprostszą klasę, ponieważ ciało klasy jest opcjonalne. Aby utworzyć obiekt, który jest instancją klasy, używamy konstruktora, czyli nazwy klasy z nawiasami okrągłymi. W przeciwieństwie do innych języków, takich jak C++ czy Java, w Kotlinie nie używamy słowa kluczowego `new`.
 
 ```kotlin
 // Najprostsza definicja klasy
@@ -25,6 +25,7 @@ class A {
 ```
 
 W ciele możemy określić funkcje. Funkcje zdefiniowane w ten sposób mają dwie ważne cechy:
+
 * Muszą być wywołane na instancji tej klasy. Oznacza to, że aby wywołać metodę, najpierw musi zostać utworzony obiekt.
 * Wewnątrz metod możemy użyć `this`, które jest odniesieniem do instancji klasy, na której wywołaliśmy tę funkcję.
 
@@ -49,6 +50,7 @@ Koncepcyjnie rzecz biorąc, metody reprezentują to, co obiekt może robić. Na 
 ### Właściwości
 
 Wewnątrz ciał klas możemy również definiować zmienne. Zmienne zdefiniowane wewnątrz klas nazywane są **polami**. Istnieje ważna idea związana z "enkapsulacją", która oznacza, że pola nie powinny być używane bezpośrednio spoza klasy, ponieważ w takim przypadku tracimy kontrolę nad ich stanem. Zamiast tego, pola powinny być używane przez akcesory:
+
 * getter - funkcja służąca do pobierania aktualnej wartości pola,
 * setter - funkcja służąca do ustawiania nowych wartości pola.
 
@@ -285,7 +287,7 @@ class User {
 }
 ```
 
-> W powyższym getterze używam `let` oraz referencji do konstruktora. Oba te elementy Kotlinie są wyjaśnione w książce **Funkcyjny Kotlin**.
+> W powyższym getterze używam `let` oraz referencji do konstruktora, które są wyjaśnione w książce **Funkcyjny Kotlin**.
 
 Taka właściwość `birthdate` może być również zdefiniowana jako funkcja rozszerzająca, co zostało przedstawione w rozdziale *Rozszerzenia*.
 
@@ -373,7 +375,7 @@ fun main() {
 }
 ```
 
-Główny konstruktor jest zwykle używany do określania wartości początkowych dla naszych właściwości. Te właściwości często mają te same nazwy co inne parametry, dlatego Kotlin wprowadził specjalną notację: możemy definiować właściwości wewnątrz konstruktora głównego. Jeśli przed parametrem konstruktora głównego użyjemy `val` lub `var`, to definiujemy właściwość o takiej samej nazwie jak ten parametr, której wartością będzie wartość tego parametru. Takie parametry nazywamy **właściwościami konstruktora głównego**. 
+Główny konstruktor jest zwykle używany do określania wartości początkowych dla naszych właściwości. Te właściwości często mają te same nazwy co inne parametry, dlatego Kotlin wprowadził specjalną notację: możemy definiować właściwości wewnątrz konstruktora głównego. Jeśli przed parametrem konstruktora głównego użyjemy `val` lub `var`, to definiujemy właściwość o takiej samej nazwie jak ten parametr, której wartością będzie wartość tego parametru. Takie parametry nazywamy **właściwościami konstruktora głównego**.
 
 ```kotlin
 class User(
@@ -498,6 +500,7 @@ fun main() {
 ```
 
 Przykłady klas wewnętrznych w bibliotece standardowej to:
+
 * prywatne implementacje iteratorów;
 * klasy, w których istnieje ścisłe powiązanie między klasą zewnętrzną a klasą wewnętrzną, a klasa wewnętrzna służy do tego, aby nie definiować kolejnej nazwy w przestrzeni nazw biblioteki.
 

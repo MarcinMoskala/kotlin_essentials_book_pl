@@ -35,7 +35,7 @@ val res1: Result = FakeSuccess()
 val res2: Result = object : Result {}
 ```
 
-Hierarchia, której podklasy nie są znane z góry, nazywana jest hierarchią nieograniczoną. Dla `Result` wolelibyśmy zdefiniować hierarchię ograniczoną. Aby osiągnąć ten cel używamy modyfikatora `sealed` przed klasą lub interfejsem[^14_0][^14_3].
+Hierarchia, której podklasy nie są znane z góry, nazywana jest hierarchią nieograniczoną. Dla `Result` wolelibyśmy zdefiniować hierarchię ograniczoną. Aby osiągnąć ten cel, używamy modyfikatora `sealed` przed klasą lub interfejsem[^15_0][^15_3].
 
 ```kotlin
 sealed interface Result
@@ -49,13 +49,13 @@ class Success(val data: String) : Result()
 class Failure(val exception: Throwable) : Result()
 ```
 
-> Gdy używamy modyfikatora `sealed` przed klasą sprawia to, że klasa staje się abstrakcyjna, więc nie używamy dodatkowo modyfikatora `abstract`.
+> Gdy używamy modyfikatora `sealed` przed klasą, sprawia to, że klasa staje się abstrakcyjna, więc nie używamy dodatkowo modyfikatora `abstract`.
 
 Wszystkie podklasy sealed klasy lub interfejsu muszą spełniać kilka wymagań:
 * muszą być zdefiniowane w tym samym pakiecie i module, co ich rodzic,
 * nie mogą być lokalne ani zdefiniowane za pomocą wyrażenia tworzącego obiekt.
 
-Oznacza to, że używając modyfikatora `sealed` kontrolujesz, jakie podklasy ma klasa lub interfejs. Klienci Twojej biblioteki lub modułu nie mogą dodać własnych bezpośrednich podklas[^14_2]. Nikt nie może po cichu dodać lokalnej klasy ani wyrażenia obiektu, które rozszerza sealed klasę lub interfejs. Kotlin uczynił to niemożliwym. Hierarchia podklas jest ograniczona.
+Oznacza to, że używając modyfikatora `sealed`, kontrolujesz, jakie podklasy ma klasa lub interfejs. Klienci Twojej biblioteki lub modułu nie mogą dodać własnych bezpośrednich podklas[^15_2]. Nikt nie może po cichu dodać lokalnej klasy ani wyrażenia obiektu, które rozszerza sealed klasę lub interfejs. Kotlin uczynił to niemożliwym. Hierarchia podklas jest ograniczona.
 
 > Sealed interfejsy zostały wprowadzone w nowszych wersjach Kotlina, aby umożliwić klasom uczestnictwo w wielu różnych ograniczonych hierarchiach (można rozszerzać tylko jedną klasę, ale implementować wiele interfejsów). Relacja między sealed klasą i interfejsem jest podobna do relacji między klasą abstrakcyjną a interfejsem. Mocą klas jest to, że mogą przechowywać stan (właściwości nieabstrakcyjne) i kontrolować otwartość swoich elementów (mogą mieć metody i właściwości finalne). Mocą interfejsów jest to, że klasa może dziedziczyć tylko z jednej klasy, ale może implementować wiele interfejsów.
 
@@ -93,7 +93,7 @@ fun commentDecision(type: PaymentType) = when (type) {
 }
 ```
 
-Dla wartości określone typem z modyfikatorem sealed można rozpatrzyć wszystkie możliwości poprzez sprawdzenie wszystkich możliwych podtypów. Do sprawdzenia typu używamy operatora `is`. Dzięki modyfikatorowi `sealed`, nie musimy używać gałęzi `else` gdy rozpatrzymy wszystkie możliwe podtypy.
+Dla wartości określone typem z modyfikatorem sealed można rozpatrzyć wszystkie możliwości poprzez sprawdzenie wszystkich możliwych podtypów. Do sprawdzenia typu używamy operatora `is`. Dzięki modyfikatorowi `sealed` nie musimy używać gałęzi `else`, gdy rozpatrzymy wszystkie możliwe podtypy.
 
 ```kotlin
 sealed class Response<out V>
@@ -114,7 +114,7 @@ Ponadto IntelliJ automatycznie sugeruje dodanie pozostałych gałęzi. To sprawi
 
 ![](remaining_branches.png)
 
-Zauważ, że gdy `else` nie jest używane, a my dodajemy kolejną podklasę sealed klasy lub interfejsu, należy dostosować użycie tego wyrażenia `when`, uwzględniając ten nowy typ. Jest to wygodne w lokalnym kodzie, ponieważ zmusza nas do obsługi nowego typu w wyczerpujących wyrażeniach `when`. Jest to jednak problem, gdy sealed klasa lub interfejs jest częścią publicznego API biblioteki, lub współdzielonego modułu, gdyż dodanie podtypu jest niekompatybilne wstecznie, ponieważ wszystkie moduły używające wyczerpującego `when` muszą obsłużyć nowy możliwy typ.
+Zauważ, że gdy `else` nie jest używane, a my dodajemy kolejną podklasę sealed klasy lub interfejsu, należy dostosować użycie tego wyrażenia `when`, uwzględniając ten nowy typ. Jest to wygodne w lokalnym kodzie, ponieważ zmusza nas do obsługi nowego typu w wyczerpujących wyrażeniach `when`. Jest to jednak problem, gdy sealed klasa lub interfejs jest częścią publicznego API biblioteki lub współdzielonego modułu, gdyż dodanie podtypu jest niekompatybilne wstecznie, ponieważ wszystkie moduły używające wyczerpującego `when` muszą obsłużyć nowy możliwy typ.
 
 ### Sealed vs enum
 
@@ -154,7 +154,7 @@ fun BinaryTree.height(): Int = when (this) {
 }
 ```
 
-Warto także dodać, że gdy używamy modyfikatora `sealed`, możemy użyć refleksji, aby znaleźć wszystkie podklasy[^14_1]:
+Warto także dodać, że gdy używamy modyfikatora `sealed`, możemy użyć refleksji, aby znaleźć wszystkie podklasy[^15_1]:
 
 ```kotlin
 sealed interface Parent
@@ -174,7 +174,7 @@ Sealed klasy oraz interfejsy powinny być używane do reprezentowania ograniczon
 
 Następnie omówimy ostatni specjalny rodzaj klasy, który służy do definiowania dodatkowych informacji o elementach naszego kodu: adnotacje.
 
-[^14_0]: Ograniczone hierarchie są używane do reprezentowania wartości, które mogą przyjmować kilka różnych, ale stałych typów.
-[^14_1]: Wymaga to zależności `kotlin-reflect`. Więcej o refleksji w książce *Zaawansowany Kotlin*.
-[^14_2]: Nadal można deklarować klasę abstrakcyjną lub interfejs jako podklasę sealed klasy lub interfejsu, i z niej już klient będzie mógł dziedziczyć w innym module.
-[^14_3]: Słowo "sealed" można przetłumaczyć jako "zapieczętowany", tak jak pieczętowało się niegdyś koperty przed wysłaniem.  
+[^15_0]: Ograniczone hierarchie są używane do reprezentowania wartości, które mogą przyjmować kilka różnych, ale stałych typów.
+[^15_1]: Wymaga to zależności `kotlin-reflect`. Więcej o refleksji w książce *Zaawansowany Kotlin*.
+[^15_2]: Nadal można deklarować klasę abstrakcyjną lub interfejs jako podklasę sealed klasy lub interfejsu, i z niej już klient będzie mógł dziedziczyć w innym module.
+[^15_3]: Słowo "sealed" można przetłumaczyć jako "zapieczętowany", tak jak pieczętowało się niegdyś koperty przed wysłaniem.

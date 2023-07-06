@@ -1,19 +1,20 @@
 ## Zmienne
 
 Aby zadeklarować zmienną w Kotlinie, zaczynamy od słowa kluczowego `val` lub `var`, następnie podajemy nazwę zmiennej, znak równości i wartość początkową.
-* Słowo kluczowe `var` (od słowa "variable" czyli "zmienna") definiuje *zmienną do odczytu i zapisu* i jest używane do definiowania zmiennych, do których zawsze możesz przypisać inną wartość. 
-* Słowo kluczowe `val` (od słowa "value" czyli "wartość") definiuje *zmienne tylko do odczytu* i jest używane do definiowania wartości, których wartości określa się tylko raz (choć jeśli wartość ta jest mutowalna, to ta wartość wciąż może się zmienić wewnętrznie, co nie zmiania faktu, że zmienna będzie cały czas wskazywała na ten sam obiekt). 
+
+* Słowo kluczowe `var` (od słowa "variable", czyli "zmienna") definiuje *zmienną do odczytu i zapisu* i jest używane do definiowania zmiennych, do których zawsze możesz przypisać inną wartość.
+* Słowo kluczowe `val` (od słowa "value", czyli "wartość") definiuje *zmienne tylko do odczytu* i jest używane do definiowania wartości, których wartości określa się tylko raz (choć jeśli wartość ta jest mutowalna, to wciąż może się zmienić wewnętrznie, co nie zmiania faktu, że zmienna będzie cały czas wskazywała na ten sam obiekt).
 
 ```kotlin
 fun main() {
-   val a = 10
-   var b = "ABC"
-   println(a) // 10
-   println(b) // ABC
-   // a = 12 - ponowne przypisanie nie jest możliwe, 
-   // ponieważ a jest tylko do odczytu!
-   b = "CDE"
-   println(b) // CDE
+    val a = 10
+    var b = "ABC"
+    println(a) // 10
+    println(b) // ABC
+    // a = 12 - ponowne przypisanie nie jest możliwe, 
+    // ponieważ a jest tylko do odczytu!
+    b = "CDE"
+    println(b) // CDE
 }
 ```
 
@@ -31,12 +32,12 @@ Możemy również jawnie określić typ zmiennej, używając dwukropka i nazwy t
 
 ```kotlin
 fun main() {
-   val a: Int = 10
-   var b: String = "ABC"
-   println(a) // 10
-   println(b) // ABC
-   b = "CDE"
-   println(b) // CDE
+    val a: Int = 10
+    var b: String = "ABC"
+    println(a) // 10
+    println(b) // ABC
+    b = "CDE"
+    println(b) // CDE
 }
 ```
 
@@ -51,6 +52,7 @@ fun main() {
 ```
 
 Możemy założyć, że zmienna powinna być zainicjalizowana przy użyciu znaku równości po jej deklaracji (jak w `val a = 10`). Co więc może znajdować się po prawej stronie znaku równości? Może to być dowolne wyrażenie, tj. fragment kodu zwracający wartość. Oto rodzaje wyrażeń w języku Kotlin:
+
 * wartość dosłowna, jak `1` czy `"ABC"`[^03_2],
 * instrukcja warunkowa użyta jako wyrażenie, jak wyrażenie `if`, wyrażenie `when` czy wyrażenie `try-catch`[^03_3].
 * wywołanie konstruktora tworzące obiekt[^03_4],
@@ -66,5 +68,5 @@ Mamy wiele do omówienia, więc zacznijmy od wartości dosłownych.
 [^03_4]: Konstruktory omówione są w rozdziale *Klasy*.
 [^03_5]: Wszystkie funkcje w Kotlinie zwracają jakąś wartość, więc wszystkie mogą być użyte po prawej stronie przypisania zmiennej. Funkcje omówione są w rozdziale *Funkcje*.
 [^03_6]: Wyrażenia obiektu i deklaracja obiektu omówione są w rozdziale *Obiekty*.
-[^03_7]: Literały funkcyjne omówione są w książce *Funkcyjny Kotlin* w rozdziałach *Funkcje anonimowe*, *Wyrażenia lambda* i *Referencje do funkcji*.
-[^03_8]: Rodzaje referencji do elementów omówione są w książce *Zaawansowany Kotlin* w rozdziale *Refleksja*.
+[^03_7]: Literały funkcyjne omówione są w książce *Funkcyjny Kotlin*, w rozdziałach *Funkcje anonimowe*, *Wyrażenia lambda* i *Referencje do funkcji*.
+[^03_8]: Rodzaje referencji do elementów omówione są w książce *Zaawansowany Kotlin*, w rozdziale *Refleksja*.

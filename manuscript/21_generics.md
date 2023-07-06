@@ -17,6 +17,7 @@ for(int i = 0; i < names.size(); i++){
 Takie listy używa się dość trudno. Jako programiści, wolimy mieć listy z określonymi typami elementów. Dopiero wtedy możemy być pewni, że zawierają one elementy właściwego typu i dopiero wtedy nie musimy jawnie rzutować tych elementów, gdy pobieramy je z listy. Umożliwienie tego było jednym z głównych powodów wprowadzenia typów generycznych do Javy 5. W Kotlinie nie mamy tego problemu, ponieważ został on zaprojektowany z obsługą typów generycznych od samego początku, a wszystkie listy są generyczne, więc trzeba z góry określić rodzaj elementów, jaki akceptują. Typy generyczne są ważną cechą większości nowoczesnych języków programowania i w tym rozdziale omówimy, czym są i jak używamy ich w Kotlinie.
 
 W Kotlinie mamy trzy rodzaje elementów generycznych:
+
 * funkcje generyczne,
 * klasy generyczne,
 * interfejsy generyczne.
@@ -25,7 +26,7 @@ Omówmy je kolejno.
 
 ### Funkcje generyczne
 
-Tak jak możemy przekazać wartość jako argument do parametru, możemy przekazać typ jako **argument typu** do **parametru typu**. Aby to zrobić, funkcja musi zdefiniować co najmniej jeden parametr typu w nawiasach ostrokątnych zaraz po słowie kluczowym `fun`. Zgodnie z tą konwencją, nazwy parametrów typu pisane są wielkimi literami. Gdy funkcja definiuje parametr typu, jej wywołanie musi określić argument typu. Parametr typu jest symbolem zastępczym dla konkretnego typu; argument typu to rzeczywisty typ używany podczas wywoływania funkcji. Aby jawnie określić argumenty typu, używamy również nawiasów ostrokątnych.
+Tak jak możemy przekazać wartość jako argument do parametru, możemy przekazać typ jako **argument typu** do **parametru typu**. Aby to zrobić, funkcja musi zdefiniować co najmniej jeden parametr typu w nawiasach ostrokątnych zaraz po słowie kluczowym `fun`. Zgodnie z tą konwencją nazwy parametrów typu pisane są wielkimi literami. Gdy funkcja definiuje parametr typu, jej wywołanie musi określić argument typu. Parametr typu jest symbolem zastępczym dla konkretnego typu; argument typu to rzeczywisty typ używany podczas wywoływania funkcji. Aby jawnie określić argumenty typu, używamy również nawiasów ostrokątnych.
 
 ```kotlin
 fun <T> a() {} // T to parametr typu
@@ -218,13 +219,13 @@ interface List<out E> : Collection<E> {
 }
 ```
 
-> Modyfikator `out` oraz adnotacja `UnsafeVariance` wyjaśniam w książce *Zaawansowany Kotlin*.
+> Modyfikator `out` oraz adnotację `UnsafeVariance` wyjaśniam w książce *Zaawansowany Kotlin*.
 
 ![Dla typu `List<String>` metody takie jak `contains` oczekują argumentu typu `String`, a metody takie jak `get` deklarują `String` jako typ wyniku.](list_str_suggestions.png)
 
 ![Dla `List<String>`, metody takie jak `filter` mogą wywnioskować `String` jako parametr wyrażenia lambda.](list_suggestions.png)
 
-Generyczne interfejsy mogą być implementowane przez zarówno zwykłe, jak i generyczne klasy. Powiedzmy, że mamy klasę `Dog`, która implementuje `Consumer<DogFood>`, jak pokazano w poniższym fragmencie. Interfejs `Consumer` oczekuje metody `consume` z parametrem typu `T`. Oznacza to, że nasz `Dog` musi nadpisać metodę `consume` z argumentem typu `DogFood`. Musi to być `DogFood`, ponieważ implementujemy `Consumer<DogFood>` i typ parametru metody `consume` musi pasować do użytego argumentu typu `DogFood`. Ponieważ `Dog` implementuje `Consumer<DogFood>`, instancja `Dog` może być rzutowana do `Consumer<DogFood>`.
+Generyczne interfejsy mogą być implementowane zarówno przez zwykłe, jak i generyczne klasy. Powiedzmy, że mamy klasę `Dog`, która implementuje `Consumer<DogFood>`, jak pokazano w poniższym fragmencie. Interfejs `Consumer` oczekuje metody `consume` z parametrem typu `T`. Oznacza to, że nasz `Dog` musi nadpisać metodę `consume` z argumentem typu `DogFood`. Musi to być `DogFood`, ponieważ implementujemy `Consumer<DogFood>` i typ parametru metody `consume` musi pasować do użytego argumentu typu `DogFood`. Ponieważ `Dog` implementuje `Consumer<DogFood>`, instancja `Dog` może być rzutowana do `Consumer<DogFood>`.
 
 ```kotlin
 interface Consumer<T> {
@@ -352,7 +353,7 @@ fun <T> example(a: Any) {
 }
 ```
 
-Jednak Kotlin może pokonać te ograniczenia dzięki użyciu funkcji inline z argumentami typu oznaczonymi modyfikatorem `reified`. Ten temat jest omówiony szczegółowo w rozdziale *Funkcje inline* w książce *Funkcyjny Kotlin*.
+Kotlin może jednak pokonać te ograniczenia dzięki użyciu funkcji inline z argumentami typu oznaczonymi modyfikatorem `reified`. Ten temat jest omówiony szczegółowo w rozdziale *Funkcje inline* w książce *Funkcyjny Kotlin*.
 
 ```kotlin
 import kotlin.reflect.typeOf
@@ -406,7 +407,7 @@ fun <T : Comparable<T>> maxOf(a: T, b: T): T {
     return if (a >= b) a else b
 }
 
-class Box<T: Any>(val value: T)
+class Box<T : Any>(val value: T)
 ```
 
 W rzadkich przypadkach możemy potrzebować więcej niż jednego ograniczenia górnego dla typu generycznego. Wtedy możemy użyć `where` po nazwie klasy lub funkcji, aby ustawić dowolną liczbą ograniczeń (oddzielamy je przecinkiem).
@@ -446,7 +447,7 @@ fun main() {
 
 ### Star projection
 
-W niektórych przypadkach nie chcemy podać konkretnego argumentu typu. W takich sytuacjach możemy użyć star projection, czyli znaku `*`, który zastępuje argument typu i akceptuje dowolny typ. Istnieją dwie typowe sytuacje, w których jest to przydatne. Pierwsza to sprawdzenie, czy zmienna jest listą. W tym przypadku należy użyć sprawdzenia `is List<*>`. Użycie konkretnego argumentu typu, jak `List<Int>`, byłoby i tak kompilowane do `List`, ze względu na type erasure. Oznacza to, że lista stringów przeszłaby sprawdzenie `is List<Int>`. Takie sprawdzenie byłoby mylące i jest niedozwolone w Kotlinie. Zamiast tego musisz użyć `is List<*>`. Podobnie jest z innymi typami generycznymi. 
+W niektórych przypadkach nie chcemy podać konkretnego argumentu typu. W takich sytuacjach możemy użyć star projection, czyli znaku `*`, który zastępuje argument typu i akceptuje dowolny typ. Istnieją dwie typowe sytuacje, w których jest to przydatne. Pierwsza to sprawdzenie, czy zmienna jest listą. W tym przypadku należy użyć sprawdzenia `is List<*>`. Użycie konkretnego argumentu typu, jak `List<Int>`, byłoby i tak kompilowane do `List`, ze względu na type erasure. Oznacza to, że lista stringów przeszłaby sprawdzenie `is List<Int>`. Takie sprawdzenie byłoby mylące i jest niedozwolone w Kotlinie. Zamiast tego musisz użyć `is List<*>`. Podobnie jest z innymi typami generycznymi.
 
 ```kotlin
 fun main() {
@@ -470,7 +471,7 @@ fun printList(list: List<*>) {
 }
 ```
 
-Nie należy mylić star projection z argumentem typu `Any?`. Aby zrozumieć różnicę, porównajmy `MutableList<Any?>` i `MutableList<*>`. Oba te typy deklarują `Any?` jako generyczny typ wyników z metod. Jednak, gdy dodawane są elementy, `MutableList<Any?>` akceptuje wszystko (`Any?`), ale `MutableList<*>` akceptuje `Nothing`, więc nie akceptuje żadnych wartości.
+Nie należy mylić star projection z argumentem typu `Any?`. Aby zrozumieć różnicę, porównajmy `MutableList<Any?>` i `MutableList<*>`. Oba te typy deklarują `Any?` jako generyczny typ wyników z metod. Jednak gdy dodawane są elementy, `MutableList<Any?>` akceptuje wszystko (`Any?`), ale `MutableList<*>` akceptuje `Nothing`, więc nie akceptuje żadnych wartości.
 
 ```kotlin
 fun main() {

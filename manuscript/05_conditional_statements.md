@@ -88,7 +88,7 @@ const name = user === null ? "" : user.name
 val name = if (user == null) "" else user.name
 ```
 
-Należy zaznaczyć, że if-else jest dłuższe niż składnia operatora trójargumentowego. Wierzę, że jest to główny powód, dla którego niektórzy deweloperzy chcieliby wprowadzenia operatora trójargumentowego w Kotlinie. Jednak jestem przeciwny temu, ponieważ if-else jest bardziej czytelne i może być lepiej sformatowane. Co więcej, mamy w Kotlinie inne narzędzia będące zamiennikami dla niektórych przypadków użycia operatora trójargumentowego: operator Elvisa, rozszerzenia dla typów nullowalnych (takie jak `orEmpty`) czy safe-call. Wszystkie te elementy zostaną wyjaśnione szczegółowo w rozdziale *Nullability*.
+Należy zaznaczyć, że if-else jest dłuższe niż składnia operatora trójargumentowego. Wierzę, że jest to główny powód, dla którego niektórzy deweloperzy chcieliby wprowadzenia operatora trójargumentowego w Kotlinie. Jednak jestem temu przeciwny, ponieważ if-else jest bardziej czytelne i może być lepiej sformatowane. Co więcej, mamy w Kotlinie inne narzędzia będące zamiennikami dla niektórych przypadków użycia operatora trójargumentowego: operator Elvisa, rozszerzenia dla typów nullowalnych (takie jak `orEmpty`) czy safe-call. Wszystkie te elementy zostaną wyjaśnione szczegółowo w rozdziale *Nullability*.
 
 ```
 // Java
@@ -399,7 +399,7 @@ fun main() {
 }
 ```
 
-Ogólnie unikamy używania `as` gdy nie jest ono konieczne, ponieważ uważamy, że rzutowanie w dół jest mało bezpieczne. Rozważ powyższy przykład. Co, jeśli ktoś zmieni `123` na `3.14`? Obie wartości są typu `Number`, więc kod będzie kompilować się bez żadnych problemów czy ostrzeżeń. Ale `3.14` to `Double`, a nie `Int`, i rzutowanie nie jest możliwe! W związku z tym powyższy kod zakończy się błędem z wyjątkiem `ClassCastException`.
+Ogólnie unikamy używania `as`, gdy nie jest ono konieczne, ponieważ uważamy, że rzutowanie w dół jest mało bezpieczne. Rozważ powyższy przykład. Co jeśli ktoś zmieni `123` na `3.14`? Obie wartości są typu `Number`, więc kod będzie kompilować się bez żadnych problemów czy ostrzeżeń. Ale `3.14` to `Double`, a nie `Int`, i rzutowanie nie jest możliwe! W związku z tym powyższy kod zakończy się błędem z wyjątkiem `ClassCastException`.
 
 ```kotlin
 var i: Number = 3.14
@@ -487,7 +487,7 @@ fun handleResponse(response: Result<T>) {
 
 ### Pętle while i do-while
 
-Ostatnimi strukturami sterującymi, o których musimy wspomnieć, są pętle while i do-while. Wyglądają i działają dokładnie tak samo, jak w Java, C++ i wielu innych językach.
+Ostatnimi strukturami sterującymi, o których musimy wspomnieć, są pętle while i do-while. Wyglądają i działają dokładnie tak samo jak w Java, C++ i wielu innych językach.
 
 ```kotlin
 fun main() {

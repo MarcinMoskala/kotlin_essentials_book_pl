@@ -1,6 +1,6 @@
 ## Słowo na zakończenie
 
-Dotarłeś więc do końca tej książki. Gratulacje! W tej książce omówiliśmy wiele istotnych tematów, takich jak:
+Dotarłeś więc do końca książki. Gratulacje! W tej książce omówiliśmy wiele istotnych tematów, takich jak:
 * zmienne, wartości i typy,
 * instrukcje warunkowe i pętle,
 * wsparcie dla wartości nullowalnych,
@@ -14,7 +14,7 @@ Dotarłeś więc do końca tej książki. Gratulacje! W tej książce omówiliś
 * system typów,
 * typy generyczne.
 
-Wciąż jednak pozostaje wiele funkcjonalności Kotlina, które pozostają do omówienia. Kontynuacja tej książki nosi tytuł *Funkcyjny Kotlin*, który koncentruje się na funkcjonalnych cechach Kotlin, takich jak:
+Wciąż jednak pozostaje wiele funkcjonalności Kotlina, które pozostają do omówienia. Kontynuacja tej książki nosi tytuł *Funkcyjny Kotlin*, w której koncentruję się na funkcjonalnych możliwościach Kotlina, takich jak:
 * typy funkcyjne,
 * funkcje anonimowe,
 * wyrażenia lambda,
@@ -27,4 +27,4 @@ Wciąż jednak pozostaje wiele funkcjonalności Kotlina, które pozostają do om
 * context receiver,
 * podstawy biblioteki Arrow.
 
-Jednak wiedza z książki, której lekturę właśnie korzysz, jest znacząca i powinna wystarczyć do tworzenia projektów w Kotlinie. Mam nadzieję, że dobrze jej użyjesz, niezależnie od tego, jak zdecydujesz się kontynuować swoją przygodę z Kotlinem.
+Jednak wiedza z książki, której lekturę właśnie kończysz, jest znacząca i powinna wystarczyć do tworzenia projektów w Kotlinie. Mam nadzieję, że użyjesz jej dobrze, niezależnie od tego, jak zdecydujesz się kontynuować swoją przygodę z Kotlinem.

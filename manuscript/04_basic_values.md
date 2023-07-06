@@ -8,6 +8,7 @@ Każdy język potrzebuje wygodnego sposobu reprezentowania podstawowych rodzajó
 ```
 
 W tym rozdziale poznamy podstawowe typy języka Kotlin i ich literały:
+
 * liczby (`Int`, `Long`, `Double`, `Float`, `Short`, `Byte`),
 * wartości logiczne (`Boolean`),
 * znaki (`Char`),
@@ -26,11 +27,11 @@ W Kotlinie istnieje szereg typów służących do reprezentowania liczb. Mogą o
 Do reprezentacji liczb całkowitych, używamy `Int`, `Long`, `Byte` i `Short`.
 
 | Typ     | Rozmiar (bity) | Wartość minimalna | Wartość maksymalna |
-|---------|---------------|-------------------|--------------------|
-| `Byte`  | 8             | -128              | 127                |
-| `Short` | 16            | -32768            | 32767              |
-| `Int`   | 32            | `-2^{31}`$        | `2^{31} - 1`$      |
-| `Long`  | 64            | `-2^{63}`$        | `2^{63} - 1`$      |
+|---------|----------------|-------------------|--------------------|
+| `Byte`  | 8              | -128              | 127                |
+| `Short` | 16             | -32768            | 32767              |
+| `Int`   | 32             | `-2^{31}`$        | `2^{31} - 1`$      |
+| `Long`  | 64             | `-2^{63}`$        | `2^{63} - 1`$      |
 
 Natomiast do reprezentacji liczb zmiennoprzecinkowych, używamy `Float` i `Double`.
 
@@ -65,7 +66,7 @@ To nie jest konwersja! Kotlin nie obsługuje niejawnej konwersji typów, więc n
 
 ![](05_int_long_error.png)
 
-Jeśli musimy jawnie przekształcić jedną liczbę na inny typ, używamy jawnego funkcji konwersji, takich jak `toInt` lub `toLong`.
+Jeśli musimy przekształcić jedną liczbę na inny typ, używamy funkcji konwersji, takich jak `toInt` lub `toLong`.
 
 ```kotlin
 fun main() {
@@ -150,6 +151,7 @@ fun main() {
 #### Operacje na liczbach
 
 Kotlin obsługuje podstawowe operacje matematyczne na liczbach:
+
 * dodawanie (`+`),
 * odejmowanie (`-`),
 * mnożenie (`*`),
@@ -210,6 +212,7 @@ fun main() {
 ```
 
 Kotlin obsługuje również operacje modyfikujące zmienną `var`:
+
 * `+=`, gdzie `a += b` jest równoznaczne z `a = a + b`,
 * `-=`, gdzie `a -= b` jest równoznaczne z `a = a - b`,
 * `*=`, gdzie `a *= b` jest równoznaczne z `a = a * b`,
@@ -258,6 +261,7 @@ fun main() {
 #### Operacje na bitach
 
 Kotlin obsługuje również operacje na bitach za pomocą następujących metod, które można wywoływać za pomocą notacji infiksowej (czyli między dwiema wartościami):
+
 * `and` zachowuje tylko bity, które mają `1` w tych samych pozycjach binarnych w obu liczbach.
 * `or` zachowuje tylko bity, które mają `1` w tych samych pozycjach binarnych w jednej lub obu liczbach.
 * `xor` zachowuje tylko bity, które mają dokładnie jedno `1` w tych samych pozycjach binarnych w obu liczbach.
@@ -285,9 +289,9 @@ fun main() {
 }
 ```
 
-> Zrozumienie dlaczego wyniki są takie a nie inne wychodzi poza zakres tej książki, ale dla zainteresowanych spieszę z wyjaśnieniem. W pierwszym przypadku wynik jest nieprecyzyjny, ponieważ liczby zmiennoprzecinkowe są reprezentowane w postaci binarnej, a nie dziesiętnej. W drugim przypadku wynik jest niepoprawny, ponieważ liczba całkowita jest reprezentowana przez 32 bity, a więc 2147483647 to największa możliwa liczba, a dodanie 1 powoduje jej przepełnienie i zmianę bitu reprezentującego znak na przeciwny.
+> Zrozumienie dlaczego wyniki są takie, a nie inne wychodzi poza zakres tej książki, ale dla zainteresowanych spieszę z wyjaśnieniem. W pierwszym przypadku wynik jest nieprecyzyjny, ponieważ liczby zmiennoprzecinkowe są reprezentowane w postaci binarnej, a nie dziesiętnej. W drugim przypadku wynik jest niepoprawny, ponieważ liczba całkowita jest reprezentowana przez 32 bity, a więc 2147483647 to największa możliwa liczba, a dodanie 1 powoduje jej przepełnienie i zmianę bitu reprezentującego znak na przeciwny.
 
-To standardowy kompromis w programowaniu, z którym w większości języków musimy się pogodzić. Jednak są przypadki, gdy potrzebujemy mieć doskonałą precyzję i nieograniczony rozmiar liczby. Na JVM, dla nieograniczonego rozmiaru liczby powinniśmy użyć `BigInteger`, który reprezentuje liczbę bez części dziesiętnej. Dla nieograniczonego rozmiaru i precyzji powinniśmy użyć `BigDecimal`, który reprezentuje liczbę mającą część dziesiętną. Obiekty obu typów można utworzyć za pomocą konstruktorów[^04_2], funkcji fabrycznych (takich jak `valueOf`) lub konwersji z podstawowych typów reprezentujących liczby (metody `toBigDecimal` i `toBigInteger`). Przykłady poniżej. 
+To standardowy kompromis w programowaniu, z którym w większości języków musimy się pogodzić. Jednak są przypadki, gdy potrzebujemy mieć doskonałą precyzję i nieograniczony rozmiar liczby. Na JVM, dla nieograniczonego rozmiaru liczby powinniśmy użyć `BigInteger`, który reprezentuje liczbę bez części dziesiętnej. Dla nieograniczonego rozmiaru i precyzji powinniśmy użyć `BigDecimal`, który reprezentuje liczbę mającą część dziesiętną. Obiekty obu typów można utworzyć za pomocą konstruktorów[^04_2], funkcji fabrycznych (takich jak `valueOf`) lub konwersji z podstawowych typów reprezentujących liczby (metody `toBigDecimal` i `toBigInteger`). Przykłady poniżej.
 
 ```kotlin
 import java.math.BigDecimal
@@ -351,6 +355,7 @@ fun main() {
 ```
 
 Używamy wartości logicznych do wyrażania odpowiedzi tak/nie, na przykład:
+
 * Czy użytkownik jest administratorem?
 * Czy użytkownik zaakceptował politykę plików cookie?
 * Czy dwie liczby są identyczne?
@@ -359,7 +364,7 @@ W praktyce wartości logiczne są często wynikiem pewnego rodzaju porównania.
 
 #### Porównania
 
-Wartość `Boolean` często jest wynikiem porównania dwóch równości. W Kotlinie sprawdzamy czy obiekty są równe używając podwójnego znaku równości `==`. Aby sprawdzić, czy dwa obiekty nie są równe, używamy znaku nierówności `!=`.
+Wartość `Boolean` często jest wynikiem porównania dwóch równości. W Kotlinie sprawdzamy czy obiekty są równe, używając podwójnego znaku równości `==`. Aby sprawdzić, czy dwa obiekty nie są równe, używamy znaku nierówności `!=`.
 
 ```kotlin
 fun main() {
@@ -395,6 +400,7 @@ fun main() {
 #### Operacje logiczne
 
 W Kotlinie mamy trzy podstawowe operatory logiczne:
+
 * and `&&`, który zwraca `true`, gdy wartości po obu jego stronach są `true`; w przeciwnym razie zwraca `false`.
 * or `||`, który zwraca `true`, gdy wartość po którejkolwiek ze swoich stron jest `true`; w przeciwnym razie zwraca `false`.
 * not `!`, który zamienia `true` na `false` i `false` na `true`.
@@ -416,7 +422,7 @@ fun main() {
 }
 ```
 
-Kotlin nie obsługuje żadnego rodzaju automatycznej konwersji na `Boolean` (ani żaden inny typ), więc operatory logiczne należy używać tylko z obiektami typu `Boolean`.
+Kotlin nie obsługuje żadnego rodzaju automatycznej konwersji na `Boolean` (ani żaden inny typ), więc operatorów logicznych należy używać tylko z obiektami typu `Boolean`.
 
 ### Znaki
 
@@ -447,7 +453,7 @@ fun main() {
 
 ### Stringi
 
-Stringi to po prostu sekwencje znaków tworzące tekst. W Kotlinie tworzymy stringa używając cudzysłowów `"` lub potrójnych cudzysłowów `"""`.
+Stringi to po prostu sekwencje znaków tworzące tekst. W Kotlinie tworzymy stringa, używając cudzysłowów `"` lub potrójnych cudzysłowów `"""`.
 
 ```kotlin
 fun main() {
@@ -460,17 +466,17 @@ fun main() {
 
 String otoczony pojedynczymi cudzysłowami wymaga tekstu w jednym wierszu. Jeśli chcemy zdefiniować znak nowej linii, musimy użyć specjalnego znaku `\n`. To nie jedyna rzecz, która potrzebuje (lub może potrzebować) ukośnika wstecznego do wyrażenia w ciągu znaków.
 
-| Sekwencja ucieczki | Znaczenie               |
-|--------------------|-------------------------|
-| `\t`               | Tabulator               |
-| `\b`               | Cofnięcie               |
-| `\r`               | Powrót karetki          |
-| `\f`               | Przewijanie formularza  |
-| `\n`               | Nowa linia              |
-| `\'`               | Pojedynczy cudzysłów    |
-| `\"`               | Cudzysłów               |
-| `\\`               | Ukośnik wsteczny        |
-| `\$`               | Dolar                   |
+| Sekwencja ucieczki | Znaczenie              |
+|--------------------|------------------------|
+| `\t`               | Tabulator              |
+| `\b`               | Cofnięcie              |
+| `\r`               | Powrót karetki         |
+| `\f`               | Przewijanie formularza |
+| `\n`               | Nowa linia             |
+| `\'`               | Pojedynczy cudzysłów   |
+| `\"`               | Cudzysłów              |
+| `\\`               | Ukośnik wsteczny       |
+| `\$`               | Dolar                  |
 
 Ciągi znaków w potrójnych cudzysłowach mogą być wielowierszowe; w tych ciągach można bezpośrednio używać znaków specjalnych, a formy poprzedzone ukośnikiem wstecznym nie działają.
 
@@ -562,6 +568,7 @@ W ciągach znaków Kotlina używamy Unicode, możemy więc zdefiniować znak Uni
 ### Podsumowanie
 
 W tym rozdziale poznaliśmy podstawowe typy używane w języku Kotlin oraz literały używane do ich tworzenia:
+
 * Liczby reprezentowane przez typy `Int`, `Long`, `Double`, `Float`, `Short` i `Byte` są tworzone za pomocą samych wartości liczbowych z możliwością dodania sufiksów dla dostosowania typu. Możemy definiować liczby ujemne oraz części dziesiętne. Możemy również używać podkreślników dla lepszej czytelności liczb.
 * Wartości logiczne `true` i `false` są reprezentowane przez typ `Boolean`.
 * Znaki, które są reprezentowane przez typ `Char`. Wartość znaku definiujemy za pomocą pojedynczych cudzysłowów.
@@ -571,3 +578,5 @@ Mamy więc podstawy do korzystania z Kotlina. Przejdźmy do bardziej skomplikowa
 
 [^04_1]: W języku angielskim istnieje rozdzielenie na operację "modulo" oraz "remainder", gdzie różnica między nimi jest w wyniku dla liczb ujemnych. Tutaj poprzez resztę z dzielenia rozumiemy operację określaną w języku angielskim jako "remainder". Tak więc reszta z dzielenia -5 przez 4 to -1, ponieważ -5 = 4 * (-1) + (-1). Wynik -5 modulo 4 to 3, ponieważ -5 = 4 * (-2) + 3. Reszta z dzielenia zawsze ma taki sam znak jak liczba dzielona. Wynik modulo zawsze ma taki sam znak jak liczba, przez którą dzielimy.
 [^04_2]: Konstruktory zostaną omówione w rozdziale *Klasy*.
+
+

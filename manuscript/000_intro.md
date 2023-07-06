@@ -1,13 +1,13 @@
 ## Wprowadzenie
 
-Kotlin to niesamowity język wieloplatformowy, głównie dzięki swojej czytelnej składni, intuicyjnemu i bezpiecznemu dla wartości `null` systemowi typów oraz świetnemu wsparciu narzędzi. Nic dziwnego, że stał się najpopularniejszym językiem do tworzenia aplikacji na Androida i, w przypadku aplikacji backendowych, popularną alternatywą dla Javy. Jest również używany przy przetwarzaniu i analizie danych oraz w programowaniu wieloplatformowych aplikacji na iOS, komputery stacjonarne i strony internetowe. W tej książce nauczysz się najważniejszych funkcji języka Kotlin, które pozwolą Ci właściwie rozpocząć Twoją przygodę z Kotlinem.
+Kotlin to niesamowity język wieloplatformowy, głównie dzięki swojej czytelnej składni, intuicyjnemu i bezpiecznemu dla wartości `null` systemowi typów oraz świetnemu wsparciu narzędzi. Nic dziwnego, że stał się najpopularniejszym językiem do tworzenia aplikacji na Androida i, w przypadku aplikacji backendowych, popularną alternatywą dla Javy. Jest również używany przy przetwarzaniu i analizie danych oraz w programowaniu wieloplatformowych aplikacji na iOS, komputery stacjonarne i strony internetowe. Z tą książką poznasz najważniejsze funkcjonalności Kotlina, co pozwoli Ci rozpocząć przygodę z tym niesamowitym językiem.
 
 ### Dla kogo jest ta książka?
 
-Ta książka jest dedykowana programistom. Zakładam, że wszyscy programiści wiedzą, czym są funkcje, instrukcje warunkowe if czy stringi. Niemniej jednak staram się wyjaśnić (przynajmniej w skrócie) wszystkie rzeczy, które mogą nie być jasne dla wszystkich programistów, takie jak klasy, enumy czy listy. Powinna to być dobra książka dla osób używających C, JavaScript czy Matlaba, choć w zrozumieniu jej może być przydatne choćby podstawowe zrozumienie konceptów obiektowych, takich jak klasy i obiekty. 
+Ta książka jest dedykowana programistom. Zakładam, że wszyscy programiści wiedzą, czym są funkcje, instrukcje warunkowe if czy stringi. Niemniej jednak staram się wyjaśnić (przynajmniej w skrócie) wszystkie rzeczy, które mogą nie być jasne dla wszystkich programistów, takie jak klasy, enumy czy listy. Powinna to być dobra książka dla osób używających C, JavaScript czy Matlaba, choć w zrozumieniu jej może być przydatne choćby podstawowe zrozumienie konceptów obiektowych, takich jak klasy i obiekty.
 
-Ponieważ większość programistów piszących w Kotlinie ma doświadczenie w Javie, czasami odnoszę się do niej i jej platformy JVM, oraz od czasu do czasu przedstawiam elementy specyficzne dla tej platformy. Za każdym razem, gdy to robię, staram się wyraźnie to zaznaczyć. Zakładam, że niektórzy czytelnicy mogą być głównie zainteresowani używaniem Kotlin/JS lub Kotlin/Native, więc wszystko, co nie jest opisane jako specyficzne dla Javy, powinno być dla nich użyteczne. 
- 
+Ponieważ większość programistów piszących w Kotlinie ma doświadczenie w Javie, czasami odnoszę się do niej i jej platformy JVM, oraz od czasu do czasu przedstawiam elementy specyficzne dla tej platformy. Za każdym razem, gdy to robię, staram się wyraźnie to zaznaczyć. Zakładam, że niektórzy czytelnicy mogą być głównie zainteresowani używaniem Kotlin/JS lub Kotlin/Native, więc wszystko, co nie jest opisane jako specyficzne dla Javy, powinno być dla nich użyteczne.
+
 ### Co zostanie omówione?
 
 W tej książce omawiam te tematy, które uważam za niezbędne do programowania w języku Kotlin, w tym:
@@ -29,24 +29,27 @@ Ta książka nie omawia funkcyjnych cech Kotlina, takich jak wyrażenia lambda c
 
 ### Język użyty w książce
 
-Kiedy zacząłem czytać "poprawne" tłumaczenie innej swojej książki, nieraz musiałem sięgać do oryginału, by zrozumieć przetłumaczony fragment. W języku polskim przyjęło się wiele tłumaczeń pojęć technicznych, które są formalnie poprawne, ale nie są używane na co dzień (albo nawet wcale) przez programistów. Efekt jest taki, że tekst "poprawnie przetłumaczonych" książek jest bardzo trudny do zrozumienia, w wyniku czego większość programistów preferuje czytać w języku oryginału. Jest to jednak wylanie dziecka z kąpielą. Jest wartość w tym, że książka jest przetłumaczona na język ojczysty, po prostu powinno się to robić z głową.
+Kiedy zacząłem czytać "poprawne" tłumaczenie innej swojej książki, nieraz musiałem sięgać do oryginału, by zrozumieć przetłumaczony fragment. W języku polskim przyjęło się wiele tłumaczeń pojęć technicznych, które są formalnie poprawne, ale nie są używane na co dzień (albo nawet wcale) przez programistów. Efekt jest taki, że tekst "poprawnie przetłumaczonych" książek jest często bardzo trudny do zrozumienia, w wyniku czego większość programistów preferuje czytać w języku angielskim. Jest to jednak wylanie dziecka z kąpielą. Istnieje wartość w tym, że książka jest przetłumaczona na język ojczysty, po prostu powinno się to robić z głową.
 
-W tej książce chciałbym złamać to błędne koło. Przy jej tłumaczeniu postawiłem **wyłącznie** na pragmatyzm. Starałem się używać języka, który jest używany przez programistów, a nie formalnie poprawnych tłumaczeń. Bardzo często oznacza to używanie anglicyzmów. Będę na przykład mówił o stringach, data klasach, enumach, sealed klasach itd. Tam jednak, gdzie znaczenie polskiego słowa wydaje mi się dostatecznie zrozumiałe, będę używał polskiego słowa. Na przykład, będę mówił o klasach, interfejsach, dziedziczeniu itd. W wielu miejscach miałem niemały dylemat, jakiego pojęcia użyć. I tak mówię o "rozszerzeniach" a nie "extensionach" głównie ze względu na to, że zdecydowałem się używać pojęcia "funkcje" a nie "functions", a "funkcje rozszerzające" brzmią znacznie lepiej niż "funkcje typu extension". Być może nie zgodzisz się ze wszystkimi moimi decyzjami, zapewne niejeden skrytykuje kalanie języka ojczystego licznymi anglicyzmami, ale mam nadzieję, że reszta czytelników doceni pragmatyzm, którym kierowałem się przy pisaniu tej książki.
+W tej książce chciałbym złamać to błędne koło. Przy jej tłumaczeniu postawiłem **wyłącznie** na pragmatyzm. Starałem się używać języka, który jest używany przez programistów, a nie formalnie poprawnych tłumaczeń. Bardzo często oznacza to używanie anglicyzmów. Będę na przykład mówił o stringach, data klasach, enumach, sealed klasach, companion obiektach itd. Tam jednak, gdzie znaczenie polskiego słowa wydaje mi się dostatecznie zrozumiałe, będę używał polskiego słowa. Na przykład będę mówił o klasach, interfejsach, dziedziczeniu itd. W wielu miejscach miałem niemały dylemat, jakiego pojęcia użyć. I tak mówię o "rozszerzeniach", a nie "extensionach" głównie ze względu na to, że zdecydowałem się używać pojęcia "funkcje", a nie "functions", a "funkcje rozszerzające" brzmią znacznie lepiej niż "funkcje typu extension". Być może nie zgodzisz się ze wszystkimi moimi decyzjami, zapewne niejeden skrytykuje kalanie języka ojczystego licznymi anglicyzmami, ale mam nadzieję, że reszta czytelników
+doceni pragmatyzm, którym kierowałem się przy pisaniu tej książki.
 
-Lista tłumaczeń pojęć, jakich zdecydowałem się używać w tej książce, znajduje się w readme repozytorium tej książki, pod adresem [github.com/MarcinMoskala/kotlin_essentials_book_pl](github.com/MarcinMoskala/kotlin_essentials_book_pl). 
+Jeśli masz wątpliwość co do znaczenia któregoś z używanych w książce pojęć, skorzystaj ze słownika na końcu książki.
 
 ### Seria Kotlin dla programistów
 
 Ta książka jest pierwszą z serii książek o nazwie *Kotlin dla programistów*, która obejmuje następujące pozycje:
-* *Kotlin dla programistów*, omawiający wszystkie podstawowe funkcjonalności Kotlina.
-* *Funkcyjny Kotlin*, poświęcony funkcyjnym funkcjonalnościom Kotlina, takim jak typy funkcyjne, wyrażenia lambda, przetwarzanie kolekcji, DSL i funkcje zakresu.
-* *Kotlinowe Korutyny*, poświęcony korutynom, służącym do efektywnego programowania asynchronicznego w Kotlinie.
-* *Zaawansowany Kotlin*, poświęcony zaawansowanym funkcjonalnościom Kotlina, takim jak modyfikatorom wariancji generyków, delegacji, refleksji, programowaniu wieloplatformowemu, przetwarzaniu adnotacji, KSP, pluginom kompilatora itp.
-* *Efektywny Kotlin*, poświęcony dobrym praktykom programowania w Kotlinie.
+
+* *Kotlin dla programistów*, omawiająca wszystkie podstawowe funkcjonalności Kotlina.
+* *Funkcyjny Kotlin*, poświęcona funkcyjnym funkcjonalnościom Kotlina, takim jak typy funkcyjne, wyrażenia lambda, przetwarzanie kolekcji, DSL i funkcje zakresu.
+* *Kotlinowe Korutyny*, poświęcona korutynom, służącym do efektywnego programowania asynchronicznego w Kotlinie.
+* *Zaawansowany Kotlin*, poświęcona zaawansowanym funkcjonalnościom Kotlina, takim jak modyfikatorom wariancji generyków, delegacji, refleksji, programowaniu wieloplatformowemu, przetwarzaniu adnotacji, KSP, pluginom kompilatora itp.
+* *Efektywny Kotlin*, poświęcona dobrym praktykom programowania w Kotlinie.
 
 ### Moja historia
 
-Moja historia z Kotlinem zaczęła się w 2015 roku, gdy pracowałem jako programista Android w Javie. Byłem dość sfrustrowany całym tym powtarzalnym kodem, takim jak gettery i settery dla każdego pola, oraz niemal identycznymi metodami `equals`, `toString` i `hashCode`, które często powtarzają się w wielu klasach. Wtedy znalazłem Kotlina na stronie JetBrains i tak mnie ten język zafascynował, że każdą wolną chwilę poświęcałem na jego eksplorację. Wkrótce potem dostałem pracę jako programista Kotlina i zatraciłem się w tym świecie. Teraz już od ponad ośmiu lat zawodowo używam Kotlina, w trakcie których opublikowałem setki artykułów o tym języku i na powiązane tematy. Opublikowałem też kilka książek oraz przeprowadziłem ponad sto warsztatów. Stałem się oficjalnym partnerem JetBrains w nauczaniu Kotlina oraz Google Developer Expert w Kotlinie. Podczas tych wszystkich doświadczeń zgromadziłem dużo wiedzy, więc postanowiłem wyrazić ją w postaci serii książek, którą nazywam *Kotlin dla programistów*.
+Moja historia z Kotlinem zaczęła się w 2015 roku, gdy pracowałem jako programista Android w Javie. Byłem dość sfrustrowany całym tym powtarzalnym kodem, takim jak gettery i settery dla każdego pola, oraz niemal identycznymi metodami `equals`, `toString` i `hashCode`, które często powtarzają się w wielu klasach. Wtedy znalazłem Kotlina na stronie JetBrains i tak mnie ten język zafascynował, że każdą wolną chwilę poświęcałem na jego eksplorację. Wkrótce potem dostałem pracę jako programista Kotlina i zatraciłem się w tym świecie. Teraz już od ponad ośmiu lat zawodowo używam Kotlina, w trakcie których opublikowałem setki artykułów o tym języku i na powiązane tematy. Opublikowałem też kilka książek oraz przeprowadziłem ponad sto warsztatów. Stałem się oficjalnym partnerem JetBrains w nauczaniu Kotlina oraz Google Developer Expert w Kotlinie. Podczas tych wszystkich doświadczeń zgromadziłem dużo wiedzy, więc postanowiłem wyrazić ją w postaci serii książek, którą nazwałem *Kotlin dla
+programistów*.
 
 ### Konwencje kodu
 
@@ -65,13 +68,13 @@ fun main() {
 
 ### Podziękowania do wersji polskiej
 
-To tłumaczenie wiele zawdzięcza osobom, które zgodziły się poświęcić swój wolny czas by pomóc mi w poprawieniu języka tłumaczenia. Najważniejsze osoby to:
+To tłumaczenie wiele zawdzięcza osobom, które zgodziły się poświęcić swój wolny czas, by pomóc mi w poprawieniu języka tłumaczenia. Najważniejsze osoby to:
 
 Maciej Dura
 
-Daniel Mroczka - pierwszy program napisał w wieku 10 lat na 8-bitowym C64 i od tego czasu nie wyobraża sobie innego zajęcia. Zawodowo programuje w Javie od blisko 20 lat. Pasjonat nowych technologii oraz tworzenia działającego i użytecznego oprogramowania. Motto życiowe: work smart not hard.
+Daniel Mroczka - pierwszy program napisał w wieku 10 lat na 8-bitowym C64 i od tego czasu nie wyobraża sobie innego zajęcia. Zawodowo programuje w Javie od blisko 20 lat. Pasjonat nowych technologii oraz tworzenia działającego i użytecznego oprogramowania. Motto życiowe: *work smart not hard*.
 
-Książka również przeszła przez profesjonalną korektę językową, której dokonała Dominika Jamroga. 
+Książka również przeszła przez profesjonalną korektę językową, której dokonała Dominika Jamroga.
 
 {pagebreak}
 
@@ -90,7 +93,7 @@ Książka również przeszła przez profesjonalną korektę językową, której 
 {width: 25%, float: left, }
 ![](Matthias.jpg)
 
-**Matthias Schenk** rozpoczął swoją karierę z Javą ponad dziesięć lat temu, głównie w ekosystemie Spring/Spring Boot. Osiemnaście miesięcy temu przeszedł na Kotlina i od tego czasu stał się wielkim fanem pracy z natywnymi frameworkami Kotlina, takimi jak Koin, Ktor i Exposed.
+**Matthias Schenk** rozpoczął swoją karierę z Javą ponad 10 lat temu, głównie w ekosystemie Spring/Spring Boot. 18 miesięcy temu przeszedł na Kotlina i od tego czasu stał się wielkim fanem pracy z natywnymi frameworkami Kotlina, takimi jak Koin, Ktor czy Exposed.
 
 {pagebreak}
 
@@ -102,8 +105,10 @@ Książka również przeszła przez profesjonalną korektę językową, której 
 {width: 25%, float: left, }
 ![](Emanuele_Papa.png)
 
-**Emanuele Papa** jest pasjonatem Androida i fascynuje go od 2010 roku: im więcej się uczy, tym bardziej chce dzielić się swoją wiedzą z innymi, dlatego założył własnego bloga. W swojej obecnej roli jako Senior Android Developer w Zest One skupia się na Kotlin Multiplatform Mobile: już wygłosił kilka prelekcji na ten temat.
+**Emanuele Papa** jest pasjonatem Androida, którym fascynuje się od 2010 roku. Im więcej się uczy, tym bardziej chce dzielić się swoją wiedzą z innymi, dlatego założył własnego bloga. W swojej obecnej roli jako Senior Android Developer w Zest One skupia się na Kotlin Multiplatform Mobile, już wygłosił kilka prelekcji na ten temat.
 
 **Roman Kamyshnikov**, doktor inżynierii, jest programistą Androida, który rozpoczął swoją karierę z Javą, ale przeszedł na Kotlina na początku 2020 roku. Jego zainteresowania zawodowe obejmują wzorce architektury, TDD, programowanie funkcyjne oraz Jetpack Compose. Autor kilku artykułów na temat Androida i Kotlin Coroutines.
 
 **Grigory Pletnev** jest inżynierem oprogramowania od 2000 roku, głównie w dziedzinie systemów wbudowanych. Dołączył do społeczności programistów Androida w 2010 roku. Zetknąwszy się z Kotlinem w 2017 roku, zaczął używać go w projektach hobbystycznych, stopniowo migrując projekty Harman Connected Services i ich klientów na Kotlina. Pasjonuje się również językami, żeglarstwem i produkcją miodu pitnego.
+
+

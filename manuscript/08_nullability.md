@@ -100,8 +100,8 @@ fun main() {
 ```
 
 To nie jest bardzo bezpieczna opcja, ponieważ jeśli się mylimy i wartość `null` znajduje się tam, gdzie jej nie oczekujemy, prowadzi to do wyjątku `NullPointerException`. Dlatego stosujemy `!!` tylko wtedy, gdy rzeczywiście chcemy zobaczyć wyjątek, jeśli wartość jest `null`. Aczkolwiek w takich przypadkach częściej wolimy użyć funkcji, które rzucają bardziej znaczący wyjątek, jak `requireNotNull` lub `checkNotNull`[^08_4]:
-- `requireNotNull`, który przyjmuje wartość nullowalną jako argument i rzuca wyjątek `IllegalArgumentException` jeśli ta wartość jest równa `null`. W przeciwnym razie zwraca tę wartość jako nienullowalną.
-- `checkNotNull`, który przyjmuje wartość nullowalną jako argument i rzuca wyjątek `IllegalStateException` jeśli ta wartość jest równa `null`. W przeciwnym razie zwraca tę wartość jako nienullowalną.
+- `requireNotNull`, który przyjmuje wartość nullowalną jako argument i rzuca wyjątek `IllegalArgumentException`, jeśli ta wartość jest równa `null`. W przeciwnym razie zwraca tę wartość jako nienullowalną.
+- `checkNotNull`, który przyjmuje wartość nullowalną jako argument i rzuca wyjątek `IllegalStateException`, jeśli ta wartość jest równa `null`. W przeciwnym razie zwraca tę wartość jako nienullowalną.
 
 ```kotlin
 fun sendData(dataWrapped: Wrapper<Data>) {
@@ -206,7 +206,7 @@ fun main() {
 Zwykłe funkcje nie mogą być wywoływane na wartościach nullowalnych. Istnieje jednak specjalny rodzaj funkcji, funkcje rozszerzające, który można zdefiniować tak, aby można go było wywoływać na zmiennych nullowalnych[^08_3]. Biblioteka standardowa Kotlina definiuje następujące funkcje, które można wywoływać na `String?`:
 * `orEmpty` zwraca pusty string zamiast `null`.
 * `isNullOrEmpty` zwraca `true`, jeśli wartość to `null` lub pusty string. W przeciwnym razie zwraca `false`.
-* `isNullOrBlank` zwraca `true`, jeśli wartość to `null` lub string nie zawiarąjcy żadnego nie-białego znaku. W przeciwnym razie zwraca `false`.
+* `isNullOrBlank` zwraca `true`, jeśli wartość to `null` lub string nie zawierający żadnego nie-białego znaku. W przeciwnym razie zwraca `false`.
 
 ```kotlin
 fun check(str: String?) {
@@ -271,7 +271,7 @@ Te funkcje pomagają nam operować na wartościach nullowanych.
 
 ### `null` to nasz przyjaciel
 
-To, że każda wartość może być nullem, jest ogromnym problemem w językach takich jak Java. W efekcie programiści zaczęli unikać wartości `null` i traktować ją jak wroga. Wiele książek dotyczących dobrych praktyk programowania w Javie sugeruje unikanie wartości `null`, na przykład poprzez zastąpienie ich pustymi listami, stringami lub specjalną wartością enuma (patrz "Temat 43. Zwracanie pustych tablic lub kolekcji zamiast wartości null" z bardzo popularnej książki *Java. Efektywne programowanie.* edycja druga autorstwa Joshua Blocha). Takie praktyki nie mają sensu w Kotlinie, gdzie mamy dobre wsparcie nullowalności i nie powinniśmy obawiać się wartości `null`. W Kotlinie traktujemy `null` jako naszego przyjaciela, a nie jako błąd[^08_1]. Rozważ funkcję `getAvailableUsers`. Istnieje istotna różnica między zwracaniem pustej listy a `null`. Pusta lista powinna być interpretowana jako "wynik to pusta lista użytkowników, ponieważ żadni nie są dostępni". Wynik `null` powinien być interpretowany jako "nie można wyprodukować wyniku, a lista użytkowników pozostaje nieznana". Zapomnij o przestarzałych praktykach dotyczących nullowalności. W Kotlinie wartość `null` to nasz przyjaciel[^08_2].
+To, że każda wartość może być nullem, jest ogromnym problemem w językach takich jak Java. W efekcie programiści zaczęli unikać wartości `null` i traktować ją jak wroga. Wiele książek dotyczących dobrych praktyk programowania w Javie sugeruje unikanie wartości `null`, na przykład poprzez zastąpienie ich pustymi listami, stringami lub specjalną wartością enuma (patrz "Temat 43. Zwracanie pustych tablic lub kolekcji zamiast wartości null" z bardzo popularnej książki *Java. Efektywne programowanie.* Edycja druga autorstwa Joshua Blocha). Takie praktyki nie mają sensu w Kotlinie, gdzie mamy dobre wsparcie nullowalności i nie powinniśmy obawiać się wartości `null`. W Kotlinie traktujemy `null` jako naszego przyjaciela, a nie jako błąd[^08_1]. Rozważ funkcję `getAvailableUsers`. Istnieje istotna różnica między zwracaniem pustej listy a `null`. Pusta lista powinna być interpretowana jako "wynik to pusta lista użytkowników, ponieważ żadni nie są dostępni". Wynik `null` powinien być interpretowany jako "nie można wyprodukować wyniku, a lista użytkowników pozostaje nieznana". Zapomnij o przestarzałych praktykach dotyczących nullowalności. W Kotlinie wartość `null` to nasz przyjaciel[^08_2].
 
 ### Właściwości lateinit
 
@@ -347,7 +347,7 @@ fun main() {
 
 ### Podsumowanie
 
-Kotlin oferuje potężne wsparcie dla nullowalności, które sprawia, że `null` przestaje być zagrożeniem, a staje się bezpieczny i prawdziwie użyteczny. System wsparcia obejmuje system typów, który rozróżnia, co jest nullowalne a co nie. Zmienne, które są nullowanye, muszą być używane bezpiecznie; do tego możemy użyć bezpiecznych wywołań, asercji not-null, smart castingu czy operatora Elvisa. Teraz przejdźmy wreszcie do klas. Używaliśmy ich już wiele razy, ale dopiero teraz mamy wszystko, czego potrzebujemy, aby dobrze je omówić.
+Kotlin oferuje potężne wsparcie dla nullowalności, które sprawia, że `null` przestaje być zagrożeniem, a staje się bezpieczny i prawdziwie użyteczny. System wsparcia obejmuje system typów, który rozróżnia co jest nullowalne, a co nie. Zmienne, które są nullowanye, muszą być używane bezpiecznie; do tego możemy użyć bezpiecznych wywołań, asercji not-null, smart castingu czy operatora Elvisa. Teraz przejdźmy wreszcie do klas. Używaliśmy ich już wiele razy, ale dopiero teraz mamy wszystko, czego potrzebujemy, aby dobrze je omówić.
 
 [^08_0]: Na przykład badanie OverOps potwierdza, że `NullPointerException` jest najczęstszym wyjątkiem w 70% projektów Java.
 [^08_1]: Zobacz artykuł "Null is your friend, not a mistake" (link kt.academy/l/re-null) autorstwa Romana Elizarova, obecnego kierownika zespołu tworzącego język Kotlin.

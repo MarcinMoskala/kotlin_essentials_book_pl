@@ -61,7 +61,7 @@ open class Mammal {
 
 class Human : Mammal() {
     override val hasFur = false
-    
+
     override fun feedYoung() {
         if (canFeed) {
             println("Karmienie młodych mlekiem")
@@ -75,7 +75,7 @@ fun main() {
     val dog = Mammal()
     println(dog.hasFur) // true
     dog.feedYoung() // Nic nie zostanie wydrukowane
-    
+
     val human = Human()
     println(human.hasFur) // false
     human.feedYoung() // Karmienie młodych mlekiem z butelki
@@ -104,15 +104,15 @@ class Dog(name: String) : Animal(name)
 class Cat(name: String) : Animal("Mr $name")
 
 class Human(
-   firstName: String,
-   lastName: String,
+    firstName: String,
+    lastName: String,
 ) : Animal("$firstName $lastName")
 
 fun main() {
-   val dog = Dog("Cookie")
-   println(dog.name) // Cookie
-   val cat = Cat("MiauMiau")
-   println(cat.name) // Mr MiauMiau
+    val dog = Dog("Cookie")
+    println(dog.name) // Cookie
+    val cat = Cat("MiauMiau")
+    println(cat.name) // Mr MiauMiau
 }
 ```
 
@@ -120,7 +120,7 @@ fun main() {
 
 Gdy klasa rozszerza inną klasę, przejmuje zachowanie z nadklasy, ale także dodaje pewne zachowanie specyficzne dla podklasy. Dlatego nadpisywanie metod często wymaga uwzględnienia użycia metod, które są nadpisywane. W tym celu przydatne jest wywołanie implementacji nadklasy w tych metodach podklasy. Robimy to za pomocą słowa kluczowego `super`, po którym następuje kropka, a następnie wywołujemy metodę, którą chcemy nadpisać.
 
-Spójrz na klasy `Dog` i `BorderCollie`, które są przedstawione w poniższym przykładzie. Domyślne zachowanie dla psa to merdanie ogonem, gdy widzi psiego przyjaciela. Border Collie powinny zachowywać się tak samo, ale dodatkowo się kłaść. W tym przypadku, aby wywołać implementację nadklasy, musimy użyć `super.seeFriend()`.
+Spójrz na klasy `Dog` i `BorderCollie`, które są przedstawione w poniższym przykładzie. Domyślne zachowanie dla psa to merdanie ogonem, gdy widzi psiego przyjaciela. Border Collie powinny zachowywać się tak samo, ale dodatkowo się kłaść. W tym przypadku, aby wywołać implementację nadklasy musimy użyć `super.seeFriend()`.
 
 ```kotlin
 open class Dog {
@@ -138,9 +138,9 @@ class BorderCollie : Dog() {
 
 fun main() {
     val dog = Dog()
-    dog.seeFriend() 
+    dog.seeFriend()
     // Merdanie ogonem
-    
+
     val borderCollie = BorderCollie()
     borderCollie.seeFriend()
     // Kładzie się
@@ -154,15 +154,15 @@ Ssak to grupa zwierząt, a nie konkretny gatunek. Definiuje zestaw cech, ale nie
 
 ```kotlin
 abstract class Mammal {
-   val haveHairOrFur = true
-   val warmBlooded = true
-   var canFeed = false
+    val haveHairOrFur = true
+    val warmBlooded = true
+    var canFeed = false
 
-   fun feedYoung() {
-       if (canFeed) {
-           println("Karmienie młodych mlekiem")
-       }
-   }
+    fun feedYoung() {
+        if (canFeed) {
+            println("Karmienie młodych mlekiem")
+        }
+    }
 }
 ```
 
@@ -209,7 +209,7 @@ fun main() {
 }
 ```
 
-Klasa abstrakcyjna może również mieć metody nieabstrakcyjne, które mają swoje ciało. Takie metody mogą być używane przez inne metody. Dlatego klasy abstrakcyjne mogą być używane jako szablony z częściową implementacją dla innych klas. Spójrz na poniższą klasę abstrakcyjną `CoffeeMachine`, która określa, jak przygotować latte lub doppio, ale potrzebuje podklasy, która nadpisze abstrakcyjne metody `prepareEspresso` i `addMilk`. Jest to więc pewnego rodzaju szablon dla klas reprezentujących ekspresy do kawy, dostarcza implementację tylko dla niektórych metod i wymagający zdefiniowania innych. 
+Klasa abstrakcyjna może również mieć metody nieabstrakcyjne, które mają swoje ciało. Takie metody mogą być używane przez inne metody. Dlatego klasy abstrakcyjne mogą być używane jako szablony z częściową implementacją dla innych klas. Spójrz na poniższą klasę abstrakcyjną `CoffeeMachine`, która określa, jak przygotować latte lub doppio, ale potrzebuje podklasy, która nadpisze abstrakcyjne metody `prepareEspresso` i `addMilk`. Jest to więc pewnego rodzaju szablon dla klas reprezentujących ekspresy do kawy, dostarcza implementację tylko dla niektórych metod i wymaga zdefiniowania innych.
 
 ```kotlin
 abstract class CoffeeMachine {
@@ -220,7 +220,7 @@ abstract class CoffeeMachine {
         prepareEspresso()
         addMilk()
     }
-    
+
     fun prepareDoppio() {
         prepareEspresso()
         prepareEspresso()
@@ -241,7 +241,7 @@ interface CoffeeMaker {
 }
 ```
 
-Gdy klasa implementuje interfejs, musi ona zastąpić wszystkie elementy zdefiniowane przez ten interfejs. Dzięki temu możemy traktować instancję klasy jako instancję interfejsu. Interfejsy implementujemy podobnie do rozszerzania klas, ale bez wywoływania konstruktora, ponieważ interfejsy nie mogą mieć konstruktorów. 
+Gdy klasa implementuje interfejs, musi ona zastąpić wszystkie elementy zdefiniowane przez ten interfejs. Dzięki temu możemy traktować instancję klasy jako instancję interfejsu. Interfejsy implementujemy podobnie do rozszerzania klas, ale bez wywoływania konstruktora, ponieważ interfejsy nie mogą mieć konstruktorów.
 
 ```kotlin
 class User(val id: Int, val name: String)
@@ -270,7 +270,6 @@ fun main() {
 ```
 
 Jak już wspomniano, interfejsy mogą określać, że oczekują, iż klasa będzie mieć określoną właściwość. Takie właściwości mogą być zdefiniowane jako zwykłe właściwości lub mogą być zdefiniowane przez akcesory (getter dla `val` lub getter i setter dla `var`).
-
 
 ```kotlin
 interface Named {
@@ -354,29 +353,29 @@ Możemy wywołać to domyślne ciało, używając słowa kluczowego `super` i zw
 
 ```kotlin
 interface NicePerson {
-   fun cheer() {
-       println("Cześć")
-   }
+    fun cheer() {
+        println("Cześć")
+    }
 }
 
 class Alex : NicePerson
 
 class Ben : NicePerson {
-   override fun cheer() {
-       super.cheer()
-       println("Nazywam się Ben")
-   }
+    override fun cheer() {
+        super.cheer()
+        println("Nazywam się Ben")
+    }
 }
 
 fun main() {
-   val alex = Alex()
-   alex.cheer() 
+    val alex = Alex()
+    alex.cheer()
     // Cześć
 
-   val ben = Ben()
-   ben.cheer()
-   // Cześć
-   // Nazywam się Ben
+    val ben = Ben()
+    ben.cheer()
+    // Cześć
+    // Nazywam się Ben
 }
 ```
 
@@ -384,29 +383,29 @@ Gdy dwa interfejsy definiują metodę o tej samej nazwie i parametrach, klasa im
 
 ```kotlin
 interface Boat {
-   fun start() {
-       println("Gotowy do pływania")
-   }
+    fun start() {
+        println("Gotowy do pływania")
+    }
 }
 
 interface Car {
-   fun start() {
-       println("Gotowy do jazdy")
-   }
+    fun start() {
+        println("Gotowy do jazdy")
+    }
 }
 
-class Amphibian: Car, Boat {
-   override fun start() {
-       super<Car>.start()
-       super<Boat>.start()
-   }
+class Amphibian : Car, Boat {
+    override fun start() {
+        super<Car>.start()
+        super<Boat>.start()
+    }
 }
 
 fun main() {
-   val vehicle = Amphibian()
-   vehicle.start()
-   // Gotowy do jazdy
-   // Gotowy do pływania
+    val vehicle = Amphibian()
+    vehicle.start()
+    // Gotowy do jazdy
+    // Gotowy do pływania
 }
 ```
 
@@ -415,17 +414,20 @@ fun main() {
 Projektując nasze klasy, staramy się ujawnić jak najmniej informacji[^10_3]. Jeśli nie ma powodu, dla którego element miałby być widoczny[^10_4], wolimy go ukryć. Dlatego, jeśli nie ma dobrego powodu, aby mieć mniej restrykcyjny typ widoczności, dobrym zwyczajem jest nadanie klasom i elementom jak najbardziej restrykcyjnej widoczności. Robimy to za pomocą modyfikatorów widoczności.
 
 Dla elementów klasy możemy użyć 4 modyfikatorów widoczności:
+
 * `public` (domyślny) - widoczny wszędzie przez funkcje mogące zobaczyć deklarującą klasę.
 * `private` - widoczny tylko przez funkcje tej samej klasy.
 * `protected` - widoczny tylko przez funkcje tej samej klasy i jej podklas.
 * `internal` - widoczny wewnątrz tego samego modułu przez funkcje mogące zobaczyć deklarującą klasę.
 
 Elementy plików mają 3 modyfikatory widoczności:
-* `public` (domyślny) - widoczny przez wszystkie funkcje. 
+
+* `public` (domyślny) - widoczny przez wszystkie funkcje.
 * `private` - widoczny przez funkcje w tym samym pliku.
 * `internal` - widoczny przez funkcje wewnątrz tego samego modułu.
 
 Zauważ, że moduł nie jest tym samym co pakiet. W Kotlinie moduł jest definiowany jako pliki kompilowane razem. Może to oznaczać:
+
 * moduł Gradle,
 * projekt Maven,
 * moduł IntelliJ IDEA,
@@ -436,39 +438,39 @@ Przyjrzyjmy się kilku przykładom, zaczynając od domyślnej widoczności `publ
 ```kotlin
 // File1.kt
 open class A {
-   public val a = 10
-   public fun b() {
-       println(a) // Można użyć
-   }
+    public val a = 10
+    public fun b() {
+        println(a) // Można użyć
+    }
 }
 
 public val c = 20
 public fun d() {}
 
-class B: A() {
-   fun e() {
-       println(a) // Można użyć
-       println(b()) // Można użyć
-   }
+class B : A() {
+    fun e() {
+        println(a) // Można użyć
+        println(b()) // Można użyć
+    }
 }
 
 fun main() {
-   println(A().a) // Można użyć
-   println(A().b()) // Można użyć
-   println(c) // Można użyć
-   println(d()) // Można użyć
+    println(A().a) // Można użyć
+    println(A().b()) // Można użyć
+    println(c) // Można użyć
+    println(d()) // Można użyć
 }
 
 // File2.kt w tym samym lub innym module niż File1.kt
 fun main() {
-   println(A().a) // Można użyć
-   println(A().b()) // Można użyć
-   println(c) // Można użyć
-   println(d()) // Można użyć
+    println(A().a) // Można użyć
+    println(A().b()) // Można użyć
+    println(c) // Można użyć
+    println(d()) // Można użyć
 }
 ```
 
-Modyfikator `private` można interpretować jako "widoczny w zakresie tworzenia"; więc jeśli zdefiniujemy element w klasie, będzie on widoczny tylko w tej klasie; jeśli zdefiniujemy element w pliku, będzie on widoczny tylko w tym pliku.
+Modyfikator `private` można interpretować jako "widoczny w zakresie tworzenia", więc jeśli zdefiniujemy element w klasie, będzie on widoczny tylko w tej klasie, jeśli zdefiniujemy element w pliku, będzie on widoczny tylko w tym pliku.
 
 ```kotlin
 // File1.kt
@@ -510,35 +512,35 @@ Modyfikator `protected` można interpretować jako "widoczny w klasie i jej podk
 ```kotlin
 // File1.kt
 open class A {
-   protected val a = 10
-   protected fun b() {
-       println(a) // Można użyć
-   }
+    protected val a = 10
+    protected fun b() {
+        println(a) // Można użyć
+    }
 }
 
-open class B: A() {
-   fun e() {
-       println(a) // Można użyć!
-       println(b()) // Można użyć!
-   }
+open class B : A() {
+    fun e() {
+        println(a) // Można użyć!
+        println(b()) // Można użyć!
+    }
 }
 
-class C: A() {
-   fun f() {
-       println(a) // Można użyć!
-       println(b()) // Można użyć!
-   }
+class C : A() {
+    fun f() {
+        println(a) // Można użyć!
+        println(b()) // Można użyć!
+    }
 }
 
 fun main() {
-   println(A().a) // Błąd, nie można użyć a!
-   println(A().b()) // Błąd, nie można użyć b!
+    println(A().a) // Błąd, nie można użyć a!
+    println(A().b()) // Błąd, nie można użyć b!
 }
 
 // File2.kt w tym samym lub innym module niż File1.kt
 fun main() {
-   println(A().a) // Błąd, nie można użyć a!
-   println(A().b()) // Błąd, nie można użyć b!
+    println(A().a) // Błąd, nie można użyć a!
+    println(A().b()) // Błąd, nie można użyć b!
 }
 ```
 
@@ -547,68 +549,68 @@ Modyfikator `internal` sprawia, że elementy są widoczne w tym samym module. Je
 ```kotlin
 // File1.kt
 open class A {
-   internal val a = 10
-   internal fun b() {
-       println(a) // Można użyć
-   }
+    internal val a = 10
+    internal fun b() {
+        println(a) // Można użyć
+    }
 }
 
 internal val c = 20
 internal fun d() {}
 
-class B: A() {
-   fun e() {
-       println(a) // Można użyć
-       println(b()) // Można użyć
-   }
+class B : A() {
+    fun e() {
+        println(a) // Można użyć
+        println(b()) // Można użyć
+    }
 }
 
 fun main() {
-   println(A().a) // Można użyć
-   println(A().b()) // Można użyć
-   println(c) // Można użyć
-   println(d()) // Można użyć
+    println(A().a) // Można użyć
+    println(A().b()) // Można użyć
+    println(c) // Można użyć
+    println(d()) // Można użyć
 }
 
 // File2.kt w tym samym module co File1.kt
 fun main() {
-   println(A().a) // Można użyć
-   println(A().b()) // Można użyć
-   println(c) // Można użyć
-   println(d()) // Można użyć
+    println(A().a) // Można użyć
+    println(A().b()) // Można użyć
+    println(c) // Można użyć
+    println(d()) // Można użyć
 }
 
 // File3.kt w innym module niż File1.kt
 fun main() {
-   println(A().a) // Błąd, nie można użyć a!
-   println(A().b()) // Błąd, nie można użyć b!
-   println(c) // Błąd, nie można użyć c!
-   println(d()) // Błąd, nie można użyć d!
+    println(A().a) // Błąd, nie można użyć a!
+    println(A().b()) // Błąd, nie można użyć b!
+    println(c) // Błąd, nie można użyć c!
+    println(d()) // Błąd, nie można użyć d!
 }
 ```
 
-Jeśli twój moduł może być używany przez inny moduł, zmień widoczność publicznych elementów, których nie chcesz udostępniać, na `internal`. Jeśli element jest przeznaczony do dziedziczenia i jest używany tylko w klasie i podklasach, nadaj mu modyfikator `protected`. Jeśli używasz elementu tylko w tym samym pliku lub klasie, nadaj mu modyfikator `private`.
+Jeśli twój moduł może być używany przez inny moduł, zmień widoczność publicznych elementów, których nie chcesz udostępniać, na `internal`. Jeśli element jest przeznaczony do dziedziczenia i używamy go tylko tej samej w klasie i podklasach, nadaj mu modyfikator `protected`. Jeśli używasz elementu tylko w tym samym pliku lub klasie, nadaj mu modyfikator `private`.
 
 Zmiana widoczności właściwości oznacza zmianę widoczności jej akcesorów. Pole właściwości zawsze jest prywatne. Aby zmienić widoczność settera, umieść modyfikator widoczności przed słowem kluczowym `set`. Getter musi mieć taką samą widoczność jak właściwość.
 
 ```kotlin
 class View {
-   var isVisible: Boolean = true
-       private set
+    var isVisible: Boolean = true
+        private set
 
-   fun hide() {
-       isVisible = false
-   }
+    fun hide() {
+        isVisible = false
+    }
 }
 
 fun main() {
-   val view = View()
-   println(view.isVisible) // true
-   view.hide()
-   println(view.isVisible) // false
-   view.isVisible = true // BŁĄD
-   // Nie można przypisać do isVisible,
-   // setter jest prywatny w View
+    val view = View()
+    println(view.isVisible) // true
+    view.hide()
+    println(view.isVisible) // false
+    view.isVisible = true // BŁĄD
+    // Nie można przypisać do isVisible,
+    // setter jest prywatny w View
 }
 ```
 
@@ -634,11 +636,11 @@ Możesz myśleć o `Any` jak o otwartej klasie z trzema metodami: `toString`, `e
 
 W tym rozdziale nauczyliśmy się, jak korzystać z dziedziczenia w Kotlinie. Zapoznaliśmy się z otwartymi i abstrakcyjnymi klasami, interfejsami oraz modyfikatorami widoczności. Są one przydatne, gdy chcemy reprezentować hierarchie klas.
 
-Zamiast używać klas do reprezentowania hierarchii, możemy również używać je do przechowywania danych; w tym celu bardzo przydatny jest modyfikator `data`, który jest przedstawiony w następnym rozdziale.
+Zamiast używać klas do reprezentowania hierarchii, możemy również używać ich do przechowywania danych; w tym celu bardzo przydatny jest modyfikator `data`, który jest przedstawiony w następnym rozdziale.
 
 [^10_0]: Ciekawostką dla właścicieli psów czy kotów jest to, że, podobnie jak wszystkie ssaki, mają one pępek; jednak często nie jest łatwo go znaleźć, ponieważ jest mały i czasami ukryty pod futrem.
 [^10_3]: Głębsze wyjaśnienie powodów stojących za tą ogólną zasadą programowania przedstawione jest w *Efektywny Kotlin*, *Temat 30: Minimalizuj widoczność elementów*.
 [^10_4]: Widoczność określa, gdzie można używać danego elementu. Jeśli element nie jest widoczny, nie będzie sugerowany przez IDE i nie można go używać.
-[^10_5]: Jednakże widziałem przypadki, gdy zespoły używały modyfikatora widoczności `internal` jako substytutu dla modyfikatora package-private w Java. Pomimo że ma on inne zachowanie, niektórzy programiści traktują ten modyfikator jako formę dokumentacji, która powinna być interpretowana jako "ten element nie powinien być używany w różnych pakietach". Nie jestem fanem takich praktyk. 
+[^10_5]: Jednakże widziałem przypadki, gdy zespoły używały modyfikatora widoczności `internal` jako substytutu dla modyfikatora package-private w Java. Pomimo że ma on inne zachowanie, niektórzy programiści traktują ten modyfikator jako formę dokumentacji, która powinna być interpretowana jako "ten element nie powinien być używany w różnych pakietach". Nie jestem fanem takich praktyk.
 [^10_6]: Domyślne metody sprawiają, że interfejsy są czymś więcej niż to, co uważano za interfejs w tradycyjnym ujęciu. Umożliwiają one interfejsom definiowanie zachowań, które są dziedziczone przez klasy implementujące te interfejsy. Koncepcja, która reprezentuje zbiór metod, które można wykorzystać do rozszerzenia funkcjonalności klasy, jest znana w programowaniu jako **trait**. Dlatego we wczesnych wersjach Kotlina używaliśmy słowa kluczowego `trait` zamiast słowa kluczowego `interface`. Jednak wersja 8 Javy wprowadziła domyślne ciała dla metod interfejsów, więc twórcy Kotlina założyli, że społeczność JVM poszerzyła znaczenie pojęcia interfejsu i dlatego teraz używamy słowa kluczowego `interface`. Koncepcja traitów jest używana w Kotlinie. Przykład można znaleźć w moim artykule *Traits for testing in Kotlin*, który można znaleźć pod adresem `kt.academy/article/traits-testing`.
 

@@ -157,8 +157,8 @@ fun main() {
 }
 ```
 
-Klasy z modyfikatorem `data` reprezentują zbiór danych; dwa obiekty tej klasy uważa się je za równe jeśli:
-* obie są dokładnie tej samej klasy,
+Klasy z modyfikatorem `data` reprezentują zbiór danych; dwa obiekty tej klasy uważa się za równe jeśli:
+* są dokładnie tej samej klasy,
 * ich wartości właściwości głównego konstruktora są równe.
 
 ```kotlin
@@ -579,7 +579,7 @@ To prawie nic nie kosztuje i znacznie poprawia czytelność i czystość kodu:
 
 * Jeśli użytkownik destrukturyzuje zmienne o poprawnych nazwach, ale w niewłaściwych pozycjach, ostrzeżenie zostanie wyświetlone w IntelliJ.
 
-Jeśli nie chcesz, aby ta klasa miała szerszy zakres, możesz ograniczyć jej widoczność. Może być nawet prywatna, jeśli potrzebujesz jej tylko do lokalnego przetwarzania w pojedynczym pliku lub klasie. Warto używać klas danych zamiast `Pair` i `Triple`. Klasy są tanie w Kotlinie, więc nie bój się ich używać w swoich projektach.
+Jeśli nie chcesz, aby ta klasa miała szerszy zakres, możesz ograniczyć jej widoczność. Może być nawet prywatna, jeśli potrzebujesz jej tylko do lokalnego przetwarzania w pojedynczym pliku lub klasie. Warto używać klas danych zamiast `Pair` i `Triple`. Klasy w Kotlinie są tanie, więc nie bój się ich używać w swoich projektach.
 
 ### Podsumowanie
 
