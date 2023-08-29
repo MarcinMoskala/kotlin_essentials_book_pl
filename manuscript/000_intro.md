@@ -31,8 +31,7 @@ Ta książka nie omawia funkcyjnych cech Kotlina, takich jak wyrażenia lambda c
 
 Kiedy zacząłem czytać "poprawne" tłumaczenie innej swojej książki, nieraz musiałem sięgać do oryginału, by zrozumieć przetłumaczony fragment. W języku polskim przyjęło się wiele tłumaczeń pojęć technicznych, które są formalnie poprawne, ale nie są używane na co dzień (albo nawet wcale) przez programistów. Efekt jest taki, że tekst "poprawnie przetłumaczonych" książek jest często bardzo trudny do zrozumienia, w wyniku czego większość programistów preferuje czytać w języku angielskim. Jest to jednak wylanie dziecka z kąpielą. Istnieje wartość w tym, że książka jest przetłumaczona na język ojczysty, po prostu powinno się to robić z głową.
 
-W tej książce chciałbym złamać to błędne koło. Przy jej tłumaczeniu postawiłem **wyłącznie** na pragmatyzm. Starałem się używać języka, który jest używany przez programistów, a nie formalnie poprawnych tłumaczeń. Bardzo często oznacza to używanie anglicyzmów. Będę na przykład mówił o stringach, data klasach, enumach, sealed klasach, companion obiektach itd. Tam jednak, gdzie znaczenie polskiego słowa wydaje mi się dostatecznie zrozumiałe, będę używał polskiego słowa. Na przykład będę mówił o klasach, interfejsach, dziedziczeniu itd. W wielu miejscach miałem niemały dylemat, jakiego pojęcia użyć. I tak mówię o "rozszerzeniach", a nie "extensionach" głównie ze względu na to, że zdecydowałem się używać pojęcia "funkcje", a nie "functions", a "funkcje rozszerzające" brzmią znacznie lepiej niż "funkcje typu extension". Być może nie zgodzisz się ze wszystkimi moimi decyzjami, zapewne niejeden skrytykuje kalanie języka ojczystego licznymi anglicyzmami, ale mam nadzieję, że reszta czytelników
-doceni pragmatyzm, którym kierowałem się przy pisaniu tej książki.
+W tej książce chciałbym złamać to błędne koło. Przy jej tłumaczeniu postawiłem **wyłącznie** na pragmatyzm. Starałem się używać języka, który jest używany przez programistów, a nie formalnie poprawnych tłumaczeń. Bardzo często oznacza to używanie anglicyzmów. Będę na przykład mówił o stringach, data klasach, enumach, sealed klasach, companion obiektach itd. Tam jednak, gdzie znaczenie polskiego słowa wydaje mi się dostatecznie zrozumiałe, będę używał polskiego słowa. Na przykład będę mówił o klasach, interfejsach, dziedziczeniu itd. W wielu miejscach miałem niemały dylemat, jakiego pojęcia użyć. I tak mówię o "rozszerzeniach", a nie "extensionach" głównie ze względu na to, że zdecydowałem się używać pojęcia "funkcje", a nie "functions", a "funkcje rozszerzające" brzmią znacznie lepiej niż "funkcje typu extension". Być może nie zgodzisz się ze wszystkimi moimi decyzjami, zapewne niejeden skrytykuje kalanie języka ojczystego licznymi anglicyzmami, ale mam nadzieję, że reszta czytelników doceni pragmatyzm, którym kierowałem się przy pisaniu tej książki.
 
 Jeśli masz wątpliwość co do znaczenia któregoś z używanych w książce pojęć, skorzystaj ze słownika na końcu książki.
 
@@ -78,7 +77,7 @@ Książka również przeszła przez profesjonalną korektę językową, której 
 
 {pagebreak}
 
-### Podziękowania
+### Podziękowania dla recenzentów technicznych
 
 {width: 25%, float: left, }
 ![](owen.jpg)

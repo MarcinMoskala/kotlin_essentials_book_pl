@@ -154,7 +154,10 @@ class User {
 }
 
 var User.birthdate: Date?
-    get() = birthdateMillis?.let(::Date)
+    get() {
+        val millis = birthdateMillis
+        return if (millis == null) null else Date(millis)
+    }
     set(value) {
         birthdateMillis = value?.time
     }
@@ -236,10 +239,7 @@ Kolejną konsekwencją tego, czym są rozszerzenia, jest to, że **definiujemy r
 
 ```kotlin
 inline fun CharSequence?.isNullOrBlank(): Boolean {
-    contract {
-        returns(false) implies (this@isNullOrBlank != null)
-    }
-
+    // (pominięta definicja kontraktu)
     return this == null || this.isBlank()
 }
 

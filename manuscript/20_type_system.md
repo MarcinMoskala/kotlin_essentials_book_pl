@@ -68,10 +68,7 @@ fun Iterable<Int>.sum(): Int {
 
 @OptIn(ExperimentalContracts::class)
 inline fun CharSequence?.isNullOrBlank(): Boolean {
-    contract {
-        returns(false) implies (this@isNullOrBlank != null)
-    }
-
+    // (pominięta definicja kontraktu)
     return this == null || this.isBlank()
 }
 ```

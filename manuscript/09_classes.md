@@ -212,18 +212,17 @@ fun main() {
 Właściwość `fullName` potrzebuje tylko gettera, ponieważ jest to właściwość tylko do odczytu `val`. Kiedykolwiek poprosimy o wartość tej właściwości, pełne imię i nazwisko będzie obliczane na podstawie `name` i `surname`. Zauważ, że ta właściwość jest obliczana na żądanie, co stanowi zaletę w porównaniu z użyciem zwykłej właściwości.
 
 ```kotlin
-class User {
-    var name: String = ""
-    var surname: String = ""
+class User(
+    var name: String,
+    var surname: String,
+) {
     val fullName1: String
         get() = "$name $surname"
     val fullName2: String = "$name $surname"
 }
 
 fun main() {
-    val user = User()
-    user.name = "Maja"
-    user.surname = "Markiewicz"
+    val user = User("Maja", "Markiewicz")
     println(user.fullName1) // Maja Markiewicz
     println(user.fullName2) // Maja Markiewicz
     user.surname = "Moskała"
@@ -280,7 +279,10 @@ class User {
     var birthdateMillis: Long? = null
 
     var birthdate: Date?
-        get() = birthdateMillis?.let(::Date)
+        get() {
+            val millis = birthdateMillis
+            return if (millis == null) null else Date(millis)
+        }
         set(value) {
             birthdateMillis = value?.time
         }
