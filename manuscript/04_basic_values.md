@@ -565,6 +565,18 @@ W ciągach znaków Kotlina używamy Unicode, możemy więc zdefiniować znak Uni
 
 ![](unicode.png)
 
+Jeśli pomiędzy dwoma stringami postawimy znak `+`, wynikiem będzie string, zawierający kolejno zawartość tamtych dwóch. Możemy też do stringa dodać dowolną wartość, która w wyniku tej operacji zostanie przekształcona na stringa.
+
+```kotlin
+fun main() {
+    val text1 = "ABC"
+    val text2 = "DEF"
+    println(text1 + text2) // ABCDEF
+    println(text1 + 123) // ABC123
+    println(text1 + true) // ABCtrue
+}
+```
+
 ### Podsumowanie
 
 W tym rozdziale poznaliśmy podstawowe typy używane w języku Kotlin oraz literały używane do ich tworzenia:

@@ -20,10 +20,10 @@ fun main() {
 }
 ```
 
-Każdy enum ma następujące funkcje statyczne:
+Na każdej klasie reprezentującej enum możemy wywołać:
 
-* `values`, która zwraca tablicę wszystkich wartości tego enuma;
-* `valueOf`, która zamienia stringa na wartość o pasującej nazwie (z uwzględnieniem wielkości liter) lub rzuca wyjątek.
+* właściwość `entries`, która zwraca listę wszystkich wartości tego enuma. Jest to nowoczesna wersja funkcji `values`, która zwraca tablicę tych wartości[^14_3].
+* funkcję `valueOf`, która zamienia stringa na wartość o pasującej nazwie (z uwzględnieniem wielkości liter) lub rzuca wyjątek.
 
 ```kotlin
 enum class PaymentOption {
@@ -38,8 +38,8 @@ fun main() {
     println(option)
 
     println("Wszystkie opcje: ")
-    val paymentOptions: Array<PaymentOption> =
-        PaymentOption.values()
+    val paymentOptions: List<PaymentOption> =
+        PaymentOption.entries
     for (paymentOption in paymentOptions) {
         println(paymentOption)
     }
@@ -51,7 +51,7 @@ fun main() {
 // TRANSFER
 ```
 
-Zamiast tych metod możemy również użyć funkcji `enumValues` i `enumValueOf`, w których typ enuma określamy przy użyciu argumentu generycznego.
+Możemy również użyć funkcji `enumValues` i `enumValueOf`, w których typ enuma określamy przy użyciu argumentu generycznego.
 
 ```kotlin
 enum class PaymentOption {
@@ -128,7 +128,7 @@ fun main() {
     println(PaymentOption.TRANSFER.commission) // 0
 
     val paymentOption: PaymentOption =
-        PaymentOption.values().random()
+        PaymentOption.entries.random()
     println(paymentOption.commission) // 0, 1 lub 10
 }
 ```
@@ -177,3 +177,4 @@ W następnym rozdziale porozmawiamy o sealed klasach, które często traktowane 
 [^14_0]: W polskiej literaturze często używa się nazwy *wyliczenie* zamiast *enum*, ale w tej książce będę używał angielskiej nazwy.
 [^14_1]: Zmienne funkcyjne są opisane w książce *Funkcyjny Kotlin*. Przykład użycia enuma z funkcjonalnymi właściwościami konstruktora głównego przedstawiłem w książce *Efektywny Kotlin*, *Temat 41: Użyj wyliczenia do reprezentowania listy wartości*.
 [^14_2]: Funkcje rozszerzeń są opisane później w tej książce.
+[^14_3]: Właściwość `entries` została dodana w wersji 1.9, a więc w projektach używających starszych wersji Kotlina należy użyć `values` zamiast `entries`.

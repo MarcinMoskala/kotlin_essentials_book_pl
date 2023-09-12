@@ -81,7 +81,16 @@ fun main() {
 
 To rozwiązanie jest nie tylko wygodne, ale również wydajne, ponieważ kompilator Kotlina optymalizuje je do efektywnej iteracji po numerach (a więc jeśli nie jest to naprawdę konieczne, obiekt klasy `IntRange` nie powstaje).
 
-Zakresy utworzone za pomocą `..` obejmują ostatnią wartość (co oznacza, że są to **zamknięte zakresy**). Jeśli chcesz zakresu, który kończy się przed ostatnią wartością, użyj zamiast tego funkcji infiksowej `until`.
+Zakresy utworzone za pomocą `..` obejmują ostatnią wartość (co oznacza, że są to **zamknięte zakresy**). Jeśli chcesz zakresu, który kończy się przed ostatnią wartością, użyj zamiast tego `..<` lub funkcji infiksowej `until`.
+
+```kotlin
+fun main() {
+    for (i in 1..<5) {
+        print(i)
+    }
+}
+// 1234
+```
 
 ```kotlin
 fun main() {
@@ -92,11 +101,14 @@ fun main() {
 // 1234
 ```
 
-Zarówno `..`, jak i `until` zaczynają się od wartości po lewej stronie i zmierzają w kierunku prawej liczby z przyrostem o jeden. Jeśli użyjesz większej liczby po lewej stronie, wynikiem będzie pusty zakres.
+Zarówno `..`, jak i `..<` zaczynają się od wartości po lewej stronie i zmierzają w kierunku prawej liczby z przyrostem o jeden. Jeśli użyjesz większej liczby po lewej stronie, wynikiem będzie pusty zakres.
 
 ```kotlin
 fun main() {
     for (i in 5..1) {
+        print(i)
+    }
+    for (i in 5..<1) {
         print(i)
     }
     for (i in 5 until 1) {
@@ -125,7 +137,7 @@ fun main() {
         print("$i ")
     } // 1 4 7 10 
 
-    for (i in 1 until 10 step 3) {
+    for (i in 1..<10 step 3) {
         print("$i ")
     } // 1 4 7 
 
@@ -170,7 +182,7 @@ Programiści z doświadczeniem w starszych językach często iterują po liczbac
 fun main() {
     val names = listOf("Alex", "Bob", "Celina")
 
-    for (i in 0 until names.size) {
+    for (i in 0..<names.size) {
         val name = names[i]
         println("[$i] $name")
     }
@@ -182,7 +194,7 @@ fun main() {
 
 To nie jest dobre rozwiązanie. W Kotlinie istnieje wiele sposobów, aby zrobić to lepiej.
 
-Po pierwsze, zamiast jawnie iterować po zakresie `0 until names.size`, moglibyśmy użyć właściwości `indices`, która zwraca zakres dostępnych indeksów.
+Po pierwsze, zamiast jawnie iterować po zakresie `0..<names.size`, moglibyśmy użyć właściwości `indices`, która zwraca zakres dostępnych indeksów.
 
 ```kotlin
 fun main() {

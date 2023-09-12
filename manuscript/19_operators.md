@@ -83,6 +83,7 @@ Zacznijmy od operatorów arytmetycznych, takich jak plus czy razy. Poniższa tab
 | `a / b`   | `a.div(b)`          |
 | `a % b`   | `a.rem(b)`          |
 | `a..b `   | `a.rangeTo(b)`      |
+| `a..<b `  | `a.rangeUntil(b)`   |
 
 Zauważ, że `%` przekształca się na `rem`, co jest skrótem od "remainder", czyli "reszta". Ten operator zwraca resztę pozostałą po podzieleniu jednego operandu[^19_5] przez drugi operand, więc jest podobny do operacji modulo[^19_0].
 
@@ -98,29 +99,14 @@ fun main() {
 }
 ```
 
-Innym interesującym operatorem jest `rangeTo`, dzięki któremu można utworzyć zakres, używając dwóch kropek między dwiema wartościami. Gdy używamy `rangeTo` między dwiema liczbami typu `Int`, wynikiem jest `IntRange`. Aby utworzyć `ClosedRange`, można użyć `..` między dowolnymi dwiema liczbami, które są porównywalne.
+Także `..` oraz `..<` są operatorami, odpowiadającymi metodom `rangeTo` i `rangeUntil`. Służą do zdefiniowania zakresu. Jeśli użyjemy ich z liczbami całkowitymi, rezultatem jest `IntRange`, po którym można iterować przy użyciu pętli for. Możemy ich także użyć pomiędzy dowolnymi wartościami implementującymi interfejs `Comparable`, by zdefiniować zakres poprzez wartości skrajne. 
 
 ```kotlin
 fun main() {
     val intRange: IntRange = 1..10
     val comparableRange: ClosedRange<String> = "A".."Z"
+    val openEndRange: OpenEndRange<Double> = 1.0..<2.0
 }
-```
-
-### Operator rangeUntil
-
-Kotlin 1.7.20 wprowadził eksperymentalne wsparcie dla nowego operatora `..<`, implementowanego poprzez metodę `rangeUntil`, który jest zasadniczo zamiennikiem funkcji `until`. Operator `..<` jest używany do tworzenia zakresu, który nie zawiera ostatniej wartości. Na przykład, `1..10` zawiera 10, ale `1..<10` nie zawiera 10.
-
-```kotlin
-fun main() {
-    for (a in 1..<5) {
-        println(a)
-    }
-}
-// 1
-// 2
-// 3
-// 4
 ```
 
 ### Operator `in`
