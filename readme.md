@@ -19,7 +19,7 @@ Książka będzie dostępna w następujących formatach:
 * fizyczna książka w księgarniach internetowych i na Allegro,
 * ebook na LeanPub,
 * ebook na Amazon Kindle,
-* jako artykuły opublikowane na Kt. Academy. 
+* jako artykuły opublikowane na kt.academy. 
 
 ## Instrukcje dla korektorów
 

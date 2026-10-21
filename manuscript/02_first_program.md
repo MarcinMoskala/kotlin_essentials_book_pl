@@ -142,7 +142,7 @@ Programiści Kotlina rzadko myślą o importach, ponieważ IntelliJ zarządza ni
 Nauczyliśmy się korzystać z funkcji `main` i jak łatwo ją stworzyć przy pomocy szablonów dynamicznych. Dowiedzieliśmy się też jak sprawdzić, jak nasz kod Kotlin wyglądałby, gdyby był napisany w Javie. To chyba niezły początek naszej przygody, więc bez zbędnych ceregieli chodźmy dalej.
 
 [^02_0]: Funkcja `println` jest niejawnie importowana z pakietu biblioteki standardowej `kotlin.io`.
-[^02_2]: Niektóre rozdziały tej książki można również znaleźć online na stronie Kt. Academy. Przykłady w nich zawarte można uruchomić i modyfikować dzięki funkcji Kotlin Playground.
+[^02_2]: Niektóre rozdziały tej książki można również znaleźć online na stronie kt.academy. Przykłady w nich zawarte można uruchomić i modyfikować dzięki funkcji Kotlin Playground.
 [^02_3]: Cieszę się, gdy ludzie próbują podważyć to, czego nauczałem. Bądź sceptyczny i weryfikuj to, czego się nauczyłeś; to świetny sposób na naukę czegoś nowego i pogłębienie zrozumienia.
 [^02_5]: To nie zawsze działa, ponieważ dekompilator nie jest doskonały, ale i tak jest bardzo pomocny.
 [^02_6]: Więcej na ten temat w książce *Zaawansowany Kotlin*, rozdział *Interoperacyjność Kotlin i Java*.

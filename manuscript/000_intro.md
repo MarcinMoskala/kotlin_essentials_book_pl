@@ -52,7 +52,7 @@ programistów*.
 
 ### Konwencje kodu
 
-Prezentowane fragmenty to najczęściej wykonywalny kod bez instrukcji importowania. W wersji online tej książki na stronie Kt. Academy większość fragmentów można uruchomić, dzięki czemu czytelnicy mogą eksperymentować z kodem.
+Prezentowane fragmenty to najczęściej wykonywalny kod bez instrukcji importowania. W wersji online tej książki na stronie kt.academy większość fragmentów można uruchomić, dzięki czemu czytelnicy mogą eksperymentować z kodem.
 
 Wyniki fragmentów są prezentowane za pomocą funkcji `println`. Wynik często będzie umieszczony po instrukcji. Oto przykład:
 
